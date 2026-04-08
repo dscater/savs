@@ -125,11 +125,49 @@ onUnmounted(() => {});
                             permisos == '*' ||
                             permisos.includes('usuarios.index') ||
                             permisos.includes('ventas.index') ||
-                            permisos.includes('productos.index')
+                            permisos.includes('productos.index') ||
+                            permisos.includes('clientes.index') ||
+                            permisos.includes('ingreso_productos.index') ||
+                            permisos.includes('salida_productos.index')
                         "
                     >
                         ADMINISTRACIÓN
                     </li>
+                    <ItemMenu
+                        v-if="
+                            permisos == '*' || permisos.includes('ventas.index')
+                        "
+                        :label="'Ventas'"
+                        :ruta="'ventas.index'"
+                        :icon="'fa fa-cash-register'"
+                    ></ItemMenu>
+                    <ItemMenu
+                        v-if="
+                            permisos == '*' ||
+                            permisos.includes('clientes.index')
+                        "
+                        :label="'Clientes'"
+                        :ruta="'clientes.index'"
+                        :icon="'fa fa-user-friends'"
+                    ></ItemMenu>
+                    <ItemMenu
+                        v-if="
+                            permisos == '*' ||
+                            permisos.includes('ingreso_productos.index')
+                        "
+                        :label="'Ingreso de Productos'"
+                        :ruta="'ingreso_productos.index'"
+                        :icon="'fa fa-arrow-circle-right'"
+                    ></ItemMenu>
+                    <ItemMenu
+                        v-if="
+                            permisos == '*' ||
+                            permisos.includes('salida_productos.index')
+                        "
+                        :label="'Salida de Productos'"
+                        :ruta="'salida_productos.index'"
+                        :icon="'fa fa-arrow-circle-left'"
+                    ></ItemMenu>
                     <ItemMenu
                         v-if="
                             permisos == '*' ||

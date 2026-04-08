@@ -2,14 +2,13 @@
 import Content from "@/Components/Content.vue";
 import MiTable from "@/Components/MiTable.vue";
 import { Head, Link, router, usePage } from "@inertiajs/vue3";
-import { useProductos } from "@/composables/productos/useProductos";
+import { useSalidaProductos } from "@/composables/salida_productos/useSalidaProductos";
 import { useAxios } from "@/composables/axios/useAxios";
 import { ref, onMounted, onBeforeMount } from "vue";
 import { useAppStore } from "@/stores/aplicacion/appStore";
 // import { useMenu } from "@/composables/useMenu";
 import Formulario from "./Formulario.vue";
 import { buttonProps } from "element-plus";
-import axios from "axios";
 // const { mobile, identificaDispositivo } = useMenu();
 const { props: props_page } = usePage();
 const appStore = useAppStore();
@@ -21,7 +20,7 @@ onMounted(() => {
     appStore.stopLoading();
 });
 
-const { setProducto, limpiarProducto } = useProductos();
+const { setSalidaProducto, limpiarSalidaProducto } = useSalidaProductos();
 const { axiosDelete } = useAxios();
 
 const miTable = ref(null);
@@ -33,23 +32,18 @@ const headers = [
         width: "4%",
     },
     {
-        label: "CÓDIGO",
-        key: "codigo",
+        label: "PRODUCTO",
+        key: "producto.nombre",
         sortable: true,
     },
     {
-        label: "NOMBRE",
-        key: "nombre",
+        label: "CANTIDAD",
+        key: "cantidad",
         sortable: true,
     },
     {
-        label: "PRECIO",
-        key: "precio",
-        sortable: true,
-    },
-    {
-        label: "STOCK ACTUAL",
-        key: "stock",
+        label: "DESCRIPCIÓN",
+        key: "descripcion",
         sortable: true,
     },
     {
@@ -74,7 +68,7 @@ const accion_formulario = ref(0);
 const muestra_formulario = ref(false);
 
 const agregarRegistro = () => {
-    limpiarProducto();
+    limpiarSalidaProducto();
     accion_formulario.value = 0;
     muestra_formulario.value = true;
 };
@@ -85,18 +79,11 @@ const updateDatatable = async () => {
         muestra_formulario.value = false;
     }
 };
-const editar = (item) => {
-    axios.get(route("productos.show", item.id)).then((response) => {
-        setProducto(response.data);
-        accion_formulario.value = 1;
-        muestra_formulario.value = true;
-    });
-};
 
-const eliminarProducto = (item) => {
+const eliminarSalidaProducto = (item) => {
     Swal.fire({
         title: "¿Quierés eliminar este registro?",
-        html: `<strong>${item.nombre}</strong>`,
+        html: `<strong>${item.producto.nombre}</strong><br/><strong>Cantidad: </strong>${item.cantidad}`,
         showCancelButton: true,
         confirmButtonText: "Si, eliminar",
         cancelButtonText: "No, cancelar",
@@ -108,7 +95,7 @@ const eliminarProducto = (item) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
             let respuesta = await axiosDelete(
-                route("productos.destroy", item.id),
+                route("salida_productos.destroy", item.id),
             );
             if (respuesta && respuesta.sw) {
                 updateDatatable();
@@ -118,12 +105,12 @@ const eliminarProducto = (item) => {
 };
 </script>
 <template>
-    <Head title="Productos"></Head>
+    <Head title="Salida de Productos"></Head>
     <Content>
         <template #header>
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Productos</h1>
+                    <h1 class="m-0">Salida de Productos</h1>
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-6">
@@ -131,7 +118,9 @@ const eliminarProducto = (item) => {
                         <li class="breadcrumb-item">
                             <Link :href="route('inicio')">Inicio</Link>
                         </li>
-                        <li class="breadcrumb-item active">Productos</li>
+                        <li class="breadcrumb-item active">
+                            Salida de Productos
+                        </li>
                     </ol>
                 </div>
                 <!-- /.col -->
@@ -146,14 +135,14 @@ const eliminarProducto = (item) => {
                             v-if="
                                 props_page.auth?.user.permisos == '*' ||
                                 props_page.auth?.user.permisos.includes(
-                                    'productos.create',
+                                    'salida_productos.create',
                                 )
                             "
                             type="button"
                             class="btn btn-primary"
                             @click="agregarRegistro"
                         >
-                            <i class="fa fa-plus"></i> Nuevo Producto
+                            <i class="fa fa-plus"></i> Nueva Salida de Producto
                         </button>
                     </div>
                     <div class="col-md-8 my-1">
@@ -188,7 +177,7 @@ const eliminarProducto = (item) => {
                             ref="miTable"
                             :cols="headers"
                             :api="true"
-                            :url="route('productos.paginado')"
+                            :url="route('salida_productos.paginado')"
                             :numPages="5"
                             :multiSearch="multiSearch"
                             :syncOrderBy="'id'"
@@ -221,7 +210,7 @@ const eliminarProducto = (item) => {
                                     v-if="
                                         props_page.auth?.user.permisos == '*' ||
                                         props_page.auth?.user.permisos.includes(
-                                            'productos.edit',
+                                            'salida_productos.edit',
                                         )
                                     "
                                 >
@@ -233,7 +222,11 @@ const eliminarProducto = (item) => {
                                     >
                                         <button
                                             class="btn btn-warning"
-                                            @click="editar(item)"
+                                            @click="
+                                                setSalidaProducto(item);
+                                                accion_formulario = 1;
+                                                muestra_formulario = true;
+                                            "
                                         >
                                             <i class="fa fa-pen"></i></button
                                     ></el-tooltip>
@@ -243,7 +236,7 @@ const eliminarProducto = (item) => {
                                     v-if="
                                         props_page.auth?.user.permisos == '*' ||
                                         props_page.auth?.user.permisos.includes(
-                                            'productos.destroy',
+                                            'salida_productos.destroy',
                                         )
                                     "
                                 >
@@ -255,7 +248,9 @@ const eliminarProducto = (item) => {
                                     >
                                         <button
                                             class="btn btn-danger"
-                                            @click="eliminarProducto(item)"
+                                            @click="
+                                                eliminarSalidaProducto(item)
+                                            "
                                         >
                                             <i
                                                 class="fa fa-trash-alt"

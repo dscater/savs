@@ -25,6 +25,7 @@ class ProductoUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
+            "codigo" => "required|string|unique:productos,codigo," . $this->producto->id,
             "nombre" => "required|string|unique:productos,nombre," . $this->producto->id,
             "descripcion" => ["required", new HtmlNotEmpty],
             "precio" => "required|numeric|decimal:0,2|min:0",
@@ -37,6 +38,8 @@ class ProductoUpdateRequest extends FormRequest
     public function messages()
     {
         return [
+            "codigo.required" => "Debes completar este campo",
+            "codigo.string" => "Debes completar este campo",
             "nombre.required" => "Debes completar este campo",
             "nombre.string" => "Debes completar este campo",
             "descripcion.required" => "Debes completar este campo",

@@ -1,11 +1,8 @@
 <script setup>
 import MiModal from "@/Components/MiModal.vue";
 import { useForm, usePage } from "@inertiajs/vue3";
-import { useProductos } from "@/composables/productos/useProductos";
-import { watch, ref, computed, onMounted, nextTick } from "vue";
-import { QuillEditor } from "@vueup/vue-quill";
-import "@vueup/vue-quill/dist/vue-quill.snow.css";
-import MiDropZone from "@/Components/MiDropZone.vue";
+import { useIngresoProductos } from "@/composables/ingreso_productos/useIngresoProductos";
+import { watch, ref, computed, defineEmits, onMounted, nextTick } from "vue";
 const props = defineProps({
     muestra_formulario: {
         type: Boolean,
@@ -17,21 +14,21 @@ const props = defineProps({
     },
 });
 
-const { oProducto, limpiarProducto } = useProductos();
+const { oIngresoProducto, limpiarIngresoProducto } = useIngresoProductos();
 const accion_form = ref(props.accion_formulario);
 const muestra_form = ref(props.muestra_formulario);
 const enviando = ref(false);
-let form = useForm(oProducto.value);
+let form = useForm(oIngresoProducto.value);
 watch(
     () => props.muestra_formulario,
     (newValue) => {
         muestra_form.value = newValue;
         if (muestra_form.value) {
-            cargarCategorias();
+            cargarProductos();
             document
                 .getElementsByTagName("body")[0]
                 .classList.add("modal-open");
-            form = useForm(oProducto.value);
+            form = useForm(oIngresoProducto.value);
         } else {
             document
                 .getElementsByTagName("body")[0]
@@ -51,17 +48,10 @@ watch(
 
 const { flash } = usePage().props;
 
-const listCategorias = ref([]);
-const cargarCategorias = () => {
-    axios.get(route("categorias.listado")).then((response) => {
-        listCategorias.value = response.data.categorias;
-    });
-};
-
 const tituloDialog = computed(() => {
     return accion_form.value == 0
-        ? `<i class="fa fa-plus"></i> Nuevo Producto`
-        : `<i class="fa fa-edit"></i> Editar Producto`;
+        ? `<i class="fa fa-plus"></i> Nuevo Ingreso de Producto`
+        : `<i class="fa fa-edit"></i> Editar Ingreso de Producto`;
 });
 
 const textBtn = computed(() => {
@@ -78,8 +68,8 @@ const enviarFormulario = () => {
     enviando.value = true;
     let url =
         accion_form.value == 0
-            ? route("productos.store")
-            : route("productos.update", form.id);
+            ? route("ingreso_productos.store")
+            : route("ingreso_productos.update", form.id);
 
     form.post(url, {
         preserveScroll: true,
@@ -98,7 +88,7 @@ const enviarFormulario = () => {
                 },
             });
             form.reset();
-            limpiarProducto();
+            limpiarIngresoProducto();
             emits("envio-formulario");
         },
         onError: (err, code) => {
@@ -137,14 +127,6 @@ const enviarFormulario = () => {
     });
 };
 
-const detectaArchivos = (files) => {
-    form.producto_imagens = files;
-};
-
-const detectaEliminados = (eliminados) => {
-    form.eliminados_imagens = eliminados;
-};
-
 const emits = defineEmits(["cerrar-formulario", "envio-formulario"]);
 
 watch(muestra_form, (newVal) => {
@@ -160,6 +142,12 @@ const cargarArchivo = (e, key) => {
     if (file) {
         form[key] = e.target.files[0];
     }
+};
+const listProductos = ref([]);
+const cargarProductos = () => {
+    axios.get(route("productos.listado")).then((response) => {
+        listProductos.value = response.data.productos;
+    });
 };
 
 const cerrarFormulario = () => {
@@ -197,114 +185,63 @@ onMounted(() => {});
                 </p>
                 <div class="row">
                     <div class="col-md-4 mt-2">
-                        <label class="required">Seleccionar Categoría</label>
+                        <label class="required">Seleccionar Producto</label>
                         <el-select
                             :class="{
-                                'parsley-error': form.errors?.categoria_id,
+                                'parsley-error': form.errors?.producto_id,
                             }"
-                            placeholder="Seleccionar Categoría"
-                            v-model="form.categoria_id"
+                            v-model="form.producto_id"
                             filterable
+                            placeholder="- Seleccione -"
                         >
                             <el-option
-                                v-for="item in listCategorias"
+                                v-for="item in listProductos"
                                 :key="item.id"
-                                :label="item.nombre"
                                 :value="item.id"
-                            ></el-option>
-                        </el-select>
+                                :label="`${item.codigo} - ${item.nombre}`"
+                            ></el-option
+                        ></el-select>
                         <ul
-                            v-if="form.errors?.categoria_id"
+                            v-if="form.errors?.producto_id"
                             class="d-block text-danger list-unstyled"
                         >
                             <li class="parsley-required">
-                                {{ form.errors?.categoria_id }}
+                                {{ form.errors?.producto_id }}
                             </li>
                         </ul>
                     </div>
                     <div class="col-md-4 mt-2">
-                        <label class="required">Código de Producto</label>
-                        <el-input
-                            type="text"
-                            :class="{
-                                'parsley-error': form.errors?.codigo,
-                            }"
-                            v-model="form.codigo"
-                            autosize
-                        ></el-input>
-                        <ul
-                            v-if="form.errors?.codigo"
-                            class="d-block text-danger list-unstyled"
-                        >
-                            <li class="parsley-required">
-                                {{ form.errors?.codigo }}
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-md-4 mt-2">
-                        <label class="required">Nombre de Producto</label>
-                        <el-input
-                            type="text"
-                            :class="{
-                                'parsley-error': form.errors?.nombre,
-                            }"
-                            v-model="form.nombre"
-                            autosize
-                        ></el-input>
-                        <ul
-                            v-if="form.errors?.nombre"
-                            class="d-block text-danger list-unstyled"
-                        >
-                            <li class="parsley-required">
-                                {{ form.errors?.nombre }}
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-md-4 mt-2">
-                        <label class="required">Precio del Producto Bs.</label>
+                        <label class="required">Cantidad</label>
                         <input
                             type="number"
-                            step="0.01"
-                            min="0"
+                            step="1"
+                            min="1"
                             class="form-control"
                             :class="{
-                                'parsley-error': form.errors?.precio,
+                                'parsley-error': form.errors?.cantidad,
                             }"
-                            v-model="form.precio"
+                            v-model="form.cantidad"
+                            autosize
                         />
                         <ul
-                            v-if="form.errors?.precio"
+                            v-if="form.errors?.cantidad"
                             class="d-block text-danger list-unstyled"
                         >
                             <li class="parsley-required">
-                                {{ form.errors?.precio }}
+                                {{ form.errors?.cantidad }}
                             </li>
                         </ul>
                     </div>
-                    <div class="col-md-12 mt-2">
-                        <label class="required">Cargar Imágenes</label>
-                        <MiDropZone
-                            :files="form.producto_imagens"
-                            :maximo="50"
-                            @UpdateFiles="detectaArchivos"
-                            @addEliminados="detectaEliminados"
-                        ></MiDropZone>
-                        <ul
-                            v-if="form.errors?.producto_imagens"
-                            class="d-block text-danger list-unstyled"
-                        >
-                            <li class="parsley-required">
-                                {{ form.errors?.producto_imagens }}
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-md-12 mt-3">
-                        <label class="required">Descripción del producto</label>
-                        <QuillEditor
-                            v-model:content="form.descripcion"
-                            contentType="html"
-                            theme="snow"
-                        />
+                    <div class="col-md-4 mt-2">
+                        <label class="">Descripción</label>
+                        <el-input
+                            type="textarea"
+                            :class="{
+                                'parsley-error': form.errors?.descripcion,
+                            }"
+                            v-model="form.descripcion"
+                            autosize
+                        ></el-input>
                         <ul
                             v-if="form.errors?.descripcion"
                             class="d-block text-danger list-unstyled"

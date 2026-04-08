@@ -8,4 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 class SalidaProducto extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        "producto_id",
+        "cantidad",
+        "descripcion",
+        "fecha_registro",
+    ];
+
+    protected $appends = ["fecha_registro_t"];
+
+    public function getFechaRegistroTAttribute()
+    {
+        return date("d/m/Y", strtotime($this->fecha_registro));
+    }
+
+    public function producto()
+    {
+        return $this->belongsTo(Producto::class, 'producto_id');
+    }
 }

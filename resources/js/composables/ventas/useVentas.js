@@ -7,7 +7,7 @@ const oVenta = ref({
     fecha: "",
     hora: "",
     status: "",
-    detalle_ventas: [],
+    venta_detalles: [],
     _method: "POST",
 });
 
@@ -20,7 +20,7 @@ export const useVentas = () => {
             oVenta.value.fecha = item.fecha;
             oVenta.value.hora = item.hora;
             oVenta.value.status = item.status;
-            oVenta.value.detalle_ventas = item.detalle_ventas;
+            oVenta.value.venta_detalles = item.venta_detalles;
             oVenta.value._method = "PUT";
             return oVenta;
         }
@@ -34,7 +34,7 @@ export const useVentas = () => {
         oVenta.value.fecha = "";
         oVenta.value.hora = "";
         oVenta.value.status = "";
-        oVenta.value.detalle_ventas = [];
+        oVenta.value.venta_detalles = [];
         oVenta.value._method = "POST";
     };
 

@@ -139,24 +139,15 @@ class ProductoController extends Controller
     public function byCodigo(Request $request): JsonResponse
     {
         try {
-            $codigo = $request->codigo;
+            $codigo = mb_strtoupper($request->codigo);
             $producto = Producto::where("codigo", $codigo)->get()->first();
 
             if (!$producto) {
                 throw new Exception("No hay ningún producto con ese código");
             }
 
-            if ($producto->status == 0) {
-                throw new Exception("No se encontró el producto");
-            }
-
-            if ($producto->status == 2) {
-                throw new Exception("El producto ya fue vendido");
-            }
-
-            return response()->JSON($producto);
+            return response()->JSON($producto->load(["categoria"]));
         } catch (\Exception $e) {
-            Log::debug("BB");
             throw ValidationException::withMessages([
                 'error' =>  $e->getMessage(),
             ]);

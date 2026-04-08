@@ -1,7 +1,15 @@
 <script setup>
 import { useForm, usePage } from "@inertiajs/vue3";
 import { useVentas } from "@/composables/ventas/useVentas";
-import { watch, ref, computed, defineEmits, onMounted, nextTick } from "vue";
+import {
+    watch,
+    ref,
+    computed,
+    defineEmits,
+    onMounted,
+    nextTick,
+    onBeforeMount,
+} from "vue";
 import axios from "axios";
 // TOAST
 import { toast } from "vue3-toastify";
@@ -19,7 +27,6 @@ const props = defineProps({
 
 const { oVenta, setVenta, limpiarVenta } = useVentas();
 const accion_form = ref(props.accion_formulario);
-const muestra_form = ref(props.muestra_formulario);
 const enviando = ref(false);
 let form = useForm(props.venta);
 watch(
@@ -111,9 +118,31 @@ const textBtn = computed(() => {
     return `<i class="fa fa-edit"></i> Actualizar Venta`;
 });
 
-const inputSeleccionado = ref(false);
+const oCliente = ref(null);
+const listClientes = ref([]);
+const cargarClientes = () => {
+    axios.get(route("clientes.listado")).then((response) => {
+        listClientes.value = response.data.clientes;
+    });
+};
+
+const asignarCliente = (value) => {
+    oCliente.value = null;
+    form.cliente_id = "";
+    form.nit_ci = "";
+    if (!value) {
+        return;
+    }
+    oCliente.value = listClientes.value.filter((item) => item.id == value)[0];
+    form.cliente_id = oCliente.value.id;
+    form.nit_ci = oCliente.value.nit_ci;
+};
+
+const cantidad = ref(1);
 const codigoProducto = ref("");
-const agregarProducto = () => {
+const oProducto = ref(null);
+const buscarProductoCodigo = () => {
+    oProducto.value = null;
     axios
         .get(route("productos.byCodigo"), {
             params: {
@@ -122,15 +151,12 @@ const agregarProducto = () => {
         })
         .then((response) => {
             // verificar que no exista ya en la lista
-            const existe = form.detalle_ventas.some(
+            const existe = form.venta_detalles.some(
                 (item) => item.producto_id === response.data.id,
             );
 
             if (!existe) {
-                form.detalle_ventas.push({
-                    producto_id: response.data.id,
-                    producto: response.data,
-                });
+                oProducto.value = response.data;
                 toast.success(
                     `Producto ${response.data.nombre} cargado correctamente`,
                 );
@@ -148,173 +174,444 @@ const agregarProducto = () => {
             }
         })
         .finally(() => {
-            codigoProducto.value = "";
+            // codigoProducto.value = "";
         });
 };
 
+const agregarProducto = () => {
+    const existe = form.venta_detalles.some(
+        (item) => item.producto_id === oProducto.value.id,
+    );
+
+    if (!oProducto.value) {
+        toast.info(`No se cargo ningún producto`);
+        return;
+    }
+
+    const valor = Number(cantidad.value);
+    if (
+        cantidad.value === null ||
+        cantidad.value === "" ||
+        isNaN(valor) ||
+        valor < 1
+    ) {
+        toast.error("Debes ingresar una cantidad válida mayor o igual a 1");
+        return;
+    }
+    if (!existe) {
+        const subtotal = valor * parseFloat(oProducto.value.precio);
+
+        form.venta_detalles.push({
+            venta_id: 0,
+            producto: oProducto.value,
+            producto_id: oProducto.value.id,
+            precio: oProducto.value.precio,
+            cantidad: valor,
+            subtotal: subtotal.toFixed(2),
+        });
+
+        toast.success(
+            `Producto ${oProducto.value.nombre} agregado correctamente`,
+        );
+        limpiarSeleccion();
+    } else {
+        toast.info(`Producto ${oProducto.value.nombre} ya fue agregado`);
+    }
+};
+
+const limpiarSeleccion = () => {
+    oProducto.value = null;
+    codigoProducto.value = "";
+    cantidad.value = 1;
+};
+
 const quitar = (index) => {
-    form.detalle_ventas.splice(index, 1);
+    form.venta_detalles.splice(index, 1);
 };
 const totalVenta = computed(() => {
-    return form.detalle_ventas.reduce((total, item) => {
-        const precio = item.producto?.precio;
+    return form.venta_detalles
+        .reduce((total, item) => {
+            const subtotal = parseFloat(item.subtotal);
 
-        if (precio !== null && precio !== undefined && precio !== "") {
-            return total + Number(precio);
-        }
+            if (
+                subtotal !== null &&
+                subtotal !== undefined &&
+                subtotal !== ""
+            ) {
+                return total + Number(subtotal);
+            }
 
-        return total;
-    }, 0);
+            return total;
+        }, 0)
+        .toFixed(2);
 });
 
-const muestra_qr = ref(false);
+const modificaCantidadFila = (e, index) => {
+    console.log(e.target.value);
+    const cantidad = e.target.value;
+    const valor = Number(cantidad);
+    if (cantidad === null || cantidad === "" || isNaN(valor) || valor < 1) {
+        toast.error("Debes ingresar una cantidad válida mayor o igual a 1");
+        return;
+    }
+
+    form.venta_detalles[index]["cantidad"] = valor;
+    form.venta_detalles[index]["subtotal"] =
+        valor * parseFloat(form.venta_detalles[index]["precio"]);
+    form.venta_detalles[index]["subtotal"] =
+        form.venta_detalles[index]["subtotal"].toFixed(2);
+};
 
 onMounted(() => {});
+onBeforeMount(() => {
+    cargarClientes();
+});
 </script>
 
 <template>
     <form @submit.prevent="enviarFormulario()">
-        <div class="row">
-            <div class="col-12 pb-0">
-                <div class="input-group mb-0">
-                    <div class="input-group-prepend">
-                        <span
-                            class="input-group-text bg-white"
-                            for="inputCodigo"
-                            :class="{
-                                seleccionado: inputSeleccionado,
-                            }"
-                        >
-                            <i class="fa fa-barcode"></i>
-                        </span>
+        <div class="row mb-0">
+            <div class="col-md-12 col-lg-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">
+                            <i class="fa fa-user"></i> Datos del Cliente
+                        </h5>
                     </div>
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="inputCodigo"
-                        :class="{
-                            seleccionado: inputSeleccionado,
-                        }"
-                        v-model="codigoProducto"
-                        @keypress.enter.prevent="agregarProducto"
-                        @focus="inputSeleccionado = true"
-                        @blur="inputSeleccionado = false"
-                    />
+                    <div class="card-body pt-1">
+                        <div class="row">
+                            <div class="col-12">
+                                <small
+                                    class="text-muted text-xs font-weight-bold"
+                                    >Seleccionar Cliente</small
+                                >
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span
+                                            class="input-group-text bg-white"
+                                            for="inputCodigo"
+                                        >
+                                            <i class="fa fa-user-friends"></i>
+                                        </span>
+                                    </div>
+                                    <div class="form-control p-0 border-0">
+                                        <el-select
+                                            class="el-select-input-group-right"
+                                            size="large"
+                                            v-model="form.cliente_id"
+                                            filterable
+                                            clereable
+                                            placeholder="Seleccionar"
+                                            no-data-text="Sin resultados"
+                                            no-match-text="No se encontrarón coincidencias"
+                                            @change="asignarCliente"
+                                        >
+                                            <el-option
+                                                v-for="item in listClientes"
+                                                :key="item.id"
+                                                :value="item.id"
+                                                :label="`${item.nombre} - ${item.nit_ci}`"
+                                            ></el-option>
+                                        </el-select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-2">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="text-center">
+                                            {{
+                                                oCliente ? oCliente.nombre : "-"
+                                            }}
+                                        </div>
+                                        <div
+                                            class="w-100 text-center text-xs text-muted"
+                                        >
+                                            Nombre
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="text-center">
+                                            <input
+                                                type="text"
+                                                class="form-control text-center"
+                                                v-model="form.nit_ci"
+                                            />
+                                        </div>
+                                        <div
+                                            class="w-100 text-center text-xs text-muted"
+                                        >
+                                            NIT/C.I.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="text-center">
+                                            {{ oCliente ? oCliente.cel : "-" }}
+                                        </div>
+                                        <div
+                                            class="w-100 text-center text-xs text-muted"
+                                        >
+                                            Teléfono/Celular
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <small class="text-muted text-xs font-weight-bold"
-                    >Mantener seleccionado el campo y escanear el código de
-                    barras</small
-                >
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <hr />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12 overflow-auto">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>CÓDIGO</th>
-                            <th>NOMBRE</th>
-                            <th>MARCA</th>
-                            <th>MODELO</th>
-                            <th>PRECIO</th>
-                            <th>TALLA</th>
-                            <th>FOTO</th>
-                            <th width="4%"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <template v-if="form.detalle_ventas.length > 0">
-                            <tr v-for="(item, index) in form.detalle_ventas">
-                                <td>{{ item.producto.codigo }}</td>
-                                <td>{{ item.producto.nombre }}</td>
-                                <td>{{ item.producto.marca }}</td>
-                                <td>{{ item.producto.modelo }}</td>
-                                <td>{{ item.producto.precio }}</td>
-                                <td>{{ item.producto.talla }}</td>
-                                <td>
-                                    <img
-                                        :src="item.producto.url_foto"
-                                        alt="Foto"
-                                        width="90px"
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">
+                            <i class="fa fa-boxes"></i> Productos
+                        </h5>
+                    </div>
+                    <div class="card-body pt-1">
+                        <div class="row">
+                            <div class="col-12">
+                                <small
+                                    class="text-muted text-xs font-weight-bold"
+                                    >Código de Producto</small
+                                >
+                                <div class="input-group mb-0">
+                                    <div class="input-group-prepend">
+                                        <span
+                                            class="input-group-text bg-white"
+                                            for="inputCodigo"
+                                        >
+                                            <i class="fa fa-box"></i>
+                                        </span>
+                                    </div>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        autocomplete="false"
+                                        v-model="codigoProducto"
+                                        @keypress.enter.prevent="
+                                            buscarProductoCodigo
+                                        "
                                     />
-                                </td>
-                                <td>
-                                    <button
-                                        class="btn btn-sm btn-danger"
-                                        @click="quitar(index)"
+
+                                    <div class="input-group-append">
+                                        <button
+                                            class="btn btn-primary"
+                                            type="button"
+                                            @click.prevent="
+                                                buscarProductoCodigo
+                                            "
+                                        >
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 mt-2">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="text-center">
+                                            {{
+                                                oProducto
+                                                    ? oProducto.categoria
+                                                          ?.nombre
+                                                    : "-"
+                                            }}
+                                        </div>
+                                        <div
+                                            class="w-100 text-center text-xs text-muted"
+                                        >
+                                            Categoría
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="text-center">
+                                            {{
+                                                oProducto
+                                                    ? oProducto.nombre
+                                                    : "-"
+                                            }}
+                                        </div>
+                                        <div
+                                            class="w-100 text-center text-xs text-muted"
+                                        >
+                                            Nombre
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="text-center">
+                                            {{
+                                                oProducto
+                                                    ? oProducto.stock
+                                                    : "-"
+                                            }}
+                                        </div>
+                                        <div
+                                            class="w-100 text-center text-xs text-muted"
+                                        >
+                                            Disponible
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div
+                                        class="col-md-4 offset-md-4 text-center"
                                     >
-                                        X
-                                    </button>
-                                </td>
-                            </tr>
-                        </template>
-                        <template v-else>
-                            <tr>
-                                <td colspan="8" class="text-center text-muted">
-                                    NO SE AGREGÓ NINGÚN PRODUCTO
-                                </td>
-                            </tr>
-                        </template>
-                        <template v-if="form.detalle_ventas.length > 0">
-                            <tr>
-                                <td
-                                    class="text-right font-weight-bold text-lg"
-                                    colspan="4"
-                                >
-                                    TOTAL
-                                </td>
-                                <td class="font-weight-bold text-lg">
-                                    {{ totalVenta }}
-                                </td>
-                                <td colspan="3"></td>
-                            </tr>
-                        </template>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-12">
-                <label>Tipo de Pago:</label>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="input-group">
-                            <select
-                                v-model="form.tipo_pago"
-                                class="form-control"
-                            >
-                                <option value="EFECTIVO">EFECTIVO</option>
-                                <option value="QR">QR</option>
-                            </select>
-                            <div
-                                class="input-group-append"
-                                v-if="form.tipo_pago == 'QR'"
-                            >
-                                <button
-                                    class="btn btn-outline-secondary"
-                                    type="button"
-                                    @click="muestra_qr = true"
-                                >
-                                    <i class="fa fa-qrcode"></i>
-                                </button>
+                                        <div class="input-group">
+                                            <input
+                                                type="number"
+                                                step="1"
+                                                class="form-control text-center"
+                                                v-model="cantidad"
+                                                @keypress.enter.prevent="
+                                                    agregarProducto
+                                                "
+                                            />
+                                            <div class="input-group-append">
+                                                <button
+                                                    class="btn btn-primary"
+                                                    type="button"
+                                                    @click.prevent="
+                                                        agregarProducto
+                                                    "
+                                                >
+                                                    <i class="fa fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="w-100 text-center text-xs text-muted"
+                                        >
+                                            Cantidad
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-12 mt-2">
-                <button
-                    type="button"
-                    class="btn btn-primary"
-                    :disabled="enviando"
-                    @click.prevent="enviarFormulario"
-                    v-html="textBtn"
-                ></button>
+            <div class="col-md-12 col-lg-6 pb-0">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">
+                            <i class="fa fa-shopping-cart"></i> Carrito
+                        </h5>
+                    </div>
+                    <div class="card-body pt-1 overflow-auto">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr class="bg-principal">
+                                    <th class="text-xs">CÓDIGO</th>
+                                    <th class="text-xs">DESCRIPCIÓN</th>
+                                    <th class="text-xs">P/U BS.</th>
+                                    <th class="text-xs" width="130px">
+                                        CANTIDAD
+                                    </th>
+                                    <th class="text-xs">SUBTOTAL BS.</th>
+                                    <th width="4%"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template v-if="form.venta_detalles.length > 0">
+                                    <tr
+                                        v-for="(
+                                            item, index
+                                        ) in form.venta_detalles"
+                                    >
+                                        <td>{{ item.producto.codigo }}</td>
+                                        <td>{{ item.producto.nombre }}</td>
+                                        <td>{{ item.producto.precio }}</td>
+                                        <td>
+                                            <input
+                                                type="number"
+                                                step="1"
+                                                min="0"
+                                                v-model="item.cantidad"
+                                                class="form-control text-center"
+                                                @keyup.prevent="
+                                                    modificaCantidadFila(
+                                                        $event,
+                                                        index,
+                                                    )
+                                                "
+                                                @change="
+                                                    modificaCantidadFila(
+                                                        $event,
+                                                        index,
+                                                    )
+                                                "
+                                            />
+                                        </td>
+                                        <td>{{ item.subtotal }}</td>
+                                        <td>
+                                            <button
+                                                class="btn btn-sm btn-danger"
+                                                @click="quitar(index)"
+                                            >
+                                                X
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </template>
+                                <template v-else>
+                                    <tr>
+                                        <td
+                                            colspan="8"
+                                            class="text-center text-muted"
+                                        >
+                                            NO SE AGREGÓ NINGÚN PRODUCTO
+                                        </td>
+                                    </tr>
+                                </template>
+                                <template v-if="form.venta_detalles.length > 0">
+                                    <tr>
+                                        <td
+                                            class="text-right font-weight-bold text-lg"
+                                            colspan="4"
+                                        >
+                                            TOTAL Bs.
+                                        </td>
+                                        <td class="font-weight-bold text-lg">
+                                            {{ totalVenta }}
+                                        </td>
+                                        <td colspan="3"></td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <ul
+                            v-if="form.errors"
+                            class="d-block text-danger list-unstyled"
+                        >
+                            <li
+                                class="parsley-required"
+                                v-if="form.errors?.venta_detalles"
+                            >
+                                {{ form.errors?.venta_detalles }}
+                            </li>
+                            <li
+                                class="parsley-required"
+                                v-if="form.errors?.cliente_id"
+                            >
+                                {{ form.errors?.cliente_id }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 mt-1 mb-3 text-center">
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            :disabled="enviando"
+                            @click.prevent="enviarFormulario"
+                            v-html="textBtn"
+                        ></button>
+                    </div>
+                </div>
             </div>
         </div>
     </form>

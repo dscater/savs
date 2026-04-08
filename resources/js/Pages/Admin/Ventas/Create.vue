@@ -62,14 +62,10 @@ onMounted(() => {
                 </div>
                 <div class="row">
                     <div class="col-12 mt-1">
-                        <div class="card">
-                            <div class="card-body">
-                                <Formulario
-                                    :venta="oVenta"
-                                    :accion_formulario="0"
-                                ></Formulario>
-                            </div>
-                        </div>
+                        <Formulario
+                            :venta="oVenta"
+                            :accion_formulario="0"
+                        ></Formulario>
                     </div>
                 </div>
             </div>

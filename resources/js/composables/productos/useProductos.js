@@ -2,6 +2,7 @@ import { onMounted, ref } from "vue";
 
 const oProducto = ref({
     id: 0,
+    codigo: "",
     nombre: "",
     descripcion: "",
     precio: "",
@@ -16,6 +17,7 @@ export const useProductos = () => {
     const setProducto = (item = null) => {
         if (item) {
             oProducto.value.id = item.id;
+            oProducto.value.codigo = item.codigo;
             oProducto.value.nombre = item.nombre;
             oProducto.value.descripcion = item.descripcion;
             oProducto.value.precio = item.precio;
@@ -31,6 +33,7 @@ export const useProductos = () => {
 
     const limpiarProducto = () => {
         oProducto.value.id = 0;
+        oProducto.value.codigo = "";
         oProducto.value.nombre = "";
         oProducto.value.descripcion = "";
         oProducto.value.precio = "";

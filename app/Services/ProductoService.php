@@ -85,6 +85,7 @@ class ProductoService
     public function crear(array $datos): Producto
     {
         $producto = Producto::create([
+            "codigo" => mb_strtoupper($datos["codigo"]),
             "nombre" => mb_strtoupper($datos["nombre"]),
             "descripcion" => $datos["descripcion"],
             "precio" => $datos["precio"],
@@ -113,6 +114,7 @@ class ProductoService
         $old_producto = clone $producto;
 
         $producto->update([
+            "codigo" => mb_strtoupper($datos["codigo"]),
             "nombre" => mb_strtoupper($datos["nombre"]),
             "descripcion" => $datos["descripcion"],
             "precio" => $datos["precio"],
@@ -154,5 +156,48 @@ class ProductoService
         $this->historialAccionService->registrarAccion($this->modulo, "ELIMINACIÓN", "ELIMINÓ UN PRODUCTO", $old_producto, $producto);
 
         return true;
+    }
+
+
+    public function incrementarStock(int $producto_id, int $cantidad = 1)
+    {
+        $producto = Producto::findOrFail($producto_id);
+        $producto->stock = (float)$producto->stock + $cantidad;
+        $producto->save();
+        return $producto;
+    }
+    public function decrementarStock(int $producto_id, int $cantidad = 1)
+    {
+        $producto = Producto::findOrFail($producto_id);
+        // validar stock
+        if (!$this->verificaStock($producto_id, $cantidad)) {
+            throw new Exception("Stock insuficiente del producto " . $producto->nombre . ", disponible " . $producto->stock);
+        }
+
+        $producto->stock = (float)$producto->stock - $cantidad;
+        $producto->save();
+        return $producto;
+    }
+
+    public function verificaStock($producto_id, $cantidad): bool
+    {
+        $producto = Producto::findOrFail($producto_id);
+        $disponible = false;
+        if ($producto->stock >= $cantidad) {
+            $disponible = true;
+        }
+
+        return $disponible;
+    }
+
+    public function verificaStockCantidad($producto_id, $cantidad): array
+    {
+        $producto = Producto::findOrFail($producto_id);
+        $disponible = false;
+        if ($producto->stock >= $cantidad) {
+            $disponible = true;
+        }
+
+        return [$disponible, $producto->stock];
     }
 }

@@ -1,14 +1,18 @@
 <?php
 
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ConfiguracionController;
+use App\Http\Controllers\IngresoProductoController;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReporteController;
+use App\Http\Controllers\SalidaProductoController;
 use App\Http\Controllers\TipoUsuarioController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\VentaController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -76,11 +80,40 @@ Route::middleware(['auth', 'permisoUsuario'])->prefix("admin")->group(function (
         ["index", "store", "edit", "show", "update", "destroy"]
     );
 
+    // CLIENTES
+    Route::get("clientes/paginado", [ClienteController::class, 'paginado'])->name("clientes.paginado");
+    Route::get("clientes/listado", [ClienteController::class, 'listado'])->name("clientes.listado");
+    Route::resource("clientes", ClienteController::class)->only(
+        ["index", "store", "edit", "show", "update", "destroy"]
+    );
+
     // PRODUCTOS
     Route::get("productos/paginado", [ProductoController::class, 'paginado'])->name("productos.paginado");
     Route::get("productos/listado", [ProductoController::class, 'listado'])->name("productos.listado");
+    Route::get("productos/byCodigo", [ProductoController::class, 'byCodigo'])->name("productos.byCodigo");
     Route::resource("productos", ProductoController::class)->only(
         ["index", "store", "edit", "show", "update", "destroy"]
+    );
+
+    // INGRESO DE PRODUCTOS
+    Route::get("ingreso_productos/paginado", [IngresoProductoController::class, 'paginado'])->name("ingreso_productos.paginado");
+    Route::get("ingreso_productos/listado", [IngresoProductoController::class, 'listado'])->name("ingreso_productos.listado");
+    Route::resource("ingreso_productos", IngresoProductoController::class)->only(
+        ["index", "edit", "store", "show", "update", "destroy"]
+    );
+
+    // SALIDA DE PRODUCTOS
+    Route::get("salida_productos/paginado", [SalidaProductoController::class, 'paginado'])->name("salida_productos.paginado");
+    Route::get("salida_productos/listado", [SalidaProductoController::class, 'listado'])->name("salida_productos.listado");
+    Route::resource("salida_productos", SalidaProductoController::class)->only(
+        ["index", "store", "edit", "show", "update", "destroy"]
+    );
+
+    // VENTAS
+    Route::get("ventas/paginado", [VentaController::class, 'paginado'])->name("ventas.paginado");
+    Route::get("ventas/listado", [VentaController::class, 'listado'])->name("ventas.listado");
+    Route::resource("ventas", VentaController::class)->only(
+        ["index", "store", "create", "edit", "show", "update", "destroy"]
     );
 
 
