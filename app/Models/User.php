@@ -84,4 +84,24 @@ class User extends Authenticatable
         $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
         return $base64;
     }
+
+    public function scopeBuscarNombre($query, $texto)
+    {
+        if (!$texto) return $query;
+
+        $palabras = explode(' ', $texto);
+
+        foreach ($palabras as $palabra) {
+            $query->where(function ($q) use ($palabra) {
+                $q->where('nombre', 'like', "%$palabra%")
+                    ->orWhere('paterno', 'like', "%$palabra%")
+                    ->orWhere('materno', 'like', "%$palabra%")
+                    ->orWhere('usuario', 'like', "%$palabra%")
+                    ->orWhere('tipo', 'like', "%$palabra%")
+                    ->orWhere('ci', 'like', "%$palabra%");
+            });
+        }
+
+        return $query;
+    }
 }

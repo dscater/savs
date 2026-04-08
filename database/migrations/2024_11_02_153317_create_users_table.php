@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string("paterno", 255);
             $table->string("materno", 255)->nullable();
             $table->string("correo")->nullable();
+            $table->string("ci", 255);
+            $table->string("ci_exp", 255);
             $table->string("fono", 255);
             $table->string('password');
             $table->integer("acceso");

@@ -58,7 +58,6 @@ const emits = defineEmits(["onClick"]);
 onMounted(() => {
     route_current.value = route().current();
     link.value.addEventListener("click", function () {
-        appStore.startLoading();
         emits("onClick");
     });
 });

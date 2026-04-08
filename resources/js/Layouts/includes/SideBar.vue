@@ -73,7 +73,7 @@ onUnmounted(() => {});
 </script>
 <template>
     <!-- Main Sidebar Container -->
-    <aside class="main-sidebar sidebar-dark-success elevation-4">
+    <aside class="main-sidebar sidebar-light-primary elevation-1">
         <!-- Brand Logo -->
         <a :href="route('inicio')" class="brand-link">
             <img
@@ -120,7 +120,7 @@ onUnmounted(() => {});
                         :icon="'fa fa-home'"
                     ></ItemMenu>
                     <li
-                        class="nav-header font-weight-bold bg-principal"
+                        class="nav-header font-weight-bold"
                         v-if="
                             permisos == '*' ||
                             permisos.includes('usuarios.index') ||
@@ -130,15 +130,24 @@ onUnmounted(() => {});
                     >
                         ADMINISTRACIÓN
                     </li>
-                    <!-- <ItemMenu
+                    <ItemMenu
                         v-if="
                             permisos == '*' ||
                             permisos.includes('productos.index')
                         "
                         :label="'Productos'"
                         :ruta="'productos.index'"
+                        :icon="'fa fa-box'"
+                    ></ItemMenu>
+                    <ItemMenu
+                        v-if="
+                            permisos == '*' ||
+                            permisos.includes('categorias.index')
+                        "
+                        :label="'Categoría'"
+                        :ruta="'categorias.index'"
                         :icon="'fa fa-list'"
-                    ></ItemMenu> -->
+                    ></ItemMenu>
                     <ItemMenu
                         v-if="
                             permisos == '*' ||
@@ -148,9 +157,7 @@ onUnmounted(() => {});
                         :ruta="'usuarios.index'"
                         :icon="'fa fa-users'"
                     ></ItemMenu>
-                    <li class="nav-header font-weight-bold bg-principal">
-                        OTROS
-                    </li>
+                    <li class="nav-header font-weight-bold">OTROS</li>
                     <ItemMenu
                         v-if="
                             permisos == '*' ||

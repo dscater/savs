@@ -4,19 +4,23 @@ namespace App\Services;
 
 use App\Services\HistorialAccionService;
 use App\Models\Producto;
+use App\Models\Subasta;
 use App\Models\User;
+use App\Models\VentaDetalle;
+use Carbon\Carbon;
 use Illuminate\Http\UploadedFile;
 use Exception;
 use Illuminate\Container\Attributes\Auth;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 
 class ProductoService
 {
     private $modulo = "PRODUCTOS";
 
-    public function __construct(private  CargarArchivoService $cargarArchivoService, private HistorialAccionService $historialAccionService) {}
+    public function __construct(private ProductoImagenService $productoImagenService, private HistorialAccionService $historialAccionService) {}
 
     public function listado(): Collection
     {
@@ -35,7 +39,7 @@ class ProductoService
      */
     public function listadoPaginado(int $length, int $page, string $search, array $columnsSerachLike = [], array $columnsFilter = [], array $columnsBetweenFilter = [], array $orderBy = []): LengthAwarePaginator
     {
-        $productos = Producto::with("catalogo")->select("productos.*");
+        $productos = Producto::select("productos.*");
 
         // Filtros exactos
         foreach ($columnsFilter as $key => $value) {
@@ -81,18 +85,18 @@ class ProductoService
     public function crear(array $datos): Producto
     {
         $producto = Producto::create([
-            "catalogo_id" => $datos["catalogo_id"],
             "nombre" => mb_strtoupper($datos["nombre"]),
-            "estado" => mb_strtoupper($datos["estado"]),
+            "descripcion" => $datos["descripcion"],
+            "precio" => $datos["precio"],
+            "categoria_id" => $datos["categoria_id"],
+            "fecha_registro" => Carbon::now("America/La_Paz")->format("Y-m-d")
         ]);
 
-        // cargar imagen
-        if ($datos["imagen"] && !is_string($datos["imagen"])) {
-            $this->cargarFoto($producto, $datos["imagen"]);
-        }
+        // cargar imagenes
+        $this->productoImagenService->cargarImagenes($producto, $datos["producto_imagens"]);
 
         // registrar accion
-        $this->historialAccionService->registrarAccion($this->modulo, "CREACIÓN", "REGISTRO UN PRODUCTO", $producto);
+        $this->historialAccionService->registrarAccion($this->modulo, "CREACIÓN", "REGISTRO UN PRODUCTO", $producto, null, ["producto_imagens"]);
 
         return $producto;
     }
@@ -109,18 +113,17 @@ class ProductoService
         $old_producto = clone $producto;
 
         $producto->update([
-            "catalogo_id" => $datos["catalogo_id"],
             "nombre" => mb_strtoupper($datos["nombre"]),
-            "estado" => mb_strtoupper($datos["estado"]),
+            "descripcion" => $datos["descripcion"],
+            "precio" => $datos["precio"],
+            "categoria_id" => $datos["categoria_id"],
         ]);
 
-        // cargar imagen
-        if ($datos["imagen"] && !is_string($datos["imagen"])) {
-            $this->cargarFoto($producto, $datos["imagen"]);
-        }
+        // cargar imagenes
+        $this->productoImagenService->cargarImagenes($producto, $datos["producto_imagens"], $datos["eliminados_imagens"] ?? []);
 
         // registrar accion
-        $this->historialAccionService->registrarAccion($this->modulo, "MODIFICACIÓN", "ACTUALIZÓ UN PRODUCTO", $old_producto, $producto->withoutRelations());
+        $this->historialAccionService->registrarAccion($this->modulo, "MODIFICACIÓN", "ACTUALIZÓ UN PRODUCTO", $old_producto, $producto, ["producto_imagens"]);
 
         return $producto;
     }
@@ -134,29 +137,22 @@ class ProductoService
     public function eliminar(Producto $producto): bool|Exception
     {
         $old_producto = clone $producto;
+
+        $usos = VentaDetalle::where("producto_id", $producto->id)->count();
+        if ($usos > 0) {
+            throw new Exception("No se puede eliminar este registro porque esta siendo utilizado");
+        }
+
+        $usos = Subasta::where("producto_id", $producto->id)->count();
+        if ($usos > 0) {
+            throw new Exception("No se puede eliminar este registro porque esta siendo utilizado");
+        }
+
         $producto->delete();
 
         // registrar accion
         $this->historialAccionService->registrarAccion($this->modulo, "ELIMINACIÓN", "ELIMINÓ UN PRODUCTO", $old_producto, $producto);
 
         return true;
-    }
-
-    /**
-     * Cargar imagen
-     *
-     * @param Producto $producto
-     * @param UploadedFile $imagen
-     * @return void
-     */
-    public function cargarFoto(Producto $producto, UploadedFile $imagen): void
-    {
-        if ($producto->imagen) {
-            \File::delete(public_path("imgs/productos/" . $producto->imagen));
-        }
-
-        $nombre = $producto->id . time();
-        $producto->imagen = $this->cargarArchivoService->cargarArchivo($imagen, public_path("imgs/productos"), $nombre);
-        $producto->save();
     }
 }

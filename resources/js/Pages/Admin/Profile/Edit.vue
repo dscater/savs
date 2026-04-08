@@ -64,7 +64,7 @@ function guardarImagen() {
                 });
                 console.log(err);
             },
-        }
+        },
     );
 }
 
@@ -162,7 +162,7 @@ const enviaFormulario = () => {
                                 /></label>
                                 <button
                                     v-if="imagen_cargada"
-                                    class="w-50 mb-1 btn btn-success btn-sm"
+                                    class="w-50 mb-1 btn btn-primary btn-sm"
                                     @click="guardarImagen"
                                 >
                                     Guardar cambios
@@ -308,7 +308,7 @@ const enviaFormulario = () => {
                                 <div class="col-md-4">
                                     <button
                                         type="button"
-                                        class="btn btn-success w-100"
+                                        class="btn btn-primary w-100"
                                         @click="enviaFormulario"
                                     >
                                         Guardar cambios

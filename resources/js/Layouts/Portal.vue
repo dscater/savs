@@ -4,10 +4,6 @@ import { ref, onMounted, onBeforeMount, watch } from "vue";
 import { Link, router, usePage } from "@inertiajs/vue3";
 import { useConfiguracionStore } from "@/stores/configuracion/configuracionStore";
 const configuracionStore = useConfiguracionStore();
-import { useSocialStore } from "@/stores/social/socialStore";
-const socialStore = useSocialStore();
-import { useCatalogoStore } from "@/stores/catalogo/catalogoStore";
-const catalogoStore = useCatalogoStore();
 const { auth } = usePage().props;
 const propsPage = usePage().props;
 
@@ -33,7 +29,6 @@ const onSearch = () => {
 
 onMounted(() => {
     configuracionStore.initConfiguracion();
-    socialStore.initSocial();
 });
 
 const cerrarMenu = () => {
@@ -77,27 +72,6 @@ onBeforeMount(() => {});
                     id="navbarNav"
                 >
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <Link
-                                class="nav-link"
-                                :href="route('portal.miCatalogo')"
-                                >Mi Pedido
-                                <span
-                                    class="badge"
-                                    :class="{
-                                        'bg-orange text-white':
-                                            catalogoStore.getListaProductos
-                                                .length > 0,
-                                        'badge-secondary':
-                                            catalogoStore.getListaProductos
-                                                .length === 0,
-                                    }"
-                                    >{{
-                                        catalogoStore.getListaProductos.length
-                                    }}</span
-                                ></Link
-                            >
-                        </li>
                         <li class="nav-item">
                             <Link
                                 class="nav-link"
@@ -176,74 +150,6 @@ onBeforeMount(() => {});
                     <h4 class="text-dark font-weight-bold">
                         Comunicate con nosotros
                     </h4>
-                </div>
-                <div
-                    class="col-12 text-center pb-0 mb-0"
-                    v-if="socialStore.oSocial"
-                >
-                    <a
-                        :href="`https://wa.me/${socialStore.oSocial.whatsapp}?text=Hola%20deseo%20mas%20informacion`"
-                        target="_blank"
-                        class="btn btn-outline-dark m-1"
-                    >
-                        <i class="fab fa-whatsapp"></i>
-                    </a>
-                    <a
-                        v-if="socialStore.oSocial.facebook"
-                        :href="formatUrl(socialStore.oSocial.facebook)"
-                        target="_blank"
-                        class="btn btn-outline-dark m-1"
-                    >
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a
-                        v-if="socialStore.oSocial.tiktok"
-                        :href="formatUrl(socialStore.oSocial.tiktok)"
-                        target="_blank"
-                        class="btn btn-outline-dark m-1"
-                    >
-                        <i class="fab fa-tiktok"></i>
-                    </a>
-                    <a
-                        v-if="socialStore.oSocial.instagram"
-                        :href="formatUrl(socialStore.oSocial.instagram)"
-                        target="_blank"
-                        class="btn btn-outline-dark m-1"
-                    >
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a
-                        v-if="socialStore.oSocial.youtube"
-                        :href="formatUrl(socialStore.oSocial.youtube)"
-                        target="_blank"
-                        class="btn btn-outline-dark m-1"
-                    >
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                    <a
-                        v-if="socialStore.oSocial.x"
-                        :href="formatUrl(socialStore.oSocial.x)"
-                        target="_blank"
-                        class="btn btn-outline-dark m-1"
-                    >
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a
-                        v-if="socialStore.oSocial.web"
-                        :href="formatUrl(socialStore.oSocial.web)"
-                        target="_blank"
-                        class="btn btn-outline-dark m-1"
-                    >
-                        <i class="fa fa-globe"></i>
-                    </a>
-                    <a
-                        v-if="socialStore.oSocial.correo"
-                        :href="`mailto:${socialStore.oSocial.correo}`"
-                        target="_blank"
-                        class="btn btn-outline-dark m-1"
-                    >
-                        <i class="fa fa-envelope"></i>
-                    </a>
                 </div>
             </div>
         </div>

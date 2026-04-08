@@ -1,7 +1,7 @@
 <script setup>
 import { useForm, usePage } from "@inertiajs/vue3";
 import { useUsuarios } from "@/composables/usuarios/useUsuarios";
-import { watch, ref, computed, defineEmits } from "vue";
+import { watch, ref, computed } from "vue";
 const props = defineProps({
     muestra_formulario: {
         type: Boolean,
@@ -25,13 +25,13 @@ watch(
         formulario.value = newValue;
 
         document.getElementsByTagName("body")[0].classList.add("modal-open");
-    }
+    },
 );
 watch(
     () => props.accion_formulario,
     (newValue) => {
         accion.value = newValue;
-    }
+    },
 );
 
 const { flash } = usePage().props;
@@ -65,8 +65,8 @@ const enviarFormulario = () => {
                     flash.error
                         ? flash.error
                         : err.error
-                        ? err.error
-                        : "Hay errores en el formulario"
+                          ? err.error
+                          : "Hay errores en el formulario"
                 }`,
                 confirmButtonColor: "#3085d6",
                 confirmButtonText: `Aceptar`,
@@ -147,7 +147,7 @@ const cerrarFormulario = () => {
                     <button
                         type="button"
                         @click="enviarFormulario()"
-                        class="btn btn-success"
+                        class="btn btn-primary"
                     >
                         <i class="fa fa-save"></i>
                         Guardar

@@ -27,6 +27,11 @@ const headers = [
         width: "3%",
     },
     {
+        label: "USUARIO",
+        key: "usuario",
+        sortable: true,
+    },
+    {
         label: "NOMBRE",
         key: "nombre",
         sortable: true,
@@ -42,8 +47,18 @@ const headers = [
         sortable: true,
     },
     {
+        label: "C.I.",
+        key: "full_ci",
+        sortable: true,
+    },
+    {
         label: "CORREO",
         key: "correo",
+        sortable: true,
+    },
+    {
+        label: "DIRECCIÓN",
+        key: "dir",
         sortable: true,
     },
     {
@@ -160,7 +175,7 @@ onMounted(async () => {
                                 )
                             "
                             type="button"
-                            class="btn btn-success"
+                            class="btn btn-primary"
                             @click="agregarRegistro"
                         >
                             <i class="fa fa-plus"></i> Nuevo Usuario
@@ -234,8 +249,10 @@ onMounted(async () => {
                             <template #accion="{ item }">
                                 <template
                                     v-if="
-                                        props_page.auth?.user.role_id == 1 ||
-                                        props_page.auth?.user.role_id == 2
+                                        props_page.auth?.user.permisos == '*' ||
+                                        props_page.auth?.user.permisos.includes(
+                                            'usuarios.password',
+                                        )
                                     "
                                 >
                                     <el-tooltip

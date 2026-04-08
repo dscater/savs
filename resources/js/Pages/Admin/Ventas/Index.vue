@@ -2,14 +2,10 @@
 import Content from "@/Components/Content.vue";
 import MiTable from "@/Components/MiTable.vue";
 import { Head, Link, router, usePage } from "@inertiajs/vue3";
-import { useCatalogos } from "@/composables/catalogos/useCatalogos";
+import { useVentas } from "@/composables/ventas/useVentas";
 import { useAxios } from "@/composables/axios/useAxios";
 import { ref, onMounted, onBeforeMount } from "vue";
 import { useAppStore } from "@/stores/aplicacion/appStore";
-// import { useMenu } from "@/composables/useMenu";
-import Formulario from "./Formulario.vue";
-import { buttonProps } from "element-plus";
-// const { mobile, identificaDispositivo } = useMenu();
 const { props: props_page } = usePage();
 const appStore = useAppStore();
 onBeforeMount(() => {
@@ -20,30 +16,60 @@ onMounted(() => {
     appStore.stopLoading();
 });
 
-const { setCatalogo, limpiarCatalogo } = useCatalogos();
+const { setVenta, limpiarVenta } = useVentas();
 const { axiosDelete } = useAxios();
 
 const miTable = ref(null);
 const headers = [
     {
-        label: "NRO.",
-        key: "id",
+        label: "CÓD. VENTA",
+        key: "venta.id",
         sortable: true,
         width: "4%",
     },
     {
-        label: "NOMBRE",
-        key: "nombre",
+        label: "CÓDIGO",
+        key: "producto.codigo",
         sortable: true,
     },
     {
-        label: "IMAGEN BOTÓN",
-        key: "imagen",
+        label: "NOMBRE DEL PRODUCTO",
+        key: "producto.nombre",
         sortable: true,
     },
     {
-        label: "DESCARGA",
-        key: "descargar",
+        label: "MARCA",
+        key: "producto.marca",
+        sortable: true,
+    },
+    {
+        label: "MODELO",
+        key: "producto.modelo",
+        sortable: true,
+    },
+    {
+        label: "PRECIO",
+        key: "producto.precio",
+        sortable: true,
+    },
+    {
+        label: "TALLA",
+        key: "producto.talla",
+        sortable: true,
+    },
+    {
+        label: "TIPO PAGO",
+        key: "venta.tipo_pago",
+        sortable: true,
+    },
+    {
+        label: "FOTO",
+        key: "foto",
+        sortable: true,
+    },
+    {
+        label: "FECHA",
+        key: "venta.fecha_hora",
         sortable: true,
     },
     {
@@ -63,9 +89,15 @@ const accion_formulario = ref(0);
 const muestra_formulario = ref(false);
 
 const agregarRegistro = () => {
-    limpiarCatalogo();
+    limpiarVenta();
     accion_formulario.value = 0;
     muestra_formulario.value = true;
+};
+
+const imprimirBarras = (id) => {
+    const url = route("ventas.barras") + "?venta_id=" + id;
+
+    window.open(url, "_blank");
 };
 
 const updateDatatable = async () => {
@@ -75,12 +107,12 @@ const updateDatatable = async () => {
     }
 };
 
-const eliminarCatalogo = (item) => {
+const eliminarVenta = (item) => {
     Swal.fire({
-        title: "¿Quierés eliminar este registro?",
-        html: `<strong>${item.nombre}</strong>`,
+        title: "¿Quierés anular este registro?",
+        html: `<strong>Código Venta: ${item.venta.id}</strong><br/><strong>Total Productos: ${item.venta.total_productos}</strong>`,
         showCancelButton: true,
-        confirmButtonText: "Si, eliminar",
+        confirmButtonText: "Si, anular",
         cancelButtonText: "No, cancelar",
         denyButtonText: `No, cancelar`,
         customClass: {
@@ -90,7 +122,7 @@ const eliminarCatalogo = (item) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
             let respuesta = await axiosDelete(
-                route("catalogos.destroy", item.id),
+                route("ventas.destroy", item.venta.id),
             );
             if (respuesta && respuesta.sw) {
                 updateDatatable();
@@ -100,12 +132,12 @@ const eliminarCatalogo = (item) => {
 };
 </script>
 <template>
-    <Head title="Menú de Catálogo"></Head>
+    <Head title="Ventas"></Head>
     <Content>
         <template #header>
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Menú de Catálogo</h1>
+                    <h1 class="m-0">Ventas</h1>
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-6">
@@ -113,7 +145,7 @@ const eliminarCatalogo = (item) => {
                         <li class="breadcrumb-item">
                             <Link :href="route('inicio')">Inicio</Link>
                         </li>
-                        <li class="breadcrumb-item active">Menú de Catálogo</li>
+                        <li class="breadcrumb-item active">Ventas</li>
                     </ol>
                 </div>
                 <!-- /.col -->
@@ -124,18 +156,30 @@ const eliminarCatalogo = (item) => {
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-4">
+                        <Link
+                            v-if="
+                                props_page.auth?.user.permisos == '*' ||
+                                props_page.auth?.user.permisos.includes(
+                                    'ventas.create',
+                                )
+                            "
+                            class="btn btn-primary"
+                            :href="route('ventas.create')"
+                        >
+                            <i class="fa fa-plus"></i> Nueva Venta
+                        </Link>
                         <button
                             v-if="
                                 props_page.auth?.user.permisos == '*' ||
                                 props_page.auth?.user.permisos.includes(
-                                    'catalogos.create',
+                                    'ventas.barras',
                                 )
                             "
-                            type="button"
-                            class="btn btn-success"
-                            @click="agregarRegistro"
+                            class="btn bg1 ml-1"
+                            @click="imprimirBarras('todos')"
                         >
-                            <i class="fa fa-plus"></i> Nuevo Menú de Catálogo
+                            <i class="fa fa-barcode"></i> Imprimir Todos los
+                            Códigos de Barra
                         </button>
                     </div>
                     <div class="col-md-8 my-1">
@@ -170,7 +214,7 @@ const eliminarCatalogo = (item) => {
                             ref="miTable"
                             :cols="headers"
                             :api="true"
-                            :url="route('catalogos.paginado')"
+                            :url="route('ventas.paginado')"
                             :numPages="5"
                             :multiSearch="multiSearch"
                             :syncOrderBy="'id'"
@@ -179,31 +223,35 @@ const eliminarCatalogo = (item) => {
                             :header-class="'bg__primary'"
                             fixed-header
                         >
-                            <template #imagen="{ item }">
-                                <img :src="item.url_imagen" width="190px" />
-                            </template>
-                            <template #descargar="{ item }">
-                                <span
-                                    class="text-md"
-                                    :class="
-                                        item.descargar
-                                            ? 'badge bg-success'
-                                            : 'badge bg-danger'
-                                    "
+                            <template #codigo="{ item }">
+                                <el-tooltip
+                                    class="box-item"
+                                    effect="dark"
+                                    content="Imprimir"
+                                    placement="left-start"
                                 >
-                                    {{
-                                        item.descargar
-                                            ? "HABILITADO"
-                                            : "DESHABILITADO"
-                                    }}
-                                </span>
+                                    <button
+                                        class="btn bg1"
+                                        @click="imprimirBarras(item.id)"
+                                    >
+                                        {{ item.codigo }}
+                                        <i
+                                            class="fa fa-external-link-alt"
+                                        ></i></button
+                                ></el-tooltip>
+                            </template>
+                            <template #foto="{ item }">
+                                <img
+                                    :src="item.producto.url_foto"
+                                    width="90px"
+                                />
                             </template>
                             <template #accion="{ item }">
-                                <template
+                                <!-- <template
                                     v-if="
                                         props_page.auth?.user.permisos == '*' ||
                                         props_page.auth?.user.permisos.includes(
-                                            'catalogos.edit',
+                                            'ventas.edit',
                                         )
                                     "
                                 >
@@ -216,36 +264,34 @@ const eliminarCatalogo = (item) => {
                                         <button
                                             class="btn btn-warning"
                                             @click="
-                                                setCatalogo(item);
+                                                setVenta(item);
                                                 accion_formulario = 1;
                                                 muestra_formulario = true;
                                             "
                                         >
                                             <i class="fa fa-pen"></i></button
                                     ></el-tooltip>
-                                </template>
+                                </template> -->
 
                                 <template
                                     v-if="
                                         props_page.auth?.user.permisos == '*' ||
                                         props_page.auth?.user.permisos.includes(
-                                            'catalogos.destroy',
+                                            'ventas.destroy',
                                         )
                                     "
                                 >
                                     <el-tooltip
                                         class="box-item"
                                         effect="dark"
-                                        content="Eliminar"
+                                        content="Anular"
                                         placement="left-start"
                                     >
                                         <button
                                             class="btn btn-danger"
-                                            @click="eliminarCatalogo(item)"
+                                            @click="eliminarVenta(item)"
                                         >
-                                            <i
-                                                class="fa fa-trash-alt"
-                                            ></i></button
+                                            <i class="fa fa-ban"></i></button
                                     ></el-tooltip>
                                 </template>
                             </template>
@@ -254,11 +300,5 @@ const eliminarCatalogo = (item) => {
                 </div>
             </div>
         </div>
-        <Formulario
-            :muestra_formulario="muestra_formulario"
-            :accion_formulario="accion_formulario"
-            @envio-formulario="updateDatatable"
-            @cerrar-formulario="muestra_formulario = false"
-        ></Formulario>
     </Content>
 </template>

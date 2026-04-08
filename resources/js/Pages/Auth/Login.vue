@@ -95,7 +95,7 @@ onMounted(() => {
         <!-- BEGIN login -->
         <div class="row">
             <div
-                class="col-md-6 offset-md-3 col-lg-4 offset-lg-4 col-xl-3 offset-xl-4"
+                class="col-md-6 offset-md-3 col-lg-4 offset-lg-4 col-xl-3 offset-xl-4 my-5"
             >
                 <div class="card mt-5">
                     <div class="card-header text-center">
@@ -117,7 +117,7 @@ onMounted(() => {
                                     <div class="input-group form-floating">
                                         <div class="input-group-prepend">
                                             <span
-                                                class="input-group-text bg-principal"
+                                                class="input-group-text bg-primary"
                                             >
                                                 <i class="fa fa-user"></i>
                                             </span>
@@ -153,7 +153,7 @@ onMounted(() => {
                                     <div class="input-group form-floating mt-3">
                                         <div class="input-group-prepend">
                                             <span
-                                                class="input-group-text bg-principal"
+                                                class="input-group-text bg-primary"
                                             >
                                                 <i class="fa fa-key"></i>
                                             </span>
@@ -242,8 +242,5 @@ onMounted(() => {
 body #app .contenedor_login {
     min-height: 100vh;
     width: 100vw;
-    background-image: url("/public/imgs/fondo.webp");
-    background-size: cover;
-    background-position: center;
 }
 </style>

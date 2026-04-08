@@ -8,4 +8,30 @@ use Illuminate\Database\Eloquent\Model;
 class Producto extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        "nombre",
+        "descripcion",
+        "precio",
+        "stock",
+        "categoria_id",
+        "fecha_registro",
+    ];
+
+    protected $appends = ["fecha_registro_t"];
+
+    public function getFechaRegistroTAttribute()
+    {
+        return date("d/m/Y", strtotime($this->fecha_registro));
+    }
+
+    public function categoria()
+    {
+        return $this->belongsTo(Categoria::class, 'categoria_id');
+    }
+
+    public function producto_imagens()
+    {
+        return $this->hasMany(ProductoImagen::class, 'producto_id');
+    }
 }

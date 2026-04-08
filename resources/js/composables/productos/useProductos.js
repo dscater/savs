@@ -3,11 +3,12 @@ import { onMounted, ref } from "vue";
 const oProducto = ref({
     id: 0,
     nombre: "",
-    foto: "",
-    marca: "",
-    modelo: "",
+    descripcion: "",
     precio: "",
-    talla: "",
+    stock: "",
+    categoria_id: "",
+    producto_imagens: [],
+    eliminados_imagens: [],
     _method: "POST",
 });
 
@@ -16,10 +17,12 @@ export const useProductos = () => {
         if (item) {
             oProducto.value.id = item.id;
             oProducto.value.nombre = item.nombre;
-            oProducto.value.marca = item.marca;
-            oProducto.value.modelo = item.modelo;
+            oProducto.value.descripcion = item.descripcion;
             oProducto.value.precio = item.precio;
-            oProducto.value.talla = item.talla;
+            oProducto.value.stock = item.stock;
+            oProducto.value.categoria_id = item.categoria_id;
+            oProducto.value.producto_imagens = item.producto_imagens;
+            oProducto.value.eliminados_imagens = [];
             oProducto.value._method = "PUT";
             return oProducto;
         }
@@ -29,11 +32,12 @@ export const useProductos = () => {
     const limpiarProducto = () => {
         oProducto.value.id = 0;
         oProducto.value.nombre = "";
-        oProducto.value.foto = "";
-        oProducto.value.marca = "";
-        oProducto.value.modelo = "";
+        oProducto.value.descripcion = "";
         oProducto.value.precio = "";
-        oProducto.value.talla = "";
+        oProducto.value.stock = "";
+        oProducto.value.categoria_id = "";
+        oProducto.value.producto_imagens = [];
+        oProducto.value.eliminados_imagens = [];
         oProducto.value._method = "POST";
     };
 

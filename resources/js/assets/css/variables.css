@@ -1,19 +1,19 @@
 :root {
-    --bg1: #003b5c;
+    --bg1: #072a68;
     --bg2: #005f8d;
-    --bg3: #1d1f21;
+    --bg3: #072a68;
     --bg4: #e1f5fe;
+    --bg5: #5b6b79;
+    --bg6: #f3f3f3;
     --bg2t: rgba(0, 94, 141, 0.822);
     --bgDarkPrincipal: #1d1f21;
-    --bgGrayLight: rgb(241, 241, 241);
+    --bgGrayLight: #e7eaee;
     --bgDarkGray: rgb(31, 31, 31);
     --bgDarkGrayP: #555555;
-    --bgSuccess: #009143;
-    --bgSuccesst: rgb(3, 121, 58);
-    --bgAzulClaro: #90c1ee;
-    --bgAzulClaroH: rgb(184, 219, 252);
+    --bgSuccess: #179168;
+    --bgSuccessH: #127756;
     --bgDanger: #c00404;
     --bgDanger2: #b90000;
-    --bgWhite2: #cfcfcf;
+    --bgWhite: #fdfdfd;
     --bgYellow: yellow;
 }

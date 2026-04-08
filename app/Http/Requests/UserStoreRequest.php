@@ -22,9 +22,17 @@ class UserStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "usuario" => "required|min:2",
-            "password" => "required|min:6",
+            "nombre" => "required|min:2",
+            "paterno" => "required|min:2",
+            "materno" => "nullable",
+            "dir" => "nullable",
+            "ci" => "required|unique:users,ci",
+            "ci_exp" => "required",
+            "correo" => "nullable|email|unique:users,correo",
+            "fono" => "required|min:2",
+            "acceso" => "required",
             "tipo" => "required",
+            "foto" => "nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
         ];
     }
 
@@ -36,10 +44,16 @@ class UserStoreRequest extends FormRequest
     public function messages(): array
     {
         return [
-            "usuario.required" => "Este campo es obligatorio",
-            "usuario.min" => "Debes ingresar al menos :min caracteres",
-            "password.required" => "Este campo es obligatorio",
-            "password.min" => "Debes ingresar al menos :min caracteres",
+            "nombre.required" => "Este campo es obligatorio",
+            "nombre.min" => "Debes ingresar al menos :min caracteres",
+            "paterno.required" => "Este campo es obligatorio",
+            "paterno.min" => "Debes ingresar al menos :min caracteres",
+            "ci.required" => "Este campo es obligatorio",
+            "ci.unique" => "Este C.I. ya fue registrado",
+            "ci_exp.required" => "Este campo es obligatorio",
+            "fono.required" => "Este campo es obligatorio",
+            "fono.min" => "Debes ingresar al menos :min caracteres",
+            "acceso.required" => "Este campo es obligatorio",
             "tipo.required" => "Este campo es obligatorio",
         ];
     }

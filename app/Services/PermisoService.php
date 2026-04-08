@@ -21,15 +21,17 @@ class PermisoService
             "usuarios.destroy",
             "usuarios.password",
 
-            "catalogos.paginado",
-            "catalogos.index",
-            "catalogos.listado",
-            "catalogos.create",
-            "catalogos.store",
-            "catalogos.edit",
-            "catalogos.show",
-            "catalogos.update",
-            "catalogos.destroy",
+            "tipo_usuarios.listado",
+
+            "categorias.paginado",
+            "categorias.index",
+            "categorias.listado",
+            "categorias.create",
+            "categorias.store",
+            "categorias.edit",
+            "categorias.show",
+            "categorias.update",
+            "categorias.destroy",
 
             "productos.paginado",
             "productos.index",
@@ -41,22 +43,6 @@ class PermisoService
             "productos.update",
             "productos.destroy",
 
-            "ventas.paginado",
-            "ventas.index",
-            "ventas.listado",
-            "ventas.create",
-            "ventas.store",
-            "ventas.edit",
-            "ventas.show",
-            "ventas.update",
-            "ventas.destroy",
-
-            "socials.index",
-            "socials.create",
-            "socials.edit",
-            "socials.update",
-            "socials.destroy",
-
             "configuracions.index",
             "configuracions.create",
             "configuracions.edit",
@@ -65,19 +51,15 @@ class PermisoService
 
             "reportes.usuarios",
             "reportes.r_usuarios",
-            "reportes.catalogos",
-            "reportes.r_catalogos",
-            "reportes.visitantes",
-            "reportes.r_visitantes",
 
         ],
-        "OPERADOR" => [],
+        "AUXILIAR" => [],
     ];
 
 
-    public function middleWarePostulante()
+    public function getTiposUsuarios()
     {
-        return $this->arrayPermisos["POSTULANTE"];
+        return array_keys($this->arrayPermisos);
     }
 
     /**

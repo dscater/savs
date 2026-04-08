@@ -9,6 +9,7 @@ import { useAppStore } from "@/stores/aplicacion/appStore";
 // import { useMenu } from "@/composables/useMenu";
 import Formulario from "./Formulario.vue";
 import { buttonProps } from "element-plus";
+import axios from "axios";
 // const { mobile, identificaDispositivo } = useMenu();
 const { props: props_page } = usePage();
 const appStore = useAppStore();
@@ -32,23 +33,23 @@ const headers = [
         width: "4%",
     },
     {
-        label: "MENÚ CATÁLOGO",
-        key: "catalogo.nombre",
-        sortable: true,
-    },
-    {
         label: "NOMBRE",
         key: "nombre",
         sortable: true,
     },
     {
-        label: "IMAGEN",
-        key: "imagen",
+        label: "PRECIO",
+        key: "precio",
         sortable: true,
     },
     {
-        label: "ESTADO",
-        key: "estado",
+        label: "STOCK ACTUAL",
+        key: "stock",
+        sortable: true,
+    },
+    {
+        label: "FECHA REGISTRO",
+        key: "fecha_registro_t",
         sortable: true,
     },
     {
@@ -73,17 +74,18 @@ const agregarRegistro = () => {
     muestra_formulario.value = true;
 };
 
-const imprimirBarras = (id) => {
-    const url = route("productos.barras") + "?producto_id=" + id;
-
-    window.open(url, "_blank");
-};
-
 const updateDatatable = async () => {
     if (miTable.value) {
         await miTable.value.cargarDatos();
         muestra_formulario.value = false;
     }
+};
+const editar = (item) => {
+    axios.get(route("productos.show", item.id)).then((response) => {
+        setProducto(response.data);
+        accion_formulario.value = 1;
+        muestra_formulario.value = true;
+    });
 };
 
 const eliminarProducto = (item) => {
@@ -143,7 +145,7 @@ const eliminarProducto = (item) => {
                                 )
                             "
                             type="button"
-                            class="btn btn-success"
+                            class="btn btn-primary"
                             @click="agregarRegistro"
                         >
                             <i class="fa fa-plus"></i> Nuevo Producto
@@ -226,11 +228,7 @@ const eliminarProducto = (item) => {
                                     >
                                         <button
                                             class="btn btn-warning"
-                                            @click="
-                                                setProducto(item);
-                                                accion_formulario = 1;
-                                                muestra_formulario = true;
-                                            "
+                                            @click="editar(item)"
                                         >
                                             <i class="fa fa-pen"></i></button
                                     ></el-tooltip>

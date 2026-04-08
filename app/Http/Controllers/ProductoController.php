@@ -5,11 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductoStoreRequest;
 use App\Http\Requests\ProductoUpdateRequest;
-use App\Models\HistorialAccion;
-use App\Models\Modulo;
-use App\Models\Permiso;
 use App\Models\Producto;
-use App\Models\User;
 use App\Services\ProductoService;
 use Exception;
 use Illuminate\Http\JsonResponse;
@@ -22,7 +18,6 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 use Inertia\Response as ResponseInertia;
-use PDF;
 
 class ProductoController extends Controller
 {
@@ -40,7 +35,6 @@ class ProductoController extends Controller
 
     public function buscar(Request $request)
     {
-        Log::debug("ASDASD");
         $search = $request->input("search", "");
         $productos = [];
         if ($search) {
@@ -69,8 +63,8 @@ class ProductoController extends Controller
         $perPage = $request->perPage;
         $page = (int)($request->input("page", 1));
         $search = (string)$request->input("search", "");
-        $orderByCol = $request->orderByCol;
-        $desc = $request->desc;
+        $orderBy = $request->orderBy;
+        $orderAsc = $request->orderAsc;
 
         $columnsSerachLike = [
             "codigo",
@@ -82,9 +76,9 @@ class ProductoController extends Controller
         $columnsFilter = [];
         $columnsBetweenFilter = [];
         $arrayOrderBy = [];
-        if ($orderByCol && $desc) {
+        if ($orderBy && $orderAsc) {
             $arrayOrderBy = [
-                [$orderByCol, $desc]
+                [$orderBy, $orderAsc]
             ];
         }
 
@@ -139,7 +133,7 @@ class ProductoController extends Controller
      */
     public function show(Producto $producto): JsonResponse
     {
-        return response()->JSON($producto);
+        return response()->JSON($producto->load(["producto_imagens"]));
     }
 
     public function byCodigo(Request $request): JsonResponse

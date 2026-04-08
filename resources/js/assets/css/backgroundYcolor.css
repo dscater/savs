@@ -10,9 +10,30 @@
 
 table .bg-principal,
 .bg-principal {
-    background-color: var(--bg3);
+    background-color: var(--bg1);
     color: white;
 }
+
+.bg-item {
+    background-color: var(--bg1) !important;
+}
+
+.bgWhite {
+    background-color: var(--bgWhite);
+}
+
+.btn-alert-success:active,
+.btn-alert-success {
+    background-color: var(--bgSuccess);
+}
+
+.btn-alert-success:hover {
+    background-color: var(--bgSuccessH);
+}
+.bg-header {
+    background-color: var(--bg5);
+}
+
 table .bg-dark-principal,
 .bg-dark-principal {
     background-color: var(--bgDarkPrincipal);
@@ -32,4 +53,12 @@ table .bg-dark-principal,
 .modal-body.bg-principal .text-white,
 .text-white {
     color: white !important;
+}
+
+.page-item.active .page-link {
+    background-color: var(--bg1);
+}
+
+.modal .modal-header button.close {
+    color: white;
 }

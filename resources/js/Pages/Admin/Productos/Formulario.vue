@@ -2,7 +2,10 @@
 import MiModal from "@/Components/MiModal.vue";
 import { useForm, usePage } from "@inertiajs/vue3";
 import { useProductos } from "@/composables/productos/useProductos";
-import { watch, ref, computed, defineEmits, onMounted, nextTick } from "vue";
+import { watch, ref, computed, onMounted, nextTick } from "vue";
+import { QuillEditor } from "@vueup/vue-quill";
+import "@vueup/vue-quill/dist/vue-quill.snow.css";
+import MiDropZone from "@/Components/MiDropZone.vue";
 const props = defineProps({
     muestra_formulario: {
         type: Boolean,
@@ -24,8 +27,7 @@ watch(
     (newValue) => {
         muestra_form.value = newValue;
         if (muestra_form.value) {
-            cargarCatalogos();
-            archivo.value.value = null;
+            cargarCategorias();
             document
                 .getElementsByTagName("body")[0]
                 .classList.add("modal-open");
@@ -49,10 +51,10 @@ watch(
 
 const { flash } = usePage().props;
 
-const listCatalogos = ref([]);
-const cargarCatalogos = () => {
-    axios.get(route("catalogos.listado")).then((response) => {
-        listCatalogos.value = response.data.catalogos;
+const listCategorias = ref([]);
+const cargarCategorias = () => {
+    axios.get(route("categorias.listado")).then((response) => {
+        listCategorias.value = response.data.categorias;
     });
 };
 
@@ -135,6 +137,14 @@ const enviarFormulario = () => {
     });
 };
 
+const detectaArchivos = (files) => {
+    form.producto_imagens = files;
+};
+
+const detectaEliminados = (eliminados) => {
+    form.eliminados_imagens = eliminados;
+};
+
 const emits = defineEmits(["cerrar-formulario", "envio-formulario"]);
 
 watch(muestra_form, (newVal) => {
@@ -187,28 +197,28 @@ onMounted(() => {});
                 </p>
                 <div class="row">
                     <div class="col-md-4 mt-2">
-                        <label class="required">Seleccionar Menú</label>
+                        <label class="required">Seleccionar Categoría</label>
                         <el-select
                             :class="{
-                                'parsley-error': form.errors?.catalogo_id,
+                                'parsley-error': form.errors?.categoria_id,
                             }"
-                            placeholder="Seleccionar Menú"
-                            v-model="form.catalogo_id"
+                            placeholder="Seleccionar Categoría"
+                            v-model="form.categoria_id"
                             filterable
                         >
                             <el-option
-                                v-for="item in listCatalogos"
+                                v-for="item in listCategorias"
                                 :key="item.id"
                                 :label="item.nombre"
                                 :value="item.id"
                             ></el-option>
                         </el-select>
                         <ul
-                            v-if="form.errors?.catalogo_id"
+                            v-if="form.errors?.categoria_id"
                             class="d-block text-danger list-unstyled"
                         >
                             <li class="parsley-required">
-                                {{ form.errors?.catalogo_id }}
+                                {{ form.errors?.categoria_id }}
                             </li>
                         </ul>
                     </div>
@@ -232,40 +242,58 @@ onMounted(() => {});
                         </ul>
                     </div>
                     <div class="col-md-4 mt-2">
-                        <label class="required">Imagen Referencial</label>
+                        <label class="required">Precio del Producto Bs.</label>
                         <input
-                            type="file"
+                            type="number"
+                            step="0.01"
+                            min="0"
                             class="form-control"
                             :class="{
-                                'parsley-error': form.errors?.imagen,
+                                'parsley-error': form.errors?.precio,
                             }"
-                            ref="archivo"
-                            @change="cargarArchivo($event, 'imagen')"
+                            v-model="form.precio"
                         />
                         <ul
-                            v-if="form.errors?.imagen"
+                            v-if="form.errors?.precio"
                             class="d-block text-danger list-unstyled"
                         >
                             <li class="parsley-required">
-                                {{ form.errors?.imagen }}
+                                {{ form.errors?.precio }}
                             </li>
                         </ul>
                     </div>
-                    <div class="col-md-4 mt-2">
-                        <label class="required">Estado</label>
-                        <br />
-                        <el-switch
-                            size="large"
-                            active-text="PÚBLICO"
-                            inactive-text="DESHABILITADO"
-                            v-model="form.estado"
-                            :active-value="'PÚBLICO'"
-                            :inactive-value="'DESHABILITADO'"
-                            style="
-                                --el-switch-on-color: #13ce66;
-                                --el-switch-off-color: #ff4949;
-                            "
+                    <div class="col-md-12 mt-2">
+                        <label class="required">Cargar Imágenes</label>
+                        <MiDropZone
+                            :files="form.producto_imagens"
+                            :maximo="50"
+                            @UpdateFiles="detectaArchivos"
+                            @addEliminados="detectaEliminados"
+                        ></MiDropZone>
+                        <ul
+                            v-if="form.errors?.producto_imagens"
+                            class="d-block text-danger list-unstyled"
+                        >
+                            <li class="parsley-required">
+                                {{ form.errors?.producto_imagens }}
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-12 mt-3">
+                        <label class="required">Descripción del producto</label>
+                        <QuillEditor
+                            v-model:content="form.descripcion"
+                            contentType="html"
+                            theme="snow"
                         />
+                        <ul
+                            v-if="form.errors?.descripcion"
+                            class="d-block text-danger list-unstyled"
+                        >
+                            <li class="parsley-required">
+                                {{ form.errors?.descripcion }}
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </form>
@@ -280,7 +308,7 @@ onMounted(() => {});
             </button>
             <button
                 type="button"
-                class="btn btn-success"
+                class="btn btn-primary"
                 :disabled="enviando"
                 @click.prevent="enviarFormulario"
                 v-html="textBtn"

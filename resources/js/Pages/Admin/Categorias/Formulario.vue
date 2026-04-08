@@ -1,7 +1,7 @@
 <script setup>
 import MiModal from "@/Components/MiModal.vue";
 import { useForm, usePage } from "@inertiajs/vue3";
-import { useCatalogos } from "@/composables/catalogos/useCatalogos";
+import { useCategorias } from "@/composables/categorias/useCategorias";
 import { watch, ref, computed, defineEmits, onMounted, nextTick } from "vue";
 const props = defineProps({
     muestra_formulario: {
@@ -14,21 +14,20 @@ const props = defineProps({
     },
 });
 
-const { oCatalogo, limpiarCatalogo } = useCatalogos();
+const { oCategoria, limpiarCategoria } = useCategorias();
 const accion_form = ref(props.accion_formulario);
 const muestra_form = ref(props.muestra_formulario);
 const enviando = ref(false);
-let form = useForm(oCatalogo.value);
+let form = useForm(oCategoria.value);
 watch(
     () => props.muestra_formulario,
     (newValue) => {
         muestra_form.value = newValue;
         if (muestra_form.value) {
-            archivo.value.value = null;
             document
                 .getElementsByTagName("body")[0]
                 .classList.add("modal-open");
-            form = useForm(oCatalogo.value);
+            form = useForm(oCategoria.value);
         } else {
             document
                 .getElementsByTagName("body")[0]
@@ -48,15 +47,10 @@ watch(
 
 const { flash } = usePage().props;
 
-function cargaArchivo(e, key) {
-    form[key] = null;
-    form[key] = e.target.files[0];
-}
-
 const tituloDialog = computed(() => {
     return accion_form.value == 0
-        ? `<i class="fa fa-plus"></i> Nuevo Menú de Catálogo`
-        : `<i class="fa fa-edit"></i> Editar Menú de Catálogo`;
+        ? `<i class="fa fa-plus"></i> Nueva Categoría`
+        : `<i class="fa fa-edit"></i> Editar Categoría`;
 });
 
 const textBtn = computed(() => {
@@ -73,8 +67,8 @@ const enviarFormulario = () => {
     enviando.value = true;
     let url =
         accion_form.value == 0
-            ? route("catalogos.store")
-            : route("catalogos.update", form.id);
+            ? route("categorias.store")
+            : route("categorias.update", form.id);
 
     form.post(url, {
         preserveScroll: true,
@@ -93,7 +87,7 @@ const enviarFormulario = () => {
                 },
             });
             form.reset();
-            limpiarCatalogo();
+            limpiarCategoria();
             emits("envio-formulario");
         },
         onError: (err, code) => {
@@ -183,8 +177,8 @@ onMounted(() => {});
                     <span class="text-danger">(*)</span> son obligatorios.
                 </p>
                 <div class="row">
-                    <div class="col-md-7 mt-2">
-                        <label class="required">Nombre Menú</label>
+                    <div class="col-md-6 mt-2">
+                        <label class="required">Nombre de Categoría</label>
                         <el-input
                             type="text"
                             :class="{
@@ -202,44 +196,24 @@ onMounted(() => {});
                             </li>
                         </ul>
                     </div>
-                    <div class="col-md-5 mt-2">
-                        <label class="required">Imagen del Botón</label
-                        ><small class="text-muted"
-                            >(Tamaño recomendado: 530px x 90px)</small
-                        >
-                        <input
-                            type="file"
-                            class="form-control"
+                    <div class="col-md-6 mt-2">
+                        <label class="">Descripción</label>
+                        <el-input
+                            type="text"
                             :class="{
-                                'parsley-error': form.errors?.imagen,
+                                'parsley-error': form.errors?.descripcion,
                             }"
-                            ref="archivo"
-                            @change="cargarArchivo($event, 'imagen')"
-                        />
+                            v-model="form.descripcion"
+                            autosize
+                        ></el-input>
                         <ul
-                            v-if="form.errors?.imagen"
+                            v-if="form.errors?.descripcion"
                             class="d-block text-danger list-unstyled"
                         >
                             <li class="parsley-required">
-                                {{ form.errors?.imagen }}
+                                {{ form.errors?.descripcion }}
                             </li>
                         </ul>
-                    </div>
-                    <div class="col-md-4 mt-2">
-                        <label class="required">Permitir descarga</label>
-                        <br />
-                        <el-switch
-                            size="large"
-                            active-text="HABILITADO"
-                            inactive-text="DESHABILITADO"
-                            v-model="form.descargar"
-                            :active-value="1"
-                            :inactive-value="0"
-                            style="
-                                --el-switch-on-color: #13ce66;
-                                --el-switch-off-color: #ff4949;
-                            "
-                        />
                     </div>
                 </div>
             </form>
@@ -254,7 +228,7 @@ onMounted(() => {});
             </button>
             <button
                 type="button"
-                class="btn btn-success"
+                class="btn btn-primary"
                 :disabled="enviando"
                 @click.prevent="enviarFormulario"
                 v-html="textBtn"

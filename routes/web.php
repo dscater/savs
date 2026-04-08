@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ConfiguracionController;
 use App\Http\Controllers\InicioController;
+use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReporteController;
+use App\Http\Controllers\TipoUsuarioController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Auth;
@@ -62,6 +65,24 @@ Route::middleware(['auth', 'permisoUsuario'])->prefix("admin")->group(function (
     Route::resource("usuarios", UsuarioController::class)->only(
         ["index", "store"]
     );
+
+    // TIPO USUARIOS
+    Route::get("tipo_usuarios/listado", [TipoUsuarioController::class, 'listado'])->name("tipo_usuarios.listado");
+
+    // CATEGORIAS
+    Route::get("categorias/paginado", [CategoriaController::class, 'paginado'])->name("categorias.paginado");
+    Route::get("categorias/listado", [CategoriaController::class, 'listado'])->name("categorias.listado");
+    Route::resource("categorias", CategoriaController::class)->only(
+        ["index", "store", "edit", "show", "update", "destroy"]
+    );
+
+    // PRODUCTOS
+    Route::get("productos/paginado", [ProductoController::class, 'paginado'])->name("productos.paginado");
+    Route::get("productos/listado", [ProductoController::class, 'listado'])->name("productos.listado");
+    Route::resource("productos", ProductoController::class)->only(
+        ["index", "store", "edit", "show", "update", "destroy"]
+    );
+
 
     // REPORTES
     Route::get('reportes/usuarios', [ReporteController::class, 'usuarios'])->name("reportes.usuarios");

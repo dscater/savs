@@ -146,7 +146,7 @@ const generarReporte = () => {
                                 </div>
                                 <div class="col-md-12 text-center mt-3">
                                     <button
-                                        class="btn btn-success"
+                                        class="btn btn-primary"
                                         block
                                         @click="generarReporte"
                                         :disabled="generando"

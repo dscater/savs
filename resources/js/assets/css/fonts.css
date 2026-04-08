@@ -1,6 +1,9 @@
 @import "./variables.css";
 
 body {
+    /* font-family: "Inter var", "Inter", sans-serif !important;*/
+    font-family: "Inter var", sans-serif;
+    font-feature-settings: "salt";
 }
 
 .text-black {
@@ -9,4 +12,12 @@ body {
 
 .text-bg1 {
     color: var(--bg1) !important;
+}
+
+.font-weight-600 {
+    font-weight: 600;
+}
+
+.text1 {
+    color: var(--bg1);
 }
