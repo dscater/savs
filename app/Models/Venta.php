@@ -11,9 +11,11 @@ class Venta extends Model
 
     protected $fillable = [
         "cliente_id",
+        "nit_ci",
         "total",
         "fecha",
         "hora",
+        "status",
     ];
 
     protected $appends = ["fecha_t"];

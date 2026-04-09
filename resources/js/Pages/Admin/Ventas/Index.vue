@@ -22,54 +22,34 @@ const { axiosDelete } = useAxios();
 const miTable = ref(null);
 const headers = [
     {
-        label: "CÓD. VENTA",
-        key: "venta.id",
+        label: "NRO",
+        key: "id",
         sortable: true,
         width: "4%",
     },
     {
-        label: "CÓDIGO",
-        key: "producto.codigo",
+        label: "CLIENTE",
+        key: "cliente.nombre",
         sortable: true,
     },
     {
-        label: "NOMBRE DEL PRODUCTO",
-        key: "producto.nombre",
+        label: "NIT/C.I.",
+        key: "nit_ci",
         sortable: true,
     },
     {
-        label: "MARCA",
-        key: "producto.marca",
-        sortable: true,
-    },
-    {
-        label: "MODELO",
-        key: "producto.modelo",
-        sortable: true,
-    },
-    {
-        label: "PRECIO",
-        key: "producto.precio",
-        sortable: true,
-    },
-    {
-        label: "TALLA",
-        key: "producto.talla",
-        sortable: true,
-    },
-    {
-        label: "TIPO PAGO",
-        key: "venta.tipo_pago",
-        sortable: true,
-    },
-    {
-        label: "FOTO",
-        key: "foto",
+        label: "TOTAL",
+        key: "total",
         sortable: true,
     },
     {
         label: "FECHA",
-        key: "venta.fecha_hora",
+        key: "fecha",
+        sortable: true,
+    },
+    {
+        label: "ESTADO",
+        key: "status",
         sortable: true,
     },
     {
@@ -85,32 +65,20 @@ const multiSearch = ref({
     filtro: [],
 });
 
-const accion_formulario = ref(0);
-const muestra_formulario = ref(false);
-
-const agregarRegistro = () => {
-    limpiarVenta();
-    accion_formulario.value = 0;
-    muestra_formulario.value = true;
-};
-
-const imprimirBarras = (id) => {
-    const url = route("ventas.barras") + "?venta_id=" + id;
-
-    window.open(url, "_blank");
-};
-
 const updateDatatable = async () => {
     if (miTable.value) {
         await miTable.value.cargarDatos();
-        muestra_formulario.value = false;
     }
+};
+
+const editarVenta = (item) => {
+    router.get(route("ventas.edit", item.id));
 };
 
 const eliminarVenta = (item) => {
     Swal.fire({
         title: "¿Quierés anular este registro?",
-        html: `<strong>Código Venta: ${item.venta.id}</strong><br/><strong>Total Productos: ${item.venta.total_productos}</strong>`,
+        html: `<strong>Nro. Venta: ${item.id}<br/><strong>Cliente: </strong>${item.cliente.nombre}<br/><strong>Total: ${item.total}</strong>`,
         showCancelButton: true,
         confirmButtonText: "Si, anular",
         cancelButtonText: "No, cancelar",
@@ -121,9 +89,7 @@ const eliminarVenta = (item) => {
     }).then(async (result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-            let respuesta = await axiosDelete(
-                route("ventas.destroy", item.venta.id),
-            );
+            let respuesta = await axiosDelete(route("ventas.destroy", item.id));
             if (respuesta && respuesta.sw) {
                 updateDatatable();
             }
@@ -168,19 +134,6 @@ const eliminarVenta = (item) => {
                         >
                             <i class="fa fa-plus"></i> Nueva Venta
                         </Link>
-                        <button
-                            v-if="
-                                props_page.auth?.user.permisos == '*' ||
-                                props_page.auth?.user.permisos.includes(
-                                    'ventas.barras',
-                                )
-                            "
-                            class="btn bg1 ml-1"
-                            @click="imprimirBarras('todos')"
-                        >
-                            <i class="fa fa-barcode"></i> Imprimir Todos los
-                            Códigos de Barra
-                        </button>
                     </div>
                     <div class="col-md-8 my-1">
                         <div class="row justify-content-end">
@@ -223,36 +176,32 @@ const eliminarVenta = (item) => {
                             :header-class="'bg__primary'"
                             fixed-header
                         >
-                            <template #codigo="{ item }">
-                                <el-tooltip
-                                    class="box-item"
-                                    effect="dark"
-                                    content="Imprimir"
-                                    placement="left-start"
+                            <template #status="{ item }">
+                                <span
+                                    class="badge text-sm"
+                                    :class="{
+                                        'badge-success': item.status == 1,
+                                        'badge-danger': item.status == 0,
+                                    }"
+                                    >{{
+                                        item.status == 1
+                                            ? "FINALIZADO"
+                                            : "ANULADO"
+                                    }}</span
                                 >
-                                    <button
-                                        class="btn bg1"
-                                        @click="imprimirBarras(item.id)"
-                                    >
-                                        {{ item.codigo }}
-                                        <i
-                                            class="fa fa-external-link-alt"
-                                        ></i></button
-                                ></el-tooltip>
                             </template>
-                            <template #foto="{ item }">
-                                <img
-                                    :src="item.producto.url_foto"
-                                    width="90px"
-                                />
+                            <template #fecha="{ item }">
+                                <span>{{ item.fecha_t }} {{ item.hora }}</span>
                             </template>
                             <template #accion="{ item }">
-                                <!-- <template
+                                <template
                                     v-if="
-                                        props_page.auth?.user.permisos == '*' ||
-                                        props_page.auth?.user.permisos.includes(
-                                            'ventas.edit',
-                                        )
+                                        item.status == 1 &&
+                                        (props_page.auth?.user.permisos ==
+                                            '*' ||
+                                            props_page.auth?.user.permisos.includes(
+                                                'ventas.edit',
+                                            ))
                                     "
                                 >
                                     <el-tooltip
@@ -263,22 +212,20 @@ const eliminarVenta = (item) => {
                                     >
                                         <button
                                             class="btn btn-warning"
-                                            @click="
-                                                setVenta(item);
-                                                accion_formulario = 1;
-                                                muestra_formulario = true;
-                                            "
+                                            @click="editarVenta(item)"
                                         >
                                             <i class="fa fa-pen"></i></button
                                     ></el-tooltip>
-                                </template> -->
+                                </template>
 
                                 <template
                                     v-if="
-                                        props_page.auth?.user.permisos == '*' ||
-                                        props_page.auth?.user.permisos.includes(
-                                            'ventas.destroy',
-                                        )
+                                        item.status == 1 &&
+                                        (props_page.auth?.user.permisos ==
+                                            '*' ||
+                                            props_page.auth?.user.permisos.includes(
+                                                'ventas.destroy',
+                                            ))
                                     "
                                 >
                                     <el-tooltip

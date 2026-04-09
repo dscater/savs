@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('ventas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("cliente_id");
+            $table->string("nit_ci")->nullable();
             $table->decimal("total", 24, 2);
             $table->date("fecha");
             $table->time("hora");
+            $table->integer("status")->default(1);
             $table->timestamps();
 
             $table->foreign("cliente_id")->on("clientes")->references("id");

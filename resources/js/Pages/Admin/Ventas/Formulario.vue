@@ -32,6 +32,7 @@ let form = useForm(props.venta);
 watch(
     () => props.venta,
     (newValue) => {
+        console.log("ASDSDSDSD");
         form = useForm(newValue);
         setVenta(newValue);
     },
@@ -202,6 +203,7 @@ const agregarProducto = () => {
         const subtotal = valor * parseFloat(oProducto.value.precio);
 
         form.venta_detalles.push({
+            id: 0,
             venta_id: 0,
             producto: oProducto.value,
             producto_id: oProducto.value.id,
@@ -229,25 +231,22 @@ const quitar = (index) => {
     form.venta_detalles.splice(index, 1);
 };
 const totalVenta = computed(() => {
-    return form.venta_detalles
-        .reduce((total, item) => {
-            const subtotal = parseFloat(item.subtotal);
+    const total = form.venta_detalles.reduce((total, item) => {
+        const subtotal = parseFloat(item.subtotal);
 
-            if (
-                subtotal !== null &&
-                subtotal !== undefined &&
-                subtotal !== ""
-            ) {
-                return total + Number(subtotal);
-            }
+        if (subtotal !== null && subtotal !== undefined && subtotal !== "") {
+            return total + Number(subtotal);
+        }
 
-            return total;
-        }, 0)
-        .toFixed(2);
+        return total;
+    }, 0);
+
+    form.total = total;
+
+    return total.toFixed(2);
 });
 
 const modificaCantidadFila = (e, index) => {
-    console.log(e.target.value);
     const cantidad = e.target.value;
     const valor = Number(cantidad);
     if (cantidad === null || cantidad === "" || isNaN(valor) || valor < 1) {
@@ -262,7 +261,9 @@ const modificaCantidadFila = (e, index) => {
         form.venta_detalles[index]["subtotal"].toFixed(2);
 };
 
-onMounted(() => {});
+onMounted(() => {
+    // console.log(form);
+});
 onBeforeMount(() => {
     cargarClientes();
 });

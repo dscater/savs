@@ -6,6 +6,12 @@ import { useAxios } from "@/composables/axios/useAxios";
 import { ref, onMounted, onBeforeMount } from "vue";
 import { useAppStore } from "@/stores/aplicacion/appStore";
 import Formulario from "../Ventas/Formulario.vue";
+const props = defineProps({
+    venta: {
+        type: Object,
+        require: true,
+    },
+});
 const { props: props_page } = usePage();
 const appStore = useAppStore();
 onBeforeMount(() => {
@@ -15,16 +21,19 @@ onBeforeMount(() => {
 const { setVenta, limpiarVenta, oVenta } = useVentas();
 onMounted(() => {
     appStore.stopLoading();
-    limpiarVenta();
+});
+
+onBeforeMount(() => {
+    setVenta(props.venta);
 });
 </script>
 <template>
-    <Head title="Nueva Venta"></Head>
+    <Head title="Editar Venta"></Head>
     <Content>
         <template #header>
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Nueva Venta</h1>
+                    <h1 class="m-0">Editar Venta</h1>
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-6">
@@ -35,7 +44,7 @@ onMounted(() => {
                         <li class="breadcrumb-item">
                             <Link :href="route('ventas.index')">Ventas</Link>
                         </li>
-                        <li class="breadcrumb-item active">Nueva Venta</li>
+                        <li class="breadcrumb-item active">Editar Venta</li>
                     </ol>
                 </div>
                 <!-- /.col -->
@@ -64,7 +73,7 @@ onMounted(() => {
                     <div class="col-12 mt-1">
                         <Formulario
                             :venta="oVenta"
-                            :accion_formulario="0"
+                            :accion_formulario="1"
                         ></Formulario>
                     </div>
                 </div>

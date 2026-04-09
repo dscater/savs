@@ -111,7 +111,13 @@ class VentaController extends Controller
      */
     public function show(Venta $venta): JsonResponse
     {
-        return response()->JSON($venta);
+        return response()->JSON($venta->load(["venta_detalles.producto"]));
+    }
+
+    public function edit(Venta $venta)
+    {
+        $venta = $venta->load(["venta_detalles.producto"]);
+        return Inertia::render("Admin/Ventas/Edit", compact("venta"));
     }
 
     public function update(Venta $venta, VentaUpdateRequest $request)
