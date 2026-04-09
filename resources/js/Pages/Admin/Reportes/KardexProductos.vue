@@ -6,7 +6,7 @@ import { useAppStore } from "@/stores/aplicacion/appStore";
 const appStore = useAppStore();
 
 const cargarListas = () => {
-    cargarTipoUsuarios();
+    cargarProductos();
 };
 
 onBeforeMount(() => {
@@ -18,8 +18,18 @@ onMounted(() => {
     appStore.stopLoading();
 });
 
+const obtenerFechaActual = () => {
+    const fecha = new Date();
+    const anio = fecha.getFullYear();
+    const mes = String(fecha.getMonth() + 1).padStart(2, "0"); // Mes empieza desde 0
+    const dia = String(fecha.getDate()).padStart(2, "0"); // Día del mes
+    return `${anio}-${mes}-${dia}`;
+};
+
 const form = ref({
-    tipo: "todos",
+    producto_id: "todos",
+    fecha_ini: obtenerFechaActual(),
+    fecha_fin: obtenerFechaActual(),
     formato: "pdf",
 });
 
@@ -31,15 +41,12 @@ const txtBtn = computed(() => {
     return "Generar Reporte";
 });
 
-const listTipos = ref([]);
+const listProductos = ref([]);
 
-const cargarTipoUsuarios = () => {
-    axios.get(route("tipo_usuarios.listado")).then((response) => {
-        listTipos.value = response.data.map((item) => ({
-            id: item,
-            nombre: item,
-        }));
-        listTipos.value.unshift({
+const cargarProductos = () => {
+    axios.get(route("productos.listado")).then((response) => {
+        listProductos.value = response.data.productos;
+        listProductos.value.unshift({
             id: "todos",
             nombre: "TODOS",
         });
@@ -59,7 +66,7 @@ const listTipoReporte = ref([
 
 const generarReporte = () => {
     generando.value = true;
-    const url = route("reportes.r_usuarios", form.value);
+    const url = route("reportes.r_kardex_productos", form.value);
     window.open(url, "_blank");
     setTimeout(() => {
         generando.value = false;
@@ -67,12 +74,12 @@ const generarReporte = () => {
 };
 </script>
 <template>
-    <Head title="Reporte Lista de Usuarios"></Head>
+    <Head title="Reporte Kardex de Productos"></Head>
     <Content>
         <template #header>
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Lista de Usuarios</h1>
+                    <h1 class="m-0">Reporte Kardex de Productos</h1>
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-6">
@@ -81,7 +88,7 @@ const generarReporte = () => {
                             <Link :href="route('inicio')">Inicio</Link>
                         </li>
                         <li class="breadcrumb-item active">
-                            Reporte Lista de Usuarios
+                            Reporte Kardex de Productos
                         </li>
                     </ol>
                 </div>
@@ -97,30 +104,46 @@ const generarReporte = () => {
                             <div class="row">
                                 <div class="col-md-12">
                                     <label class="mb-0"
-                                        >Seleccionar Tipo*</label
+                                        >Seleccionar Producto*</label
                                     >
-                                    <select
-                                        :hide-details="
-                                            form.errors?.tipo ? false : true
-                                        "
-                                        :error="
-                                            form.errors?.tipo ? true : false
-                                        "
-                                        :error-messages="
-                                            form.errors?.tipo
-                                                ? form.errors?.tipo
-                                                : ''
-                                        "
-                                        v-model="form.tipo"
-                                        class="form-control"
+                                    <el-select
+                                        v-model="form.producto_id"
+                                        placeholder="- Seleccione -"
+                                        filterable
                                     >
-                                        <option
-                                            v-for="item in listTipos"
+                                        <el-option
+                                            v-for="item in listProductos"
+                                            :key="item.id"
                                             :value="item.id"
+                                            :label="item.nombre"
                                         >
-                                            {{ item.nombre }}
-                                        </option>
-                                    </select>
+                                        </el-option>
+                                    </el-select>
+                                </div>
+                                <div class="col-md-12 mt-2">
+                                    <label class="mb-0">Rango de Fechas</label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <input
+                                                type="date"
+                                                class="form-control"
+                                                v-model="form.fecha_ini"
+                                            />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input
+                                                type="date"
+                                                class="form-control"
+                                                v-model="form.fecha_fin"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="text-muted w-100 text-center text-xs"
+                                    >
+                                        Dejar vacío para listar todos los
+                                        registros
+                                    </div>
                                 </div>
                                 <div class="col-md-12 text-center mt-3">
                                     <button

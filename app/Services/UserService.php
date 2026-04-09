@@ -174,7 +174,7 @@ class UserService
     {
         $old_user = clone $user;
         $user->update([
-            "usuario" => $this->getNombreUsuario($datos["nombre"], $datos["paterno"]),
+            "usuario" => $this->getNombreUsuario($datos["nombre"], $datos["paterno"], $user->id),
             "nombre" => mb_strtoupper($datos["nombre"]),
             "paterno" => mb_strtoupper($datos["paterno"]),
             "materno" => mb_strtoupper($datos["materno"]),

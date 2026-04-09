@@ -18,10 +18,12 @@ return new class extends Migration
             $table->decimal("total", 24, 2);
             $table->date("fecha");
             $table->time("hora");
+            $table->unsignedBigInteger("user_id");
             $table->integer("status")->default(1);
             $table->timestamps();
 
             $table->foreign("cliente_id")->on("clientes")->references("id");
+            $table->foreign("user_id")->on("users")->references("id");
         });
     }
 

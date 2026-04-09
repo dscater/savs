@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 use Inertia\Response as ResponseInertia;
+use PDF;
 
 class VentaController extends Controller
 {
@@ -104,6 +105,49 @@ class VentaController extends Controller
     }
 
     /**
+     * Imprimir un venta
+     *
+     * @param Venta $venta
+     */
+    public function imprimir(Venta $venta)
+    {
+        $nro_venta = $venta->id;
+        if ($nro_venta < 10) {
+            $nro_venta = "00000" . $nro_venta;
+        } elseif ($nro_venta < 100) {
+            $nro_venta = "0000" . $nro_venta;
+        } elseif ($nro_venta < 1000) {
+            $nro_venta = "000" . $nro_venta;
+        } elseif ($nro_venta < 10000) {
+            $nro_venta = "00" . $nro_venta;
+        } elseif ($nro_venta < 100000) {
+            $nro_venta = "0" . $nro_venta;
+        }
+
+        $pdf = PDF::loadView('reportes.recibo', compact('venta', 'nro_venta'))->setPaper('letter', 'portrait');
+        // ENUMERAR LAS PÁGINAS USANDO CANVAS
+        $pdf->output();
+        $dom_pdf = $pdf->getDomPDF();
+        $canvas = $dom_pdf->get_canvas();
+        $alto = $canvas->get_height();
+        $ancho = $canvas->get_width();
+        $canvas->page_text($ancho - 90, $alto - 25, "Página {PAGE_NUM} de {PAGE_COUNT}", null, 9, array(0, 0, 0));
+        return $pdf->stream('usuarios.pdf');
+    }
+
+    /**
+     * Mostrar un venta
+     *
+     * @param Venta $venta
+     * @return ResponseInertia
+     */
+    public function verVenta(Venta $venta): ResponseInertia
+    {
+        $venta = $venta->load(["cliente", "venta_detalles.producto", "user"]);
+        return Inertia::render("Admin/Ventas/Show", compact("venta"));
+    }
+
+    /**
      * Mostrar un venta
      *
      * @param Venta $venta
@@ -152,6 +196,30 @@ class VentaController extends Controller
             return response()->JSON([
                 'sw' => true,
                 'message' => 'El registro se eliminó correctamente'
+            ], 200);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw ValidationException::withMessages([
+                'error' =>  $e->getMessage(),
+            ]);
+        }
+    }
+
+    /**
+     * Revertir Anulado
+     *
+     * @param Venta $venta
+     * @return JsonResponse|Response
+     */
+    public function revertirAnulado(Venta $venta): JsonResponse|Response
+    {
+        DB::beginTransaction();
+        try {
+            $this->ventaService->revertirAnulado($venta);
+            DB::commit();
+            return response()->JSON([
+                'sw' => true,
+                'message' => 'El registro se actualizó correctamente'
             ], 200);
         } catch (\Exception $e) {
             DB::rollBack();

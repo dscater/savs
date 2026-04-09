@@ -1,3 +1,14 @@
+#app form label {
+    font-size: 0.87em;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+form table tbody tr th,
+form table tbody tr td {
+    font-size: 0.875em;
+}
+
 form .v-input {
     /* height: 40px; */
 }

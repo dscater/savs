@@ -37,7 +37,6 @@ class UsuarioController extends Controller
     public function listado(Request $request): JsonResponse
     {
         $usuarios = User::where("id", "!=", 1);
-        $usuarios->where("tipo", "ADMINISTRATIVO");
         $usuarios = $usuarios->where("status", 1)->get();
         return response()->JSON([
             "usuarios" => $usuarios

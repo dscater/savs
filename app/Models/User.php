@@ -25,6 +25,8 @@ class User extends Authenticatable
         "paterno",
         "materno",
         "correo",
+        "ci",
+        "ci_exp",
         "fono",
         "password",
         "acceso",
@@ -33,7 +35,7 @@ class User extends Authenticatable
         "fecha_registro",
     ];
 
-    protected $appends = ["permisos", "url_foto", "foto_b64", "fecha_registro_t"];
+    protected $appends = ["permisos", "url_foto", "full_ci", "full_name", "foto_b64", "fecha_registro_t"];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -56,6 +58,17 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function getFullCiAttribute()
+    {
+        return $this->ci . ' ' . $this->ci_exp;
+    }
+
+    public function getFullNameAttribute()
+    {
+        return $this->nombre . ' ' . $this->paterno . ($this->materno ? ' ' . $this->materno : '');
+    }
+
     public function getFechaRegistroTAttribute()
     {
         return date("d/m/Y", strtotime($this->fecha_registro));

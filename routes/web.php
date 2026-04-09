@@ -3,12 +3,15 @@
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ConfiguracionController;
+use App\Http\Controllers\ImagenesPortalController;
 use App\Http\Controllers\IngresoProductoController;
 use App\Http\Controllers\InicioController;
+use App\Http\Controllers\PortalController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReporteController;
 use App\Http\Controllers\SalidaProductoController;
+use App\Http\Controllers\SubastaController;
 use App\Http\Controllers\TipoUsuarioController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsuarioController;
@@ -17,13 +20,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-    if (Auth::check()) {
-        return redirect()->route('inicio');
-    }
-    return Inertia::render('Auth/Login');
-});
 
+// PORTAL
+Route::get('/', [PortalController::class, 'index'])->name("portal.index");
+
+Route::get('/imagenes_portal', [ImagenesPortalController::class, 'index'])->name("portal.imagenes_portal");
+
+
+
+// LOGIN
 Route::get('/login', function () {
     if (Auth::check()) {
         return redirect()->route('inicio');
@@ -112,13 +117,32 @@ Route::middleware(['auth', 'permisoUsuario'])->prefix("admin")->group(function (
     // VENTAS
     Route::get("ventas/paginado", [VentaController::class, 'paginado'])->name("ventas.paginado");
     Route::get("ventas/listado", [VentaController::class, 'listado'])->name("ventas.listado");
+    Route::patch("ventas/revertirAnulado/{venta}", [VentaController::class, 'revertirAnulado'])->name("ventas.revertirAnulado");
+    Route::get("ventas/verVenta/{venta}", [VentaController::class, 'verVenta'])->name("ventas.verVenta");
+    Route::get("ventas/imprimir/{venta}", [VentaController::class, 'imprimir'])->name("ventas.imprimir");
     Route::resource("ventas", VentaController::class)->only(
         ["index", "store", "create", "edit", "show", "update", "destroy"]
+    );
+
+    // SUBASTAS
+    Route::get("subastas/paginado", [SubastaController::class, 'paginado'])->name("subastas.paginado");
+    Route::get("subastas/listado", [SubastaController::class, 'listado'])->name("subastas.listado");
+    Route::resource("subastas", SubastaController::class)->only(
+        ["index", "create", "store", "edit", "show", "update", "destroy"]
     );
 
 
     // REPORTES
     Route::get('reportes/usuarios', [ReporteController::class, 'usuarios'])->name("reportes.usuarios");
     Route::get('reportes/r_usuarios', [ReporteController::class, 'r_usuarios'])->name("reportes.r_usuarios");
+
+    Route::get('reportes/clientes', [ReporteController::class, 'clientes'])->name("reportes.clientes");
+    Route::get('reportes/r_clientes', [ReporteController::class, 'r_clientes'])->name("reportes.r_clientes");
+
+    Route::get('reportes/ventas', [ReporteController::class, 'ventas'])->name("reportes.ventas");
+    Route::get('reportes/r_ventas', [ReporteController::class, 'r_ventas'])->name("reportes.r_ventas");
+
+    Route::get('reportes/kardex_productos', [ReporteController::class, 'kardex_productos'])->name("reportes.kardex_productos");
+    Route::get('reportes/r_kardex_productos', [ReporteController::class, 'r_kardex_productos'])->name("reportes.r_kardex_productos");
 });
 require __DIR__ . '/auth.php';

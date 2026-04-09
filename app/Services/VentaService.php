@@ -7,9 +7,9 @@ use App\Models\Venta;
 use App\Models\Producto;
 use App\Models\VentaDetalle;
 use Exception;
-use Illuminate\Container\Attributes\Auth;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
 class VentaService
@@ -38,7 +38,7 @@ class VentaService
     public function listadoPaginado(int $length, int $page, string $search, array $columnsSerachLike = [], array $columnsFilter = [], array $columnsBetweenFilter = [], array $orderBy = []): LengthAwarePaginator
     {
         $ventas = Venta::select("ventas.*")
-            ->with(["cliente:id,nombre"]);
+            ->with(["cliente:id,nombre", "user:id,usuario,nombre,paterno,materno"]);
 
         // Filtros exactos
         foreach ($columnsFilter as $key => $value) {
@@ -88,7 +88,8 @@ class VentaService
             "nit_ci" => $datos["nit_ci"],
             "total" => $datos["total"],
             "fecha" => date("Y-m-d"),
-            "hora" => date("H:i:s")
+            "hora" => date("H:i:s"),
+            "user_id" => Auth::user()->id,
         ]);
 
         // detalles
@@ -199,6 +200,32 @@ class VentaService
 
         // registrar accion
         $this->historialAccionService->registrarAccion($this->modulo, "ELIMINACIÓN", "ELIMINÓ UNA VENTA", $old_venta, $venta, ["venta_detalles"]);
+
+        return true;
+    }
+
+
+    /**
+     * Revertir venta anulada
+     *
+     * @param Venta $venta
+     * @return boolean
+     */
+    public function revertirAnulado(Venta $venta): bool|Exception
+    {
+        $old_venta = clone $venta;
+
+        // egreso kardex
+        foreach ($venta->venta_detalles as $venta_detalle) {
+            $producto = Producto::findOrFail($venta_detalle->producto_id);
+            $this->kardex_producto_service->registroEgreso("VENTAS", $producto, $venta_detalle->cantidad, $venta_detalle->precio, "EGRESO POR VENTA", "VentaDetalle", $venta_detalle->id);
+        }
+
+        $venta->status = 1;
+        $venta->save();
+
+        // registrar accion
+        $this->historialAccionService->registrarAccion($this->modulo, "MODIFICACIÓN", "REVIRTIÓ LA ANULACIÓN DE UNA VENTA", $old_venta, $venta, ["venta_detalles"]);
 
         return true;
     }

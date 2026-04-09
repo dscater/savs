@@ -1,6 +1,6 @@
 <script setup>
 import { useForm, usePage } from "@inertiajs/vue3";
-import { useVentas } from "@/composables/ventas/useVentas";
+import { useSubastas } from "@/composables/subastas/useSubastas";
 import {
     watch,
     ref,
@@ -15,7 +15,7 @@ import axios from "axios";
 import { toast } from "vue3-toastify";
 import "vue3-toastify/dist/index.css";
 const props = defineProps({
-    venta: {
+    subasta: {
         type: Object,
         default: null,
     },
@@ -25,16 +25,16 @@ const props = defineProps({
     },
 });
 
-const { oVenta, setVenta, limpiarVenta } = useVentas();
+const { oSubasta, setSubasta, limpiarSubasta } = useSubastas();
 const accion_form = ref(props.accion_formulario);
 const enviando = ref(false);
-let form = useForm(props.venta);
+let form = useForm(props.subasta);
 watch(
-    () => props.venta,
+    () => props.subasta,
     (newValue) => {
         console.log("ASDSDSDSD");
         form = useForm(newValue);
-        setVenta(newValue);
+        setSubasta(newValue);
     },
 );
 watch(
@@ -51,8 +51,8 @@ const enviarFormulario = () => {
     enviando.value = true;
     let url =
         accion_form.value == 0
-            ? route("ventas.store")
-            : route("ventas.update", form.id);
+            ? route("subastas.store")
+            : route("subastas.update", form.id);
 
     form.post(url, {
         preserveScroll: true,
@@ -71,7 +71,7 @@ const enviarFormulario = () => {
                 },
             });
             form.reset();
-            limpiarVenta();
+            limpiarSubasta();
         },
         onError: (err, code) => {
             console.log(code ?? "");
@@ -114,9 +114,9 @@ const textBtn = computed(() => {
         return `<i class="fa fa-spin fa-spinner"></i> Enviando...`;
     }
     if (accion_form.value == 0) {
-        return `<i class="fa fa-save"></i> Registrar venta`;
+        return `<i class="fa fa-save"></i> Registrar subasta`;
     }
-    return `<i class="fa fa-edit"></i> Actualizar Venta`;
+    return `<i class="fa fa-edit"></i> Actualizar Subasta`;
 });
 
 const oCliente = ref(null);
@@ -152,7 +152,7 @@ const buscarProductoCodigo = () => {
         })
         .then((response) => {
             // verificar que no exista ya en la lista
-            const existe = form.venta_detalles.some(
+            const existe = form.subasta_detalles.some(
                 (item) => item.producto_id === response.data.id,
             );
 
@@ -180,7 +180,7 @@ const buscarProductoCodigo = () => {
 };
 
 const agregarProducto = () => {
-    const existe = form.venta_detalles.some(
+    const existe = form.subasta_detalles.some(
         (item) => item.producto_id === oProducto.value.id,
     );
 
@@ -202,9 +202,9 @@ const agregarProducto = () => {
     if (!existe) {
         const subtotal = valor * parseFloat(oProducto.value.precio);
 
-        form.venta_detalles.push({
+        form.subasta_detalles.push({
             id: 0,
-            venta_id: 0,
+            subasta_id: 0,
             producto: oProducto.value,
             producto_id: oProducto.value.id,
             precio: oProducto.value.precio,
@@ -228,10 +228,10 @@ const limpiarSeleccion = () => {
 };
 
 const quitar = (index) => {
-    form.venta_detalles.splice(index, 1);
+    form.subasta_detalles.splice(index, 1);
 };
-const totalVenta = computed(() => {
-    const total = form.venta_detalles.reduce((total, item) => {
+const totalSubasta = computed(() => {
+    const total = form.subasta_detalles.reduce((total, item) => {
         const subtotal = parseFloat(item.subtotal);
 
         if (subtotal !== null && subtotal !== undefined && subtotal !== "") {
@@ -254,11 +254,11 @@ const modificaCantidadFila = (e, index) => {
         return;
     }
 
-    form.venta_detalles[index]["cantidad"] = valor;
-    form.venta_detalles[index]["subtotal"] =
-        valor * parseFloat(form.venta_detalles[index]["precio"]);
-    form.venta_detalles[index]["subtotal"] =
-        form.venta_detalles[index]["subtotal"].toFixed(2);
+    form.subasta_detalles[index]["cantidad"] = valor;
+    form.subasta_detalles[index]["subtotal"] =
+        valor * parseFloat(form.subasta_detalles[index]["precio"]);
+    form.subasta_detalles[index]["subtotal"] =
+        form.subasta_detalles[index]["subtotal"].toFixed(2);
 };
 
 onMounted(() => {
@@ -497,110 +497,7 @@ onBeforeMount(() => {
                             <i class="fa fa-shopping-cart"></i> Carrito
                         </h5>
                     </div>
-                    <div class="card-body pt-1 overflow-auto">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr class="bg-principal">
-                                    <th class="text-xs">CÓDIGO</th>
-                                    <th class="text-xs">DESCRIPCIÓN</th>
-                                    <th class="text-xs">P/U BS.</th>
-                                    <th class="text-xs" width="130px">
-                                        CANTIDAD
-                                    </th>
-                                    <th class="text-xs">SUBTOTAL BS.</th>
-                                    <th width="4%"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <template v-if="form.venta_detalles.length > 0">
-                                    <tr
-                                        v-for="(
-                                            item, index
-                                        ) in form.venta_detalles"
-                                    >
-                                        <td>{{ item.producto.codigo }}</td>
-                                        <td>{{ item.producto.nombre }}</td>
-                                        <td>{{ item.producto.precio }}</td>
-                                        <td>
-                                            <input
-                                                type="number"
-                                                step="1"
-                                                min="0"
-                                                v-model="item.cantidad"
-                                                class="form-control text-center"
-                                                @keyup.prevent="
-                                                    modificaCantidadFila(
-                                                        $event,
-                                                        index,
-                                                    )
-                                                "
-                                                @change="
-                                                    modificaCantidadFila(
-                                                        $event,
-                                                        index,
-                                                    )
-                                                "
-                                            />
-                                        </td>
-                                        <td>{{ item.subtotal }}</td>
-                                        <td>
-                                            <button
-                                                class="btn btn-sm btn-danger"
-                                                @click="quitar(index)"
-                                            >
-                                                X
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </template>
-                                <template v-else>
-                                    <tr>
-                                        <td
-                                            colspan="8"
-                                            class="text-center text-muted"
-                                        >
-                                            NO SE AGREGÓ NINGÚN PRODUCTO
-                                        </td>
-                                    </tr>
-                                </template>
-                                <template v-if="form.venta_detalles.length > 0">
-                                    <tr>
-                                        <td
-                                            class="text-right font-weight-bold text-lg"
-                                            colspan="4"
-                                        >
-                                            TOTAL Bs.
-                                        </td>
-                                        <td class="font-weight-bold text-lg">
-                                            {{ totalVenta }}
-                                        </td>
-                                        <td colspan="3"></td>
-                                    </tr>
-                                </template>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <ul
-                            v-if="form.errors"
-                            class="d-block text-danger list-unstyled"
-                        >
-                            <li
-                                class="parsley-required"
-                                v-if="form.errors?.venta_detalles"
-                            >
-                                {{ form.errors?.venta_detalles }}
-                            </li>
-                            <li
-                                class="parsley-required"
-                                v-if="form.errors?.cliente_id"
-                            >
-                                {{ form.errors?.cliente_id }}
-                            </li>
-                        </ul>
-                    </div>
+                    <div class="card-body pt-1 overflow-auto"></div>
                 </div>
                 <div class="row">
                     <div class="col-12 mt-1 mb-3 text-center">

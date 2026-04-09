@@ -6,6 +6,8 @@ import Footer from "./includes/Footer.vue";
 import NavBar from "./includes/NavBar.vue";
 import SideBar from "./includes/SideBar.vue";
 import { useAppStore } from "@/stores/aplicacion/appStore";
+import { useConfiguracionStore } from "@/stores/configuracion/configuracionStore";
+const configuracionStore = useConfiguracionStore();
 const appStore = useAppStore();
 const { auth } = usePage().props;
 
@@ -65,7 +67,10 @@ onBeforeMount(() => {
             <slot name="loading"></slot>
         </template>
         <template v-else>
-            <i class="fa fa-spin fa-spinner fa-4x"></i>
+            <h4 class="font-weight-bold h2 text-bg1">
+                {{ configuracionStore.oConfiguracion.nombre_sistema }}
+            </h4>
+            <i class="fa fa-spin fa-spinner fa-4x text-bg1"></i>
         </template>
     </div>
 

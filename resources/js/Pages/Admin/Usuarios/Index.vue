@@ -57,11 +57,6 @@ const headers = [
         sortable: true,
     },
     {
-        label: "DIRECCIÓN",
-        key: "dir",
-        sortable: true,
-    },
-    {
         label: "CELULAR",
         key: "fono",
         sortable: true,

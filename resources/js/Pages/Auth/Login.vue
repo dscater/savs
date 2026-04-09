@@ -227,6 +227,11 @@ onMounted(() => {
                                         v-html="textBtn"
                                     ></button>
                                 </div>
+                                <div class="col-12">
+                                    <a href="/" class="btn btn-link w-100"
+                                        >Ir al portal</a
+                                    >
+                                </div>
                             </div>
                         </form>
                     </div>

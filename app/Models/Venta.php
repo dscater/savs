@@ -15,6 +15,7 @@ class Venta extends Model
         "total",
         "fecha",
         "hora",
+        "user_id",
         "status",
     ];
 
@@ -28,6 +29,11 @@ class Venta extends Model
     public function cliente()
     {
         return $this->belongsTo(Cliente::class, 'cliente_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function venta_detalles()

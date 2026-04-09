@@ -12,6 +12,7 @@ class Configuracion extends Model
     protected $fillable = [
         "nombre_sistema",
         "alias",
+        "razon_social",
         "logo",
     ];
 

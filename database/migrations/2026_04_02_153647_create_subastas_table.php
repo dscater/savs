@@ -19,7 +19,7 @@ return new class extends Migration
             $table->date("fecha_fin");
             $table->time("hora_fin");
             $table->integer("publico");
-            $table->integer("estado_subasta");
+            $table->integer("estado_subasta"); // 0: SIN PUBLICAR, 1: PUBLICADO, 2: FINALIZADO
             $table->date("fecha_registro");
             $table->timestamps();
 

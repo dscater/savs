@@ -7,6 +7,7 @@ const oVenta = ref({
     total: "",
     fecha: "",
     hora: "",
+    user_id: "",
     status: "",
     venta_detalles: [],
     detalle_eliminados: [],
@@ -22,6 +23,7 @@ export const useVentas = () => {
             oVenta.value.total = item.total;
             oVenta.value.fecha = item.fecha;
             oVenta.value.hora = item.hora;
+            oVenta.value.user_id = item.user_id;
             oVenta.value.status = item.status;
             oVenta.value.venta_detalles = item.venta_detalles;
             oVenta.value.detalle_eliminados = [];
@@ -38,6 +40,7 @@ export const useVentas = () => {
         oVenta.value.total = "";
         oVenta.value.fecha = "";
         oVenta.value.hora = "";
+        oVenta.value.user_id = "";
         oVenta.value.status = "";
         oVenta.value.venta_detalles = [];
         oVenta.value.detalle_eliminados = [];

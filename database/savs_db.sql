@@ -2,12 +2,12 @@
 -- PostgreSQL database dump
 --
 
-\restrict 3nc7iwpjPvFreRiFxUceDGYBJqTH0GlmsBZgh5ofUJlHBmWSpwMgHkIqB10iZ5z
+\restrict k2e6drKrPi00ey1DcrgWl9XDonM8KT0pPArUZwIldHUbeLmY3Md2qevyTxYq6FW
 
 -- Dumped from database version 17.6
 -- Dumped by pg_dump version 17.6
 
--- Started on 2026-04-09 13:18:10
+-- Started on 2026-04-09 18:57:40
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -58,7 +58,7 @@ CREATE SEQUENCE public.categorias_id_seq
 ALTER SEQUENCE public.categorias_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5100 (class 0 OID 0)
+-- TOC entry 5101 (class 0 OID 0)
 -- Dependencies: 227
 -- Name: categorias_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -101,7 +101,7 @@ CREATE SEQUENCE public.clientes_id_seq
 ALTER SEQUENCE public.clientes_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5101 (class 0 OID 0)
+-- TOC entry 5102 (class 0 OID 0)
 -- Dependencies: 241
 -- Name: clientes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -143,7 +143,7 @@ CREATE SEQUENCE public.configuracions_id_seq
 ALTER SEQUENCE public.configuracions_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5102 (class 0 OID 0)
+-- TOC entry 5103 (class 0 OID 0)
 -- Dependencies: 219
 -- Name: configuracions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -189,7 +189,7 @@ CREATE SEQUENCE public.historial_accions_id_seq
 ALTER SEQUENCE public.historial_accions_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5103 (class 0 OID 0)
+-- TOC entry 5104 (class 0 OID 0)
 -- Dependencies: 223
 -- Name: historial_accions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -231,7 +231,7 @@ CREATE SEQUENCE public.ingreso_productos_id_seq
 ALTER SEQUENCE public.ingreso_productos_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5104 (class 0 OID 0)
+-- TOC entry 5105 (class 0 OID 0)
 -- Dependencies: 233
 -- Name: ingreso_productos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -285,7 +285,7 @@ CREATE SEQUENCE public.kardex_productos_id_seq
 ALTER SEQUENCE public.kardex_productos_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5105 (class 0 OID 0)
+-- TOC entry 5106 (class 0 OID 0)
 -- Dependencies: 237
 -- Name: kardex_productos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -324,7 +324,7 @@ CREATE SEQUENCE public.migrations_id_seq
 ALTER SEQUENCE public.migrations_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5106 (class 0 OID 0)
+-- TOC entry 5107 (class 0 OID 0)
 -- Dependencies: 217
 -- Name: migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -362,7 +362,7 @@ CREATE SEQUENCE public.notificacion_users_id_seq
 ALTER SEQUENCE public.notificacion_users_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5107 (class 0 OID 0)
+-- TOC entry 5108 (class 0 OID 0)
 -- Dependencies: 253
 -- Name: notificacion_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -406,7 +406,7 @@ CREATE SEQUENCE public.notificacions_id_seq
 ALTER SEQUENCE public.notificacions_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5108 (class 0 OID 0)
+-- TOC entry 5109 (class 0 OID 0)
 -- Dependencies: 251
 -- Name: notificacions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -448,7 +448,7 @@ CREATE SEQUENCE public.participante_pujas_id_seq
 ALTER SEQUENCE public.participante_pujas_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5109 (class 0 OID 0)
+-- TOC entry 5110 (class 0 OID 0)
 -- Dependencies: 249
 -- Name: participante_pujas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -492,7 +492,7 @@ CREATE SEQUENCE public.participantes_id_seq
 ALTER SEQUENCE public.participantes_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5110 (class 0 OID 0)
+-- TOC entry 5111 (class 0 OID 0)
 -- Dependencies: 247
 -- Name: participantes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -532,7 +532,7 @@ CREATE SEQUENCE public.producto_imagens_id_seq
 ALTER SEQUENCE public.producto_imagens_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5111 (class 0 OID 0)
+-- TOC entry 5112 (class 0 OID 0)
 -- Dependencies: 231
 -- Name: producto_imagens_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -577,7 +577,7 @@ CREATE SEQUENCE public.productos_id_seq
 ALTER SEQUENCE public.productos_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5112 (class 0 OID 0)
+-- TOC entry 5113 (class 0 OID 0)
 -- Dependencies: 229
 -- Name: productos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -618,7 +618,7 @@ CREATE SEQUENCE public.qrs_id_seq
 ALTER SEQUENCE public.qrs_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5113 (class 0 OID 0)
+-- TOC entry 5114 (class 0 OID 0)
 -- Dependencies: 225
 -- Name: qrs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -660,7 +660,7 @@ CREATE SEQUENCE public.salida_productos_id_seq
 ALTER SEQUENCE public.salida_productos_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5114 (class 0 OID 0)
+-- TOC entry 5115 (class 0 OID 0)
 -- Dependencies: 235
 -- Name: salida_productos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -706,7 +706,7 @@ CREATE SEQUENCE public.subastas_id_seq
 ALTER SEQUENCE public.subastas_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5115 (class 0 OID 0)
+-- TOC entry 5116 (class 0 OID 0)
 -- Dependencies: 239
 -- Name: subastas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -758,7 +758,7 @@ CREATE SEQUENCE public.users_id_seq
 ALTER SEQUENCE public.users_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5116 (class 0 OID 0)
+-- TOC entry 5117 (class 0 OID 0)
 -- Dependencies: 221
 -- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -801,7 +801,7 @@ CREATE SEQUENCE public.venta_detalles_id_seq
 ALTER SEQUENCE public.venta_detalles_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5117 (class 0 OID 0)
+-- TOC entry 5118 (class 0 OID 0)
 -- Dependencies: 245
 -- Name: venta_detalles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -823,7 +823,8 @@ CREATE TABLE public.ventas (
     created_at timestamp(0) without time zone,
     updated_at timestamp(0) without time zone,
     status integer DEFAULT 1 NOT NULL,
-    nit_ci character varying(255)
+    nit_ci character varying(255),
+    user_id bigint NOT NULL
 );
 
 
@@ -845,7 +846,7 @@ CREATE SEQUENCE public.ventas_id_seq
 ALTER SEQUENCE public.ventas_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5118 (class 0 OID 0)
+-- TOC entry 5119 (class 0 OID 0)
 -- Dependencies: 243
 -- Name: ventas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -1006,7 +1007,7 @@ ALTER TABLE ONLY public.ventas ALTER COLUMN id SET DEFAULT nextval('public.venta
 
 
 --
--- TOC entry 5068 (class 0 OID 24629)
+-- TOC entry 5069 (class 0 OID 24629)
 -- Dependencies: 228
 -- Data for Name: categorias; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1019,7 +1020,7 @@ COPY public.categorias (id, nombre, descripcion, fecha_registro, created_at, upd
 
 
 --
--- TOC entry 5082 (class 0 OID 24724)
+-- TOC entry 5083 (class 0 OID 24724)
 -- Dependencies: 242
 -- Data for Name: clientes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1031,7 +1032,7 @@ COPY public.clientes (id, nombre, nit_ci, cel, correo, created_at, updated_at, f
 
 
 --
--- TOC entry 5060 (class 0 OID 24587)
+-- TOC entry 5061 (class 0 OID 24587)
 -- Dependencies: 220
 -- Data for Name: configuracions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1042,7 +1043,7 @@ COPY public.configuracions (id, nombre_sistema, alias, razon_social, logo, creat
 
 
 --
--- TOC entry 5064 (class 0 OID 24606)
+-- TOC entry 5065 (class 0 OID 24606)
 -- Dependencies: 224
 -- Data for Name: historial_accions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1085,11 +1086,16 @@ COPY public.historial_accions (id, user_id, accion, descripcion, datos_original,
 35	1	MODIFICACIÓN	EL USUARIO admin ACTUALIZÓ UNA VENTA	{"id":2,"cliente_id":1,"total":"254.00","fecha":"2026-04-09","hora":"09:49:03","created_at":"2026-04-09T13:49:03.000000Z","updated_at":"2026-04-09T13:49:03.000000Z","status":1,"nit_ci":"123456","venta_detalles":[{"id":3,"venta_id":2,"producto_id":1,"precio":"120.00","cantidad":"1","subtotal":"120.00","created_at":"2026-04-09T13:49:03.000000Z","updated_at":"2026-04-09T13:49:03.000000Z"},{"id":4,"venta_id":2,"producto_id":2,"precio":"67.00","cantidad":"4","subtotal":"268.00","created_at":"2026-04-09T13:49:03.000000Z","updated_at":"2026-04-09T13:49:13.000000Z"}]}	{"id":2,"cliente_id":"1","total":"388","fecha":"2026-04-09","hora":"09:49:03","created_at":"2026-04-09T13:49:03.000000Z","updated_at":"2026-04-09T13:49:13.000000Z","status":1,"nit_ci":"123456","venta_detalles":[{"id":3,"venta_id":2,"producto_id":1,"precio":"120.00","cantidad":"1","subtotal":"120.00","created_at":"2026-04-09T13:49:03.000000Z","updated_at":"2026-04-09T13:49:03.000000Z"},{"id":4,"venta_id":2,"producto_id":2,"precio":"67.00","cantidad":"4","subtotal":"268.00","created_at":"2026-04-09T13:49:03.000000Z","updated_at":"2026-04-09T13:49:13.000000Z"}]}	VENTAS	2026-04-09	09:49:13	2026-04-09 09:49:13	2026-04-09 09:49:13
 36	1	ELIMINACIÓN	EL USUARIO admin ELIMINÓ UNA VENTA	{"id":2,"cliente_id":1,"total":"388.00","fecha":"2026-04-09","hora":"09:49:03","created_at":"2026-04-09T13:49:03.000000Z","updated_at":"2026-04-09T13:49:13.000000Z","status":1,"nit_ci":"123456","venta_detalles":[{"id":3,"venta_id":2,"producto_id":1,"precio":"120.00","cantidad":"1","subtotal":"120.00","created_at":"2026-04-09T13:49:03.000000Z","updated_at":"2026-04-09T13:49:03.000000Z"},{"id":4,"venta_id":2,"producto_id":2,"precio":"67.00","cantidad":"4","subtotal":"268.00","created_at":"2026-04-09T13:49:03.000000Z","updated_at":"2026-04-09T13:49:13.000000Z"}]}	{"id":2,"cliente_id":1,"total":"388.00","fecha":"2026-04-09","hora":"09:49:03","created_at":"2026-04-09T13:49:03.000000Z","updated_at":"2026-04-09T13:49:18.000000Z","status":0,"nit_ci":"123456","venta_detalles":[{"id":3,"venta_id":2,"producto_id":1,"precio":"120.00","cantidad":"1","subtotal":"120.00","created_at":"2026-04-09T13:49:03.000000Z","updated_at":"2026-04-09T13:49:03.000000Z"},{"id":4,"venta_id":2,"producto_id":2,"precio":"67.00","cantidad":"4","subtotal":"268.00","created_at":"2026-04-09T13:49:03.000000Z","updated_at":"2026-04-09T13:49:13.000000Z"}]}	VENTAS	2026-04-09	09:49:18	2026-04-09 09:49:18	2026-04-09 09:49:18
 37	1	CREACIÓN	EL USUARIO admin REGISTRO UNA VENTA	{"cliente_id":"2","nit_ci":null,"total":"187","fecha":"2026-04-09","hora":"09:49:31","updated_at":"2026-04-09T13:49:31.000000Z","created_at":"2026-04-09T13:49:31.000000Z","id":3,"venta_detalles":[{"id":5,"venta_id":3,"producto_id":1,"precio":"120.00","cantidad":"1","subtotal":"120.00","created_at":"2026-04-09T13:49:31.000000Z","updated_at":"2026-04-09T13:49:31.000000Z"},{"id":6,"venta_id":3,"producto_id":2,"precio":"67.00","cantidad":"1","subtotal":"67.00","created_at":"2026-04-09T13:49:31.000000Z","updated_at":"2026-04-09T13:49:31.000000Z"}]}	\N	VENTAS	2026-04-09	09:49:31	2026-04-09 09:49:31	2026-04-09 09:49:31
+38	1	MODIFICACIÓN	EL USUARIO admin REVIRTIÓ LA ANULACIÓN DE UNA VENTA	{"id":1,"cliente_id":1,"total":"427.00","fecha":"2026-04-09","hora":"09:18:22","created_at":"2026-04-09T13:18:22.000000Z","updated_at":"2026-04-09T13:46:05.000000Z","status":0,"nit_ci":"123456","venta_detalles":[{"id":1,"venta_id":1,"producto_id":1,"precio":"120.00","cantidad":"3","subtotal":"360.00","created_at":"2026-04-09T13:18:23.000000Z","updated_at":"2026-04-09T13:18:23.000000Z"},{"id":2,"venta_id":1,"producto_id":2,"precio":"67.00","cantidad":"1","subtotal":"67.00","created_at":"2026-04-09T13:18:23.000000Z","updated_at":"2026-04-09T13:18:23.000000Z"}]}	{"id":1,"cliente_id":1,"total":"427.00","fecha":"2026-04-09","hora":"09:18:22","created_at":"2026-04-09T13:18:22.000000Z","updated_at":"2026-04-09T19:42:39.000000Z","status":1,"nit_ci":"123456","venta_detalles":[{"id":1,"venta_id":1,"producto_id":1,"precio":"120.00","cantidad":"3","subtotal":"360.00","created_at":"2026-04-09T13:18:23.000000Z","updated_at":"2026-04-09T13:18:23.000000Z"},{"id":2,"venta_id":1,"producto_id":2,"precio":"67.00","cantidad":"1","subtotal":"67.00","created_at":"2026-04-09T13:18:23.000000Z","updated_at":"2026-04-09T13:18:23.000000Z"}]}	VENTAS	2026-04-09	15:42:39	2026-04-09 15:42:39	2026-04-09 15:42:39
+39	1	MODIFICACIÓN	EL USUARIO admin REVIRTIÓ LA ANULACIÓN DE UNA VENTA	{"id":2,"cliente_id":1,"total":"388.00","fecha":"2026-04-09","hora":"09:49:03","created_at":"2026-04-09T13:49:03.000000Z","updated_at":"2026-04-09T13:49:18.000000Z","status":0,"nit_ci":"123456","venta_detalles":[{"id":3,"venta_id":2,"producto_id":1,"precio":"120.00","cantidad":"1","subtotal":"120.00","created_at":"2026-04-09T13:49:03.000000Z","updated_at":"2026-04-09T13:49:03.000000Z"},{"id":4,"venta_id":2,"producto_id":2,"precio":"67.00","cantidad":"4","subtotal":"268.00","created_at":"2026-04-09T13:49:03.000000Z","updated_at":"2026-04-09T13:49:13.000000Z"}]}	{"id":2,"cliente_id":1,"total":"388.00","fecha":"2026-04-09","hora":"09:49:03","created_at":"2026-04-09T13:49:03.000000Z","updated_at":"2026-04-09T19:43:05.000000Z","status":1,"nit_ci":"123456","venta_detalles":[{"id":3,"venta_id":2,"producto_id":1,"precio":"120.00","cantidad":"1","subtotal":"120.00","created_at":"2026-04-09T13:49:03.000000Z","updated_at":"2026-04-09T13:49:03.000000Z"},{"id":4,"venta_id":2,"producto_id":2,"precio":"67.00","cantidad":"4","subtotal":"268.00","created_at":"2026-04-09T13:49:03.000000Z","updated_at":"2026-04-09T13:49:13.000000Z"}]}	VENTAS	2026-04-09	15:43:05	2026-04-09 15:43:05	2026-04-09 15:43:05
+40	1	ELIMINACIÓN	EL USUARIO admin ELIMINÓ UNA VENTA	{"id":1,"cliente_id":1,"total":"427.00","fecha":"2026-04-09","hora":"09:18:22","created_at":"2026-04-09T13:18:22.000000Z","updated_at":"2026-04-09T19:42:39.000000Z","status":1,"nit_ci":"123456","user_id":1,"venta_detalles":[{"id":1,"venta_id":1,"producto_id":1,"precio":"120.00","cantidad":"3","subtotal":"360.00","created_at":"2026-04-09T13:18:23.000000Z","updated_at":"2026-04-09T13:18:23.000000Z"},{"id":2,"venta_id":1,"producto_id":2,"precio":"67.00","cantidad":"1","subtotal":"67.00","created_at":"2026-04-09T13:18:23.000000Z","updated_at":"2026-04-09T13:18:23.000000Z"}]}	{"id":1,"cliente_id":1,"total":"427.00","fecha":"2026-04-09","hora":"09:18:22","created_at":"2026-04-09T13:18:22.000000Z","updated_at":"2026-04-09T20:16:27.000000Z","status":0,"nit_ci":"123456","user_id":1,"venta_detalles":[{"id":1,"venta_id":1,"producto_id":1,"precio":"120.00","cantidad":"3","subtotal":"360.00","created_at":"2026-04-09T13:18:23.000000Z","updated_at":"2026-04-09T13:18:23.000000Z"},{"id":2,"venta_id":1,"producto_id":2,"precio":"67.00","cantidad":"1","subtotal":"67.00","created_at":"2026-04-09T13:18:23.000000Z","updated_at":"2026-04-09T13:18:23.000000Z"}]}	VENTAS	2026-04-09	16:16:27	2026-04-09 16:16:27	2026-04-09 16:16:27
+41	1	MODIFICACIÓN	EL USUARIO admin ACTUALIZÓ UN USUARIO	{"id":2,"usuario":"JPERES","nombre":"JUAN","paterno":"PERES","materno":"MAMANI","correo":"juan@gmail.com","fono":"67676767","acceso":1,"tipo":"ADMINISTRADOR","foto":"21775656455.jpg","fecha_registro":"2026-04-08","status":1,"created_at":"2026-04-08T13:54:15.000000Z","updated_at":"2026-04-08T13:54:15.000000Z","ci":null,"ci_exp":null}	{"id":2,"usuario":"JPERES1","nombre":"JUAN","paterno":"PERES","materno":"MAMANI","correo":"juan@gmail.com","fono":"67676767","acceso":"1","tipo":"ADMINISTRADOR","foto":"21775656455.jpg","fecha_registro":"2026-04-08","status":1,"created_at":"2026-04-08T13:54:15.000000Z","updated_at":"2026-04-09T20:39:14.000000Z","ci":"123456","ci_exp":"LP"}	USUARIOS	2026-04-09	16:39:15	2026-04-09 16:39:15	2026-04-09 16:39:15
+42	1	MODIFICACIÓN	EL USUARIO admin ACTUALIZÓ UN USUARIO	{"id":3,"usuario":"GCARVAJAL","nombre":"GERMAN","paterno":"CARVAJAL","materno":"","correo":null,"fono":"67676767","acceso":1,"tipo":"AUXILIAR","foto":null,"fecha_registro":"2026-04-08","status":1,"created_at":"2026-04-08T13:54:55.000000Z","updated_at":"2026-04-08T13:54:55.000000Z","ci":null,"ci_exp":null}	{"id":3,"usuario":"GCARVAJAL","nombre":"GERMAN","paterno":"CARVAJAL","materno":"","correo":null,"fono":"67676767","acceso":"1","tipo":"AUXILIAR","foto":null,"fecha_registro":"2026-04-08","status":1,"created_at":"2026-04-08T13:54:55.000000Z","updated_at":"2026-04-09T20:42:06.000000Z","ci":"5454544","ci_exp":"LP"}	USUARIOS	2026-04-09	16:42:06	2026-04-09 16:42:06	2026-04-09 16:42:06
 \.
 
 
 --
--- TOC entry 5074 (class 0 OID 24669)
+-- TOC entry 5075 (class 0 OID 24669)
 -- Dependencies: 234
 -- Data for Name: ingreso_productos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1101,7 +1107,7 @@ COPY public.ingreso_productos (id, producto_id, cantidad, descripcion, fecha_reg
 
 
 --
--- TOC entry 5078 (class 0 OID 24697)
+-- TOC entry 5079 (class 0 OID 24697)
 -- Dependencies: 238
 -- Data for Name: kardex_productos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1123,11 +1129,17 @@ COPY public.kardex_productos (id, tipo_registro, registro_id, modulo, producto_i
 14	VENTAS	4	VentaDetalle	2	INGRESO POR ANULACIÓN DE VENTA	67.00	INGRESO	4	\N	100	67.00	268.00	\N	6700.00	2026-04-09	1	2026-04-09 09:49:18	2026-04-09 09:49:18
 15	VENTAS	5	VentaDetalle	1	VENTA DE PRODUCTO	120.00	EGRESO	\N	1	97	120.00	\N	120.00	11640.00	2026-04-09	1	2026-04-09 09:49:31	2026-04-09 09:49:31
 16	VENTAS	6	VentaDetalle	2	VENTA DE PRODUCTO	67.00	EGRESO	\N	1	99	67.00	\N	67.00	6633.00	2026-04-09	1	2026-04-09 09:49:31	2026-04-09 09:49:31
+17	VENTAS	1	VentaDetalle	1	EGRESO POR VENTA	120.00	EGRESO	\N	3	94	120.00	\N	360.00	11280.00	2026-04-09	1	2026-04-09 15:42:39	2026-04-09 15:42:39
+18	VENTAS	2	VentaDetalle	2	EGRESO POR VENTA	67.00	EGRESO	\N	1	98	67.00	\N	67.00	6566.00	2026-04-09	1	2026-04-09 15:42:39	2026-04-09 15:42:39
+19	VENTAS	3	VentaDetalle	1	EGRESO POR VENTA	120.00	EGRESO	\N	1	93	120.00	\N	120.00	11160.00	2026-04-09	1	2026-04-09 15:43:05	2026-04-09 15:43:05
+20	VENTAS	4	VentaDetalle	2	EGRESO POR VENTA	67.00	EGRESO	\N	4	94	67.00	\N	268.00	6298.00	2026-04-09	1	2026-04-09 15:43:05	2026-04-09 15:43:05
+21	VENTAS	1	VentaDetalle	1	INGRESO POR ANULACIÓN DE VENTA	120.00	INGRESO	3	\N	96	120.00	360.00	\N	11520.00	2026-04-09	1	2026-04-09 16:16:27	2026-04-09 16:16:27
+22	VENTAS	2	VentaDetalle	2	INGRESO POR ANULACIÓN DE VENTA	67.00	INGRESO	1	\N	95	67.00	67.00	\N	6365.00	2026-04-09	1	2026-04-09 16:16:27	2026-04-09 16:16:27
 \.
 
 
 --
--- TOC entry 5058 (class 0 OID 24580)
+-- TOC entry 5059 (class 0 OID 24580)
 -- Dependencies: 218
 -- Data for Name: migrations; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1155,7 +1167,7 @@ COPY public.migrations (id, migration, batch) FROM stdin;
 
 
 --
--- TOC entry 5094 (class 0 OID 24800)
+-- TOC entry 5095 (class 0 OID 24800)
 -- Dependencies: 254
 -- Data for Name: notificacion_users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1165,7 +1177,7 @@ COPY public.notificacion_users (id, created_at, updated_at) FROM stdin;
 
 
 --
--- TOC entry 5092 (class 0 OID 24791)
+-- TOC entry 5093 (class 0 OID 24791)
 -- Dependencies: 252
 -- Data for Name: notificacions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1175,7 +1187,7 @@ COPY public.notificacions (id, modelo, modelo_id, descripcion, fecha, hora, tipo
 
 
 --
--- TOC entry 5090 (class 0 OID 24779)
+-- TOC entry 5091 (class 0 OID 24779)
 -- Dependencies: 250
 -- Data for Name: participante_pujas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1185,7 +1197,7 @@ COPY public.participante_pujas (id, participante_id, monto, fecha, hora, created
 
 
 --
--- TOC entry 5088 (class 0 OID 24762)
+-- TOC entry 5089 (class 0 OID 24762)
 -- Dependencies: 248
 -- Data for Name: participantes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1195,7 +1207,7 @@ COPY public.participantes (id, subasta_id, user_id, estado, fecha, hora, monto_p
 
 
 --
--- TOC entry 5072 (class 0 OID 24657)
+-- TOC entry 5073 (class 0 OID 24657)
 -- Dependencies: 232
 -- Data for Name: producto_imagens; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1211,19 +1223,19 @@ COPY public.producto_imagens (id, producto_id, imagen, created_at, updated_at) F
 
 
 --
--- TOC entry 5070 (class 0 OID 24640)
+-- TOC entry 5071 (class 0 OID 24640)
 -- Dependencies: 230
 -- Data for Name: productos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.productos (id, nombre, descripcion, precio, stock, categoria_id, fecha_registro, created_at, updated_at, codigo) FROM stdin;
-1	PRODUCTO 1	<h2><strong><u>DESCRIPCIÓN DEL PRODUCTO</u></strong></h2><p><span style="color: rgb(0, 0, 0);">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</span></p>	120.00	97	1	2026-04-08	2026-04-08 11:39:00	2026-04-09 09:49:31	P001
-2	PRODUCTO 2	<p>Descripcion del producto 2</p>	67.00	99	1	2026-04-08	2026-04-08 19:33:31	2026-04-09 09:49:31	P002
+2	PRODUCTO 2	<p>Descripcion del producto 2</p>	67.00	95	1	2026-04-08	2026-04-08 19:33:31	2026-04-09 16:16:27	P002
+1	PRODUCTO 1	<h2><strong><u>DESCRIPCIÓN DEL PRODUCTO</u></strong></h2><p><span style="color: rgb(0, 0, 0);">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</span></p>	120.00	96	1	2026-04-08	2026-04-08 11:39:00	2026-04-09 16:16:27	P001
 \.
 
 
 --
--- TOC entry 5066 (class 0 OID 24620)
+-- TOC entry 5067 (class 0 OID 24620)
 -- Dependencies: 226
 -- Data for Name: qrs; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1233,7 +1245,7 @@ COPY public.qrs (id, imagen, remitente, fecha_vencimiento, created_at, updated_a
 
 
 --
--- TOC entry 5076 (class 0 OID 24683)
+-- TOC entry 5077 (class 0 OID 24683)
 -- Dependencies: 236
 -- Data for Name: salida_productos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1243,7 +1255,7 @@ COPY public.salida_productos (id, producto_id, cantidad, descripcion, fecha_regi
 
 
 --
--- TOC entry 5080 (class 0 OID 24712)
+-- TOC entry 5081 (class 0 OID 24712)
 -- Dependencies: 240
 -- Data for Name: subastas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1253,20 +1265,20 @@ COPY public.subastas (id, producto_id, estado_producto, monto_inicial, fecha_fin
 
 
 --
--- TOC entry 5062 (class 0 OID 24596)
+-- TOC entry 5063 (class 0 OID 24596)
 -- Dependencies: 222
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.users (id, usuario, nombre, paterno, materno, correo, fono, password, acceso, tipo, foto, fecha_registro, status, created_at, updated_at, ci, ci_exp) FROM stdin;
 1	admin	admin	admin	\N	admin@admin.com		$2y$12$jrlcVfmykFHgcsTVPdyyiuFveypQPhYDxR.XPKtupQSRo5aOc8JVO	1	ADMINISTRADOR	\N	2026-04-07	1	2026-04-07 16:08:34	2026-04-07 16:08:34	\N	\N
-2	JPERES	JUAN	PERES	MAMANI	juan@gmail.com	67676767	$2y$12$aBNjGfUpAcIywtg8ZyvcmejU/ex/rwh7YBo4SJ3pPpCUZsrbRcXvC	1	ADMINISTRADOR	21775656455.jpg	2026-04-08	1	2026-04-08 09:54:15	2026-04-08 09:54:15	\N	\N
-3	GCARVAJAL	GERMAN	CARVAJAL		\N	67676767	$2y$12$nMvJvy/iJOvTGZaodz3cS.LyUT43ix18US/s.k5BRGWzrnPHIRvHG	1	AUXILIAR	\N	2026-04-08	1	2026-04-08 09:54:55	2026-04-08 09:54:55	\N	\N
+3	GCARVAJAL	GERMAN	CARVAJAL		\N	67676767	$2y$12$nMvJvy/iJOvTGZaodz3cS.LyUT43ix18US/s.k5BRGWzrnPHIRvHG	1	AUXILIAR	\N	2026-04-08	1	2026-04-08 09:54:55	2026-04-09 16:42:06	5454544	LP
+2	JPERES	JUAN	PERES	MAMANI	juan@gmail.com	67676767	$2y$12$cAUyhnIvv2KBIRDmmIGqmeIZhQGXZlLSJAX6LcPxJbn2YWRh6yaqi	1	ADMINISTRADOR	21775656455.jpg	2026-04-08	1	2026-04-08 09:54:15	2026-04-09 16:42:42	123456	LP
 \.
 
 
 --
--- TOC entry 5086 (class 0 OID 24745)
+-- TOC entry 5087 (class 0 OID 24745)
 -- Dependencies: 246
 -- Data for Name: venta_detalles; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1282,20 +1294,20 @@ COPY public.venta_detalles (id, venta_id, producto_id, precio, cantidad, subtota
 
 
 --
--- TOC entry 5084 (class 0 OID 24733)
+-- TOC entry 5085 (class 0 OID 24733)
 -- Dependencies: 244
 -- Data for Name: ventas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.ventas (id, cliente_id, total, fecha, hora, created_at, updated_at, status, nit_ci) FROM stdin;
-1	1	427.00	2026-04-09	09:18:22	2026-04-09 09:18:22	2026-04-09 09:46:05	0	123456
-2	1	388.00	2026-04-09	09:49:03	2026-04-09 09:49:03	2026-04-09 09:49:18	0	123456
-3	2	187.00	2026-04-09	09:49:31	2026-04-09 09:49:31	2026-04-09 09:49:31	1	\N
+COPY public.ventas (id, cliente_id, total, fecha, hora, created_at, updated_at, status, nit_ci, user_id) FROM stdin;
+3	2	187.00	2026-04-09	09:49:31	2026-04-09 09:49:31	2026-04-09 09:49:31	1	\N	1
+2	1	388.00	2026-04-09	09:49:03	2026-04-09 09:49:03	2026-04-09 15:43:05	1	123456	1
+1	1	427.00	2026-04-09	09:18:22	2026-04-09 09:18:22	2026-04-09 16:16:27	0	123456	1
 \.
 
 
 --
--- TOC entry 5119 (class 0 OID 0)
+-- TOC entry 5120 (class 0 OID 0)
 -- Dependencies: 227
 -- Name: categorias_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1304,7 +1316,7 @@ SELECT pg_catalog.setval('public.categorias_id_seq', 3, true);
 
 
 --
--- TOC entry 5120 (class 0 OID 0)
+-- TOC entry 5121 (class 0 OID 0)
 -- Dependencies: 241
 -- Name: clientes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1313,7 +1325,7 @@ SELECT pg_catalog.setval('public.clientes_id_seq', 2, true);
 
 
 --
--- TOC entry 5121 (class 0 OID 0)
+-- TOC entry 5122 (class 0 OID 0)
 -- Dependencies: 219
 -- Name: configuracions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1322,16 +1334,16 @@ SELECT pg_catalog.setval('public.configuracions_id_seq', 1, true);
 
 
 --
--- TOC entry 5122 (class 0 OID 0)
+-- TOC entry 5123 (class 0 OID 0)
 -- Dependencies: 223
 -- Name: historial_accions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.historial_accions_id_seq', 37, true);
+SELECT pg_catalog.setval('public.historial_accions_id_seq', 42, true);
 
 
 --
--- TOC entry 5123 (class 0 OID 0)
+-- TOC entry 5124 (class 0 OID 0)
 -- Dependencies: 233
 -- Name: ingreso_productos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1340,16 +1352,16 @@ SELECT pg_catalog.setval('public.ingreso_productos_id_seq', 2, true);
 
 
 --
--- TOC entry 5124 (class 0 OID 0)
+-- TOC entry 5125 (class 0 OID 0)
 -- Dependencies: 237
 -- Name: kardex_productos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.kardex_productos_id_seq', 16, true);
+SELECT pg_catalog.setval('public.kardex_productos_id_seq', 22, true);
 
 
 --
--- TOC entry 5125 (class 0 OID 0)
+-- TOC entry 5126 (class 0 OID 0)
 -- Dependencies: 217
 -- Name: migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1358,7 +1370,7 @@ SELECT pg_catalog.setval('public.migrations_id_seq', 18, true);
 
 
 --
--- TOC entry 5126 (class 0 OID 0)
+-- TOC entry 5127 (class 0 OID 0)
 -- Dependencies: 253
 -- Name: notificacion_users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1367,7 +1379,7 @@ SELECT pg_catalog.setval('public.notificacion_users_id_seq', 1, false);
 
 
 --
--- TOC entry 5127 (class 0 OID 0)
+-- TOC entry 5128 (class 0 OID 0)
 -- Dependencies: 251
 -- Name: notificacions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1376,7 +1388,7 @@ SELECT pg_catalog.setval('public.notificacions_id_seq', 1, false);
 
 
 --
--- TOC entry 5128 (class 0 OID 0)
+-- TOC entry 5129 (class 0 OID 0)
 -- Dependencies: 249
 -- Name: participante_pujas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1385,7 +1397,7 @@ SELECT pg_catalog.setval('public.participante_pujas_id_seq', 1, false);
 
 
 --
--- TOC entry 5129 (class 0 OID 0)
+-- TOC entry 5130 (class 0 OID 0)
 -- Dependencies: 247
 -- Name: participantes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1394,7 +1406,7 @@ SELECT pg_catalog.setval('public.participantes_id_seq', 1, false);
 
 
 --
--- TOC entry 5130 (class 0 OID 0)
+-- TOC entry 5131 (class 0 OID 0)
 -- Dependencies: 231
 -- Name: producto_imagens_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1403,7 +1415,7 @@ SELECT pg_catalog.setval('public.producto_imagens_id_seq', 25, true);
 
 
 --
--- TOC entry 5131 (class 0 OID 0)
+-- TOC entry 5132 (class 0 OID 0)
 -- Dependencies: 229
 -- Name: productos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1412,7 +1424,7 @@ SELECT pg_catalog.setval('public.productos_id_seq', 2, true);
 
 
 --
--- TOC entry 5132 (class 0 OID 0)
+-- TOC entry 5133 (class 0 OID 0)
 -- Dependencies: 225
 -- Name: qrs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1421,7 +1433,7 @@ SELECT pg_catalog.setval('public.qrs_id_seq', 1, false);
 
 
 --
--- TOC entry 5133 (class 0 OID 0)
+-- TOC entry 5134 (class 0 OID 0)
 -- Dependencies: 235
 -- Name: salida_productos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1430,7 +1442,7 @@ SELECT pg_catalog.setval('public.salida_productos_id_seq', 1, false);
 
 
 --
--- TOC entry 5134 (class 0 OID 0)
+-- TOC entry 5135 (class 0 OID 0)
 -- Dependencies: 239
 -- Name: subastas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1439,7 +1451,7 @@ SELECT pg_catalog.setval('public.subastas_id_seq', 1, false);
 
 
 --
--- TOC entry 5135 (class 0 OID 0)
+-- TOC entry 5136 (class 0 OID 0)
 -- Dependencies: 221
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1448,7 +1460,7 @@ SELECT pg_catalog.setval('public.users_id_seq', 3, true);
 
 
 --
--- TOC entry 5136 (class 0 OID 0)
+-- TOC entry 5137 (class 0 OID 0)
 -- Dependencies: 245
 -- Name: venta_detalles_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1457,7 +1469,7 @@ SELECT pg_catalog.setval('public.venta_detalles_id_seq', 6, true);
 
 
 --
--- TOC entry 5137 (class 0 OID 0)
+-- TOC entry 5138 (class 0 OID 0)
 -- Dependencies: 243
 -- Name: ventas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1691,7 +1703,7 @@ ALTER TABLE ONLY public.kardex_productos
 
 
 --
--- TOC entry 4911 (class 2606 OID 24785)
+-- TOC entry 4912 (class 2606 OID 24785)
 -- Name: participante_pujas participante_pujas_participante_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1700,7 +1712,7 @@ ALTER TABLE ONLY public.participante_pujas
 
 
 --
--- TOC entry 4909 (class 2606 OID 24768)
+-- TOC entry 4910 (class 2606 OID 24768)
 -- Name: participantes participantes_subasta_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1709,7 +1721,7 @@ ALTER TABLE ONLY public.participantes
 
 
 --
--- TOC entry 4910 (class 2606 OID 24773)
+-- TOC entry 4911 (class 2606 OID 24773)
 -- Name: participantes participantes_user_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1754,7 +1766,7 @@ ALTER TABLE ONLY public.subastas
 
 
 --
--- TOC entry 4907 (class 2606 OID 24756)
+-- TOC entry 4908 (class 2606 OID 24756)
 -- Name: venta_detalles venta_detalles_producto_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1763,7 +1775,7 @@ ALTER TABLE ONLY public.venta_detalles
 
 
 --
--- TOC entry 4908 (class 2606 OID 24751)
+-- TOC entry 4909 (class 2606 OID 24751)
 -- Name: venta_detalles venta_detalles_venta_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1780,11 +1792,20 @@ ALTER TABLE ONLY public.ventas
     ADD CONSTRAINT ventas_cliente_id_foreign FOREIGN KEY (cliente_id) REFERENCES public.clientes(id);
 
 
--- Completed on 2026-04-09 13:18:10
+--
+-- TOC entry 4907 (class 2606 OID 24859)
+-- Name: ventas ventas_user_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.ventas
+    ADD CONSTRAINT ventas_user_id_foreign FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+-- Completed on 2026-04-09 18:57:40
 
 --
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 3nc7iwpjPvFreRiFxUceDGYBJqTH0GlmsBZgh5ofUJlHBmWSpwMgHkIqB10iZ5z
+\unrestrict k2e6drKrPi00ey1DcrgWl9XDonM8KT0pPArUZwIldHUbeLmY3Md2qevyTxYq6FW
 

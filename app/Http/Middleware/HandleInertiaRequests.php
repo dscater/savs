@@ -17,7 +17,13 @@ class HandleInertiaRequests extends Middleware
 
     public function rootView(Request $request)
     {
-        return 'app';
+        $nom_ruta = $request->route()->getName();
+        $prefix = $request->route()->getPrefix();
+        $validate_prefix = ["admin", "/admin"];
+        if (in_array($prefix, $validate_prefix) || in_array($nom_ruta, ['login', 'registro'])) {
+            return 'app';
+        }
+        return 'portal';
     }
 
     /**

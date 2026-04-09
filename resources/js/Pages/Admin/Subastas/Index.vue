@@ -2,7 +2,7 @@
 import Content from "@/Components/Content.vue";
 import MiTable from "@/Components/MiTable.vue";
 import { Head, Link, router, usePage } from "@inertiajs/vue3";
-import { useVentas } from "@/composables/ventas/useVentas";
+import { useSubastas } from "@/composables/subastas/useSubastas";
 import { useAxios } from "@/composables/axios/useAxios";
 import { ref, onMounted, onBeforeMount } from "vue";
 import { useAppStore } from "@/stores/aplicacion/appStore";
@@ -17,7 +17,7 @@ onMounted(() => {
     appStore.stopLoading();
 });
 
-const { setVenta, limpiarVenta } = useVentas();
+const { setSubasta, limpiarSubasta } = useSubastas();
 const { axiosDelete } = useAxios();
 
 const miTable = ref(null);
@@ -77,14 +77,14 @@ const updateDatatable = async () => {
     }
 };
 
-const editarVenta = (item) => {
-    router.get(route("ventas.edit", item.id));
+const editarSubasta = (item) => {
+    router.get(route("subastas.edit", item.id));
 };
 
-const eliminarVenta = (item) => {
+const eliminarSubasta = (item) => {
     Swal.fire({
         title: "¿Quierés anular este registro?",
-        html: `<strong>Nro. Venta: ${item.id}<br/><strong>Cliente: </strong>${item.cliente.nombre}<br/><strong>Total: ${item.total}</strong>`,
+        html: `<strong>Nro. Subasta: ${item.id}<br/><strong>Cliente: </strong>${item.cliente.nombre}<br/><strong>Total: ${item.total}</strong>`,
         showCancelButton: true,
         confirmButtonText: "Si, anular",
         cancelButtonText: "No, cancelar",
@@ -95,7 +95,9 @@ const eliminarVenta = (item) => {
     }).then(async (result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-            let respuesta = await axiosDelete(route("ventas.destroy", item.id));
+            let respuesta = await axiosDelete(
+                route("subastas.destroy", item.id),
+            );
             if (respuesta && respuesta.sw) {
                 updateDatatable();
             }
@@ -105,8 +107,8 @@ const eliminarVenta = (item) => {
 
 const revertirAnulado = (item) => {
     Swal.fire({
-        title: "¿Quierés revertir la anulación de esta venta?",
-        html: `<strong>Nro. Venta: ${item.id}<br/><strong>Cliente: </strong>${item.cliente.nombre}<br/><strong>Total: ${item.total}</strong>`,
+        title: "¿Quierés revertir la anulación de esta subasta?",
+        html: `<strong>Nro. Subasta: ${item.id}<br/><strong>Cliente: </strong>${item.cliente.nombre}<br/><strong>Total: ${item.total}</strong>`,
         showCancelButton: true,
         confirmButtonText: "Si, revertir",
         cancelButtonText: "No, cancelar",
@@ -118,7 +120,7 @@ const revertirAnulado = (item) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
             axios
-                .patch(route("ventas.revertirAnulado", item.id))
+                .patch(route("subastas.revertirAnulado", item.id))
                 .then((response) => {
                     updateDatatable();
                     Swal.fire({
@@ -150,12 +152,12 @@ const revertirAnulado = (item) => {
 };
 </script>
 <template>
-    <Head title="Ventas"></Head>
+    <Head title="Subastas"></Head>
     <Content>
         <template #header>
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Ventas</h1>
+                    <h1 class="m-0">Subastas</h1>
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-6">
@@ -163,7 +165,7 @@ const revertirAnulado = (item) => {
                         <li class="breadcrumb-item">
                             <Link :href="route('inicio')">Inicio</Link>
                         </li>
-                        <li class="breadcrumb-item active">Ventas</li>
+                        <li class="breadcrumb-item active">Subastas</li>
                     </ol>
                 </div>
                 <!-- /.col -->
@@ -178,13 +180,13 @@ const revertirAnulado = (item) => {
                             v-if="
                                 props_page.auth?.user.permisos == '*' ||
                                 props_page.auth?.user.permisos.includes(
-                                    'ventas.create',
+                                    'subastas.create',
                                 )
                             "
                             class="btn btn-primary"
-                            :href="route('ventas.create')"
+                            :href="route('subastas.create')"
                         >
-                            <i class="fa fa-plus"></i> Nueva Venta
+                            <i class="fa fa-plus"></i> Nueva Subasta
                         </Link>
                     </div>
                     <div class="col-md-8 my-1">
@@ -219,7 +221,7 @@ const revertirAnulado = (item) => {
                             ref="miTable"
                             :cols="headers"
                             :api="true"
-                            :url="route('ventas.paginado')"
+                            :url="route('subastas.paginado')"
                             :numPages="5"
                             :multiSearch="multiSearch"
                             :syncOrderBy="'id'"
@@ -257,7 +259,7 @@ const revertirAnulado = (item) => {
                                     v-if="
                                         props_page.auth?.user.permisos == '*' ||
                                         props_page.auth?.user.permisos.includes(
-                                            'ventas.imprimir',
+                                            'subastas.imprimir',
                                         )
                                     "
                                 >
@@ -272,7 +274,7 @@ const revertirAnulado = (item) => {
                                             target="_blank"
                                             :href="
                                                 route(
-                                                    'ventas.imprimir',
+                                                    'subastas.imprimir',
                                                     item.id,
                                                 )
                                             "
@@ -284,21 +286,21 @@ const revertirAnulado = (item) => {
                                     v-if="
                                         props_page.auth?.user.permisos == '*' ||
                                         props_page.auth?.user.permisos.includes(
-                                            'ventas.verVenta',
+                                            'subastas.verSubasta',
                                         )
                                     "
                                 >
                                     <el-tooltip
                                         class="box-item"
                                         effect="dark"
-                                        content="Ver Venta"
+                                        content="Ver Subasta"
                                         placement="left-start"
                                     >
                                         <Link
                                             class="btn btn-info"
                                             :href="
                                                 route(
-                                                    'ventas.verVenta',
+                                                    'subastas.verSubasta',
                                                     item.id,
                                                 )
                                             "
@@ -312,7 +314,7 @@ const revertirAnulado = (item) => {
                                         (props_page.auth?.user.permisos ==
                                             '*' ||
                                             props_page.auth?.user.permisos.includes(
-                                                'ventas.edit',
+                                                'subastas.edit',
                                             ))
                                     "
                                 >
@@ -324,7 +326,7 @@ const revertirAnulado = (item) => {
                                     >
                                         <button
                                             class="btn btn-warning"
-                                            @click="editarVenta(item)"
+                                            @click="editarSubasta(item)"
                                         >
                                             <i class="fa fa-pen"></i></button
                                     ></el-tooltip>
@@ -336,7 +338,7 @@ const revertirAnulado = (item) => {
                                         (props_page.auth?.user.permisos ==
                                             '*' ||
                                             props_page.auth?.user.permisos.includes(
-                                                'ventas.revertirAnulado',
+                                                'subastas.revertirAnulado',
                                             ))
                                     "
                                 >
@@ -360,7 +362,7 @@ const revertirAnulado = (item) => {
                                         (props_page.auth?.user.permisos ==
                                             '*' ||
                                             props_page.auth?.user.permisos.includes(
-                                                'ventas.destroy',
+                                                'subastas.destroy',
                                             ))
                                     "
                                 >
@@ -372,7 +374,7 @@ const revertirAnulado = (item) => {
                                     >
                                         <button
                                             class="btn btn-danger"
-                                            @click="eliminarVenta(item)"
+                                            @click="eliminarSubasta(item)"
                                         >
                                             <i class="fa fa-ban"></i></button
                                     ></el-tooltip>

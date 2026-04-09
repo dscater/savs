@@ -1,5 +1,5 @@
 <script setup>
-import { onBeforeUnmount, onMounted, ref } from "vue";
+import { onBeforeUnmount, onMounted, onUnmounted, ref } from "vue";
 const props = defineProps({
     imagenes: {
         type: Array,
@@ -12,6 +12,14 @@ const props = defineProps({
     height: {
         type: String,
         default: "200px",
+    },
+    descripcionBottom: {
+        type: String,
+        default: "150px",
+    },
+    descripcionBg: {
+        type: String,
+        default: "rgba(0, 0, 0, 0.2)",
     },
     interval: {
         type: Number,
@@ -59,7 +67,7 @@ const pantallaCompleta = () => {
         } else {
             contenedor.requestFullscreen().catch((err) => {
                 console.log(
-                    `Error al intentar entrar en pantalla completa: ${err.message}`
+                    `Error al intentar entrar en pantalla completa: ${err.message}`,
                 );
             });
         }
@@ -77,6 +85,59 @@ const iniciaInterval = () => {
         index_img.value = (index_img.value + 1) % props.imagenes.length;
     }, props.interval);
 };
+
+// DRAG SWIPE
+const totalPages = 5;
+const startX = ref(0);
+const diffX = ref(0);
+const isDragging = ref(false);
+
+// Inicia el rastreo
+const handleStart = (e) => {
+    isDragging.value = true;
+    // Soporte para Touch y Mouse
+    startX.value = e.touches ? e.touches[0].clientX : e.clientX;
+    diffX.value = 0;
+
+    // IMPORTANTE: Escuchar en window para no perder el evento al soltar
+    window.addEventListener("mousemove", handleMove);
+    window.addEventListener("mouseup", handleEnd);
+    window.addEventListener("touchmove", handleMove, { passive: false });
+    window.addEventListener("touchend", handleEnd);
+};
+
+const handleMove = (e) => {
+    if (!isDragging.value) return;
+
+    // Prevenir scroll vertical accidental en móviles mientras arrastras
+    if (e.type === "touchmove") e.preventDefault();
+
+    const currentX = e.touches ? e.touches[0].clientX : e.clientX;
+    diffX.value = currentX - startX.value;
+};
+// Determina si se cambia de página al soltar
+const handleEnd = () => {
+    if (!isDragging.value) return;
+
+    const threshold = 20; // Sensibilidad
+
+    if (diffX.value > threshold) {
+        actualizaImagen(-1);
+    } else if (diffX.value < -threshold) {
+        actualizaImagen(1);
+    }
+
+    // Limpieza
+    isDragging.value = false;
+    diffX.value = 0;
+
+    // Remover los listeners globales
+    window.removeEventListener("mousemove", handleMove);
+    window.removeEventListener("mouseup", handleEnd);
+    window.removeEventListener("touchmove", handleMove);
+    window.removeEventListener("touchend", handleEnd);
+};
+
 onMounted(() => {
     document.addEventListener("fullscreenchange", handleFullscreenChange);
     if (props.interval > 1000) {
@@ -86,6 +147,10 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
     document.removeEventListener("fullscreenchange", handleFullscreenChange);
+});
+
+onUnmounted(() => {
+    handleEnd();
 });
 </script>
 <template>
@@ -108,7 +173,11 @@ onBeforeUnmount(() => {
             v-if="props.muestra_pc"
             ><i class="fa fa-expand"></i
         ></span>
-        <div class="contenedor_sliders">
+        <div
+            class="contenedor_sliders"
+            @mousedown="handleStart"
+            @touchstart="handleStart"
+        >
             <transition name="fade" mode="out-in">
                 <div
                     class="slider"
@@ -117,14 +186,21 @@ onBeforeUnmount(() => {
                         backgroundImage: `url('${imagenes[index_img].url_imagen}')`,
                         height: isFullscreen ? '100vh' : height,
                     }"
-                    @mouseleave="verificaInterval"
-                    @mouseenter="detieneInterval"
                 >
                     <img :src="imagenes[index_img].url_imagen" alt="Imagen" />
                     <div
                         class="descripcion"
                         v-if="imagenes[index_img].html"
                         v-html="imagenes[index_img].html"
+                        :style="{
+                            bottom: descripcionBottom,
+                            backgroundColor: descripcionBg,
+                        }"
+                    ></div>
+                    <div
+                        class="capa"
+                        @mouseleave="verificaInterval"
+                        @mouseenter="detieneInterval"
                     ></div>
                 </div>
             </transition>
@@ -135,8 +211,8 @@ onBeforeUnmount(() => {
                 v-for="(item, index) in imagenes"
                 @click="irImagen(index)"
                 ><i
-                    class="fa-circle"
-                    :class="[index == index_img ? 'fa active' : 'far']"
+                    class="fa fa-minus"
+                    :class="[index == index_img ? 'active' : '']"
                 ></i
             ></span>
         </div>
@@ -162,31 +238,46 @@ onBeforeUnmount(() => {
 
 .contenendor_principal_slider .icon-left,
 .contenendor_principal_slider .icon-right {
+    height: 100%;
+    display: flex;
+    align-items: center;
     cursor: pointer;
     position: absolute;
-    top: 50%;
-    background-color: rgba(219, 219, 219, 0.616);
+    font-size: 3em;
+    color: rgba(120, 120, 120, 0.5);
     padding: 8px 13px;
-    border-radius: 50%;
     transition: all 0.3s;
     z-index: 100;
 }
 
 .contenendor_principal_slider .icon-left:hover,
 .contenendor_principal_slider .icon-right:hover {
-    background-color: rgba(255, 255, 255, 0.767);
-    color: gray;
+    color: white;
 }
+
+.contenedor_sliders {
+    cursor: grab;
+}
+
 .contenedor_sliders .slider {
     width: 100%;
     display: flex;
+    position: relative;
+}
+
+.contenedor_sliders .slider .capa {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
 }
 
 .contenedor_sliders .slider .descripcion {
     color: white;
     position: absolute;
-    bottom: 23px;
-    background-color: rgba(0, 0, 0, 0.753);
     z-index: 20;
     width: 100%;
     font-size: 0.9rem;
@@ -202,7 +293,16 @@ onBeforeUnmount(() => {
 
 .contenedor_puntos .punto {
     cursor: pointer;
+    font-size: 2em;
     margin: 0px 3px;
+}
+
+.contenedor_puntos .punto i {
+    color: rgba(120, 120, 120, 0.5);
+}
+
+.contenedor_puntos .punto i.active {
+    color: white;
 }
 
 .contenendor_principal_slider .icon-left {
@@ -243,7 +343,7 @@ onBeforeUnmount(() => {
 }
 
 .contenendor_principal_slider {
-    border-radius: 6px 6px 0px 0px;
+    /* border-radius: 6px 6px 0px 0px; */
 }
 
 .contenedor_sliders .slider::before {
@@ -294,5 +394,15 @@ onBeforeUnmount(() => {
         0.651
     ); /* Fondo más oscuro para los controles */
     color: white;
+}
+
+@media (max-width: 1020px) {
+    .slider {
+        max-height: 50vh;
+    }
+    .slider img {
+        width: 100%;
+        object-fit: cover;
+    }
 }
 </style>

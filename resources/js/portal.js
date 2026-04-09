@@ -11,7 +11,7 @@ import "./assets/css/adminlte.min.css";
 import "./assets/css/botones.css";
 import "./assets/css/backgroundYcolor.css";
 import "./assets/css/fonts.css";
-import "./assets/css/config.css";
+import "./assets/css/portal.css";
 import "./assets/css/datatables.css";
 import "./assets/css/form.css";
 import "./assets/css/icheck-bootstrap.min.css";
