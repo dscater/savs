@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Participante extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        "subasta_id",
+        "user_id",
+        "estado",
+        "fecha",
+        "hora",
+        "monto_puja",
+    ];
 }

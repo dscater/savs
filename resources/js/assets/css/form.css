@@ -58,3 +58,21 @@ form .v-input.v-input--error {
 .form-floating input::placeholder {
     color: transparent;
 }
+
+.el-select.el-select--large .el-select__wrapper {
+    min-height: 38px;
+}
+
+.el-select.el-select--large.el-select-input-group-right .el-select__wrapper {
+    border-radius: 0px 5px 5px 0px;
+}
+
+.el-select.el-select--large.el-select-input-group-left .el-select__wrapper {
+    border-radius: 5px 0px 0px 5px;
+}
+
+body #app .el-radio-input-group {
+    min-height: 38px;
+    height: 30px;
+    border-radius: 0;
+}

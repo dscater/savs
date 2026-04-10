@@ -2,12 +2,12 @@
 -- PostgreSQL database dump
 --
 
-\restrict k2e6drKrPi00ey1DcrgWl9XDonM8KT0pPArUZwIldHUbeLmY3Md2qevyTxYq6FW
+\restrict Ly3XkQDlg61Pyc87h0zIPPXDCk316NP50ouUAuuugIVuH5mrhwD5PjgxdaQH94j
 
 -- Dumped from database version 17.6
 -- Dumped by pg_dump version 17.6
 
--- Started on 2026-04-09 18:57:40
+-- Started on 2026-04-10 10:51:43
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -58,7 +58,7 @@ CREATE SEQUENCE public.categorias_id_seq
 ALTER SEQUENCE public.categorias_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5101 (class 0 OID 0)
+-- TOC entry 5102 (class 0 OID 0)
 -- Dependencies: 227
 -- Name: categorias_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -101,7 +101,7 @@ CREATE SEQUENCE public.clientes_id_seq
 ALTER SEQUENCE public.clientes_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5102 (class 0 OID 0)
+-- TOC entry 5103 (class 0 OID 0)
 -- Dependencies: 241
 -- Name: clientes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -143,7 +143,7 @@ CREATE SEQUENCE public.configuracions_id_seq
 ALTER SEQUENCE public.configuracions_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5103 (class 0 OID 0)
+-- TOC entry 5104 (class 0 OID 0)
 -- Dependencies: 219
 -- Name: configuracions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -189,7 +189,7 @@ CREATE SEQUENCE public.historial_accions_id_seq
 ALTER SEQUENCE public.historial_accions_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5104 (class 0 OID 0)
+-- TOC entry 5105 (class 0 OID 0)
 -- Dependencies: 223
 -- Name: historial_accions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -231,7 +231,7 @@ CREATE SEQUENCE public.ingreso_productos_id_seq
 ALTER SEQUENCE public.ingreso_productos_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5105 (class 0 OID 0)
+-- TOC entry 5106 (class 0 OID 0)
 -- Dependencies: 233
 -- Name: ingreso_productos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -285,7 +285,7 @@ CREATE SEQUENCE public.kardex_productos_id_seq
 ALTER SEQUENCE public.kardex_productos_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5106 (class 0 OID 0)
+-- TOC entry 5107 (class 0 OID 0)
 -- Dependencies: 237
 -- Name: kardex_productos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -324,7 +324,7 @@ CREATE SEQUENCE public.migrations_id_seq
 ALTER SEQUENCE public.migrations_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5107 (class 0 OID 0)
+-- TOC entry 5108 (class 0 OID 0)
 -- Dependencies: 217
 -- Name: migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -362,7 +362,7 @@ CREATE SEQUENCE public.notificacion_users_id_seq
 ALTER SEQUENCE public.notificacion_users_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5108 (class 0 OID 0)
+-- TOC entry 5109 (class 0 OID 0)
 -- Dependencies: 253
 -- Name: notificacion_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -406,7 +406,7 @@ CREATE SEQUENCE public.notificacions_id_seq
 ALTER SEQUENCE public.notificacions_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5109 (class 0 OID 0)
+-- TOC entry 5110 (class 0 OID 0)
 -- Dependencies: 251
 -- Name: notificacions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -448,7 +448,7 @@ CREATE SEQUENCE public.participante_pujas_id_seq
 ALTER SEQUENCE public.participante_pujas_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5110 (class 0 OID 0)
+-- TOC entry 5111 (class 0 OID 0)
 -- Dependencies: 249
 -- Name: participante_pujas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -492,7 +492,7 @@ CREATE SEQUENCE public.participantes_id_seq
 ALTER SEQUENCE public.participantes_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5111 (class 0 OID 0)
+-- TOC entry 5112 (class 0 OID 0)
 -- Dependencies: 247
 -- Name: participantes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -532,7 +532,7 @@ CREATE SEQUENCE public.producto_imagens_id_seq
 ALTER SEQUENCE public.producto_imagens_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5112 (class 0 OID 0)
+-- TOC entry 5113 (class 0 OID 0)
 -- Dependencies: 231
 -- Name: producto_imagens_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -577,7 +577,7 @@ CREATE SEQUENCE public.productos_id_seq
 ALTER SEQUENCE public.productos_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5113 (class 0 OID 0)
+-- TOC entry 5114 (class 0 OID 0)
 -- Dependencies: 229
 -- Name: productos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -618,7 +618,7 @@ CREATE SEQUENCE public.qrs_id_seq
 ALTER SEQUENCE public.qrs_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5114 (class 0 OID 0)
+-- TOC entry 5115 (class 0 OID 0)
 -- Dependencies: 225
 -- Name: qrs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -660,7 +660,7 @@ CREATE SEQUENCE public.salida_productos_id_seq
 ALTER SEQUENCE public.salida_productos_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5115 (class 0 OID 0)
+-- TOC entry 5116 (class 0 OID 0)
 -- Dependencies: 235
 -- Name: salida_productos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -681,7 +681,7 @@ CREATE TABLE public.subastas (
     fecha_fin date NOT NULL,
     hora_fin time(0) without time zone NOT NULL,
     publico integer NOT NULL,
-    estado_subasta integer NOT NULL,
+    estado_subasta integer DEFAULT 1 NOT NULL,
     fecha_registro date NOT NULL,
     created_at timestamp(0) without time zone,
     updated_at timestamp(0) without time zone
@@ -706,7 +706,7 @@ CREATE SEQUENCE public.subastas_id_seq
 ALTER SEQUENCE public.subastas_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5116 (class 0 OID 0)
+-- TOC entry 5117 (class 0 OID 0)
 -- Dependencies: 239
 -- Name: subastas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -758,7 +758,7 @@ CREATE SEQUENCE public.users_id_seq
 ALTER SEQUENCE public.users_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5117 (class 0 OID 0)
+-- TOC entry 5118 (class 0 OID 0)
 -- Dependencies: 221
 -- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -801,7 +801,7 @@ CREATE SEQUENCE public.venta_detalles_id_seq
 ALTER SEQUENCE public.venta_detalles_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5118 (class 0 OID 0)
+-- TOC entry 5119 (class 0 OID 0)
 -- Dependencies: 245
 -- Name: venta_detalles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -846,7 +846,7 @@ CREATE SEQUENCE public.ventas_id_seq
 ALTER SEQUENCE public.ventas_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5119 (class 0 OID 0)
+-- TOC entry 5120 (class 0 OID 0)
 -- Dependencies: 243
 -- Name: ventas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -863,7 +863,7 @@ ALTER TABLE ONLY public.categorias ALTER COLUMN id SET DEFAULT nextval('public.c
 
 
 --
--- TOC entry 4847 (class 2604 OID 24727)
+-- TOC entry 4848 (class 2604 OID 24727)
 -- Name: clientes id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -911,7 +911,7 @@ ALTER TABLE ONLY public.migrations ALTER COLUMN id SET DEFAULT nextval('public.m
 
 
 --
--- TOC entry 4854 (class 2604 OID 24803)
+-- TOC entry 4855 (class 2604 OID 24803)
 -- Name: notificacion_users id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -919,7 +919,7 @@ ALTER TABLE ONLY public.notificacion_users ALTER COLUMN id SET DEFAULT nextval('
 
 
 --
--- TOC entry 4853 (class 2604 OID 24794)
+-- TOC entry 4854 (class 2604 OID 24794)
 -- Name: notificacions id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -927,7 +927,7 @@ ALTER TABLE ONLY public.notificacions ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
--- TOC entry 4852 (class 2604 OID 24782)
+-- TOC entry 4853 (class 2604 OID 24782)
 -- Name: participante_pujas id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -935,7 +935,7 @@ ALTER TABLE ONLY public.participante_pujas ALTER COLUMN id SET DEFAULT nextval('
 
 
 --
--- TOC entry 4851 (class 2604 OID 24765)
+-- TOC entry 4852 (class 2604 OID 24765)
 -- Name: participantes id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -991,7 +991,7 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 
 
 --
--- TOC entry 4850 (class 2604 OID 24748)
+-- TOC entry 4851 (class 2604 OID 24748)
 -- Name: venta_detalles id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -999,7 +999,7 @@ ALTER TABLE ONLY public.venta_detalles ALTER COLUMN id SET DEFAULT nextval('publ
 
 
 --
--- TOC entry 4848 (class 2604 OID 24736)
+-- TOC entry 4849 (class 2604 OID 24736)
 -- Name: ventas id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1007,7 +1007,7 @@ ALTER TABLE ONLY public.ventas ALTER COLUMN id SET DEFAULT nextval('public.venta
 
 
 --
--- TOC entry 5069 (class 0 OID 24629)
+-- TOC entry 5070 (class 0 OID 24629)
 -- Dependencies: 228
 -- Data for Name: categorias; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1020,7 +1020,7 @@ COPY public.categorias (id, nombre, descripcion, fecha_registro, created_at, upd
 
 
 --
--- TOC entry 5083 (class 0 OID 24724)
+-- TOC entry 5084 (class 0 OID 24724)
 -- Dependencies: 242
 -- Data for Name: clientes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1032,7 +1032,7 @@ COPY public.clientes (id, nombre, nit_ci, cel, correo, created_at, updated_at, f
 
 
 --
--- TOC entry 5061 (class 0 OID 24587)
+-- TOC entry 5062 (class 0 OID 24587)
 -- Dependencies: 220
 -- Data for Name: configuracions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1043,7 +1043,7 @@ COPY public.configuracions (id, nombre_sistema, alias, razon_social, logo, creat
 
 
 --
--- TOC entry 5065 (class 0 OID 24606)
+-- TOC entry 5066 (class 0 OID 24606)
 -- Dependencies: 224
 -- Data for Name: historial_accions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1091,11 +1091,17 @@ COPY public.historial_accions (id, user_id, accion, descripcion, datos_original,
 40	1	ELIMINACIÓN	EL USUARIO admin ELIMINÓ UNA VENTA	{"id":1,"cliente_id":1,"total":"427.00","fecha":"2026-04-09","hora":"09:18:22","created_at":"2026-04-09T13:18:22.000000Z","updated_at":"2026-04-09T19:42:39.000000Z","status":1,"nit_ci":"123456","user_id":1,"venta_detalles":[{"id":1,"venta_id":1,"producto_id":1,"precio":"120.00","cantidad":"3","subtotal":"360.00","created_at":"2026-04-09T13:18:23.000000Z","updated_at":"2026-04-09T13:18:23.000000Z"},{"id":2,"venta_id":1,"producto_id":2,"precio":"67.00","cantidad":"1","subtotal":"67.00","created_at":"2026-04-09T13:18:23.000000Z","updated_at":"2026-04-09T13:18:23.000000Z"}]}	{"id":1,"cliente_id":1,"total":"427.00","fecha":"2026-04-09","hora":"09:18:22","created_at":"2026-04-09T13:18:22.000000Z","updated_at":"2026-04-09T20:16:27.000000Z","status":0,"nit_ci":"123456","user_id":1,"venta_detalles":[{"id":1,"venta_id":1,"producto_id":1,"precio":"120.00","cantidad":"3","subtotal":"360.00","created_at":"2026-04-09T13:18:23.000000Z","updated_at":"2026-04-09T13:18:23.000000Z"},{"id":2,"venta_id":1,"producto_id":2,"precio":"67.00","cantidad":"1","subtotal":"67.00","created_at":"2026-04-09T13:18:23.000000Z","updated_at":"2026-04-09T13:18:23.000000Z"}]}	VENTAS	2026-04-09	16:16:27	2026-04-09 16:16:27	2026-04-09 16:16:27
 41	1	MODIFICACIÓN	EL USUARIO admin ACTUALIZÓ UN USUARIO	{"id":2,"usuario":"JPERES","nombre":"JUAN","paterno":"PERES","materno":"MAMANI","correo":"juan@gmail.com","fono":"67676767","acceso":1,"tipo":"ADMINISTRADOR","foto":"21775656455.jpg","fecha_registro":"2026-04-08","status":1,"created_at":"2026-04-08T13:54:15.000000Z","updated_at":"2026-04-08T13:54:15.000000Z","ci":null,"ci_exp":null}	{"id":2,"usuario":"JPERES1","nombre":"JUAN","paterno":"PERES","materno":"MAMANI","correo":"juan@gmail.com","fono":"67676767","acceso":"1","tipo":"ADMINISTRADOR","foto":"21775656455.jpg","fecha_registro":"2026-04-08","status":1,"created_at":"2026-04-08T13:54:15.000000Z","updated_at":"2026-04-09T20:39:14.000000Z","ci":"123456","ci_exp":"LP"}	USUARIOS	2026-04-09	16:39:15	2026-04-09 16:39:15	2026-04-09 16:39:15
 42	1	MODIFICACIÓN	EL USUARIO admin ACTUALIZÓ UN USUARIO	{"id":3,"usuario":"GCARVAJAL","nombre":"GERMAN","paterno":"CARVAJAL","materno":"","correo":null,"fono":"67676767","acceso":1,"tipo":"AUXILIAR","foto":null,"fecha_registro":"2026-04-08","status":1,"created_at":"2026-04-08T13:54:55.000000Z","updated_at":"2026-04-08T13:54:55.000000Z","ci":null,"ci_exp":null}	{"id":3,"usuario":"GCARVAJAL","nombre":"GERMAN","paterno":"CARVAJAL","materno":"","correo":null,"fono":"67676767","acceso":"1","tipo":"AUXILIAR","foto":null,"fecha_registro":"2026-04-08","status":1,"created_at":"2026-04-08T13:54:55.000000Z","updated_at":"2026-04-09T20:42:06.000000Z","ci":"5454544","ci_exp":"LP"}	USUARIOS	2026-04-09	16:42:06	2026-04-09 16:42:06	2026-04-09 16:42:06
+43	1	CREACIÓN	EL USUARIO admin REGISTRO UN PRODUCTO	{"codigo":"P003","nombre":"PRODUCTO 3","descripcion":"<h2>What is Lorem Ipsum?<\\/h2><p><strong>Lorem Ipsum<\\/strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.<\\/p>","precio":"433","categoria_id":"2","fecha_registro":"2026-04-10","updated_at":"2026-04-10T13:40:31.000000Z","created_at":"2026-04-10T13:40:31.000000Z","id":3,"producto_imagens":[{"id":26,"producto_id":3,"imagen":"261775828431.jpeg","created_at":"2026-04-10T13:40:31.000000Z","updated_at":"2026-04-10T13:40:31.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/261775828431.jpeg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/261775828431.jpeg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/261775828431.jpeg","file":"261775828431.jpeg","name":"261775828431.jpeg","ext":""},{"id":27,"producto_id":3,"imagen":"1271775828431.jpeg","created_at":"2026-04-10T13:40:31.000000Z","updated_at":"2026-04-10T13:40:31.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/1271775828431.jpeg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/1271775828431.jpeg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/1271775828431.jpeg","file":"1271775828431.jpeg","name":"1271775828431.jpeg","ext":""},{"id":28,"producto_id":3,"imagen":"2281775828431.webp","created_at":"2026-04-10T13:40:31.000000Z","updated_at":"2026-04-10T13:40:31.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/2281775828431.webp","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/2281775828431.webp","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/2281775828431.webp","file":"2281775828431.webp","name":"2281775828431.webp","ext":""}]}	\N	PRODUCTOS	2026-04-10	09:40:31	2026-04-10 09:40:31	2026-04-10 09:40:31
+44	1	CREACIÓN	EL USUARIO admin REGISTRO UN INGRESO DE PRODUCTOS	{"producto_id":"3","cantidad":"20","descripcion":"","fecha_registro":"2026-04-10","updated_at":"2026-04-10T13:40:43.000000Z","created_at":"2026-04-10T13:40:43.000000Z","id":3}	\N	INGRESO DE PRODUCTOS	2026-04-10	09:40:43	2026-04-10 09:40:43	2026-04-10 09:40:43
+45	1	CREACIÓN	EL USUARIO admin REGISTRO UNA SUBASTA	{"producto_id":"2","estado_producto":"SEMINUEVO","monto_inicial":"1000","fecha_fin":"2026-04-15","hora_fin":"12:00","publico":"0","fecha_registro":"2026-04-10","updated_at":"2026-04-10T13:59:41.000000Z","created_at":"2026-04-10T13:59:41.000000Z","id":1}	\N	SUBASTAS	2026-04-10	09:59:41	2026-04-10 09:59:41	2026-04-10 09:59:41
+46	1	MODIFICACIÓN	EL USUARIO admin ACTUALIZÓ UNA SUBASTA	{"id":1,"producto_id":2,"estado_producto":"SEMINUEVO","monto_inicial":"1000.00","fecha_fin":"2026-04-15","hora_fin":"12:00:00","publico":0,"estado_subasta":1,"fecha_registro":"2026-04-10","created_at":"2026-04-10T13:59:41.000000Z","updated_at":"2026-04-10T13:59:41.000000Z"}	{"id":1,"producto_id":"2","estado_producto":"SEMINUEVO","monto_inicial":"1000.00","fecha_fin":"2026-04-16","hora_fin":"12:00:00","publico":"1","estado_subasta":1,"fecha_registro":"2026-04-10","created_at":"2026-04-10T13:59:41.000000Z","updated_at":"2026-04-10T14:14:21.000000Z"}	SUBASTAS	2026-04-10	10:14:21	2026-04-10 10:14:21	2026-04-10 10:14:21
+47	1	CREACIÓN	EL USUARIO admin REGISTRO UNA SUBASTA	{"producto_id":"1","estado_producto":"USADO","monto_inicial":"1000","fecha_fin":"2026-04-16","hora_fin":"12:00","publico":"1","fecha_registro":"2026-04-10","updated_at":"2026-04-10T14:15:12.000000Z","created_at":"2026-04-10T14:15:12.000000Z","id":2}	\N	SUBASTAS	2026-04-10	10:15:12	2026-04-10 10:15:12	2026-04-10 10:15:12
+48	1	CREACIÓN	EL USUARIO admin REGISTRO UNA SUBASTA	{"producto_id":"2","estado_producto":"NUEVO","monto_inicial":"2300","fecha_fin":"2026-04-16","hora_fin":"12:00","publico":"0","fecha_registro":"2026-04-10","updated_at":"2026-04-10T14:15:32.000000Z","created_at":"2026-04-10T14:15:32.000000Z","id":3}	\N	SUBASTAS	2026-04-10	10:15:32	2026-04-10 10:15:32	2026-04-10 10:15:32
 \.
 
 
 --
--- TOC entry 5075 (class 0 OID 24669)
+-- TOC entry 5076 (class 0 OID 24669)
 -- Dependencies: 234
 -- Data for Name: ingreso_productos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1103,11 +1109,12 @@ COPY public.historial_accions (id, user_id, accion, descripcion, datos_original,
 COPY public.ingreso_productos (id, producto_id, cantidad, descripcion, fecha_registro, created_at, updated_at) FROM stdin;
 1	1	100	INICIO STOCK	2026-04-08	2026-04-08 19:34:55	2026-04-08 19:34:55
 2	2	100	INICIO STOCK	2026-04-08	2026-04-08 19:35:03	2026-04-08 19:35:03
+3	3	20		2026-04-10	2026-04-10 09:40:43	2026-04-10 09:40:43
 \.
 
 
 --
--- TOC entry 5079 (class 0 OID 24697)
+-- TOC entry 5080 (class 0 OID 24697)
 -- Dependencies: 238
 -- Data for Name: kardex_productos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1135,11 +1142,16 @@ COPY public.kardex_productos (id, tipo_registro, registro_id, modulo, producto_i
 20	VENTAS	4	VentaDetalle	2	EGRESO POR VENTA	67.00	EGRESO	\N	4	94	67.00	\N	268.00	6298.00	2026-04-09	1	2026-04-09 15:43:05	2026-04-09 15:43:05
 21	VENTAS	1	VentaDetalle	1	INGRESO POR ANULACIÓN DE VENTA	120.00	INGRESO	3	\N	96	120.00	360.00	\N	11520.00	2026-04-09	1	2026-04-09 16:16:27	2026-04-09 16:16:27
 22	VENTAS	2	VentaDetalle	2	INGRESO POR ANULACIÓN DE VENTA	67.00	INGRESO	1	\N	95	67.00	67.00	\N	6365.00	2026-04-09	1	2026-04-09 16:16:27	2026-04-09 16:16:27
+23	INGRESO DE PRODUCTO	3	IngresoProducto	3	VALOR INICIAL	433.00	INGRESO	20	\N	20	433.00	8660.00	\N	8660.00	2026-04-10	1	2026-04-10 09:40:43	2026-04-10 09:40:43
+24	SUBASTA	1	Subasta	2	EGRESO DE PRODUCTO PARA SUBASTA	67.00	EGRESO	\N	1	94	67.00	\N	67.00	6298.00	2026-04-10	1	2026-04-10 09:59:41	2026-04-10 09:59:41
+25	SUBASTA	1	Subasta	2	INGRESO POR ELIMINACIÓN DE SUBASTA	67.00	INGRESO	1	\N	95	67.00	67.00	\N	6365.00	2026-04-10	1	2026-04-10 10:14:52	2026-04-10 10:14:52
+26	SUBASTA	2	Subasta	1	EGRESO DE PRODUCTO PARA SUBASTA	120.00	EGRESO	\N	1	95	120.00	\N	120.00	11400.00	2026-04-10	1	2026-04-10 10:15:12	2026-04-10 10:15:12
+27	SUBASTA	3	Subasta	2	EGRESO DE PRODUCTO PARA SUBASTA	67.00	EGRESO	\N	1	94	67.00	\N	67.00	6298.00	2026-04-10	1	2026-04-10 10:15:32	2026-04-10 10:15:32
 \.
 
 
 --
--- TOC entry 5059 (class 0 OID 24580)
+-- TOC entry 5060 (class 0 OID 24580)
 -- Dependencies: 218
 -- Data for Name: migrations; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1167,7 +1179,7 @@ COPY public.migrations (id, migration, batch) FROM stdin;
 
 
 --
--- TOC entry 5095 (class 0 OID 24800)
+-- TOC entry 5096 (class 0 OID 24800)
 -- Dependencies: 254
 -- Data for Name: notificacion_users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1177,7 +1189,7 @@ COPY public.notificacion_users (id, created_at, updated_at) FROM stdin;
 
 
 --
--- TOC entry 5093 (class 0 OID 24791)
+-- TOC entry 5094 (class 0 OID 24791)
 -- Dependencies: 252
 -- Data for Name: notificacions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1187,7 +1199,7 @@ COPY public.notificacions (id, modelo, modelo_id, descripcion, fecha, hora, tipo
 
 
 --
--- TOC entry 5091 (class 0 OID 24779)
+-- TOC entry 5092 (class 0 OID 24779)
 -- Dependencies: 250
 -- Data for Name: participante_pujas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1197,7 +1209,7 @@ COPY public.participante_pujas (id, participante_id, monto, fecha, hora, created
 
 
 --
--- TOC entry 5089 (class 0 OID 24762)
+-- TOC entry 5090 (class 0 OID 24762)
 -- Dependencies: 248
 -- Data for Name: participantes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1207,7 +1219,7 @@ COPY public.participantes (id, subasta_id, user_id, estado, fecha, hora, monto_p
 
 
 --
--- TOC entry 5073 (class 0 OID 24657)
+-- TOC entry 5074 (class 0 OID 24657)
 -- Dependencies: 232
 -- Data for Name: producto_imagens; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1219,23 +1231,27 @@ COPY public.producto_imagens (id, producto_id, imagen, created_at, updated_at) F
 23	2	231775691211.jpg	2026-04-08 19:33:31	2026-04-08 19:33:31
 24	2	1241775691211.jpg	2026-04-08 19:33:31	2026-04-08 19:33:31
 25	2	2251775691211.jpg	2026-04-08 19:33:31	2026-04-08 19:33:31
+26	3	261775828431.jpeg	2026-04-10 09:40:31	2026-04-10 09:40:31
+27	3	1271775828431.jpeg	2026-04-10 09:40:31	2026-04-10 09:40:31
+28	3	2281775828431.webp	2026-04-10 09:40:31	2026-04-10 09:40:31
 \.
 
 
 --
--- TOC entry 5071 (class 0 OID 24640)
+-- TOC entry 5072 (class 0 OID 24640)
 -- Dependencies: 230
 -- Data for Name: productos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.productos (id, nombre, descripcion, precio, stock, categoria_id, fecha_registro, created_at, updated_at, codigo) FROM stdin;
-2	PRODUCTO 2	<p>Descripcion del producto 2</p>	67.00	95	1	2026-04-08	2026-04-08 19:33:31	2026-04-09 16:16:27	P002
-1	PRODUCTO 1	<h2><strong><u>DESCRIPCIÓN DEL PRODUCTO</u></strong></h2><p><span style="color: rgb(0, 0, 0);">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</span></p>	120.00	96	1	2026-04-08	2026-04-08 11:39:00	2026-04-09 16:16:27	P001
+3	PRODUCTO 3	<h2>What is Lorem Ipsum?</h2><p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>	433.00	20	2	2026-04-10	2026-04-10 09:40:31	2026-04-10 09:40:43	P003
+1	PRODUCTO 1	<h2><strong><u>DESCRIPCIÓN DEL PRODUCTO</u></strong></h2><p><span style="color: rgb(0, 0, 0);">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</span></p>	120.00	95	1	2026-04-08	2026-04-08 11:39:00	2026-04-10 10:15:12	P001
+2	PRODUCTO 2	<p>Descripcion del producto 2</p>	67.00	94	1	2026-04-08	2026-04-08 19:33:31	2026-04-10 10:15:32	P002
 \.
 
 
 --
--- TOC entry 5067 (class 0 OID 24620)
+-- TOC entry 5068 (class 0 OID 24620)
 -- Dependencies: 226
 -- Data for Name: qrs; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1245,7 +1261,7 @@ COPY public.qrs (id, imagen, remitente, fecha_vencimiento, created_at, updated_a
 
 
 --
--- TOC entry 5077 (class 0 OID 24683)
+-- TOC entry 5078 (class 0 OID 24683)
 -- Dependencies: 236
 -- Data for Name: salida_productos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1255,17 +1271,19 @@ COPY public.salida_productos (id, producto_id, cantidad, descripcion, fecha_regi
 
 
 --
--- TOC entry 5081 (class 0 OID 24712)
+-- TOC entry 5082 (class 0 OID 24712)
 -- Dependencies: 240
 -- Data for Name: subastas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.subastas (id, producto_id, estado_producto, monto_inicial, fecha_fin, hora_fin, publico, estado_subasta, fecha_registro, created_at, updated_at) FROM stdin;
+2	1	USADO	1000.00	2026-04-16	12:00:00	1	1	2026-04-10	2026-04-10 10:15:12	2026-04-10 10:15:12
+3	2	NUEVO	2300.00	2026-04-16	12:00:00	0	1	2026-04-10	2026-04-10 10:15:32	2026-04-10 10:15:32
 \.
 
 
 --
--- TOC entry 5063 (class 0 OID 24596)
+-- TOC entry 5064 (class 0 OID 24596)
 -- Dependencies: 222
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1278,7 +1296,7 @@ COPY public.users (id, usuario, nombre, paterno, materno, correo, fono, password
 
 
 --
--- TOC entry 5087 (class 0 OID 24745)
+-- TOC entry 5088 (class 0 OID 24745)
 -- Dependencies: 246
 -- Data for Name: venta_detalles; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1294,7 +1312,7 @@ COPY public.venta_detalles (id, venta_id, producto_id, precio, cantidad, subtota
 
 
 --
--- TOC entry 5085 (class 0 OID 24733)
+-- TOC entry 5086 (class 0 OID 24733)
 -- Dependencies: 244
 -- Data for Name: ventas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1307,7 +1325,7 @@ COPY public.ventas (id, cliente_id, total, fecha, hora, created_at, updated_at, 
 
 
 --
--- TOC entry 5120 (class 0 OID 0)
+-- TOC entry 5121 (class 0 OID 0)
 -- Dependencies: 227
 -- Name: categorias_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1316,7 +1334,7 @@ SELECT pg_catalog.setval('public.categorias_id_seq', 3, true);
 
 
 --
--- TOC entry 5121 (class 0 OID 0)
+-- TOC entry 5122 (class 0 OID 0)
 -- Dependencies: 241
 -- Name: clientes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1325,7 +1343,7 @@ SELECT pg_catalog.setval('public.clientes_id_seq', 2, true);
 
 
 --
--- TOC entry 5122 (class 0 OID 0)
+-- TOC entry 5123 (class 0 OID 0)
 -- Dependencies: 219
 -- Name: configuracions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1334,34 +1352,34 @@ SELECT pg_catalog.setval('public.configuracions_id_seq', 1, true);
 
 
 --
--- TOC entry 5123 (class 0 OID 0)
+-- TOC entry 5124 (class 0 OID 0)
 -- Dependencies: 223
 -- Name: historial_accions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.historial_accions_id_seq', 42, true);
-
-
---
--- TOC entry 5124 (class 0 OID 0)
--- Dependencies: 233
--- Name: ingreso_productos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.ingreso_productos_id_seq', 2, true);
+SELECT pg_catalog.setval('public.historial_accions_id_seq', 48, true);
 
 
 --
 -- TOC entry 5125 (class 0 OID 0)
--- Dependencies: 237
--- Name: kardex_productos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Dependencies: 233
+-- Name: ingreso_productos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.kardex_productos_id_seq', 22, true);
+SELECT pg_catalog.setval('public.ingreso_productos_id_seq', 3, true);
 
 
 --
 -- TOC entry 5126 (class 0 OID 0)
+-- Dependencies: 237
+-- Name: kardex_productos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.kardex_productos_id_seq', 27, true);
+
+
+--
+-- TOC entry 5127 (class 0 OID 0)
 -- Dependencies: 217
 -- Name: migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1370,7 +1388,7 @@ SELECT pg_catalog.setval('public.migrations_id_seq', 18, true);
 
 
 --
--- TOC entry 5127 (class 0 OID 0)
+-- TOC entry 5128 (class 0 OID 0)
 -- Dependencies: 253
 -- Name: notificacion_users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1379,7 +1397,7 @@ SELECT pg_catalog.setval('public.notificacion_users_id_seq', 1, false);
 
 
 --
--- TOC entry 5128 (class 0 OID 0)
+-- TOC entry 5129 (class 0 OID 0)
 -- Dependencies: 251
 -- Name: notificacions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1388,7 +1406,7 @@ SELECT pg_catalog.setval('public.notificacions_id_seq', 1, false);
 
 
 --
--- TOC entry 5129 (class 0 OID 0)
+-- TOC entry 5130 (class 0 OID 0)
 -- Dependencies: 249
 -- Name: participante_pujas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1397,7 +1415,7 @@ SELECT pg_catalog.setval('public.participante_pujas_id_seq', 1, false);
 
 
 --
--- TOC entry 5130 (class 0 OID 0)
+-- TOC entry 5131 (class 0 OID 0)
 -- Dependencies: 247
 -- Name: participantes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1406,25 +1424,25 @@ SELECT pg_catalog.setval('public.participantes_id_seq', 1, false);
 
 
 --
--- TOC entry 5131 (class 0 OID 0)
+-- TOC entry 5132 (class 0 OID 0)
 -- Dependencies: 231
 -- Name: producto_imagens_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.producto_imagens_id_seq', 25, true);
-
-
---
--- TOC entry 5132 (class 0 OID 0)
--- Dependencies: 229
--- Name: productos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.productos_id_seq', 2, true);
+SELECT pg_catalog.setval('public.producto_imagens_id_seq', 28, true);
 
 
 --
 -- TOC entry 5133 (class 0 OID 0)
+-- Dependencies: 229
+-- Name: productos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.productos_id_seq', 3, true);
+
+
+--
+-- TOC entry 5134 (class 0 OID 0)
 -- Dependencies: 225
 -- Name: qrs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1433,7 +1451,7 @@ SELECT pg_catalog.setval('public.qrs_id_seq', 1, false);
 
 
 --
--- TOC entry 5134 (class 0 OID 0)
+-- TOC entry 5135 (class 0 OID 0)
 -- Dependencies: 235
 -- Name: salida_productos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1442,16 +1460,16 @@ SELECT pg_catalog.setval('public.salida_productos_id_seq', 1, false);
 
 
 --
--- TOC entry 5135 (class 0 OID 0)
+-- TOC entry 5136 (class 0 OID 0)
 -- Dependencies: 239
 -- Name: subastas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.subastas_id_seq', 1, false);
+SELECT pg_catalog.setval('public.subastas_id_seq', 3, true);
 
 
 --
--- TOC entry 5136 (class 0 OID 0)
+-- TOC entry 5137 (class 0 OID 0)
 -- Dependencies: 221
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1460,7 +1478,7 @@ SELECT pg_catalog.setval('public.users_id_seq', 3, true);
 
 
 --
--- TOC entry 5137 (class 0 OID 0)
+-- TOC entry 5138 (class 0 OID 0)
 -- Dependencies: 245
 -- Name: venta_detalles_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1469,7 +1487,7 @@ SELECT pg_catalog.setval('public.venta_detalles_id_seq', 6, true);
 
 
 --
--- TOC entry 5138 (class 0 OID 0)
+-- TOC entry 5139 (class 0 OID 0)
 -- Dependencies: 243
 -- Name: ventas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1478,7 +1496,7 @@ SELECT pg_catalog.setval('public.ventas_id_seq', 3, true);
 
 
 --
--- TOC entry 4866 (class 2606 OID 24638)
+-- TOC entry 4867 (class 2606 OID 24638)
 -- Name: categorias categorias_nombre_unique; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1487,7 +1505,7 @@ ALTER TABLE ONLY public.categorias
 
 
 --
--- TOC entry 4868 (class 2606 OID 24636)
+-- TOC entry 4869 (class 2606 OID 24636)
 -- Name: categorias categorias_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1496,7 +1514,7 @@ ALTER TABLE ONLY public.categorias
 
 
 --
--- TOC entry 4886 (class 2606 OID 24731)
+-- TOC entry 4887 (class 2606 OID 24731)
 -- Name: clientes clientes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1505,7 +1523,7 @@ ALTER TABLE ONLY public.clientes
 
 
 --
--- TOC entry 4858 (class 2606 OID 24594)
+-- TOC entry 4859 (class 2606 OID 24594)
 -- Name: configuracions configuracions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1514,7 +1532,7 @@ ALTER TABLE ONLY public.configuracions
 
 
 --
--- TOC entry 4862 (class 2606 OID 24613)
+-- TOC entry 4863 (class 2606 OID 24613)
 -- Name: historial_accions historial_accions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1523,7 +1541,7 @@ ALTER TABLE ONLY public.historial_accions
 
 
 --
--- TOC entry 4878 (class 2606 OID 24676)
+-- TOC entry 4879 (class 2606 OID 24676)
 -- Name: ingreso_productos ingreso_productos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1532,7 +1550,7 @@ ALTER TABLE ONLY public.ingreso_productos
 
 
 --
--- TOC entry 4882 (class 2606 OID 24705)
+-- TOC entry 4883 (class 2606 OID 24705)
 -- Name: kardex_productos kardex_productos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1541,7 +1559,7 @@ ALTER TABLE ONLY public.kardex_productos
 
 
 --
--- TOC entry 4856 (class 2606 OID 24585)
+-- TOC entry 4857 (class 2606 OID 24585)
 -- Name: migrations migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1550,7 +1568,7 @@ ALTER TABLE ONLY public.migrations
 
 
 --
--- TOC entry 4898 (class 2606 OID 24805)
+-- TOC entry 4899 (class 2606 OID 24805)
 -- Name: notificacion_users notificacion_users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1559,7 +1577,7 @@ ALTER TABLE ONLY public.notificacion_users
 
 
 --
--- TOC entry 4896 (class 2606 OID 24798)
+-- TOC entry 4897 (class 2606 OID 24798)
 -- Name: notificacions notificacions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1568,7 +1586,7 @@ ALTER TABLE ONLY public.notificacions
 
 
 --
--- TOC entry 4894 (class 2606 OID 24784)
+-- TOC entry 4895 (class 2606 OID 24784)
 -- Name: participante_pujas participante_pujas_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1577,7 +1595,7 @@ ALTER TABLE ONLY public.participante_pujas
 
 
 --
--- TOC entry 4892 (class 2606 OID 24767)
+-- TOC entry 4893 (class 2606 OID 24767)
 -- Name: participantes participantes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1586,7 +1604,7 @@ ALTER TABLE ONLY public.participantes
 
 
 --
--- TOC entry 4876 (class 2606 OID 24662)
+-- TOC entry 4877 (class 2606 OID 24662)
 -- Name: producto_imagens producto_imagens_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1595,7 +1613,7 @@ ALTER TABLE ONLY public.producto_imagens
 
 
 --
--- TOC entry 4870 (class 2606 OID 24840)
+-- TOC entry 4871 (class 2606 OID 24840)
 -- Name: productos productos_codigo_unique; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1604,7 +1622,7 @@ ALTER TABLE ONLY public.productos
 
 
 --
--- TOC entry 4872 (class 2606 OID 24655)
+-- TOC entry 4873 (class 2606 OID 24655)
 -- Name: productos productos_nombre_unique; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1613,7 +1631,7 @@ ALTER TABLE ONLY public.productos
 
 
 --
--- TOC entry 4874 (class 2606 OID 24648)
+-- TOC entry 4875 (class 2606 OID 24648)
 -- Name: productos productos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1622,7 +1640,7 @@ ALTER TABLE ONLY public.productos
 
 
 --
--- TOC entry 4864 (class 2606 OID 24627)
+-- TOC entry 4865 (class 2606 OID 24627)
 -- Name: qrs qrs_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1631,7 +1649,7 @@ ALTER TABLE ONLY public.qrs
 
 
 --
--- TOC entry 4880 (class 2606 OID 24690)
+-- TOC entry 4881 (class 2606 OID 24690)
 -- Name: salida_productos salida_productos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1640,7 +1658,7 @@ ALTER TABLE ONLY public.salida_productos
 
 
 --
--- TOC entry 4884 (class 2606 OID 24717)
+-- TOC entry 4885 (class 2606 OID 24717)
 -- Name: subastas subastas_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1649,7 +1667,7 @@ ALTER TABLE ONLY public.subastas
 
 
 --
--- TOC entry 4860 (class 2606 OID 24604)
+-- TOC entry 4861 (class 2606 OID 24604)
 -- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1658,7 +1676,7 @@ ALTER TABLE ONLY public.users
 
 
 --
--- TOC entry 4890 (class 2606 OID 24750)
+-- TOC entry 4891 (class 2606 OID 24750)
 -- Name: venta_detalles venta_detalles_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1667,7 +1685,7 @@ ALTER TABLE ONLY public.venta_detalles
 
 
 --
--- TOC entry 4888 (class 2606 OID 24738)
+-- TOC entry 4889 (class 2606 OID 24738)
 -- Name: ventas ventas_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1676,7 +1694,7 @@ ALTER TABLE ONLY public.ventas
 
 
 --
--- TOC entry 4899 (class 2606 OID 24614)
+-- TOC entry 4900 (class 2606 OID 24614)
 -- Name: historial_accions historial_accions_user_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1685,7 +1703,7 @@ ALTER TABLE ONLY public.historial_accions
 
 
 --
--- TOC entry 4902 (class 2606 OID 24677)
+-- TOC entry 4903 (class 2606 OID 24677)
 -- Name: ingreso_productos ingreso_productos_producto_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1694,7 +1712,7 @@ ALTER TABLE ONLY public.ingreso_productos
 
 
 --
--- TOC entry 4904 (class 2606 OID 24706)
+-- TOC entry 4905 (class 2606 OID 24706)
 -- Name: kardex_productos kardex_productos_producto_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1703,7 +1721,7 @@ ALTER TABLE ONLY public.kardex_productos
 
 
 --
--- TOC entry 4912 (class 2606 OID 24785)
+-- TOC entry 4913 (class 2606 OID 24785)
 -- Name: participante_pujas participante_pujas_participante_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1712,7 +1730,7 @@ ALTER TABLE ONLY public.participante_pujas
 
 
 --
--- TOC entry 4910 (class 2606 OID 24768)
+-- TOC entry 4911 (class 2606 OID 24768)
 -- Name: participantes participantes_subasta_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1721,7 +1739,7 @@ ALTER TABLE ONLY public.participantes
 
 
 --
--- TOC entry 4911 (class 2606 OID 24773)
+-- TOC entry 4912 (class 2606 OID 24773)
 -- Name: participantes participantes_user_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1730,7 +1748,7 @@ ALTER TABLE ONLY public.participantes
 
 
 --
--- TOC entry 4901 (class 2606 OID 24663)
+-- TOC entry 4902 (class 2606 OID 24663)
 -- Name: producto_imagens producto_imagens_producto_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1739,7 +1757,7 @@ ALTER TABLE ONLY public.producto_imagens
 
 
 --
--- TOC entry 4900 (class 2606 OID 24649)
+-- TOC entry 4901 (class 2606 OID 24649)
 -- Name: productos productos_categoria_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1748,7 +1766,7 @@ ALTER TABLE ONLY public.productos
 
 
 --
--- TOC entry 4903 (class 2606 OID 24691)
+-- TOC entry 4904 (class 2606 OID 24691)
 -- Name: salida_productos salida_productos_producto_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1757,7 +1775,7 @@ ALTER TABLE ONLY public.salida_productos
 
 
 --
--- TOC entry 4905 (class 2606 OID 24718)
+-- TOC entry 4906 (class 2606 OID 24718)
 -- Name: subastas subastas_producto_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1766,7 +1784,7 @@ ALTER TABLE ONLY public.subastas
 
 
 --
--- TOC entry 4908 (class 2606 OID 24756)
+-- TOC entry 4909 (class 2606 OID 24756)
 -- Name: venta_detalles venta_detalles_producto_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1775,7 +1793,7 @@ ALTER TABLE ONLY public.venta_detalles
 
 
 --
--- TOC entry 4909 (class 2606 OID 24751)
+-- TOC entry 4910 (class 2606 OID 24751)
 -- Name: venta_detalles venta_detalles_venta_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1784,7 +1802,7 @@ ALTER TABLE ONLY public.venta_detalles
 
 
 --
--- TOC entry 4906 (class 2606 OID 24739)
+-- TOC entry 4907 (class 2606 OID 24739)
 -- Name: ventas ventas_cliente_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1793,7 +1811,7 @@ ALTER TABLE ONLY public.ventas
 
 
 --
--- TOC entry 4907 (class 2606 OID 24859)
+-- TOC entry 4908 (class 2606 OID 24859)
 -- Name: ventas ventas_user_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1801,11 +1819,11 @@ ALTER TABLE ONLY public.ventas
     ADD CONSTRAINT ventas_user_id_foreign FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
 
 
--- Completed on 2026-04-09 18:57:40
+-- Completed on 2026-04-10 10:51:43
 
 --
 -- PostgreSQL database dump complete
 --
 
-\unrestrict k2e6drKrPi00ey1DcrgWl9XDonM8KT0pPArUZwIldHUbeLmY3Md2qevyTxYq6FW
+\unrestrict Ly3XkQDlg61Pyc87h0zIPPXDCk316NP50ouUAuuugIVuH5mrhwD5PjgxdaQH94j
 

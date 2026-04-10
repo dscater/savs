@@ -16,4 +16,9 @@ class PortalController extends Controller
     {
         return inertia("Portal/Inicio");
     }
+
+    public function subastas()
+    {
+        return inertia("Portal/Subastas");
+    }
 }

@@ -5,6 +5,27 @@ body #app .mih-h-screen {
     padding-bottom: 120px;
 }
 
+body #app {
+    background-color: var(--bgGrayLight);
+}
+
 .navbar.navbar-expand-lg.fixed {
     background-color: var(--bg1t);
+}
+
+.border-l {
+    border-left: solid 1px var(--bgGrayLight);
+}
+
+.contenedor_img_inicio {
+    display: flex;
+}
+
+.img_inicio {
+    width: 100%;
+    object-fit: cover;
+}
+
+.seccion {
+    min-height: calc(100vh - 196px);
 }

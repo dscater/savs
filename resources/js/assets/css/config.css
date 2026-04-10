@@ -37,18 +37,6 @@ td .descripcion {
     color: var(--bg7) !important;
 }
 
-.el-select.el-select--large .el-select__wrapper {
-    min-height: 38px;
-}
-
-.el-select.el-select--large.el-select-input-group-right .el-select__wrapper {
-    border-radius: 0px 5px 5px 0px;
-}
-
-.el-select.el-select--large.el-select-input-group-left .el-select__wrapper {
-    border-radius: 5px 0px 0px 5px;
-}
-
 .bg1,
 .bg1:hover {
     background-color: var(--bg1);
@@ -145,6 +133,7 @@ td .descripcion {
     z-index: 9999;
 }
 
+small.required::after,
 label.required::after {
     font-family: "Epunda_Slab";
     font-weight: 400;

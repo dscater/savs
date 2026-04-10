@@ -23,8 +23,10 @@ const configuracionStore = useConfiguracionStore();
 </template>
 <style scoped>
 .footer {
+    color: white;
     padding-top: 20px;
-    border-top: solid 1px var(--bgGrayLight);
+    border-top: solid 1px var(--bgDarkGray);
+    background-color: var(--bgDarkGray);
     margin-top: 40px;
     display: block;
     min-height: 90px;

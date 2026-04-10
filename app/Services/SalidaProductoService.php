@@ -146,7 +146,7 @@ class SalidaProductoService
 
             // egreso
             $producto = Producto::findOrFail($datos["producto_id"]);
-            $this->kardex_producto_service->registroEgreso("SALIDA DE PRODUCTO", $producto, $datos["cantidad"], $producto->precio, $salida_producto->descripcion ?? '', $salida_producto->id);
+            $this->kardex_producto_service->registroEgreso("SALIDA DE PRODUCTO", $producto, $datos["cantidad"], $producto->precio, $salida_producto->descripcion ?? 'SALIDA DE PRODUCTO', $salida_producto->id);
         }
 
 
@@ -168,7 +168,7 @@ class SalidaProductoService
 
         $old_producto = Producto::findOrFail($old_salida_producto->producto_id);
         // ingreso
-        $this->kardex_producto_service->registroIngreso("SALIDA DE PRODUCTO", $old_producto, $old_salida_producto->cantidad, $old_producto->precio, "POR MODIFICACIÓN DE SALIDA DE PRODUCTO", "SalidaProducto", $old_salida_producto->id);
+        $this->kardex_producto_service->registroIngreso("SALIDA DE PRODUCTO", $old_producto, $old_salida_producto->cantidad, $old_producto->precio, "POR ELIMINACIÓN DE SALIDA DE PRODUCTO", "SalidaProducto", $old_salida_producto->id);
 
         $salida_producto->delete();
 

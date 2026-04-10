@@ -26,6 +26,7 @@ Route::get('/', [PortalController::class, 'index'])->name("portal.index");
 
 Route::get('/imagenes_portal', [ImagenesPortalController::class, 'index'])->name("portal.imagenes_portal");
 
+Route::get('/subastas', [PortalController::class, 'subastas'])->name("portal.subastas");
 
 
 // LOGIN

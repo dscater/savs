@@ -24,7 +24,8 @@ class ProductoService
 
     public function listado(): Collection
     {
-        $productos = Producto::select("productos.*")->get();
+        $productos = Producto::select("productos.*")
+            ->with(["categoria:id,nombre", "producto_imagens"])->get();
         return $productos;
     }
     /**

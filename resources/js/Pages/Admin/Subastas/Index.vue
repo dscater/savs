@@ -29,33 +29,38 @@ const headers = [
         width: "4%",
     },
     {
-        label: "CLIENTE",
-        key: "cliente.nombre",
-        sortable: true,
-    },
-    {
-        label: "NIT/C.I.",
-        key: "nit_ci",
-        sortable: true,
-    },
-    {
-        label: "TOTAL",
-        key: "total",
-        sortable: true,
-    },
-    {
-        label: "FECHA",
-        key: "fecha",
-        sortable: true,
-    },
-    {
-        label: "USUARIO",
-        key: "user",
+        label: "PRODUCTO",
+        key: "producto",
         sortable: true,
     },
     {
         label: "ESTADO",
-        key: "status",
+        key: "estado_producto",
+        sortable: true,
+    },
+    {
+        label: "MONTO INICIAL BS.",
+        key: "monto_inicial",
+        sortable: true,
+    },
+    {
+        label: "FECHA FINALIZACIÓN",
+        key: "fecha_fin",
+        sortable: true,
+    },
+    {
+        label: "PUBLICADO",
+        key: "publico",
+        sortable: true,
+    },
+    {
+        label: "ESTADO SUBASTA",
+        key: "estado_subasta",
+        sortable: true,
+    },
+    {
+        label: "FECHA REGISTRO",
+        key: "fecha_registro_t",
         sortable: true,
     },
     {
@@ -83,10 +88,11 @@ const editarSubasta = (item) => {
 
 const eliminarSubasta = (item) => {
     Swal.fire({
-        title: "¿Quierés anular este registro?",
-        html: `<strong>Nro. Subasta: ${item.id}<br/><strong>Cliente: </strong>${item.cliente.nombre}<br/><strong>Total: ${item.total}</strong>`,
+        title: "¿Quierés eliminar este registro?",
+        html: `<strong>Nro. Subasta: ${item.id}<br/><strong>Producto: </strong>${item.producto.nombre}<br/><strong>Código: ${item.producto.codigo}</strong>
+        <br/><strong>Monto Inicial Bs.: ${item.monto_inicial}</strong>`,
         showCancelButton: true,
-        confirmButtonText: "Si, anular",
+        confirmButtonText: "Si, eliminar",
         cancelButtonText: "No, cancelar",
         denyButtonText: `No, cancelar`,
         customClass: {
@@ -230,58 +236,50 @@ const revertirAnulado = (item) => {
                             :header-class="'bg__primary'"
                             fixed-header
                         >
-                            <template #user="{ item }">
+                            <template #producto="{ item }">
+                                <span>{{ item.producto.nombre }}</span>
+                                <br />
                                 <span
-                                    >{{ item.user.nombre }}
-                                    {{ item.user.paterno }}
-                                    {{ item.user.materno }}</span
+                                    class="text-xs text-muted font-weight-bold"
+                                    >"{{ item.producto.codigo }}"</span
                                 >
                             </template>
-                            <template #status="{ item }">
+                            <template #publico="{ item }">
                                 <span
                                     class="badge text-sm"
                                     :class="{
-                                        'badge-success': item.status == 1,
-                                        'badge-danger': item.status == 0,
+                                        'badge-success': item.publico == 1,
+                                        'bg-secondary': item.publico == 0,
                                     }"
                                     >{{
-                                        item.status == 1
-                                            ? "FINALIZADO"
-                                            : "ANULADO"
+                                        item.publico == 1
+                                            ? "PUBLICADO"
+                                            : "SIN PUBLICAR"
                                     }}</span
                                 >
                             </template>
-                            <template #fecha="{ item }">
-                                <span>{{ item.fecha_t }} {{ item.hora }}</span>
+                            <template #estado_subasta="{ item }">
+                                <span
+                                    class="badge text-sm"
+                                    :class="{
+                                        'badge-success':
+                                            item.estado_subasta == 1,
+                                        'bg-warning': item.estado_subasta == 0,
+                                    }"
+                                    >{{
+                                        item.estado_subasta == 1
+                                            ? "VIGENTE"
+                                            : "FINALIZADO"
+                                    }}</span
+                                >
+                            </template>
+                            <template #fecha_fin="{ item }">
+                                <span
+                                    >{{ item.fecha_fin_t }}
+                                    {{ item.hora_fin }}</span
+                                >
                             </template>
                             <template #accion="{ item }">
-                                <template
-                                    v-if="
-                                        props_page.auth?.user.permisos == '*' ||
-                                        props_page.auth?.user.permisos.includes(
-                                            'subastas.imprimir',
-                                        )
-                                    "
-                                >
-                                    <el-tooltip
-                                        class="box-item"
-                                        effect="dark"
-                                        content="Recibo"
-                                        placement="left-start"
-                                    >
-                                        <a
-                                            class="btn btn-dark"
-                                            target="_blank"
-                                            :href="
-                                                route(
-                                                    'subastas.imprimir',
-                                                    item.id,
-                                                )
-                                            "
-                                        >
-                                            <i class="fa fa-print"></i></a
-                                    ></el-tooltip>
-                                </template>
                                 <template
                                     v-if="
                                         props_page.auth?.user.permisos == '*' ||
@@ -310,7 +308,8 @@ const revertirAnulado = (item) => {
                                 </template>
                                 <template
                                     v-if="
-                                        item.status == 1 &&
+                                        item.estado_subasta == 1 &&
+                                        item.c_participantes == 0 &&
                                         (props_page.auth?.user.permisos ==
                                             '*' ||
                                             props_page.auth?.user.permisos.includes(
@@ -334,31 +333,8 @@ const revertirAnulado = (item) => {
 
                                 <template
                                     v-if="
-                                        item.status == 0 &&
-                                        (props_page.auth?.user.permisos ==
-                                            '*' ||
-                                            props_page.auth?.user.permisos.includes(
-                                                'subastas.revertirAnulado',
-                                            ))
-                                    "
-                                >
-                                    <el-tooltip
-                                        class="box-item"
-                                        effect="dark"
-                                        content="Revertir Anulación"
-                                        placement="left-start"
-                                    >
-                                        <button
-                                            class="btn btn-primary"
-                                            @click="revertirAnulado(item)"
-                                        >
-                                            <i class="fa fa-sync"></i></button
-                                    ></el-tooltip>
-                                </template>
-
-                                <template
-                                    v-if="
-                                        item.status == 1 &&
+                                        item.estado_subasta == 1 &&
+                                        item.c_participantes == 0 &&
                                         (props_page.auth?.user.permisos ==
                                             '*' ||
                                             props_page.auth?.user.permisos.includes(
@@ -369,14 +345,14 @@ const revertirAnulado = (item) => {
                                     <el-tooltip
                                         class="box-item"
                                         effect="dark"
-                                        content="Anular"
+                                        content="Eliminar"
                                         placement="left-start"
                                     >
                                         <button
                                             class="btn btn-danger"
                                             @click="eliminarSubasta(item)"
                                         >
-                                            <i class="fa fa-ban"></i></button
+                                            <i class="fa fa-trash"></i></button
                                     ></el-tooltip>
                                 </template>
                             </template>

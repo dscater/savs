@@ -73,9 +73,9 @@ onBeforeMount(() => {});
                         </Link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"
-                            ><i class="fa fa-gavel"></i> SUBASTAS</a
-                        >
+                        <Link class="nav-link" :href="route('portal.subastas')"
+                            ><i class="fa fa-gavel"></i> SUBASTAS
+                        </Link>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"

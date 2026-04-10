@@ -18,8 +18,8 @@ return new class extends Migration
             $table->decimal("monto_inicial", 24, 2);
             $table->date("fecha_fin");
             $table->time("hora_fin");
-            $table->integer("publico");
-            $table->integer("estado_subasta"); // 0: SIN PUBLICAR, 1: PUBLICADO, 2: FINALIZADO
+            $table->integer("publico"); // 0: SIN PUBLICAR, 1: PÚBLICO
+            $table->integer("estado_subasta")->default(1);  // 1: VIGENTE, 2: FINALIZADO
             $table->date("fecha_registro");
             $table->timestamps();
 

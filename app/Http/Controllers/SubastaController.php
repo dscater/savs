@@ -116,6 +116,7 @@ class SubastaController extends Controller
 
     public function edit(Subasta $subasta)
     {
+        $subasta = $subasta->load(["producto.producto_imagens", "producto.categoria"]);
         return Inertia::render("Admin/Subastas/Edit", compact("subasta"));
     }
 

@@ -491,7 +491,7 @@ onBeforeMount(() => {
                 </div>
             </div>
             <div class="col-md-12 col-lg-6 pb-0">
-                <div class="card">
+                <div class="card mb-0">
                     <div class="card-header">
                         <h5 class="card-title">
                             <i class="fa fa-shopping-cart"></i> Carrito
@@ -581,12 +581,9 @@ onBeforeMount(() => {
                         </table>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" v-if="form.errors">
                     <div class="col-12">
-                        <ul
-                            v-if="form.errors"
-                            class="d-block text-danger list-unstyled"
-                        >
+                        <ul class="d-block text-danger list-unstyled">
                             <li
                                 class="parsley-required"
                                 v-if="form.errors?.venta_detalles"
@@ -603,10 +600,10 @@ onBeforeMount(() => {
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12 mt-1 mb-3 text-center">
+                    <div class="col-12 mb-3 text-center">
                         <button
                             type="button"
-                            class="btn btn-primary"
+                            class="btn btn-primary w-100"
                             :disabled="enviando"
                             @click.prevent="enviarFormulario"
                             v-html="textBtn"

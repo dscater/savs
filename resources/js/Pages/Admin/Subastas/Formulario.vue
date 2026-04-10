@@ -14,6 +14,7 @@ import axios from "axios";
 // TOAST
 import { toast } from "vue3-toastify";
 import "vue3-toastify/dist/index.css";
+import SliderImagenes from "@/Components/SliderImagenes.vue";
 const props = defineProps({
     subasta: {
         type: Object,
@@ -32,7 +33,6 @@ let form = useForm(props.subasta);
 watch(
     () => props.subasta,
     (newValue) => {
-        console.log("ASDSDSDSD");
         form = useForm(newValue);
         setSubasta(newValue);
     },
@@ -119,153 +119,57 @@ const textBtn = computed(() => {
     return `<i class="fa fa-edit"></i> Actualizar Subasta`;
 });
 
-const oCliente = ref(null);
-const listClientes = ref([]);
-const cargarClientes = () => {
-    axios.get(route("clientes.listado")).then((response) => {
-        listClientes.value = response.data.clientes;
+const oProducto = ref(null);
+const listProductos = ref([]);
+const cargarProductos = () => {
+    axios.get(route("productos.listado")).then((response) => {
+        listProductos.value = response.data.productos;
     });
 };
 
-const asignarCliente = (value) => {
-    oCliente.value = null;
-    form.cliente_id = "";
-    form.nit_ci = "";
+const asigarProducto = (value) => {
+    oProducto.value = null;
+    form.producto_id = "";
     if (!value) {
         return;
     }
-    oCliente.value = listClientes.value.filter((item) => item.id == value)[0];
-    form.cliente_id = oCliente.value.id;
-    form.nit_ci = oCliente.value.nit_ci;
+    oProducto.value = listProductos.value.filter((item) => item.id == value)[0];
+    form.producto_id = oProducto.value.id;
 };
+const listEstadoProductos = ref([
+    {
+        value: "NUEVO",
+        label: "NUEVO",
+    },
+    {
+        value: "SEMINUEVO",
+        label: "SEMINUEVO",
+    },
+    {
+        value: "USADO",
+        label: "USADO",
+    },
+]);
 
-const cantidad = ref(1);
-const codigoProducto = ref("");
-const oProducto = ref(null);
-const buscarProductoCodigo = () => {
-    oProducto.value = null;
-    axios
-        .get(route("productos.byCodigo"), {
-            params: {
-                codigo: codigoProducto.value,
-            },
-        })
-        .then((response) => {
-            // verificar que no exista ya en la lista
-            const existe = form.subasta_detalles.some(
-                (item) => item.producto_id === response.data.id,
-            );
-
-            if (!existe) {
-                oProducto.value = response.data;
-                toast.success(
-                    `Producto ${response.data.nombre} cargado correctamente`,
-                );
-            } else {
-                toast.info(`Producto ${response.data.nombre} ya fue agregado`);
-            }
-        })
-        .catch((error) => {
-            // mostrar error
-            console.log(error);
-            if (error.response && error.response.data.errors.error) {
-                toast.error(`${error.response.data.errors.error[0]}`);
-            } else {
-                toast.error(`Ocurrió un error al intentar obtener el registro`);
-            }
-        })
-        .finally(() => {
-            // codigoProducto.value = "";
-        });
-};
-
-const agregarProducto = () => {
-    const existe = form.subasta_detalles.some(
-        (item) => item.producto_id === oProducto.value.id,
-    );
-
-    if (!oProducto.value) {
-        toast.info(`No se cargo ningún producto`);
-        return;
-    }
-
-    const valor = Number(cantidad.value);
-    if (
-        cantidad.value === null ||
-        cantidad.value === "" ||
-        isNaN(valor) ||
-        valor < 1
-    ) {
-        toast.error("Debes ingresar una cantidad válida mayor o igual a 1");
-        return;
-    }
-    if (!existe) {
-        const subtotal = valor * parseFloat(oProducto.value.precio);
-
-        form.subasta_detalles.push({
-            id: 0,
-            subasta_id: 0,
-            producto: oProducto.value,
-            producto_id: oProducto.value.id,
-            precio: oProducto.value.precio,
-            cantidad: valor,
-            subtotal: subtotal.toFixed(2),
-        });
-
-        toast.success(
-            `Producto ${oProducto.value.nombre} agregado correctamente`,
-        );
-        limpiarSeleccion();
-    } else {
-        toast.info(`Producto ${oProducto.value.nombre} ya fue agregado`);
-    }
-};
-
-const limpiarSeleccion = () => {
-    oProducto.value = null;
-    codigoProducto.value = "";
-    cantidad.value = 1;
-};
-
-const quitar = (index) => {
-    form.subasta_detalles.splice(index, 1);
-};
-const totalSubasta = computed(() => {
-    const total = form.subasta_detalles.reduce((total, item) => {
-        const subtotal = parseFloat(item.subtotal);
-
-        if (subtotal !== null && subtotal !== undefined && subtotal !== "") {
-            return total + Number(subtotal);
-        }
-
-        return total;
-    }, 0);
-
-    form.total = total;
-
-    return total.toFixed(2);
-});
-
-const modificaCantidadFila = (e, index) => {
-    const cantidad = e.target.value;
-    const valor = Number(cantidad);
-    if (cantidad === null || cantidad === "" || isNaN(valor) || valor < 1) {
-        toast.error("Debes ingresar una cantidad válida mayor o igual a 1");
-        return;
-    }
-
-    form.subasta_detalles[index]["cantidad"] = valor;
-    form.subasta_detalles[index]["subtotal"] =
-        valor * parseFloat(form.subasta_detalles[index]["precio"]);
-    form.subasta_detalles[index]["subtotal"] =
-        form.subasta_detalles[index]["subtotal"].toFixed(2);
-};
+const listEstadoPublicacion = ref([
+    {
+        value: 0,
+        label: "SIN PUBLICAR",
+    },
+    {
+        value: 1,
+        label: "PÚBLICO",
+    },
+]);
 
 onMounted(() => {
-    // console.log(form);
+    console.log(form);
+    if (form.id != 0) {
+        oProducto.value = form.producto;
+    }
 });
 onBeforeMount(() => {
-    cargarClientes();
+    cargarProductos();
 });
 </script>
 
@@ -276,15 +180,15 @@ onBeforeMount(() => {
                 <div class="card">
                     <div class="card-header">
                         <h5 class="card-title">
-                            <i class="fa fa-user"></i> Datos del Cliente
+                            <i class="fa fa-box"></i> Datos del producto
                         </h5>
                     </div>
                     <div class="card-body pt-1">
                         <div class="row">
                             <div class="col-12">
                                 <small
-                                    class="text-muted text-xs font-weight-bold"
-                                    >Seleccionar Cliente</small
+                                    class="text-muted text-xs font-weight-bold required"
+                                    >Seleccionar Producto</small
                                 >
                                 <div class="input-group">
                                     <div class="input-group-prepend">
@@ -292,135 +196,53 @@ onBeforeMount(() => {
                                             class="input-group-text bg-white"
                                             for="inputCodigo"
                                         >
-                                            <i class="fa fa-user-friends"></i>
+                                            <i class="fa fa-boxes"></i>
                                         </span>
                                     </div>
                                     <div class="form-control p-0 border-0">
                                         <el-select
                                             class="el-select-input-group-right"
                                             size="large"
-                                            v-model="form.cliente_id"
+                                            v-model="form.producto_id"
                                             filterable
                                             clereable
                                             placeholder="Seleccionar"
                                             no-data-text="Sin resultados"
                                             no-match-text="No se encontrarón coincidencias"
-                                            @change="asignarCliente"
+                                            @change="asigarProducto"
                                         >
                                             <el-option
-                                                v-for="item in listClientes"
+                                                v-for="item in listProductos"
                                                 :key="item.id"
                                                 :value="item.id"
-                                                :label="`${item.nombre} - ${item.nit_ci}`"
+                                                :label="`${item.nombre} - ${item.codigo}`"
                                             ></el-option>
                                         </el-select>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-12 mt-2">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="text-center">
-                                            {{
-                                                oCliente ? oCliente.nombre : "-"
-                                            }}
-                                        </div>
-                                        <div
-                                            class="w-100 text-center text-xs text-muted"
-                                        >
-                                            Nombre/Razón Social
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="text-center">
-                                            <input
-                                                type="text"
-                                                class="form-control text-center"
-                                                v-model="form.nit_ci"
-                                            />
-                                        </div>
-                                        <div
-                                            class="w-100 text-center text-xs text-muted"
-                                        >
-                                            NIT/C.I.
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="text-center">
-                                            {{ oCliente ? oCliente.cel : "-" }}
-                                        </div>
-                                        <div
-                                            class="w-100 text-center text-xs text-muted"
-                                        >
-                                            Teléfono/Celular
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="card-title">
-                            <i class="fa fa-boxes"></i> Productos
-                        </h5>
-                    </div>
-                    <div class="card-body pt-1">
-                        <div class="row">
-                            <div class="col-12">
-                                <small
-                                    class="text-muted text-xs font-weight-bold"
-                                    >Código de Producto</small
+                                <ul
+                                    v-if="form.errors?.producto_id"
+                                    class="list-unstyled text-danger"
                                 >
-                                <div class="input-group mb-0">
-                                    <div class="input-group-prepend">
-                                        <span
-                                            class="input-group-text bg-white"
-                                            for="inputCodigo"
-                                        >
-                                            <i class="fa fa-box"></i>
-                                        </span>
-                                    </div>
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        autocomplete="false"
-                                        v-model="codigoProducto"
-                                        @keypress.enter.prevent="
-                                            buscarProductoCodigo
-                                        "
-                                    />
-
-                                    <div class="input-group-append">
-                                        <button
-                                            class="btn btn-primary"
-                                            type="button"
-                                            @click.prevent="
-                                                buscarProductoCodigo
-                                            "
-                                        >
-                                            <i class="fa fa-search"></i>
-                                        </button>
-                                    </div>
-                                </div>
+                                    <li class="parsley-required">
+                                        {{ form.errors?.producto_id }}
+                                    </li>
+                                </ul>
                             </div>
-
                             <div class="col-12 mt-2">
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="text-center">
                                             {{
                                                 oProducto
-                                                    ? oProducto.categoria
-                                                          ?.nombre
+                                                    ? oProducto.codigo
                                                     : "-"
                                             }}
                                         </div>
                                         <div
                                             class="w-100 text-center text-xs text-muted"
                                         >
-                                            Categoría
+                                            Código
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -441,69 +263,220 @@ onBeforeMount(() => {
                                         <div class="text-center">
                                             {{
                                                 oProducto
-                                                    ? oProducto.stock
+                                                    ? oProducto.categoria
+                                                          ?.nombre
                                                     : "-"
                                             }}
                                         </div>
                                         <div
                                             class="w-100 text-center text-xs text-muted"
                                         >
-                                            Disponible
+                                            Categoría
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row mt-2">
-                                    <div
-                                        class="col-md-4 offset-md-4 text-center"
-                                    >
-                                        <div class="input-group">
-                                            <input
-                                                type="number"
-                                                step="1"
-                                                class="form-control text-center"
-                                                v-model="cantidad"
-                                                @keypress.enter.prevent="
-                                                    agregarProducto
-                                                "
-                                            />
-                                            <div class="input-group-append">
-                                                <button
-                                                    class="btn btn-primary"
-                                                    type="button"
-                                                    @click.prevent="
-                                                        agregarProducto
-                                                    "
-                                                >
-                                                    <i class="fa fa-plus"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div
-                                            class="w-100 text-center text-xs text-muted"
+                                <div class="row" v-if="oProducto">
+                                    <div class="col-12">
+                                        <slider-imagenes
+                                            :imagenes="
+                                                oProducto.producto_imagens
+                                            "
+                                            :height="'230px'"
+                                        ></slider-imagenes>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <small
+                                    class="text-muted text-xs font-weight-bold required"
+                                    >Seleccionar Estado</small
+                                >
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span
+                                            class="input-group-text bg-white"
+                                            for="inputCodigo"
                                         >
-                                            Cantidad
-                                        </div>
+                                            <i class="fa fa-tag"></i>
+                                        </span>
+                                    </div>
+                                    <div class="form-control p-0 border-0">
+                                        <el-select
+                                            class="el-select-input-group-right"
+                                            size="large"
+                                            v-model="form.estado_producto"
+                                            filterable
+                                            clereable
+                                            placeholder="Seleccionar"
+                                            no-data-text="Sin resultados"
+                                            no-match-text="No se encontrarón coincidencias"
+                                        >
+                                            <el-option
+                                                v-for="item in listEstadoProductos"
+                                                :key="item.value"
+                                                :value="item.value"
+                                                :label="`${item.label}`"
+                                            ></el-option>
+                                        </el-select>
                                     </div>
                                 </div>
+                                <ul
+                                    v-if="form.errors?.estado_producto"
+                                    class="list-unstyled text-danger"
+                                >
+                                    <li class="parsley-required">
+                                        {{ form.errors?.estado_producto }}
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-12 col-lg-6 pb-0">
-                <div class="card">
+                <div class="card mb-0">
                     <div class="card-header">
                         <h5 class="card-title">
-                            <i class="fa fa-shopping-cart"></i> Carrito
+                            <i class="fa fa-gavel"></i> Datos de la Subasta
                         </h5>
                     </div>
-                    <div class="card-body pt-1 overflow-auto"></div>
+                    <div class="card-body pt-1 overflow-auto">
+                        <div class="row">
+                            <div class="col-12">
+                                <small
+                                    class="text-muted text-xs font-weight-bold required"
+                                    >Monto inicial Bs.</small
+                                >
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span
+                                            class="input-group-text bg-white"
+                                            for="inputCodigo"
+                                        >
+                                            <i class="fa fa-money-bill"></i>
+                                        </span>
+                                    </div>
+                                    <div class="form-control p-0 border-0">
+                                        <input
+                                            type="number"
+                                            step="0.01"
+                                            min="0"
+                                            class="form-control"
+                                            v-model="form.monto_inicial"
+                                        />
+                                    </div>
+                                </div>
+                                <ul
+                                    v-if="form.errors?.monto_inicial"
+                                    class="list-unstyled text-danger"
+                                >
+                                    <li class="parsley-required">
+                                        {{ form.errors?.monto_inicial }}
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <small
+                                    class="text-muted text-xs font-weight-bold required"
+                                    >Fecha Finalización</small
+                                >
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span
+                                            class="input-group-text bg-white"
+                                            for="inputCodigo"
+                                        >
+                                            <i class="fa fa-calendar-alt"></i>
+                                        </span>
+                                    </div>
+                                    <div class="form-control p-0 border-0">
+                                        <input
+                                            type="date"
+                                            class="form-control"
+                                            v-model="form.fecha_fin"
+                                        />
+                                    </div>
+                                </div>
+                                <ul
+                                    v-if="form.errors?.fecha_fin"
+                                    class="list-unstyled text-danger"
+                                >
+                                    <li class="parsley-required">
+                                        {{ form.errors?.fecha_fin }}
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <small
+                                    class="text-muted text-xs font-weight-bold required"
+                                    >Hora Finalización</small
+                                >
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span
+                                            class="input-group-text bg-white"
+                                            for="inputCodigo"
+                                        >
+                                            <i class="fa fa-clock"></i>
+                                        </span>
+                                    </div>
+                                    <div class="form-control p-0 border-0">
+                                        <input
+                                            type="time"
+                                            class="form-control"
+                                            v-model="form.hora_fin"
+                                        />
+                                    </div>
+                                </div>
+                                <ul
+                                    v-if="form.errors?.hora_fin"
+                                    class="list-unstyled text-danger"
+                                >
+                                    <li class="parsley-required">
+                                        {{ form.errors?.hora_fin }}
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-12">
+                                <small
+                                    class="text-muted text-xs font-weight-bold required"
+                                    >Publicación</small
+                                >
+                                <el-radio-group v-model="form.publico">
+                                    <el-radio
+                                        v-for="item in listEstadoPublicacion"
+                                        :value="item.value"
+                                        size="large"
+                                        border
+                                    >
+                                        {{ item.label }}
+                                        <i
+                                            class="fa"
+                                            :class="{
+                                                'fa-eye-slash': item.value == 0,
+                                                'fa-eye': item.value == 1,
+                                            }"
+                                        ></i
+                                    ></el-radio>
+                                </el-radio-group>
+                                <ul
+                                    v-if="form.errors?.publico"
+                                    class="list-unstyled text-danger"
+                                >
+                                    <li class="parsley-required">
+                                        {{ form.errors?.publico }}
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-12 mt-1 mb-3 text-center">
                         <button
                             type="button"
-                            class="btn btn-primary"
+                            class="btn btn-primary w-100"
                             :disabled="enviando"
                             @click.prevent="enviarFormulario"
                             v-html="textBtn"

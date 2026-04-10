@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Participante;
 use App\Services\HistorialAccionService;
 use App\Models\Subasta;
 use App\Models\Producto;
@@ -15,7 +16,7 @@ class SubastaService
 {
     private $modulo = "SUBASTAS";
 
-    public function __construct(private HistorialAccionService $historialAccionService) {}
+    public function __construct(private HistorialAccionService $historialAccionService, private KardexProductoService $kardex_producto_service) {}
 
     public function listado(): Collection
     {
@@ -34,7 +35,8 @@ class SubastaService
      */
     public function listadoPaginado(int $length, int $page, string $search, array $columnsSerachLike = [], array $columnsFilter = [], array $columnsBetweenFilter = [], array $orderBy = []): LengthAwarePaginator
     {
-        $subastas = Subasta::select("subastas.*");
+        $subastas = Subasta::select("subastas.*")
+            ->with(["producto:id,nombre,codigo"]);
 
         // Filtros exactos
         foreach ($columnsFilter as $key => $value) {
@@ -80,10 +82,18 @@ class SubastaService
     public function crear(array $datos): Subasta
     {
         $subasta = Subasta::create([
-            "nombre" => mb_strtoupper($datos["nombre"]),
-            "descripcion" => mb_strtoupper($datos["descripcion"]),
-            "fecha_registro" => date("Y-m-d")
+            "producto_id" => $datos["producto_id"],
+            "estado_producto" => $datos["estado_producto"],
+            "monto_inicial" => $datos["monto_inicial"],
+            "fecha_fin" => $datos["fecha_fin"],
+            "hora_fin" => $datos["hora_fin"],
+            "publico" => $datos["publico"],
+            "fecha_registro" => date("Y-m-d"),
         ]);
+
+        // registrar kardex
+        $producto = Producto::findOrFail($datos["producto_id"]);
+        $this->kardex_producto_service->registroEgreso("SUBASTA", $producto, 1, (float)$producto->precio,  'EGRESO DE PRODUCTO PARA SUBASTA', "Subasta", $subasta->id);
 
         // registrar accion
         $this->historialAccionService->registrarAccion($this->modulo, "CREACIÓN", "REGISTRO UNA SUBASTA", $subasta);
@@ -103,10 +113,31 @@ class SubastaService
     {
         $old_subasta = clone $subasta;
 
+        $usos = Participante::where("subasta_id", $subasta->id)->count();
+        if ($usos > 0) {
+            throw new Exception("No se puede modificar el registro porque ya hay participantes registrados");
+        }
+
         $subasta->update([
-            "nombre" => mb_strtoupper($datos["nombre"]),
-            "descripcion" => mb_strtoupper($datos["descripcion"])
+            "producto_id" => $datos["producto_id"],
+            "estado_producto" => $datos["estado_producto"],
+            "monto_inicial" => $datos["monto_inicial"],
+            "fecha_fin" => $datos["fecha_fin"],
+            "hora_fin" => $datos["hora_fin"],
+            "publico" => $datos["publico"],
         ]);
+
+        // SI EL PRODUCTO ES DIFERENTE
+        if ($old_subasta->producto_id != $subasta->producto_id) {
+            // kardex
+            $old_producto = Producto::findOrFail($old_subasta->producto_id);
+            // ingreso
+            $this->kardex_producto_service->registroIngreso("SUBASTA", $old_producto, 1, $old_producto->precio, "INGRESO POR MODIFICACIÓN DE SUBASTA", "Subasta", $old_subasta->id);
+
+            // egreso
+            $producto = Producto::findOrFail($datos["producto_id"]);
+            $this->kardex_producto_service->registroEgreso("SUBASTA", $producto, 1, $producto->precio, 'EGRESO DE PRODUCTO PARA SUBASTA', "Subasta", $subasta->id);
+        }
 
         // registrar accion
         $this->historialAccionService->registrarAccion($this->modulo, "MODIFICACIÓN", "ACTUALIZÓ UNA SUBASTA", $old_subasta, $subasta->withoutRelations());
@@ -124,10 +155,15 @@ class SubastaService
     {
         $old_subasta = clone $subasta;
 
-        $usos = Producto::where("subasta_id", $subasta->id)->count();
+        $usos = Participante::where("subasta_id", $subasta->id)->count();
         if ($usos > 0) {
-            throw new Exception("No se puede eliminar este registro porque esta siendo utilizado");
+            throw new Exception("No se puede eliminar este registro porque existen participantes registrados");
         }
+
+        $old_producto = Producto::findOrFail($old_subasta->producto_id);
+        // ingreso
+        $this->kardex_producto_service->registroIngreso("SUBASTA", $old_producto, 1, $old_producto->precio, "INGRESO POR ELIMINACIÓN DE SUBASTA", "Subasta", $old_subasta->id);
+
 
         $subasta->delete();
 
