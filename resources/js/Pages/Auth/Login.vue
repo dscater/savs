@@ -78,9 +78,9 @@ const enviarFormulario = () => {
 };
 const textBtn = computed(() => {
     if (enviando.value) {
-        return `<i class="fa fa-spin fa-spinner"></i> Enviando...`;
+        return `<i class="fa fa-spin fa-spinner"></i> Ingresando...`;
     }
-    return `<i class="fa fa-sign-in"></i> Ingresar`;
+    return `<i class="fa fa-sign-in-alt"></i> Ingresar`;
 });
 
 onMounted(() => {
@@ -247,5 +247,6 @@ onMounted(() => {
 body #app .contenedor_login {
     min-height: 100vh;
     width: 100vw;
+    background-color: var(--bgGrayLight);
 }
 </style>

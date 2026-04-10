@@ -68,6 +68,21 @@ onBeforeMount(() => {});
             >
                 <ul class="navbar-nav">
                     <li class="nav-item">
+                        <Link class="nav-link" :href="route('portal.index')"
+                            ><i class="fa fa-home"></i> INICIO
+                        </Link>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            ><i class="fa fa-gavel"></i> SUBASTAS</a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            ><i class="fa fa-phone"></i> CONTACTO</a
+                        >
+                    </li>
+                    <li class="nav-item">
                         <Link
                             class="nav-link"
                             :href="route('login')"

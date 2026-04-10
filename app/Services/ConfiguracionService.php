@@ -27,11 +27,13 @@ class ConfiguracionService
             $configuracion = Configuracion::create([
                 "nombre_sistema" => $datos["nombre_sistema"],
                 "alias" => $datos["alias"],
+                "razon_social" => $datos["razon_social"],
             ]);
         } else {
             $configuracion->update([
                 "nombre_sistema" => $datos["nombre_sistema"],
                 "alias" => $datos["alias"],
+                "razon_social" => $datos["razon_social"],
             ]);
         }
 

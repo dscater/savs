@@ -29,4 +29,8 @@ const configuracionStore = useConfiguracionStore();
     display: block;
     min-height: 90px;
 }
+
+.footer {
+    bottom: 0;
+}
 </style>

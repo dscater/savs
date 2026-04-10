@@ -34,6 +34,7 @@ if (props_page.configuracion != null) {
         id: 0,
         nombre_sistema: "",
         alias: "",
+        razon_social: "",
         url_logo: "",
         logo: "",
     });
@@ -152,6 +153,19 @@ onMounted(() => {
                     <span class="text-danger" v-if="form.errors?.alias">{{
                         form.errors.alias
                     }}</span>
+                </div>
+                <div class="col-md-4 form-group mb-3">
+                    <label class="required">Razón Social</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        v-model="form.razon_social"
+                    />
+                    <span
+                        class="text-danger"
+                        v-if="form.errors?.razon_social"
+                        >{{ form.errors.razon_social }}</span
+                    >
                 </div>
                 <div class="col-md-4 form-group mb-3">
                     <label class="required">Logo</label>
