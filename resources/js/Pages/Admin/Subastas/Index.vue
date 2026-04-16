@@ -44,6 +44,11 @@ const headers = [
         sortable: true,
     },
     {
+        label: "GARANTÍA BS.",
+        key: "garantia",
+        sortable: true,
+    },
+    {
         label: "FECHA FINALIZACIÓN",
         key: "fecha_fin",
         sortable: true,
@@ -284,26 +289,27 @@ const revertirAnulado = (item) => {
                                     v-if="
                                         props_page.auth?.user.permisos == '*' ||
                                         props_page.auth?.user.permisos.includes(
-                                            'subastas.verSubasta',
+                                            'subastas.participantes',
                                         )
                                     "
                                 >
                                     <el-tooltip
                                         class="box-item"
                                         effect="dark"
-                                        content="Ver Subasta"
+                                        content="Participantes"
                                         placement="left-start"
                                     >
                                         <Link
                                             class="btn btn-info"
                                             :href="
                                                 route(
-                                                    'subastas.verSubasta',
+                                                    'subastas.participantes',
                                                     item.id,
                                                 )
                                             "
                                         >
-                                            <i class="fa fa-eye"></i></Link
+                                            {{ item.c_participantes }}<br />
+                                            <i class="fa fa-users"></i></Link
                                     ></el-tooltip>
                                 </template>
                                 <template

@@ -96,12 +96,28 @@ class PermisoService
             "subastas.show",
             "subastas.update",
             "subastas.destroy",
+            "subastas.participantes",
+            "subastas.infoSubastaPorPublicacion",
+            "subastas.participantes",
+            "subastas.getParticipantesApi",
+
+            "participantes.historialOfertas",
+            "participantes.verificaSubastaCliente",
+            "participantes.show",
+            "participantes.getInfo",
+            "participantes.update",
+            "participantes.registrarDevolucion",
 
             "configuracions.index",
             "configuracions.create",
             "configuracions.edit",
             "configuracions.update",
             "configuracions.destroy",
+
+            "parametrizacions.index",
+            "parametrizacion.edit",
+            "parametrizacions.getParametrizacion",
+            "parametrizacions.update",
 
             "reportes.usuarios",
             "reportes.r_usuarios",
@@ -114,6 +130,21 @@ class PermisoService
 
         ],
         "AUXILIAR" => [],
+        "PARTICIPANTE" => [
+            "inicio.getParcialDatosPago",
+
+            "subastas.infoSubastaPorPublicacion",
+            "subastas.registrarPuja",
+            "subastas.registrarComprobante",
+
+            "participantes.historialOfertas",
+            "participantes.verificaSubastaCliente",
+            "participantes.show",
+            "participantes.getInfo",
+            "participantes.update",
+            "participantes.registrarDevolucion",
+
+        ],
     ];
 
 

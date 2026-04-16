@@ -30,7 +30,7 @@ const props = defineProps({
 </template>
 <style scoped>
 .contenedor {
-    height: 30vh;
+    height: 20vh;
     position: relative;
 }
 .contenedor .imagen {

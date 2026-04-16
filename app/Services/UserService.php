@@ -31,6 +31,7 @@ class UserService
     public function listadoPaginado(int $length, int $page, string $search, array $columnsSerachLike = [], array $columnsFilter = [], array $columnsBetweenFilter = [], array $orderBy = []): LengthAwarePaginator
     {
         $users = User::select("users.*")
+            ->where("tipo", "!=", 'PARTICIPANTE')
             ->where("users.id", "!=", 1);
 
         $users->buscarNombre($search);

@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ConfiguracionController;
 use App\Http\Controllers\ImagenesPortalController;
 use App\Http\Controllers\IngresoProductoController;
 use App\Http\Controllers\InicioController;
+use App\Http\Controllers\ParametrizacionController;
+use App\Http\Controllers\ParticipanteController;
 use App\Http\Controllers\PortalController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProfileController;
@@ -28,14 +31,32 @@ Route::get('/imagenes_portal', [ImagenesPortalController::class, 'index'])->name
 
 Route::get('/subastas', [PortalController::class, 'subastas'])->name("portal.subastas");
 
+// Subastas
+Route::get('/subastas/portal', [SubastaController::class, 'portal'])->name("subastas.portal");
+Route::get('/subastas/subasta/{subasta}', [PortalController::class, 'subasta'])->name("portal.subasta");
+Route::post("subastas/verifica_ganador/{subasta}", [SubastaController::class, 'verificaGanador'])->name("subastas.verificaGanador");
 
 // LOGIN
 Route::get('/login', function () {
     if (Auth::check()) {
-        return redirect()->route('inicio');
+        if (Auth::user()->tipo != 'PARTICIPANTE') {
+            return redirect()->route('inicio');
+        }
     }
     return Inertia::render('Auth/Login');
 })->name("login");
+
+Route::post('/registro/validaForm1', [RegisteredUserController::class, 'validaForm1'])->name("registro.validaForm1");
+Route::get('/registro', function () {
+    if (Auth::check()) {
+        return redirect()->route('inicio');
+    }
+    return Inertia::render('Auth/Register');
+})->name("registro");
+
+Route::get('/getTerminosCondiciones', [PortalController::class, 'getTerminosCondiciones'])->name("getTerminosCondiciones");
+Route::get('/getMensajeVerificaComprobante', [PortalController::class, 'getMensajeVerificaComprobante'])->name("getMensajeVerificaComprobante");
+Route::get('/getMensajesParametrizacion', [PortalController::class, 'getMensajesParametrizacion'])->name("getMensajesParametrizacion");
 
 Route::get("configuracions/getConfiguracion", [ConfiguracionController::class, 'getConfiguracion'])->name("configuracions.getConfiguracion");
 
@@ -45,6 +66,7 @@ Route::get('/clear-cache', function () {
     Artisan::call('optimize');
     return 'Cache eliminado <a href="/">Ir al inicio</a>';
 })->name('clear.cache');
+
 
 // ADMINISTRACION
 Route::middleware(['auth', 'permisoUsuario'])->prefix("admin")->group(function () {
@@ -74,6 +96,15 @@ Route::middleware(['auth', 'permisoUsuario'])->prefix("admin")->group(function (
     Route::delete("usuarios/{user}", [UsuarioController::class, 'destroy'])->name("usuarios.destroy");
     Route::resource("usuarios", UsuarioController::class)->only(
         ["index", "store"]
+    );
+
+    // PARAMETRIZACIÓN
+    Route::get("parametrizacions/api", [ParametrizacionController::class, 'api'])->name("parametrizacions.api");
+    Route::get("parametrizacions/paginado", [ParametrizacionController::class, 'paginado'])->name("parametrizacions.paginado");
+    Route::get("parametrizacions/listado", [ParametrizacionController::class, 'listado'])->name("parametrizacions.listado");
+    Route::put("parametrizacions/update", [ParametrizacionController::class, 'update'])->name("parametrizacions.update");
+    Route::resource("parametrizacions", ParametrizacionController::class)->only(
+        ["index", "show"]
     );
 
     // TIPO USUARIOS
@@ -126,12 +157,29 @@ Route::middleware(['auth', 'permisoUsuario'])->prefix("admin")->group(function (
     );
 
     // SUBASTAS
+    Route::get("publicacions/getsubasta/infoSubastaPorPublicacion", [SubastaController::class, 'infoSubastaPorPublicacion'])->name("subastas.infoSubastaPorPublicacion");
+    Route::get("publicacions/subastas/participantes/{subasta}", [SubastaController::class, 'participantes'])->name("subastas.participantes");
+    Route::get("publicacions/subastas/getParticipantesApi/{subasta}", [SubastaController::class, 'getParticipantesApi'])->name("subastas.getParticipantesApi");
+    Route::post("publicacions/subastas/registrarPuja", [SubastaController::class, 'registrarPuja'])->name("subastas.registrarPuja");
+    Route::post("publicacions/subastas/registrarComprobante", [SubastaController::class, 'registrarComprobante'])->name("subastas.registrarComprobante");
+
     Route::get("subastas/paginado", [SubastaController::class, 'paginado'])->name("subastas.paginado");
     Route::get("subastas/listado", [SubastaController::class, 'listado'])->name("subastas.listado");
     Route::resource("subastas", SubastaController::class)->only(
         ["index", "create", "store", "edit", "show", "update", "destroy"]
     );
 
+    // PORTAL-PARTICIPANTES
+    Route::get("subastas/participantes/historialOfertas", [ParticipanteController::class, 'historialOfertas'])->name("participantes.historialOfertas");
+    Route::get("subastas/participantes/verificaSubastaCliente", [ParticipanteController::class, 'verificaSubastaCliente'])->name("participantes.verificaSubastaCliente");
+    Route::get("subastas/participantes/show/{participante}", [ParticipanteController::class, 'show'])->name("participantes.show");
+    Route::get("subastas/participantes/getInfo/{participante}", [ParticipanteController::class, 'getInfo'])->name("participantes.getInfo");
+    Route::put("subastas/participantes/update/{participante}", [ParticipanteController::class, 'update'])->name("participantes.update");
+    Route::put("subastas/participantes/registrarDevolucion/{participante}", [ParticipanteController::class, 'registrarDevolucion'])->name("participantes.registrarDevolucion");
+
+
+    // OTROS
+    Route::get("parcial_datos_pago", [InicioController::class, 'getParcialDatosPago'])->name("inicio.getParcialDatosPago");
 
     // REPORTES
     Route::get('reportes/usuarios', [ReporteController::class, 'usuarios'])->name("reportes.usuarios");

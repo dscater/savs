@@ -29,3 +29,7 @@ body #app {
 .seccion {
     min-height: calc(100vh - 196px);
 }
+
+body.modal-open .modal.show {
+    background-color: rgba(0, 0, 0, 0.459);
+}

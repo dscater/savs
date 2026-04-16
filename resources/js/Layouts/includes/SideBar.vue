@@ -220,6 +220,15 @@ onUnmounted(() => {});
                         :ruta="'subastas.index'"
                         :icon="'fa fa-gavel'"
                     ></ItemMenu>
+                    <ItemMenu
+                        v-if="
+                            permisos == '*' ||
+                            permisos.includes('parametrizacions.index')
+                        "
+                        :label="'Parametrización'"
+                        :ruta="'parametrizacions.index'"
+                        :icon="'fa fa-list'"
+                    ></ItemMenu>
                     <li
                         class="nav-header font-weight-bold"
                         v-if="

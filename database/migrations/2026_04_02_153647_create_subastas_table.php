@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger("producto_id");
             $table->string("estado_producto"); //NUEVO, SEMINUEVO, USADO
             $table->decimal("monto_inicial", 24, 2);
+            $table->decimal("garantia", 24, 2)->default(0);
             $table->date("fecha_fin");
             $table->time("hora_fin");
             $table->integer("publico"); // 0: SIN PUBLICAR, 1: PÚBLICO

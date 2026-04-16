@@ -20,7 +20,7 @@ class HandleInertiaRequests extends Middleware
         $nom_ruta = $request->route()->getName();
         $prefix = $request->route()->getPrefix();
         $validate_prefix = ["admin", "/admin"];
-        if (in_array($prefix, $validate_prefix) || in_array($nom_ruta, ['login', 'registro'])) {
+        if (in_array($prefix, $validate_prefix) || in_array($nom_ruta, ['login', 'registro', 'register'])) {
             return 'app';
         }
         return 'portal';

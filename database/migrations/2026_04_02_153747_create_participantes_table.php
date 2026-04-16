@@ -15,7 +15,16 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger("subasta_id");
             $table->unsignedBigInteger("user_id");
-            $table->string("estado");
+            $table->integer("estado");
+            $table->integer("garantia");
+            $table->string("comprobante", 255)->nullable();
+            $table->integer("estado_comprobante")->default(0); // 0: sin verificar, 1: verificado
+            $table->date("fecha_comprobante")->nullable();
+            $table->time("hora_comprobante")->nullable();
+            $table->integer("devolucion")->default(0); // 0: sin devolver, 1: devuelto
+            $table->text("descripcion_devolucion")->nullable();
+            $table->date("fecha_devolucion")->nullable();
+            $table->time("hora_devolucion")->nullable();
             $table->date("fecha");
             $table->time("hora");
             $table->decimal("monto_puja", 24, 2);

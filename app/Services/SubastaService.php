@@ -85,6 +85,7 @@ class SubastaService
             "producto_id" => $datos["producto_id"],
             "estado_producto" => $datos["estado_producto"],
             "monto_inicial" => $datos["monto_inicial"],
+            "garantia" => $datos["garantia"],
             "fecha_fin" => $datos["fecha_fin"],
             "hora_fin" => $datos["hora_fin"],
             "publico" => $datos["publico"],
@@ -122,6 +123,7 @@ class SubastaService
             "producto_id" => $datos["producto_id"],
             "estado_producto" => $datos["estado_producto"],
             "monto_inicial" => $datos["monto_inicial"],
+            "garantia" => $datos["garantia"],
             "fecha_fin" => $datos["fecha_fin"],
             "hora_fin" => $datos["hora_fin"],
             "publico" => $datos["publico"],
@@ -171,5 +173,62 @@ class SubastaService
         $this->historialAccionService->registrarAccion($this->modulo, "ELIMINACIÓN", "ELIMINÓ UNA SUBASTA", $old_subasta, $subasta);
 
         return true;
+    }
+
+    // FUNCIONES
+    public function actualizaPublicacionesEstado()
+    {
+        $dias_maximo = 8;
+        $fecha_mostrar = date("Y-m-d", strtotime("-" . $dias_maximo . " days"));
+        $subastas = Subasta::where("fecha_fin", "<=", $fecha_mostrar)
+            ->where("estado_subasta", 2)
+            ->get();
+        foreach ($subastas as $item) {
+            $item->estado_sub = 3;
+            $item->save();
+        }
+        return true;
+    }
+
+    public static function getNroCorrelativo()
+    {
+        $nro = 1;
+        $ultimo = Publicacion::orderBy("nro", "desc")->get()->first();
+        if ($ultimo && $ultimo->nro) {
+            $nro = (int)$ultimo->nro + 1;
+        }
+
+        return $nro;
+    }
+
+    function validarFechaHora($fecha, $hora)
+    {
+        $fechaHoraString = $fecha . ' ' . $hora;
+
+        try {
+            $fechaHora = Carbon::parse($fechaHoraString);
+        } catch (\Exception $e) {
+            // formatos invalidos
+            return 1;
+        }
+
+        if ($fechaHora->isBefore(Carbon::now())) {
+            // fecha menor a la actual
+            return 2;
+        }
+
+        // sin errores
+        return null;
+    }
+
+    public function verificaFechaLimitePublicacion($subasta)
+    {
+        $fecha_hora_fin = date("Y-m-d H:i", strtotime($subasta->fecha_fin . ' ' . $subasta->hora_fin));
+        $fecha_hora_actual = date("Y-m-d H:i");
+
+        if ($fecha_hora_actual < $fecha_hora_fin) {
+            return true;
+        }
+        return throw new Exception("No se pudo completar el registro debido a que la fecha y hora de la subasta ya se vencio", 400);
     }
 }

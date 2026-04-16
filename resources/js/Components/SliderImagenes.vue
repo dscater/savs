@@ -314,9 +314,9 @@ onUnmounted(() => {
 }
 
 .contenendor_principal_slider .pantalla_completa {
-    z-index: 20;
     cursor: pointer;
     position: absolute;
+    z-index: 400;
     top: 0px;
     right: 0px;
     background-color: rgba(219, 219, 219, 0.616);

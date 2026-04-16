@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Parametrizacion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -30,5 +31,14 @@ class InicioController extends Controller
     public function login()
     {
         return Inertia::render("Auth/Login");
+    }
+
+    public function getParcialDatosPago()
+    {
+        $parametrizacion = Parametrizacion::first();
+
+        $html = vieW("parcials.datos_pago", compact("parametrizacion"))->render();
+
+        return response()->JSON($html);
     }
 }

@@ -343,10 +343,10 @@ onBeforeMount(() => {
                     </div>
                     <div class="card-body pt-1 overflow-auto">
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-md-6">
                                 <small
                                     class="text-muted text-xs font-weight-bold required"
-                                    >Monto inicial Bs.</small
+                                    >Oferta inicial Bs.</small
                                 >
                                 <div class="input-group">
                                     <div class="input-group-prepend">
@@ -373,6 +373,39 @@ onBeforeMount(() => {
                                 >
                                     <li class="parsley-required">
                                         {{ form.errors?.monto_inicial }}
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <small
+                                    class="text-muted text-xs font-weight-bold required"
+                                    >Monto de garantía Bs.</small
+                                >
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span
+                                            class="input-group-text bg-white"
+                                            for="inputCodigo"
+                                        >
+                                            <i class="fa fa-money-bill"></i>
+                                        </span>
+                                    </div>
+                                    <div class="form-control p-0 border-0">
+                                        <input
+                                            type="number"
+                                            step="0.01"
+                                            min="0"
+                                            class="form-control"
+                                            v-model="form.garantia"
+                                        />
+                                    </div>
+                                </div>
+                                <ul
+                                    v-if="form.errors?.garantia"
+                                    class="list-unstyled text-danger"
+                                >
+                                    <li class="parsley-required">
+                                        {{ form.errors?.garantia }}
                                     </li>
                                 </ul>
                             </div>

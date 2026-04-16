@@ -5,6 +5,7 @@ const oSubasta = ref({
     producto_id: "",
     estado_producto: "",
     monto_inicial: "",
+    garantia: "",
     fecha_fin: "",
     hora_fin: "",
     publico: 0,
@@ -21,6 +22,7 @@ export const useSubastas = () => {
             oSubasta.value.producto = item.producto;
             oSubasta.value.estado_producto = item.estado_producto;
             oSubasta.value.monto_inicial = item.monto_inicial;
+            oSubasta.value.garantia = item.garantia;
             oSubasta.value.fecha_fin = item.fecha_fin;
             oSubasta.value.hora_fin = item.hora_fin;
             oSubasta.value.publico = item.publico;
@@ -37,6 +39,7 @@ export const useSubastas = () => {
         oSubasta.value.producto_id = "";
         oSubasta.value.estado_producto = "";
         oSubasta.value.monto_inicial = "";
+        oSubasta.value.garantia = "";
         oSubasta.value.fecha_fin = "";
         oSubasta.value.hora_fin = "";
         oSubasta.value.publico = 0;

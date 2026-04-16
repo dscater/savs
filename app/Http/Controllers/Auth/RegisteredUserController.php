@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Cliente;
 use App\Models\User;
+use App\Models\UserDato;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -24,11 +25,11 @@ class RegisteredUserController extends Controller
     public $validacion = [
         "nombre" => "required|regex:/^[\pL\s\.\,áéíóúÁÉÍÓÚñÑ]+$/u",
         "paterno" => "required|regex:/^[\pL\s\.\,áéíóúÁÉÍÓÚñÑ]+$/u",
-        "ci" => "required|numeric|digits_between:7,10|unique:clientes,ci",
+        "ci" => "required|numeric|digits_between:7,10|unique:user_datos,ci",
         "ci_exp" => "required",
         "fono" => "required|numeric|digits_between:7,10",
         "dpto_residencia" => "required",
-        "email" => "required|email|unique:clientes,email",
+        "email" => "required|email|unique:user_datos,email",
     ];
 
     public $mensajes = [
@@ -88,7 +89,7 @@ class RegisteredUserController extends Controller
             "required",
             "numeric",
             "digits_between:7,10",
-            Rule::unique('clientes', 'ci')
+            Rule::unique('user_datos', 'ci')
                 ->where(function ($query) {
                     $complemento = request()->input('complemento');
                     if (is_null($complemento)) {
@@ -104,10 +105,15 @@ class RegisteredUserController extends Controller
         try {
             $user = User::create([
                 'usuario' => $request->email,
-                "nombres" => mb_strtoupper($request->nombre),
-                'apellidos' => mb_strtoupper($request->paterno . (trim($request->materno) != '' ? ' ' . $request->materno : '')),
-                'email' => $request->email,
+                "nombre" => mb_strtoupper($request->nombre),
+                "paterno" => mb_strtoupper($request->paterno),
+                "materno" => mb_strtoupper($request->materno),
+                "ci" => trim($request->ci),
+                "ci_exp" => trim($request->ci_exp),
+                "fono" => trim($request->fono),
+                'correo' => $request->email,
                 'password' => Hash::make($request->password),
+                "tipo" => "PARTICIPANTE",
                 "acceso" => 1,
                 "fecha_registro" => date("Y-m-d")
             ]);
@@ -119,26 +125,18 @@ class RegisteredUserController extends Controller
             $extension = "." . $foto_ci_reverso->getClientOriginalExtension();
             $nom_file_ci_reverso = '2' . $user->id . time() . $extension;
 
-
-            $cliente = Cliente::create([
+            $user_dato = UserDato::create([
                 "user_id" => $user->id,
-                "nombre" => mb_strtoupper($request->nombre),
-                "paterno" => mb_strtoupper($request->paterno),
-                "materno" => mb_strtoupper($request->materno),
                 "ci" => trim($request->ci),
-                "complemento" => trim($request->complemento),
                 "ci_exp" => trim($request->ci_exp),
-                "fono" => trim($request->fono),
+                "complemento" => trim($request->complemento),
                 "dpto_residencia" => trim($request->dpto_residencia),
                 "email" => $request->email,
                 "foto_ci_anverso" => $nom_file_ci_anverso,
                 "foto_ci_reverso" => $nom_file_ci_reverso,
                 "banco" => mb_strtoupper($request->banco),
                 "nro_cuenta" => mb_strtoupper($request->nro_cuenta),
-                "moneda" => mb_strtoupper($request->moneda),
-                "fecha_registro" => date("Y-m-d"),
             ]);
-
 
             $path = public_path("imgs/users/");
 
@@ -148,7 +146,6 @@ class RegisteredUserController extends Controller
             Auth::login($user);
 
             DB::commit();
-            Log::debug("DSDSDSD");
             if ($request->ajax()) {
                 return response()->JSON([
                     "sw" => true
@@ -178,7 +175,7 @@ class RegisteredUserController extends Controller
             "required",
             "numeric",
             "digits_between:7,10",
-            Rule::unique('clientes', 'ci')
+            Rule::unique('user_datos', 'ci')
                 ->where(function ($query) {
                     $complemento = request()->input('complemento');
                     if (is_null($complemento)) {

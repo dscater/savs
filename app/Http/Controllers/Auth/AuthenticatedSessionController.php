@@ -46,6 +46,10 @@ class AuthenticatedSessionController extends Controller
             return response()->JSON(["user" => Auth::user()]);
         }
 
+        if (Auth::user()->tipo === 'PARTICIPANTE') {
+            return redirect()->intended(route('portal.index'));
+        }
+
         return redirect()->intended(route('inicio'));
     }
 

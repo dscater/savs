@@ -98,6 +98,11 @@ class User extends Authenticatable
         return $base64;
     }
 
+    public function user_dato()
+    {
+        return $this->hasOne(UserDato::class, 'user_id');
+    }
+
     public function scopeBuscarNombre($query, $texto)
     {
         if (!$texto) return $query;
