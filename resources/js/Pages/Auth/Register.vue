@@ -135,7 +135,7 @@ const volverAForm1 = () => {
 
 const txtBtnValidar = computed(() => {
     if (muestraCheck.value) {
-        return `Validar <i class="text-success fa fa-check-circle"></i>`;
+        return `Correcto <i class="text-success fa fa-check-circle"></i>`;
     }
 
     if (validando.value) {
@@ -255,11 +255,13 @@ onMounted(() => {
                                 <i class="fa fa-edit"></i> Registro
                             </h5>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body bg-principal">
                             <form @submit.prevent="submit()">
                                 <div class="row" v-show="!validado">
                                     <div class="col-12">
-                                        <div class="form-floating mt-3">
+                                        <div
+                                            class="form-floating mt-3 bg-white rounded"
+                                        >
                                             <input
                                                 type="text"
                                                 name="nombre"
@@ -268,9 +270,7 @@ onMounted(() => {
                                                 v-model="form.nombre"
                                                 autofocus
                                             />
-                                            <label
-                                                for="name"
-                                                class="d-flex align-items-center text-dark ml-3"
+                                            <label class="ml-1 rounded"
                                                 >Nombre(s)*</label
                                             >
                                         </div>
@@ -288,7 +288,9 @@ onMounted(() => {
                                                 }}</strong>
                                             </span>
                                         </div>
-                                        <div class="form-floating mt-3">
+                                        <div
+                                            class="form-floating mt-3 bg-white rounded"
+                                        >
                                             <input
                                                 type="text"
                                                 name="paterno"
@@ -296,9 +298,7 @@ onMounted(() => {
                                                 placeholder="Apellido Paterno"
                                                 v-model="form.paterno"
                                             />
-                                            <label
-                                                for="name"
-                                                class="d-flex align-items-center text-dark ml-3"
+                                            <label class="ml-1 rounded"
                                                 >Apellido Paterno*</label
                                             >
                                         </div>
@@ -316,7 +316,9 @@ onMounted(() => {
                                                 }}</strong>
                                             </span>
                                         </div>
-                                        <div class="form-floating mt-3">
+                                        <div
+                                            class="form-floating mt-3 bg-white rounded"
+                                        >
                                             <input
                                                 type="text"
                                                 name="materno"
@@ -324,9 +326,7 @@ onMounted(() => {
                                                 placeholder="Apellido Materno"
                                                 v-model="form.materno"
                                             />
-                                            <label
-                                                for="name"
-                                                class="d-flex align-items-center text-dark ml-3"
+                                            <label class="ml-1 rounded"
                                                 >Apellido Materno</label
                                             >
                                         </div>
@@ -344,7 +344,9 @@ onMounted(() => {
                                                 }}</strong>
                                             </span>
                                         </div>
-                                        <div class="form-floating mt-3">
+                                        <div
+                                            class="form-floating mt-3 bg-white rounded"
+                                        >
                                             <input
                                                 type="text"
                                                 name="ci"
@@ -352,9 +354,7 @@ onMounted(() => {
                                                 placeholder="Documento de identidad"
                                                 v-model="form.ci"
                                             />
-                                            <label
-                                                for="name"
-                                                class="d-flex align-items-center text-dark ml-3"
+                                            <label class="ml-1 rounded"
                                                 >Documento de identidad*</label
                                             >
                                         </div>
@@ -372,7 +372,9 @@ onMounted(() => {
                                                 }}</strong>
                                             </span>
                                         </div>
-                                        <div class="form-floating mt-3">
+                                        <div
+                                            class="form-floating mt-3 bg-white rounded"
+                                        >
                                             <input
                                                 type="text"
                                                 name="complemento"
@@ -380,9 +382,7 @@ onMounted(() => {
                                                 placeholder="Complemento"
                                                 v-model="form.complemento"
                                             />
-                                            <label
-                                                for="name"
-                                                class="d-flex align-items-center text-dark ml-3"
+                                            <label class="ml-1 rounded"
                                                 >Complemento</label
                                             >
                                         </div>
@@ -400,7 +400,9 @@ onMounted(() => {
                                                 }}</strong>
                                             </span>
                                         </div>
-                                        <div class="form-floating mt-3">
+                                        <div
+                                            class="form-floating mt-3 bg-white rounded"
+                                        >
                                             <select
                                                 name="ci_exp"
                                                 class="form-control"
@@ -417,9 +419,7 @@ onMounted(() => {
                                                     {{ item.label }}
                                                 </option>
                                             </select>
-                                            <label
-                                                for="name"
-                                                class="d-flex align-items-center text-dark ml-3"
+                                            <label class="ml-1 rounded"
                                                 >Lugar de expedición*</label
                                             >
                                         </div>
@@ -437,7 +437,9 @@ onMounted(() => {
                                                 }}</strong>
                                             </span>
                                         </div>
-                                        <div class="form-floating mt-3">
+                                        <div
+                                            class="form-floating mt-3 bg-white rounded"
+                                        >
                                             <input
                                                 type="text"
                                                 name="fono"
@@ -445,9 +447,7 @@ onMounted(() => {
                                                 placeholder="Número de Celular"
                                                 v-model="form.fono"
                                             />
-                                            <label
-                                                for="name"
-                                                class="d-flex align-items-center text-dark ml-3"
+                                            <label class="ml-1 rounded"
                                                 >Número de Celular*</label
                                             >
                                         </div>
@@ -465,7 +465,9 @@ onMounted(() => {
                                                 }}</strong>
                                             </span>
                                         </div>
-                                        <div class="form-floating mt-3">
+                                        <div
+                                            class="form-floating mt-3 bg-white rounded"
+                                        >
                                             <select
                                                 name="dpto_residencia"
                                                 class="form-control"
@@ -482,9 +484,7 @@ onMounted(() => {
                                                     {{ item.label }}
                                                 </option>
                                             </select>
-                                            <label
-                                                for="name"
-                                                class="d-flex align-items-center text-dark ml-3"
+                                            <label class="ml-1 rounded"
                                                 >Departamento donde
                                                 resides*</label
                                             >
@@ -503,7 +503,9 @@ onMounted(() => {
                                                 }}</strong>
                                             </span>
                                         </div>
-                                        <div class="form-floating mt-3">
+                                        <div
+                                            class="form-floating mt-3 bg-white rounded"
+                                        >
                                             <input
                                                 type="email"
                                                 name="email"
@@ -511,9 +513,7 @@ onMounted(() => {
                                                 placeholder="Correo electrónico"
                                                 v-model="form.email"
                                             />
-                                            <label
-                                                for="name"
-                                                class="d-flex align-items-center text-dark ml-3"
+                                            <label class="ml-1 rounded"
                                                 >Correo electrónico*</label
                                             >
                                         </div>
@@ -543,8 +543,7 @@ onMounted(() => {
                                     </div>
                                     <div class="col-12 mt-2 border-bottom">
                                         <div class="form-group">
-                                            <label
-                                                class="d-flex align-items-center text-dark ml-3"
+                                            <label class="ml-1 rounded"
                                                 >Foto del C.I. anverso(PDF o
                                                 Imagen)*</label
                                             >
@@ -576,8 +575,7 @@ onMounted(() => {
                                             </span>
                                         </div>
                                         <div class="form-group mb-2">
-                                            <label
-                                                class="d-flex align-items-center text-dark ml-3"
+                                            <label class="ml-1 rounded"
                                                 >Foto del C.I. reverso(PDF o
                                                 Imagen)*</label
                                             >
@@ -618,7 +616,9 @@ onMounted(() => {
                                         </h4>
                                     </div>
                                     <div class="col-12 border-bottom pb-3">
-                                        <div class="form-floating mt-3">
+                                        <div
+                                            class="form-floating mt-3 bg-white rounded"
+                                        >
                                             <select
                                                 name="banco"
                                                 class="form-control"
@@ -635,9 +635,7 @@ onMounted(() => {
                                                     {{ item }}
                                                 </option>
                                             </select>
-                                            <label
-                                                for="name"
-                                                class="d-flex align-items-center text-dark ml-3"
+                                            <label class="ml-1 rounded"
                                                 >Banco*</label
                                             >
                                         </div>
@@ -655,7 +653,9 @@ onMounted(() => {
                                                 }}</strong>
                                             </span>
                                         </div>
-                                        <div class="form-floating mt-3">
+                                        <div
+                                            class="form-floating mt-3 bg-white rounded"
+                                        >
                                             <input
                                                 type="text"
                                                 name="nro_cuenta"
@@ -663,9 +663,7 @@ onMounted(() => {
                                                 placeholder="Número de cuenta"
                                                 v-model="form.nro_cuenta"
                                             />
-                                            <label
-                                                for="name"
-                                                class="d-flex align-items-center text-dark ml-3"
+                                            <label class="ml-1 rounded"
                                                 >Número de cuenta*</label
                                             >
                                         </div>
@@ -706,7 +704,9 @@ onMounted(() => {
                                         </h4>
                                     </div>
                                     <div class="col-12">
-                                        <div class="form-floating mt-3">
+                                        <div
+                                            class="form-floating mt-3 bg-white rounded"
+                                        >
                                             <input
                                                 type="text"
                                                 name="usuario"
@@ -715,9 +715,7 @@ onMounted(() => {
                                                 v-model="form.usuario"
                                                 readonly
                                             />
-                                            <label
-                                                for="name"
-                                                class="d-flex align-items-center text-dark ml-3"
+                                            <label class="ml-1 rounded"
                                                 >Nombre de usuario*</label
                                             >
                                         </div>
@@ -753,28 +751,29 @@ onMounted(() => {
                                                 />
 
                                                 <label
-                                                    for="name"
-                                                    class="d-flex align-items-center text-dark ml-3"
+                                                    class="items-center text-dark ml-1 rounded"
                                                     style="z-index: 100"
                                                     >Contraseña</label
                                                 >
-                                                <button
-                                                    class="btn btn-default"
-                                                    type="button"
-                                                    @click="
-                                                        muestra_password =
-                                                            !muestra_password
-                                                    "
-                                                >
-                                                    <i
-                                                        class="fa"
-                                                        :class="[
-                                                            muestra_password
-                                                                ? 'fa-eye'
-                                                                : 'fa-eye-slash',
-                                                        ]"
-                                                    ></i>
-                                                </button>
+                                                <div class="input-group-append">
+                                                    <button
+                                                        class="btn btn-default"
+                                                        type="button"
+                                                        @click="
+                                                            muestra_password =
+                                                                !muestra_password
+                                                        "
+                                                    >
+                                                        <i
+                                                            class="fa"
+                                                            :class="[
+                                                                muestra_password
+                                                                    ? 'fa-eye'
+                                                                    : 'fa-eye-slash',
+                                                            ]"
+                                                        ></i>
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                         <p class="text-xs">
@@ -816,8 +815,7 @@ onMounted(() => {
                                                     autocomplete="false"
                                                 />
                                                 <label
-                                                    for="name"
-                                                    class="d-flex align-items-center text-dark ml-3"
+                                                    class="ml-1 rounded"
                                                     style="z-index: 100"
                                                     >Confirmar Contraseña</label
                                                 >
@@ -886,6 +884,7 @@ onMounted(() => {
                                         v-show="validado"
                                         type="submit"
                                         class="btn btn-primary w-100 mb-2"
+                                        :disabled="enviando"
                                     >
                                         Finalizar Registro
                                         <i class="fa fa-arrow-right"></i>
@@ -902,7 +901,11 @@ onMounted(() => {
                                         @click="validarForm1"
                                         v-show="!validado"
                                         type="button"
-                                        class="btn btn-outline-success w-100"
+                                        class="btn w-100"
+                                        :class="{
+                                            'btn-default': !muestraCheck,
+                                            'btn-success': muestraCheck,
+                                        }"
                                         v-html="txtBtnValidar"
                                     ></button>
                                 </div>

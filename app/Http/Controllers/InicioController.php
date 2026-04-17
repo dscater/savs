@@ -36,8 +36,7 @@ class InicioController extends Controller
     public function getParcialDatosPago()
     {
         $parametrizacion = Parametrizacion::first();
-
-        $html = vieW("parcials.datos_pago", compact("parametrizacion"))->render();
+        $html = view("parcials.datos_pago", compact("parametrizacion"))->render();
 
         return response()->JSON($html);
     }

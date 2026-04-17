@@ -24,7 +24,7 @@ form .v-input.v-input--error {
 /* Aplicar también a select */
 .form-floating select {
     width: 100%;
-    border: 1px solid #ccc;
+    border: 1px solid var(--bg5);
     border-radius: 4px;
     background: none;
     font-size: 0.9rem;
@@ -36,23 +36,22 @@ form .v-input.v-input--error {
     top: -0.5rem;
     left: 0rem;
     font-size: 0.74rem;
-    color: #333;
-    background-color: white;
+    color: var(--bg5) !important;
+    font-weight: bold !important;
+    background-color: var(--bgWhite);
     padding: 0 0.25rem;
 }
 
 .form-floating select,
 .form-floating input {
-    font-size: 0.9em;
+    font-size: 0.8em;
 }
 
 /* Input básico */
 .form-floating input {
     width: 100%;
     padding: 1rem 0.5rem 0.5rem 0.5rem; /* espacio superior para el label */
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background: none;
+    border: 1px solid var(--bg5);
 }
 
 /* Label posicionado sobre el input */
@@ -60,19 +59,22 @@ form .v-input.v-input--error {
     position: absolute;
     top: 0.5rem; /* posición inicial dentro del input */
     left: 0.1rem;
-    color: #999;
+    font-size: 0.8em !important;
+    color: var(--bg5) !important;
+    font-weight: 300 !important;
     pointer-events: none; /* para que el click pase al input */
     transition: all 0.2s ease-out;
 }
 
 /* Cuando el input está enfocado o tiene texto */
-#app .form-floating input:focus + label,
-#app .form-floating input:not(:placeholder-shown) + label {
+.form-floating input:focus + label,
+.form-floating input:not(:placeholder-shown) + label {
     top: -0.5rem; /* sube el label */
     left: 0rem;
-    font-size: 0.74rem; /* se hace más pequeño */
-    color: #333;
-    background-color: white;
+    font-size: 0.72rem; /* se hace más pequeño */
+    color: var(--bgDarkGrayP) !important;
+    font-weight: bold !important;
+    background-color: var(--bgWhite);
     padding: 0 0.25rem; /* para que no se superponga con el borde */
 }
 

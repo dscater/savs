@@ -173,11 +173,11 @@ const registrarPuja = () => {
                 confirmButtonColor: "#3085d6",
                 confirmButtonText: `Aceptar`,
             });
-            emits("envio-formulario", response.data.publicacion);
+            emits("envio-formulario", response.data.subasta);
         })
         .catch((error) => {
             enviando.value = false;
-            dialog.value = false;
+            // dialog.value = false;
             error_monto.value = false;
             console.log("ERROR");
             console.log(error);
@@ -275,11 +275,9 @@ onMounted(() => {});
             <div class="modal-content">
                 <div class="modal-header bg-primary text-white">
                     <h4 class="modal-title" v-html="tituloDialog"></h4>
-                    <button
-                        type="button"
-                        class="btn-close"
-                        @click="cerrarDialog()"
-                    ></button>
+                    <button type="button" class="close" @click="cerrarDialog()">
+                        <i class="fa fa-times"></i>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <div class="row">

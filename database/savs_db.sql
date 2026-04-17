@@ -2,12 +2,12 @@
 -- PostgreSQL database dump
 --
 
-\restrict lAcxusOqMkuL85Oo5qWhqndIuvyRZHcoUrjqtHGM2pjKvQskVa0jShxZzittXRF
+\restrict IDKO3IrwNUwQdrXEVdcI494uZ6Ns84YZrjvncYotpBv1Gnn5adIdcNfvs3hgwgf
 
 -- Dumped from database version 17.6
 -- Dumped by pg_dump version 17.6
 
--- Started on 2026-04-16 19:27:40
+-- Started on 2026-04-17 11:13:56
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -1324,6 +1324,15 @@ COPY public.notificacion_users (id, created_at, updated_at, notificacion_id, use
 1	2026-04-16 18:40:49	2026-04-16 18:40:49	5	1	0
 2	2026-04-16 18:40:49	2026-04-16 18:40:49	5	3	0
 3	2026-04-16 18:40:49	2026-04-16 18:40:49	5	2	0
+4	2026-04-17 09:14:26	2026-04-17 09:14:26	6	1	0
+5	2026-04-17 09:14:26	2026-04-17 09:14:26	6	3	0
+6	2026-04-17 09:14:26	2026-04-17 09:14:26	6	2	0
+7	2026-04-17 09:26:12	2026-04-17 09:26:12	7	1	0
+8	2026-04-17 09:26:12	2026-04-17 09:26:12	7	3	0
+9	2026-04-17 09:26:12	2026-04-17 09:26:12	7	2	0
+10	2026-04-17 11:07:03	2026-04-17 11:07:03	8	1	0
+11	2026-04-17 11:07:03	2026-04-17 11:07:03	8	3	0
+12	2026-04-17 11:07:03	2026-04-17 11:07:03	8	2	0
 \.
 
 
@@ -1335,6 +1344,9 @@ COPY public.notificacion_users (id, created_at, updated_at, notificacion_id, use
 
 COPY public.notificacions (id, modulo, registro_id, descripcion, fecha, hora, tipo, created_at, updated_at) FROM stdin;
 5	Participante	10	JUAN PERES MAMANI REGISTRO SU COMPROBANTE	2026-04-16	18:40:00	COMPROBANTE	2026-04-16 18:40:49	2026-04-16 18:40:49
+6	Participante	11	MARIA MAMANI MAMANI REGISTRO SU COMPROBANTE	2026-04-17	09:14:00	COMPROBANTE	2026-04-17 09:14:26	2026-04-17 09:14:26
+7	Participante	12	MARCELO GONZALES BERSAVE REGISTRO SU COMPROBANTE	2026-04-17	09:26:00	COMPROBANTE	2026-04-17 09:26:12	2026-04-17 09:26:12
+8	Participante	13	FRANZ MARTINEZ REGISTRO SU COMPROBANTE	2026-04-17	11:07:00	COMPROBANTE	2026-04-17 11:07:03	2026-04-17 11:07:03
 \.
 
 
@@ -1345,7 +1357,7 @@ COPY public.notificacions (id, modulo, registro_id, descripcion, fecha, hora, ti
 --
 
 COPY public.parametrizacions (id, servidor_correo, datos_banco, tiempo_pub, terminos_condiciones, verificar_comprobante, comp_rechazado, created_at, updated_at) FROM stdin;
-1	{"host":"smtp.gmail.com","puerto":"465","encriptado":"ssl","correo":"correosyseventos@gmail.com","nombre":"SAVS S.A.","password":"plgfbgxjaqsyciai","driver":"smtp"}	{"titular":"TITULAR","banco":"BANCO","nro_cuenta":"11111","qr":"1776377684.png"}	2	1. Aceptación de los Términos\r\nAl registrarse y/o pujar en la subasta, el participante ("Postor") acepta cumplir con estos Términos y Condiciones. Si no está de acuerdo, no debe participar. \r\n\r\n2. Registro y Elegibilidad\r\nRegistro: Todo participante debe crear una cuenta en [Nombre de la plataforma/empresa].\r\nCapacidad Legal: El participante debe ser mayor de edad (+18) y tener capacidad legal para contratar.\r\nVeracidad: El postor garantiza que toda la información facilitada es real y actual. \r\n\r\n3. La Subasta (Proceso de Puja)\r\nLotes: Los bienes se subastarán por lotes numerados, indicados en el catálogo.\r\nPuja Inicial: Se define un precio base para cada lote. Las ofertas deben superar este precio o la última oferta.\r\nOfertas Vinculantes: Toda puja realizada es definitiva y no puede ser retirada. El mejor postor al cierre se adjudica el lote.\r\nCierre de Subasta: Los lotes se adjudicarán automáticamente al mejor postor tras finalizar el tiempo de cuenta regresiva. \r\n\r\n4. Depósito de Garantía (Si aplica)\r\nPara participar, se puede requerir un depósito de garantía de [$XXX].\r\nEste monto será devuelto si el participante no gana ningún lote, o aplicado al pago si gana. \r\n\r\n5. Adjudicación y Pago\r\nNotificación: El ganador será notificado por correo electrónico o a través de la plataforma.\r\nPlazo de Pago: El pago total debe realizarse dentro de los [X] días hábiles siguientes a la adjudicación.\r\nIncumplimiento: El impago dentro del plazo conllevará la pérdida de la garantía y posibles sanciones (suspensión de usuario). \r\n\r\n6. Retiro de los Lotes\r\nLa entrega se realizará una vez confirmado el pago.\r\nEl comprador es responsable de la recogida del bien en [Dirección/Sede] en los horarios establecidos. \r\n\r\n7. Estado de los Bienes (As-Is)\r\nLos productos se venden en el estado físico y jurídico en que se encuentran ("as is").\r\nLas fotos y descripciones son ilustrativas. Se recomienda la inspección previa por parte del postor. \r\n\r\n8. Responsabilidades y Limitaciones\r\n[Nombre de la Empresa] no se hace responsable de fallos técnicos en la plataforma online que impidan la puja.\r\nNos reservamos el derecho de admisión y de retirar cualquier lote antes de la subasta. \r\n\r\n9. Legislación Aplicable\r\nCualquier controversia se someterá a los tribunales de [Tu Ciudad/País].	Estamos verificando tu comprobante y te enviaremos un correo de confirmación para que pueda realizar tus ofertas/pujas. Cualquiera información comunicarse al <strong>7777777777</strong>	TU COMPROBANTE FUE RECHAZADO, ENVÍANOS UN COMPROBANTE LEGIBLE. CUALQUIER CONSULTA O DUDA COMUNÍCATE AL SIGUIENTE CORREO ELECTRÓNICO INSTITUCIONAL: correo@gmail.com Y EN CASO DE NO RECIBIR UNA REPUESTA PRONTA COMUNÍCATE AL SIGUIENTE NÚMERO 777777777	2026-04-16 18:02:26	2026-04-16 18:14:44
+1	{"host":"smtp.gmail.com","puerto":"465","encriptado":"ssl","correo":"kingceroci.as@gmail.com","nombre":"SAVS S.A.","password":"rmkwqggnhptnxmuy","driver":"smtp"}	{"titular":"eduardo ramirez","banco":"banco union","nro_cuenta":"10000011","qr":"1776438403.png"}	2	1. Aceptación de los Términos\r\nAl registrarse y/o pujar en la subasta, el participante ("Postor") acepta cumplir con estos Términos y Condiciones. Si no está de acuerdo, no debe participar. \r\n\r\n2. Registro y Elegibilidad\r\nRegistro: Todo participante debe crear una cuenta en [Nombre de la plataforma/empresa].\r\nCapacidad Legal: El participante debe ser mayor de edad (+18) y tener capacidad legal para contratar.\r\nVeracidad: El postor garantiza que toda la información facilitada es real y actual. \r\n\r\n3. La Subasta (Proceso de Puja)\r\nLotes: Los bienes se subastarán por lotes numerados, indicados en el catálogo.\r\nPuja Inicial: Se define un precio base para cada lote. Las ofertas deben superar este precio o la última oferta.\r\nOfertas Vinculantes: Toda puja realizada es definitiva y no puede ser retirada. El mejor postor al cierre se adjudica el lote.\r\nCierre de Subasta: Los lotes se adjudicarán automáticamente al mejor postor tras finalizar el tiempo de cuenta regresiva. \r\n\r\n4. Depósito de Garantía (Si aplica)\r\nPara participar, se puede requerir un depósito de garantía de [$XXX].\r\nEste monto será devuelto si el participante no gana ningún lote, o aplicado al pago si gana. \r\n\r\n5. Adjudicación y Pago\r\nNotificación: El ganador será notificado por correo electrónico o a través de la plataforma.\r\nPlazo de Pago: El pago total debe realizarse dentro de los [X] días hábiles siguientes a la adjudicación.\r\nIncumplimiento: El impago dentro del plazo conllevará la pérdida de la garantía y posibles sanciones (suspensión de usuario). \r\n\r\n6. Retiro de los Lotes\r\nLa entrega se realizará una vez confirmado el pago.\r\nEl comprador es responsable de la recogida del bien en [Dirección/Sede] en los horarios establecidos. \r\n\r\n7. Estado de los Bienes (As-Is)\r\nLos productos se venden en el estado físico y jurídico en que se encuentran ("as is").\r\nLas fotos y descripciones son ilustrativas. Se recomienda la inspección previa por parte del postor. \r\n\r\n8. Responsabilidades y Limitaciones\r\n[Nombre de la Empresa] no se hace responsable de fallos técnicos en la plataforma online que impidan la puja.\r\nNos reservamos el derecho de admisión y de retirar cualquier lote antes de la subasta. \r\n\r\n9. Legislación Aplicable\r\nCualquier controversia se someterá a los tribunales de [Tu Ciudad/País].	Estamos verificando tu comprobante y te enviaremos un correo de confirmación para que pueda realizar tus ofertas/pujas. Cualquiera información comunicarse al <strong>7777777777</strong>	TU COMPROBANTE FUE RECHAZADO, ENVÍANOS UN COMPROBANTE LEGIBLE. CUALQUIER CONSULTA O DUDA COMUNÍCATE AL SIGUIENTE CORREO ELECTRÓNICO INSTITUCIONAL: correo@gmail.com Y EN CASO DE NO RECIBIR UNA REPUESTA PRONTA COMUNÍCATE AL SIGUIENTE NÚMERO 777777777	2026-04-16 18:02:26	2026-04-17 11:06:43
 \.
 
 
@@ -1356,6 +1368,19 @@ COPY public.parametrizacions (id, servidor_correo, datos_banco, tiempo_pub, term
 --
 
 COPY public.participante_pujas (id, participante_id, monto, fecha, hora, created_at, updated_at, user_id, subasta_id) FROM stdin;
+4	12	300.00	2026-04-17	10:35:33	2026-04-17 10:35:33	2026-04-17 10:35:33	7	5
+5	12	301.00	2026-04-17	10:40:41	2026-04-17 10:40:41	2026-04-17 10:40:41	7	5
+6	12	303.00	2026-04-17	10:41:54	2026-04-17 10:41:54	2026-04-17 10:41:54	7	5
+7	12	306.00	2026-04-17	10:42:54	2026-04-17 10:42:54	2026-04-17 10:42:54	7	5
+8	12	308.00	2026-04-17	10:43:55	2026-04-17 10:43:55	2026-04-17 10:43:55	7	5
+9	12	340.00	2026-04-17	10:46:21	2026-04-17 10:46:21	2026-04-17 10:46:21	7	5
+10	12	380.00	2026-04-17	10:46:57	2026-04-17 10:46:57	2026-04-17 10:46:57	7	5
+11	12	381.00	2026-04-17	10:48:42	2026-04-17 10:48:42	2026-04-17 10:48:42	7	5
+12	12	382.00	2026-04-17	10:52:02	2026-04-17 10:52:02	2026-04-17 10:52:02	7	5
+13	13	383.00	2026-04-17	11:07:46	2026-04-17 11:07:46	2026-04-17 11:07:46	8	5
+14	11	384.00	2026-04-17	11:10:57	2026-04-17 11:10:57	2026-04-17 11:10:57	6	5
+15	11	385.00	2026-04-17	11:11:29	2026-04-17 11:11:29	2026-04-17 11:11:29	6	5
+16	11	386.00	2026-04-17	11:11:39	2026-04-17 11:11:39	2026-04-17 11:11:39	6	5
 \.
 
 
@@ -1366,7 +1391,10 @@ COPY public.participante_pujas (id, participante_id, monto, fecha, hora, created
 --
 
 COPY public.participantes (id, subasta_id, user_id, fecha, hora, monto_puja, created_at, updated_at, estado, garantia, comprobante, estado_comprobante, fecha_comprobante, hora_comprobante, devolucion, descripcion_devolucion, fecha_devolucion, hora_devolucion) FROM stdin;
+13	5	8	2026-04-17	11:07:03	383.00	2026-04-17 11:07:03	2026-04-17 11:07:46	0	1	81776438423.pdf	1	2026-04-17	11:07:03	0	\N	\N	\N
 10	5	5	2026-04-16	18:40:49	0.00	2026-04-16 18:40:49	2026-04-16 18:40:49	0	1	51776379249.pdf	0	2026-04-16	18:40:49	0	\N	\N	\N
+12	5	7	2026-04-17	09:26:12	382.00	2026-04-17 09:26:12	2026-04-17 10:52:02	0	1	71776432372.pdf	1	2026-04-17	09:26:12	0	\N	\N	\N
+11	5	6	2026-04-17	09:14:26	386.00	2026-04-17 09:14:26	2026-04-17 11:11:39	1	1	61776431666.png	1	2026-04-17	09:14:26	0	\N	\N	\N
 \.
 
 
@@ -1429,10 +1457,10 @@ COPY public.salida_productos (id, producto_id, cantidad, descripcion, fecha_regi
 --
 
 COPY public.subastas (id, producto_id, estado_producto, monto_inicial, fecha_fin, hora_fin, publico, estado_subasta, fecha_registro, created_at, updated_at, garantia) FROM stdin;
-5	3	SEMINUEVO	300.00	2026-04-17	11:00:00	1	1	2026-04-16	2026-04-16 10:33:50	2026-04-16 10:33:50	150.00
 4	1	NUEVO	200.00	2026-04-15	12:00:00	1	0	2026-04-10	2026-04-10 21:07:25	2026-04-16 11:14:08	100.00
 2	1	USADO	1000.00	2026-04-16	12:00:00	1	0	2026-04-10	2026-04-10 10:15:12	2026-04-16 12:00:44	0.00
 3	2	NUEVO	2300.00	2026-04-16	12:00:00	0	0	2026-04-10	2026-04-10 10:15:32	2026-04-16 12:00:44	0.00
+5	3	SEMINUEVO	300.00	2026-04-17	15:00:00	1	1	2026-04-16	2026-04-16 10:33:50	2026-04-16 10:33:50	150.00
 \.
 
 
@@ -1444,6 +1472,9 @@ COPY public.subastas (id, producto_id, estado_producto, monto_inicial, fecha_fin
 
 COPY public.user_datos (id, user_id, foto_ci_anverso, foto_ci_reverso, banco, nro_cuenta, created_at, updated_at, ci, ci_exp, complemento, dpto_residencia, email) FROM stdin;
 2	5	151776373428.jpeg	251776373428.jpeg	BANCO NACIONAL DE BOLIVIA S.A.	100000234234	2026-04-16 17:03:48	2026-04-16 17:03:48	1234567	LP		LA PAZ	juan@gmail.com
+3	6	161776431394.jpeg	261776431394.png	BANCO NACIONAL DE BOLIVIA S.A.	100005555555555	2026-04-17 09:09:54	2026-04-17 09:09:54	2342344	LP		LA PAZ	maria@gmail.com
+4	7	171776432351.jpeg	271776432351.png	BANCO BISA S.A.	112323232323	2026-04-17 09:25:51	2026-04-17 09:25:51	5454655	LP		LA PAZ	victorgonzalo.as@gmail.com
+5	8	181776437667.jpg	281776437667.jpeg	BANCO MERCANTIL SANTA CRUZ S.A.	10000000001	2026-04-17 10:54:27	2026-04-17 10:54:27	5675675	LP		LA PAZ	franz@gmail.com
 \.
 
 
@@ -1458,6 +1489,9 @@ COPY public.users (id, usuario, nombre, paterno, materno, correo, fono, password
 3	GCARVAJAL	GERMAN	CARVAJAL		\N	67676767	$2y$12$nMvJvy/iJOvTGZaodz3cS.LyUT43ix18US/s.k5BRGWzrnPHIRvHG	1	AUXILIAR	\N	2026-04-08	1	2026-04-08 09:54:55	2026-04-09 16:42:06	5454544	LP
 2	JPERES	JUAN	PERES	MAMANI	juan@gmail.com	67676767	$2y$12$cAUyhnIvv2KBIRDmmIGqmeIZhQGXZlLSJAX6LcPxJbn2YWRh6yaqi	1	ADMINISTRADOR	21775656455.jpg	2026-04-08	1	2026-04-08 09:54:15	2026-04-09 16:42:42	123456	LP
 5	juan@gmail.com	JUAN	PERES	MAMANI	juan@gmail.com	78787878	$2y$12$lkCiCb6ApPSAcHj9cj/4M.Nom9a6tDFIehfgYWscfEnBkkVkYCy72	1	PARTICIPANTE	\N	2026-04-16	1	2026-04-16 17:03:48	2026-04-16 17:03:48	1234567	LP
+6	maria@gmail.com	MARIA	MAMANI	MAMANI	maria@gmail.com	78787878	$2y$12$go2e/Mn5yMZaUCG.3nHGDe8PbK/.rFvNZFmEiXbOWDO1ThP/yxJdK	1	PARTICIPANTE	\N	2026-04-17	1	2026-04-17 09:09:54	2026-04-17 09:09:54	2342344	LP
+7	marcelo@gmail.com	MARCELO	GONZALES	BERSAVE	marcelo@gmail.com	67676767	$2y$12$eAdThaJ1tvsKLKTY9EIvO.o2zaVDYu28b1FJoT1kF/1ff31Yd431K	1	PARTICIPANTE	\N	2026-04-17	1	2026-04-17 09:25:51	2026-04-17 09:25:51	5454655	LP
+8	franz@gmail.com	FRANZ	MARTINEZ		franz@gmail.com	78787878	$2y$12$BQWM6Dbic8ZkuFuhghgAve0aU2KoceUX2xfNnPJ8eZXN5QKU5NioS	1	PARTICIPANTE	\N	2026-04-17	1	2026-04-17 10:54:27	2026-04-17 10:54:27	5675675	LP
 \.
 
 
@@ -1561,7 +1595,7 @@ SELECT pg_catalog.setval('public.migrations_id_seq', 20, true);
 -- Name: notificacion_users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.notificacion_users_id_seq', 3, true);
+SELECT pg_catalog.setval('public.notificacion_users_id_seq', 12, true);
 
 
 --
@@ -1570,7 +1604,7 @@ SELECT pg_catalog.setval('public.notificacion_users_id_seq', 3, true);
 -- Name: notificacions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.notificacions_id_seq', 5, true);
+SELECT pg_catalog.setval('public.notificacions_id_seq', 8, true);
 
 
 --
@@ -1588,7 +1622,7 @@ SELECT pg_catalog.setval('public.parametrizacions_id_seq', 1, true);
 -- Name: participante_pujas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.participante_pujas_id_seq', 1, false);
+SELECT pg_catalog.setval('public.participante_pujas_id_seq', 16, true);
 
 
 --
@@ -1597,7 +1631,7 @@ SELECT pg_catalog.setval('public.participante_pujas_id_seq', 1, false);
 -- Name: participantes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.participantes_id_seq', 10, true);
+SELECT pg_catalog.setval('public.participantes_id_seq', 13, true);
 
 
 --
@@ -1651,7 +1685,7 @@ SELECT pg_catalog.setval('public.subastas_id_seq', 5, true);
 -- Name: user_datos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.user_datos_id_seq', 2, true);
+SELECT pg_catalog.setval('public.user_datos_id_seq', 5, true);
 
 
 --
@@ -1660,7 +1694,7 @@ SELECT pg_catalog.setval('public.user_datos_id_seq', 2, true);
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 5, true);
+SELECT pg_catalog.setval('public.users_id_seq', 8, true);
 
 
 --
@@ -2068,11 +2102,11 @@ ALTER TABLE ONLY public.ventas
     ADD CONSTRAINT ventas_user_id_foreign FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
 
 
--- Completed on 2026-04-16 19:27:40
+-- Completed on 2026-04-17 11:13:57
 
 --
 -- PostgreSQL database dump complete
 --
 
-\unrestrict lAcxusOqMkuL85Oo5qWhqndIuvyRZHcoUrjqtHGM2pjKvQskVa0jShxZzittXRF
+\unrestrict IDKO3IrwNUwQdrXEVdcI494uZ6Ns84YZrjvncYotpBv1Gnn5adIdcNfvs3hgwgf
 

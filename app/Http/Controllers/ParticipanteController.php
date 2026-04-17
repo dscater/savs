@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\MensajeComprobanteMail;
+use App\Models\Parametrizacion;
 use App\Models\Participante;
 use App\Models\Subasta;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 
 class ParticipanteController extends Controller
@@ -41,7 +46,7 @@ class ParticipanteController extends Controller
             $notificacion_user->save();
         }
 
-        $participante = $participante->load(["subasta.producto.producto_imagens", "participante_pujas"]);
+        $participante = $participante->load(["subasta.producto.producto_imagens", "participante_pujas", "user.user_dato"]);
         return Inertia::render("Admin/Subastas/Participante", compact("participante"));
     }
 
@@ -54,7 +59,7 @@ class ParticipanteController extends Controller
     {
         $participante->estado_comprobante = $request->estado_comprobante;
         if ($request->estado_comprobante == 0) {
-            $participante->estado_puja = 0;
+            $participante->estado = 0;
         }
 
         $participante->save();
@@ -62,24 +67,25 @@ class ParticipanteController extends Controller
         $parametrizacion = Parametrizacion::first();
         if ($parametrizacion) {
             // enviar correo
-            $servidor_correo = json_decode($parametrizacion->servidor_correo);
+            $servidor_correo = $parametrizacion->servidor_correo;
             Config::set(
                 [
-                    'mail.mailers.default' => $servidor_correo->driver,
-                    'mail.mailers.smtp.host' => $servidor_correo->host,
-                    'mail.mailers.smtp.port' => $servidor_correo->puerto,
-                    'mail.mailers.smtp.encryption' => $servidor_correo->encriptado,
-                    'mail.mailers.smtp.username' => $servidor_correo->correo,
-                    'mail.mailers.smtp.password' => $servidor_correo->password,
-                    'mail.from.address' => $servidor_correo->correo,
-                    'mail.from.name' => $servidor_correo->nombre,
+                    'mail.default' => $servidor_correo["driver"],
+                    'mail.mailers.smtp.host' => $servidor_correo["host"],
+                    'mail.mailers.smtp.port' => $servidor_correo["puerto"],
+                    'mail.mailers.smtp.encryption' => $servidor_correo["encriptado"],
+                    'mail.mailers.smtp.username' => $servidor_correo["correo"],
+                    'mail.mailers.smtp.password' => $servidor_correo["password"],
+                    'mail.from.address' => $servidor_correo["correo"],
+                    'mail.from.name' => $servidor_correo["nombre"],
                 ]
             );
 
-            $subasta = $participante->subasta->publicacion;
-            $url =  route('publicacions.publicacionPortal', $subasta->id);
+            $subasta = $participante->subasta;
+            $url =  route('portal.subasta', $subasta->id);
 
             $mensaje = 'Tu comprobante ha sido verificado. Ahora puedes realizar tus ofertas/pujas en esta  <a href="' . $url . '">PUBLICACIÓN</a>';
+
             if ($participante->estado_comprobante == 2) {
                 $mensaje = 'Tu comprobante ha sido rechazado. Por favor verifica que no vea un problema con tu banco o que el monto de garantía sea correcto en la siguiente  <a href="' . $url . '">PUBLICACIÓN</a>';
                 if ($parametrizacion->comp_rechazado) {
@@ -92,11 +98,13 @@ class ParticipanteController extends Controller
                 "mensaje" =>  $mensaje,
             ];
 
-            Mail::to($participante->cliente->email)
+            // Log::debug($participante->user->user_dato->email);
+
+            Mail::to($participante->user->user_dato->email)
                 ->send(new MensajeComprobanteMail($datos));
         }
 
-        return response()->JSON($participante->load(["cliente", "subasta.publicacion", "historial_ofertas"]));
+        return response()->JSON($participante->load(["subasta.producto.producto_imagens", "participante_pujas"]));
     }
 
     public function registrarDevolucion(Participante $participante, Request $request)
@@ -131,17 +139,17 @@ class ParticipanteController extends Controller
         $parametrizacion = Parametrizacion::first();
         if ($parametrizacion) {
             // enviar correo
-            $servidor_correo = json_decode($parametrizacion->servidor_correo);
+            $servidor_correo = $parametrizacion->servidor_correo;
             Config::set(
                 [
-                    'mail.mailers.default' => $servidor_correo->driver,
-                    'mail.mailers.smtp.host' => $servidor_correo->host,
-                    'mail.mailers.smtp.port' => $servidor_correo->puerto,
-                    'mail.mailers.smtp.encryption' => $servidor_correo->encriptado,
-                    'mail.mailers.smtp.username' => $servidor_correo->correo,
-                    'mail.mailers.smtp.password' => $servidor_correo->password,
-                    'mail.from.address' => $servidor_correo->correo,
-                    'mail.from.name' => $servidor_correo->nombre,
+                    'mail.default' => $servidor_correo["driver"],
+                    'mail.mailers.smtp.host' => $servidor_correo["host"],
+                    'mail.mailers.smtp.port' => $servidor_correo["puerto"],
+                    'mail.mailers.smtp.encryption' => $servidor_correo["encriptado"],
+                    'mail.mailers.smtp.username' => $servidor_correo["correo"],
+                    'mail.mailers.smtp.password' => $servidor_correo["password"],
+                    'mail.from.address' => $servidor_correo["correo"],
+                    'mail.from.name' => $servidor_correo["nombre"],
                 ]
             );
 
@@ -165,7 +173,7 @@ class ParticipanteController extends Controller
                 ->send(new MensajeComprobanteMail($datos));
         }
 
-        return response()->JSON($participante->load(["cliente", "subasta.publicacion", "historial_ofertas"]));
+        return response()->JSON($participante->load(["cliente", "subasta.publicacion", "participante_pujas"]));
     }
 
 
@@ -174,16 +182,16 @@ class ParticipanteController extends Controller
         $subasta_id = $request->publicacion_id;
         $user = Auth::user();
         $cliente = $user->cliente;
-        $historial_ofertas = [];
+        $participante_pujas = [];
         if ($cliente) {
             $subasta = Publicacion::find($subasta_id);
             if ($subasta && $subasta) {
                 $subasta = $subasta;
-                $historial_ofertas = HistorialOferta::where("subasta_id", $subasta->id)
+                $participante_pujas = HistorialOferta::where("subasta_id", $subasta->id)
                     ->where("cliente_id", $cliente->id)->orderBy("created_at", "desc")->get();
             }
         }
 
-        return response()->JSON($historial_ofertas);
+        return response()->JSON($participante_pujas);
     }
 }

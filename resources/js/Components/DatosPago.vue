@@ -72,11 +72,9 @@ onMounted(() => {});
             <div class="modal-content">
                 <div class="modal-header bg-primary text-white">
                     <h4 class="modal-title" v-html="tituloDialog"></h4>
-                    <button
-                        type="button"
-                        class="btn-close"
-                        @click="cerrarDialog()"
-                    ></button>
+                    <button type="button" class="close" @click="cerrarDialog()">
+                        <i class="fa fa-times"></i>
+                    </button>
                 </div>
                 <div class="modal-body" v-html="htmlDatosPago"></div>
                 <div class="modal-footer">

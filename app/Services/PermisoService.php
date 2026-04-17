@@ -101,12 +101,16 @@ class PermisoService
             "subastas.participantes",
             "subastas.getParticipantesApi",
 
+            "subastas.rechazar_comprobante",
+            "subastas.aprobar_comprobante",
+
             "participantes.historialOfertas",
             "participantes.verificaSubastaCliente",
             "participantes.show",
             "participantes.getInfo",
             "participantes.update",
             "participantes.registrarDevolucion",
+
 
             "configuracions.index",
             "configuracions.create",
@@ -115,6 +119,7 @@ class PermisoService
             "configuracions.destroy",
 
             "parametrizacions.index",
+            "inicio.getParcialDatosPago",
             "parametrizacion.edit",
             "parametrizacions.getParametrizacion",
             "parametrizacions.update",
@@ -138,7 +143,7 @@ class PermisoService
             "subastas.registrarComprobante",
 
             "participantes.historialOfertas",
-            "participantes.verificaSubastaCliente",
+            "participantes.verificaParticipante",
             "participantes.show",
             "participantes.getInfo",
             "participantes.update",

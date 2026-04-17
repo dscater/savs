@@ -3,6 +3,9 @@
 .bg-secundario {
     background-color: var(--bg7);
 }
+.bg2 {
+    background-color: var(--bg2);
+}
 
 .bg-dark-gray {
     background-color: var(--bgDarkGray);

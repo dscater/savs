@@ -18,9 +18,14 @@ class ParticipantePuja extends Model
         "hora",
     ];
 
-    protected $appends = ["fecha_t"];
+    protected $appends = ["fecha_t", "fecha_hora"];
 
-    public function getFechaAttribute()
+    public function getFechaHoraAttribute()
+    {
+        return date("d/m/Y H:i:s", strtotime($this->fecha . ' ' . $this->hora));
+    }
+
+    public function getFechaTAttribute()
     {
         return date("d/m/Y", strtotime($this->fecha));
     }

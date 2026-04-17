@@ -51,7 +51,7 @@ class SubastaController extends Controller
     public function portal(Request $request)
     {
         $this->subastaService->actualizaPublicacionesEstado();
-        $subastas = Subasta::with(["producto.producto_imagens", "participantes.participante_pujas"])
+        $subastas = Subasta::with(["producto.producto_imagens", "participantes_puja", "participante_pujas"])
             ->select("subastas.*")
             ->whereIn("estado_subasta", [0, 1, 2])
             ->orderBy("created_at", "desc")
@@ -201,17 +201,17 @@ class SubastaController extends Controller
                 // enviar correo
                 $parametrizacion = Parametrizacion::first();
                 if ($parametrizacion) {
-                    $servidor_correo = json_decode($parametrizacion->servidor_correo);
+                    $servidor_correo = $parametrizacion->servidor_correo;
                     Config::set(
                         [
-                            'mail.mailers.default' => $servidor_correo->driver,
-                            'mail.mailers.smtp.host' => $servidor_correo->host,
-                            'mail.mailers.smtp.port' => $servidor_correo->puerto,
-                            'mail.mailers.smtp.encryption' => $servidor_correo->encriptado,
-                            'mail.mailers.smtp.username' => $servidor_correo->correo,
-                            'mail.mailers.smtp.password' => $servidor_correo->password,
-                            'mail.from.address' => $servidor_correo->correo,
-                            'mail.from.name' => $servidor_correo->nombre,
+                            'mail.default' => $servidor_correo["driver"],
+                            'mail.mailers.smtp.host' => $servidor_correo["host"],
+                            'mail.mailers.smtp.port' => $servidor_correo["puerto"],
+                            'mail.mailers.smtp.encryption' => $servidor_correo["encriptado"],
+                            'mail.mailers.smtp.username' => $servidor_correo["correo"],
+                            'mail.mailers.smtp.password' => $servidor_correo["password"],
+                            'mail.from.address' => $servidor_correo["correo"],
+                            'mail.from.name' => $servidor_correo["nombre"],
                         ]
                     );
 
@@ -233,7 +233,7 @@ class SubastaController extends Controller
 
             return response()->JSON([
                 "participante" => $participante->load(["participante_pujas"]),
-                "subasta" => $subasta->load(["producto.producto_imagens", "participante_pujas"])
+                "subasta" => $subasta->load(["producto.producto_imagens", "participantes_puja"])
             ]);
         } else {
             // sin ganador
@@ -243,7 +243,7 @@ class SubastaController extends Controller
 
         return response()->JSON([
             "participante" => null,
-            "subasta" => $subasta->load(["producto.producto_imagens", "participante_pujas"])
+            "subasta" => $subasta->load(["producto.producto_imagens", "participantes_puja"])
         ]);
     }
 
@@ -261,17 +261,16 @@ class SubastaController extends Controller
         $monto_puja = $request->monto_puja;
         $participante = Participante::find($participante_id);
         $subasta = $participante->subasta;
-        $subasta = $subasta->publicacion;
 
         // validar limite fecha subasta
-        $fecha_hora_limite = date("Y-m-d H:i", strtotime($subasta->fecha_limite . ' ' . $subasta->hora_limite));
+        $fecha_hora_fin = date("Y-m-d H:i", strtotime($subasta->fecha_fin . ' ' . $subasta->hora_fin));
         $fecha_hora_actual = date("Y-m-d H:i");
 
         DB::beginTransaction();
         try {
-            if (Publicacion::verificaFechaLimitePublicacion($subasta)) {
+            if ($this->subastaService->verificaFechaLimitePublicacion($subasta)) {
                 // actualizar ganador
-                DB::update("UPDATE participantes SET estado_puja = 0 WHERE subasta_id = $subasta->id");
+                DB::update("UPDATE participantes SET estado = 0 WHERE subasta_id = $subasta->id");
                 // $subasta->participantes()->update(["estado_puja" => 0]);
 
                 // verificar monto
@@ -294,30 +293,33 @@ class SubastaController extends Controller
                 }
 
                 $participante->update([
-                    "puja" => $monto_puja,
-                    "fecha_oferta" => date("Y-m-d"),
-                    "hora_oferta" => date("H:i"),
+                    "monto_puja" => $monto_puja,
+                    // "fecha_oferta" => date("Y-m-d"),
+                    // "hora_oferta" => date("H:i"),
                 ]);
 
-                $maxima_puja = Participante::where("subasta_id", $subasta->id)->orderBy("puja", "desc")->get()->first();
-                $maxima_puja->estado_puja = 1;
+
+                $maxima_puja = Participante::where("subasta_id", $subasta->id)->orderBy("monto_puja", "desc")->get()->first();
+                $maxima_puja->estado = 1;
                 $maxima_puja->save();
 
                 // AGREAR AL HISTORIAL
-                $participante->historial_ofertas()->create([
+                $participante->participante_pujas()->create([
                     "subasta_id" => $participante->subasta_id,
-                    "cliente_id" => $participante->cliente_id,
-                    "puja" => $participante->puja,
-                    "fecha_oferta" => $participante->fecha_oferta,
-                    "hora_oferta" => $participante->hora_oferta,
+                    "user_id" => $participante->user_id,
+                    "monto" => $monto_puja,
+                    "fecha" => date("Y-m-d"),
+                    "hora" => date("H:i:s"),
                 ]);
                 DB::commit();
                 return response()->JSON([
-                    "publicacion" => $subasta->load(["subasta.participantes_puja"]),
-                    "participante" => $participante->load("historial_ofertas")
+                    "subasta" => $subasta->load(["producto.producto_imagens", "participantes_puja"]),
+                    "participante" => $participante->load(["participante_pujas"])
                 ]);
             }
         } catch (\Exception $e) {
+            Log::debug("ERROR:\n");
+            Log::debug($e->getMessage());
             DB::rollBack();
             return response()->JSON([
                 "message" => $e->getMessage()
@@ -422,9 +424,8 @@ class SubastaController extends Controller
         $monto_puja_actual = "-";
         $subasta_id = $request->publicacion_id;
         $subasta = null;
-        $subasta = Publicacion::find($subasta_id);
-        if ($subasta && $subasta) {
-            $subasta = $subasta;
+        $subasta = Subasta::find($subasta_id);
+        if ($subasta) {
             $monto_puja_actual = SubastaController::getMontoPujaActual($subasta);
         }
         return response()->JSON([
@@ -437,19 +438,17 @@ class SubastaController extends Controller
     {
         $monto_puja_actual = -1;
         if ($subasta) {
-            $subasta = $subasta;
-            $monto_puja_actual = $subasta->oferta_inicial;
+            $monto_puja_actual = $subasta->monto_inicial;
             // verificar pujas
             $max_participantes = Participante::where("subasta_id", $subasta->id)
-                ->where("puja", ">", 0)
+                ->where("monto_puja", ">", 0)
                 ->where("estado_comprobante", 1)
-                ->orderBy("puja", "desc")
+                ->orderBy("monto_puja", "desc")
                 ->get()->first();
             if ($max_participantes) {
-                $monto_puja_actual = $max_participantes->puja;
+                $monto_puja_actual = $max_participantes->monto_puja;
             }
         }
-
         return $monto_puja_actual;
     }
 
@@ -457,12 +456,12 @@ class SubastaController extends Controller
     {
         $participantes = Participante::where("subasta_id", $subasta->id)
             ->where("estado_comprobante", 1)
-            ->where("puja", ">", 0)
-            ->orderBy("puja", "desc")
+            ->where("monto_puja", ">", 0)
+            ->orderBy("monto_puja", "desc")
             ->get()->take(10);
 
-        $historial_ofertas = HistorialOferta::where("subasta_id", $subasta->id)
-            ->orderBy("puja", "desc")
+        $participante_pujas = HistorialOferta::where("subasta_id", $subasta->id)
+            ->orderBy("monto_puja", "desc")
             ->get()->take(10);
 
         $estado_puja = null;
@@ -478,7 +477,7 @@ class SubastaController extends Controller
         }
 
         return response()->JSON([
-            "historial_ofertas" => $historial_ofertas,
+            "participante_pujas" => $participante_pujas,
             "participantes" => $participantes,
             "estado_puja" => $estado_puja
         ]);

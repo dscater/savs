@@ -128,7 +128,7 @@ onBeforeUnmount(() => {
         :hideBg="false"
         @cerrar-dialog="modal_dialog = false"
     ></DetalleSubasta>
-    <div class="product mb-3">
+    <div class="product">
         <div class="row">
             <!-- BEGIN product-detail -->
             <div
@@ -182,20 +182,16 @@ onBeforeUnmount(() => {
                 </div>
                 <!-- END product-image -->
                 <!-- BEGIN product-info -->
-                <div class="product-info p-3">
+                <div class="product-info">
                     <div class="row">
                         <div class="col-12">
-                            <table class="table table-bordered">
+                            <table class="table table-bordered mb-0" border="1">
                                 <tbody>
-                                    <tr class="bg-primary">
-                                        <td
-                                            class="text-white font-weight-bold h5"
-                                        >
+                                    <tr class="">
+                                        <td class="font-weight-bold">
                                             Oferta inicial
                                         </td>
-                                        <td
-                                            class="text-white font-weight-bold h5"
-                                        >
+                                        <td class="">
                                             Bs.
                                             {{
                                                 getFormatoMoneda(
@@ -208,8 +204,8 @@ onBeforeUnmount(() => {
                                         v-if="oGanadorParticipante"
                                         class="bg-success"
                                     >
-                                        <td class="text-white">GANADOR</td>
-                                        <td class="text-white">
+                                        <td class="">GANADOR</td>
+                                        <td class="">
                                             {{
                                                 oGanadorParticipante.cliente
                                                     .full_name

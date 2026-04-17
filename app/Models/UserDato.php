@@ -18,7 +18,33 @@ class UserDato extends Model
         "banco",
         "nro_cuenta",
     ];
-    protected $appends = ["full_ci", "url_ci_anverso", "url_ci_reverso"];
+    protected $appends = ["full_ci", "url_ci_anverso", "url_ci_reverso", "tipo_anverso", "tipo_reverso"];
+
+    public function getTipoReversoAttribute()
+    {
+        $array_reverso = explode(".", $this->foto_ci_reverso);
+        $extension = $array_reverso[1];
+        $array_imgs = ["jpg", "jpeg", "webp", "png"];
+
+        if (in_array($extension, $array_imgs)) {
+            return "imagen";
+        }
+        return "file";
+    }
+
+
+    public function getTipoAnversoAttribute()
+    {
+        $array_anverso = explode(".", $this->foto_ci_anverso);
+        $extension = $array_anverso[1];
+        $array_imgs = ["jpg", "jpeg", "webp", "png"];
+
+        if (in_array($extension, $array_imgs)) {
+            return "imagen";
+        }
+        return "file";
+    }
+
 
     public function getUrlCiAnversoAttribute()
     {

@@ -125,11 +125,9 @@ onMounted(() => {});
             <div class="modal-content">
                 <div class="modal-header bg-success text-white">
                     <h4 class="modal-title" v-html="tituloDialog"></h4>
-                    <button
-                        type="button"
-                        class="btn-close"
-                        @click="cerrarDialog()"
-                    ></button>
+                    <button type="button" class="close" @click="cerrarDialog()">
+                        <i class="fa fa-times"></i>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <div class="row" v-if="oParticipante">
@@ -163,7 +161,7 @@ onMounted(() => {});
                 <div class="modal-footer justify-content-end">
                     <a
                         href="javascript:;"
-                        class="btn btn-white"
+                        class="btn btn-default"
                         @click="cerrarDialog()"
                         ><i class="fa fa-times"></i> Cerrar</a
                     >
@@ -171,7 +169,7 @@ onMounted(() => {});
                         v-if="
                             auth?.user.permisos == '*' ||
                             auth?.user.permisos.includes(
-                                'publicacions.rechazar_comprobante',
+                                'subastas.rechazar_comprobante',
                             )
                         "
                         type="button"
@@ -186,7 +184,7 @@ onMounted(() => {});
                         v-if="
                             auth?.user.permisos == '*' ||
                             auth?.user.permisos.includes(
-                                'publicacions.aprobar_comprobante',
+                                'subastas.aprobar_comprobante',
                             )
                         "
                         type="button"

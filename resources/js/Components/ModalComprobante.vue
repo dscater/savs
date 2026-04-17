@@ -211,11 +211,9 @@ onMounted(() => {});
             <div class="modal-content">
                 <div class="modal-header bg-primary text-white">
                     <h4 class="modal-title" v-html="tituloDialog"></h4>
-                    <button
-                        type="button"
-                        class="btn-close"
-                        @click="cerrarDialog()"
-                    ></button>
+                    <button type="button" class="close" @click="cerrarDialog()">
+                        <i class="fa fa-times"></i>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -225,8 +223,8 @@ onMounted(() => {});
                                 v-if="oParticipante"
                                 v-html="m_comp_rechazado"
                             ></div>
-                            <div class="alert alert-info mb-2" v-else>
-                                <p>
+                            <div class="alert alert-danger mb-2" v-else>
+                                <p class="mb-0">
                                     <i class="fa fa-info-circle"></i> Debes
                                     realizar el pago del monto de garantía
                                 </p>

@@ -27,7 +27,7 @@ class PortalController extends Controller
 
     public function subasta(Subasta $subasta)
     {
-        $subasta = $subasta->load(["producto.producto_imagens", "participante_pujas"]);
+        $subasta = $subasta->load(["producto.producto_imagens", "participantes_puja"]);
         return Inertia::render("Portal/Subasta", compact("subasta"));
     }
 
@@ -35,10 +35,10 @@ class PortalController extends Controller
     {
         // $terminos_condiciones = view("parcials.terminos")->render();
         $terminos_condiciones = "";
-        // $parametrizacion = Parametrizacion::first();
-        // if ($parametrizacion) {
-        // $terminos_condiciones = $parametrizacion->terminos_condiciones;
-        // }
+        $parametrizacion = Parametrizacion::first();
+        if ($parametrizacion) {
+            $terminos_condiciones = $parametrizacion->terminos_condiciones;
+        }
 
         return response()->JSON($terminos_condiciones);
     }

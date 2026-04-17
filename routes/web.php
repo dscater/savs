@@ -171,7 +171,7 @@ Route::middleware(['auth', 'permisoUsuario'])->prefix("admin")->group(function (
 
     // PORTAL-PARTICIPANTES
     Route::get("subastas/participantes/historialOfertas", [ParticipanteController::class, 'historialOfertas'])->name("participantes.historialOfertas");
-    Route::get("subastas/participantes/verificaSubastaCliente", [ParticipanteController::class, 'verificaSubastaCliente'])->name("participantes.verificaSubastaCliente");
+    Route::get("subastas/participantes/verificaParticipante", [ParticipanteController::class, 'verificaParticipante'])->name("participantes.verificaParticipante");
     Route::get("subastas/participantes/show/{participante}", [ParticipanteController::class, 'show'])->name("participantes.show");
     Route::get("subastas/participantes/getInfo/{participante}", [ParticipanteController::class, 'getInfo'])->name("participantes.getInfo");
     Route::put("subastas/participantes/update/{participante}", [ParticipanteController::class, 'update'])->name("participantes.update");

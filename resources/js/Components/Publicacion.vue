@@ -37,7 +37,7 @@ const oParticipante = ref(null);
 const modal_dialog = ref(false);
 const modal_dialog_comprobante = ref(false);
 const modal_dialog_puja = ref(false);
-const modal_dialog_historial_ofertas = ref(false);
+const modal_dialog_participante_pujas = ref(false);
 const data_puja = ref(null);
 const swRealizarOferta = ref(true);
 
@@ -196,7 +196,6 @@ const verificaSwOferta = () => {
 };
 
 const btnTxtRealizarOferta = computed(() => {
-    console.log(oParticipante.value);
     if (
         oParticipante.value &&
         (oParticipante.value.estado_comprobante == 0 ||
@@ -210,9 +209,9 @@ const verificaClienteTop = (id) => {
     if (
         id &&
         oPublicacion.value.subasta &&
-        oPublicacion.value.subasta.historial_ofertas
+        oPublicacion.value.subasta.participante_pujas
     ) {
-        let res = oPublicacion.value.subasta.historial_ofertas.filter(
+        let res = oPublicacion.value.subasta.participante_pujas.filter(
             (elem) => elem.participante_id == id,
         );
         return res.length > 0;
@@ -229,15 +228,15 @@ const obtenerOfertasSubasta = () => {
                     oParticipante.value.estado_puja = response.data.estado_puja;
                 }
 
-                oPublicacion.value.subasta.historial_ofertas =
-                    response.data.historial_ofertas;
+                oPublicacion.value.subasta.participante_pujas =
+                    response.data.participante_pujas;
             });
     }
 };
 
 const verOfertas = () => {
     if (oPublicacion.value) {
-        modal_dialog_historial_ofertas.value = true;
+        modal_dialog_participante_pujas.value = true;
     }
 };
 
@@ -264,9 +263,9 @@ onBeforeUnmount(() => {
 <template>
     <HistorialOfertas
         v-if="props_page.auth"
-        :open_dialog="modal_dialog_historial_ofertas"
+        :open_dialog="modal_dialog_participante_pujas"
         :publicacion_id="oPublicacion.id"
-        @cerrar-dialog="modal_dialog_historial_ofertas = false"
+        @cerrar-dialog="modal_dialog_participante_pujas = false"
     ></HistorialOfertas>
     <DetalleSubasta
         :open_dialog="modal_dialog"
@@ -302,7 +301,7 @@ onBeforeUnmount(() => {
             >
                 <!-- tiempo restante -->
                 <div class="tiempoRestante" v-if="swRealizarOferta">
-                    <strong>Quedan</strong>
+                    <!-- <strong>Quedan</strong> -->
                     <span v-text="strRestante"></span>
                 </div>
                 <!-- BEGIN product-image -->
@@ -396,8 +395,8 @@ onBeforeUnmount(() => {
                                 </div>
                                 <template
                                     v-if="
-                                        oPublicacion.subasta &&
-                                        oPublicacion.subasta?.historial_ofertas
+                                        oPublicacion &&
+                                        oPublicacion?.participantes_puja
                                             ?.length > 0
                                     "
                                 >
@@ -405,8 +404,9 @@ onBeforeUnmount(() => {
                                         Bs.
                                         {{
                                             getFormatoMoneda(
-                                                oPublicacion.subasta
-                                                    .participantes_puja[0].puja,
+                                                oPublicacion
+                                                    .participantes_puja[0]
+                                                    .monto_puja,
                                             )
                                         }}
                                     </div>
@@ -474,15 +474,15 @@ onBeforeUnmount(() => {
                     <tbody>
                         <template
                             v-if="
-                                oPublicacion.subasta &&
-                                oPublicacion.subasta.historial_ofertas &&
-                                oPublicacion.subasta.historial_ofertas.length >
-                                    0
+                                oPublicacion &&
+                                oPublicacion.participantes_puja &&
+                                oPublicacion.participantes_puja.length > 0
                             "
                         >
                             <tr
-                                v-for="(item, index) in oPublicacion.subasta
-                                    .historial_ofertas"
+                                v-for="(
+                                    item, index
+                                ) in oPublicacion.participantes_puja"
                                 :class="[
                                     index == 0 ? 'h2' : '',
                                     index == 1 ? 'h4' : '',
@@ -495,7 +495,7 @@ onBeforeUnmount(() => {
                                 <td class="">{{ index + 1 }})</td>
                                 <td class="">
                                     Bs.
-                                    {{ getFormatoMoneda(item.puja) }}
+                                    {{ getFormatoMoneda(item.monto_puja) }}
                                     <small
                                         v-if="
                                             oParticipante &&
@@ -581,7 +581,7 @@ onBeforeUnmount(() => {
     padding: 5px;
     min-width: 130px;
     width: 20%;
-    border-radius: 5px 0px 6px 0px;
+    border-radius: 0px 0px 6px 0px;
     position: absolute;
     left: 0px;
     top: 0px;

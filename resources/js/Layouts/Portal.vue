@@ -26,7 +26,7 @@ const verificaUser = () => {
 const verificarPujaUser = async (user_id, publicacion_id) => {
     try {
         const response = await axios.get(
-            route("participantes.verificaSubastaCliente"),
+            route("participantes.verificaParticipante"),
             {
                 params: {
                     user_id,
