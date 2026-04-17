@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\HtmlNotEmpty;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -30,6 +31,7 @@ class SubastaUpdateRequest extends FormRequest
             "fecha_fin" => "required|date",
             "hora_fin" => "required",
             "publico" => "required",
+            "descripcion" => ["required", new HtmlNotEmpty],
         ];
     }
 
@@ -51,6 +53,7 @@ class SubastaUpdateRequest extends FormRequest
             "hora_fin.required" => "Debes completar este campo",
             "hora_fin.date_format" => "Debes ingresar una hora valida",
             "publico.required" => "Debes completar este campo",
+            "descripcion.required" => "Debes completar este campo",
         ];
     }
 }

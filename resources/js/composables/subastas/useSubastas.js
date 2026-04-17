@@ -11,6 +11,7 @@ const oSubasta = ref({
     publico: 0,
     estado_subasta: "",
     fecha_registro: "",
+    descripcion: "",
     _method: "POST",
 });
 
@@ -28,6 +29,7 @@ export const useSubastas = () => {
             oSubasta.value.publico = item.publico;
             oSubasta.value.estado_subasta = item.estado_subasta;
             oSubasta.value.fecha_registro = item.fecha_registro;
+            oSubasta.value.descripcion = item.descripcion;
             oSubasta.value._method = "PUT";
             return oSubasta;
         }
@@ -45,6 +47,7 @@ export const useSubastas = () => {
         oSubasta.value.publico = 0;
         oSubasta.value.estado_subasta = "";
         oSubasta.value.fecha_registro = "";
+        oSubasta.value.descripcion = "";
         oSubasta.value._method = "POST";
     };
 

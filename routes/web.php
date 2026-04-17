@@ -42,6 +42,7 @@ Route::get('/login', function () {
         if (Auth::user()->tipo != 'PARTICIPANTE') {
             return redirect()->route('inicio');
         }
+        return redirect()->route('portal.index');
     }
     return Inertia::render('Auth/Login');
 })->name("login");
@@ -157,6 +158,7 @@ Route::middleware(['auth', 'permisoUsuario'])->prefix("admin")->group(function (
     );
 
     // SUBASTAS
+    Route::get("publicacions/subastas/devolucion", [SubastaController::class, 'devolucions'])->name("subastas.devolucions");
     Route::get("publicacions/getsubasta/infoSubastaPorPublicacion", [SubastaController::class, 'infoSubastaPorPublicacion'])->name("subastas.infoSubastaPorPublicacion");
     Route::get("publicacions/subastas/participantes/{subasta}", [SubastaController::class, 'participantes'])->name("subastas.participantes");
     Route::get("publicacions/subastas/getParticipantesApi/{subasta}", [SubastaController::class, 'getParticipantesApi'])->name("subastas.getParticipantesApi");

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer("publico"); // 0: SIN PUBLICAR, 1: PÚBLICO
             $table->integer("estado_subasta")->default(1);  // 1: VIGENTE, 2: FINALIZADO
             $table->date("fecha_registro");
+            $table->text("descripcion");
             $table->timestamps();
 
             $table->foreign("producto_id")->on("productos")->references("id");

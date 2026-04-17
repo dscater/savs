@@ -36,15 +36,23 @@ class SubastaController extends Controller
         return Inertia::render("Admin/Subastas/Index");
     }
 
+    public function devolucions()
+    {
+        return Inertia::render("Admin/Subastas/Devolucions");
+    }
+
+
     /**
      * Listado de subastas sin ids: 1 y 2
      *
      * @return JsonResponse
      */
-    public function listado(): JsonResponse
+    public function listado(Request $request): JsonResponse
     {
+        $con_subasta = $request->con_subasta;
+
         return response()->JSON([
-            "subastas" => $this->subastaService->listado()
+            "subastas" => $this->subastaService->listado($con_subasta)
         ]);
     }
 
@@ -129,6 +137,7 @@ class SubastaController extends Controller
      */
     public function show(Subasta $subasta): JsonResponse
     {
+        $subasta = $subasta->load(["producto.producto_imagens", "participantes", "participantes_devolucion.user.user_dato"]);
         return response()->JSON($subasta);
     }
 
@@ -190,7 +199,7 @@ class SubastaController extends Controller
                 $participantes = $subasta->participantes_puja;
                 $subasta->estado_subasta = 2;
                 $participante = $participantes[0];
-                $participante->estado_puja = 2;
+                $participante->estado = 2;
                 $participante->save();
                 if (count($participantes) <= 0) {
                     // sin ganador
@@ -229,10 +238,13 @@ class SubastaController extends Controller
                 $subasta->save();
             } else {
                 $participante = $ganador;
+
+                $subasta->estado_subasta = 2;
+                $subasta->save();
             }
 
             return response()->JSON([
-                "participante" => $participante->load(["participante_pujas"]),
+                "participante" => $participante->load(["user.user_dato", "participante_pujas"]),
                 "subasta" => $subasta->load(["producto.producto_imagens", "participantes_puja"])
             ]);
         } else {

@@ -15,6 +15,9 @@ import axios from "axios";
 import { toast } from "vue3-toastify";
 import "vue3-toastify/dist/index.css";
 import SliderImagenes from "@/Components/SliderImagenes.vue";
+
+import { QuillEditor } from "@vueup/vue-quill";
+import "@vueup/vue-quill/dist/vue-quill.snow.css";
 const props = defineProps({
     subasta: {
         type: Object,
@@ -327,6 +330,26 @@ onBeforeMount(() => {
                                 >
                                     <li class="parsley-required">
                                         {{ form.errors?.estado_producto }}
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="col-md-12 mt-3">
+                                <label class="required">Descripción</label>
+                                <div>
+                                    <QuillEditor
+                                        v-model:content="form.descripcion"
+                                        contentType="html"
+                                        style="height: 130px"
+                                        theme="snow"
+                                    />
+                                </div>
+                                <ul
+                                    v-if="form.errors?.descripcion"
+                                    class="d-block text-danger list-unstyled"
+                                >
+                                    <li class="parsley-required">
+                                        {{ form.errors?.descripcion }}
                                     </li>
                                 </ul>
                             </div>

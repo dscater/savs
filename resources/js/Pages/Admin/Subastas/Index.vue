@@ -251,7 +251,7 @@ const revertirAnulado = (item) => {
                             </template>
                             <template #publico="{ item }">
                                 <span
-                                    class="badge text-sm"
+                                    class="badge text-xs"
                                     :class="{
                                         'badge-success': item.publico == 1,
                                         'bg-secondary': item.publico == 0,
@@ -265,11 +265,13 @@ const revertirAnulado = (item) => {
                             </template>
                             <template #estado_subasta="{ item }">
                                 <span
-                                    class="badge text-sm"
+                                    class="badge text-xs"
                                     :class="{
                                         'badge-success':
                                             item.estado_subasta == 1,
                                         'bg-warning': item.estado_subasta == 0,
+                                        'bg-orange text-white':
+                                            item.estado_subasta == 2,
                                     }"
                                     >{{
                                         item.estado_subasta == 1

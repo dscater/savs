@@ -133,22 +133,15 @@ onBeforeUnmount(() => {
             <!-- /.row -->
         </template>
         <div class="row">
+            <div class="col-md-4">
+                <Link :href="route('subastas.index')" class="btn btn-default"
+                    ><i class="fa fa-arrow-left"></i> Volver</Link
+                >
+            </div>
             <div class="col-md-12">
-                <!-- BEGIN panel -->
-                <div class="panel panel-inverse">
-                    <!-- BEGIN panel-heading -->
-                    <div class="panel-heading">
-                        <h4 class="panel-title btn-nuevo">
-                            <Link
-                                :href="route('subastas.index')"
-                                class="btn btn-outline-default d-inline-block"
-                                ><i class="fa fa-arrow-left"></i> Volver</Link
-                            >
-                        </h4>
-                    </div>
-                    <!-- END panel-heading -->
-                    <!-- BEGIN panel-body -->
-                    <div class="panel-body">
+                <!-- BEGIN card -->
+                <div class="card">
+                    <div class="card-body">
                         <div class="row">
                             <div class="col-md-6 mx-auto">
                                 <div class="card">
@@ -208,7 +201,7 @@ onBeforeUnmount(() => {
                                                 ></td>
                                                 <td>
                                                     <span
-                                                        class="badge"
+                                                        class="badge text-xs"
                                                         :class="{
                                                             'bg-gray':
                                                                 item.estado_comprobante ==
@@ -228,7 +221,7 @@ onBeforeUnmount(() => {
                                                 </td>
                                                 <td>
                                                     <span
-                                                        class="badge"
+                                                        class="badge text-xs"
                                                         :class="[
                                                             item.estado_comprobante ==
                                                             1
@@ -300,9 +293,7 @@ onBeforeUnmount(() => {
                             </div>
                         </div>
                     </div>
-                    <!-- END panel-body -->
                 </div>
-                <!-- END panel -->
             </div>
         </div>
         <VerificarComprobante

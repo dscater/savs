@@ -18,9 +18,18 @@ class SubastaService
 
     public function __construct(private HistorialAccionService $historialAccionService, private KardexProductoService $kardex_producto_service) {}
 
-    public function listado(): Collection
+    public function listado($con_subasta = null): Collection
     {
-        $subastas = Subasta::select("subastas.*")->get();
+        $subastas = Subasta::select("subastas.*")
+            ->with("producto");
+
+        if ($con_subasta) {
+            // verificar si existe en Subasta
+            $subastas->whereNotIn("estado_subasta", [0, 5, 6]);
+            $subastas->orderBy('fecha_fin', "desc");
+        }
+
+        $subastas = $subastas->get();
         return $subastas;
     }
     /**
@@ -89,6 +98,7 @@ class SubastaService
             "fecha_fin" => $datos["fecha_fin"],
             "hora_fin" => $datos["hora_fin"],
             "publico" => $datos["publico"],
+            "descripcion" => $datos["descripcion"],
             "fecha_registro" => date("Y-m-d"),
         ]);
 
@@ -126,6 +136,7 @@ class SubastaService
             "garantia" => $datos["garantia"],
             "fecha_fin" => $datos["fecha_fin"],
             "hora_fin" => $datos["hora_fin"],
+            "descripcion" => $datos["descripcion"],
             "publico" => $datos["publico"],
         ]);
 

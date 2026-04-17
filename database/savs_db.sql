@@ -2,12 +2,12 @@
 -- PostgreSQL database dump
 --
 
-\restrict IDKO3IrwNUwQdrXEVdcI494uZ6Ns84YZrjvncYotpBv1Gnn5adIdcNfvs3hgwgf
+\restrict mZCn3pRxcn4C8HFvBW364fpdoie1EEDBo8buxHu7zOE0fd1czaU4wjl0WaaRkaD
 
 -- Dumped from database version 17.6
 -- Dumped by pg_dump version 17.6
 
--- Started on 2026-04-17 11:13:56
+-- Started on 2026-04-17 16:28:06
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -743,7 +743,8 @@ CREATE TABLE public.subastas (
     fecha_registro date NOT NULL,
     created_at timestamp(0) without time zone,
     updated_at timestamp(0) without time zone,
-    garantia numeric(24,2) DEFAULT 0 NOT NULL
+    garantia numeric(24,2) DEFAULT 0 NOT NULL,
+    descripcion text
 );
 
 
@@ -1151,6 +1152,9 @@ COPY public.categorias (id, nombre, descripcion, fecha_registro, created_at, upd
 COPY public.clientes (id, nombre, nit_ci, cel, correo, created_at, updated_at, fecha_registro) FROM stdin;
 1	JUAN PEREZ	123456	67676767	juan@gmail.com	2026-04-08 16:56:30	2026-04-08 16:56:30	2026-04-08
 2	CONDORI ALEX		\N	\N	2026-04-08 16:56:42	2026-04-08 16:56:42	2026-04-08
+3	SANDOVAL	543453453	78787878	\N	2026-04-17 16:20:23	2026-04-17 16:20:23	2026-04-17
+4	CHIRI	345345345	\N	\N	2026-04-17 16:20:31	2026-04-17 16:20:31	2026-04-17
+5	CONDORI		\N	\N	2026-04-17 16:20:50	2026-04-17 16:20:50	2026-04-17
 \.
 
 
@@ -1226,6 +1230,11 @@ COPY public.historial_accions (id, user_id, accion, descripcion, datos_original,
 51	1	CREACIÓN	EL USUARIO admin REGISTRO UNA SUBASTA	{"producto_id":"1","estado_producto":"NUEVO","monto_inicial":"200","fecha_fin":"2026-04-15","hora_fin":"12:00","publico":"1","fecha_registro":"2026-04-10","updated_at":"2026-04-11T01:07:25.000000Z","created_at":"2026-04-11T01:07:25.000000Z","id":4}	\N	SUBASTAS	2026-04-10	21:07:25	2026-04-10 21:07:25	2026-04-10 21:07:25
 52	1	MODIFICACIÓN	EL USUARIO admin ACTUALIZÓ UNA SUBASTA	{"id":4,"producto_id":1,"estado_producto":"NUEVO","monto_inicial":"200.00","fecha_fin":"2026-04-15","hora_fin":"12:00:00","publico":1,"estado_subasta":1,"fecha_registro":"2026-04-10","created_at":"2026-04-11T01:07:25.000000Z","updated_at":"2026-04-11T01:07:25.000000Z","garantia":"0.00"}	{"id":4,"producto_id":"1","estado_producto":"NUEVO","monto_inicial":"200.00","fecha_fin":"2026-04-15","hora_fin":"12:00:00","publico":"1","estado_subasta":1,"fecha_registro":"2026-04-10","created_at":"2026-04-11T01:07:25.000000Z","updated_at":"2026-04-16T13:04:19.000000Z","garantia":"100"}	SUBASTAS	2026-04-16	09:04:19	2026-04-16 09:04:19	2026-04-16 09:04:19
 53	1	MODIFICACIÓN	EL USUARIO admin ACTUALIZÓ UN PRODUCTO	{"id":1,"nombre":"PRODUCTO 1","descripcion":"<h2><strong><u>DESCRIPCI\\u00d3N DEL PRODUCTO<\\/u><\\/strong><\\/h2><p><span style=\\"color: rgb(0, 0, 0);\\">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).<\\/span><\\/p>","precio":"120.00","stock":"93","categoria_id":1,"fecha_registro":"2026-04-08","created_at":"2026-04-08T15:39:00.000000Z","updated_at":"2026-04-11T01:07:25.000000Z","codigo":"P001","producto_imagens":[{"id":19,"producto_id":1,"imagen":"191775664131.jpg","created_at":"2026-04-08T16:02:11.000000Z","updated_at":"2026-04-08T16:02:11.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/191775664131.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/191775664131.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/191775664131.jpg","file":"191775664131.jpg","name":"191775664131.jpg","ext":""},{"id":20,"producto_id":1,"imagen":"1201775664131.jpeg","created_at":"2026-04-08T16:02:11.000000Z","updated_at":"2026-04-08T16:02:11.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/1201775664131.jpeg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/1201775664131.jpeg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/1201775664131.jpeg","file":"1201775664131.jpeg","name":"1201775664131.jpeg","ext":""},{"id":21,"producto_id":1,"imagen":"2211775664131.jpeg","created_at":"2026-04-08T16:02:11.000000Z","updated_at":"2026-04-08T16:02:11.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/2211775664131.jpeg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/2211775664131.jpeg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/2211775664131.jpeg","file":"2211775664131.jpeg","name":"2211775664131.jpeg","ext":""}]}	{"id":1,"nombre":"PRODUCTO 1","descripcion":"<h3><strong><u>DESCRIPCI\\u00d3N DEL PRODUCTO<\\/u><\\/strong><\\/h3><p><span style=\\"color: rgb(0, 0, 0);\\">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).<\\/span><\\/p>","precio":"120.00","stock":"93","categoria_id":"1","fecha_registro":"2026-04-08","created_at":"2026-04-08T15:39:00.000000Z","updated_at":"2026-04-16T14:31:12.000000Z","codigo":"P001","producto_imagens":[{"id":19,"producto_id":1,"imagen":"191775664131.jpg","created_at":"2026-04-08T16:02:11.000000Z","updated_at":"2026-04-08T16:02:11.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/191775664131.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/191775664131.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/191775664131.jpg","file":"191775664131.jpg","name":"191775664131.jpg","ext":""},{"id":20,"producto_id":1,"imagen":"1201775664131.jpeg","created_at":"2026-04-08T16:02:11.000000Z","updated_at":"2026-04-08T16:02:11.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/1201775664131.jpeg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/1201775664131.jpeg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/1201775664131.jpeg","file":"1201775664131.jpeg","name":"1201775664131.jpeg","ext":""},{"id":21,"producto_id":1,"imagen":"2211775664131.jpeg","created_at":"2026-04-08T16:02:11.000000Z","updated_at":"2026-04-08T16:02:11.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/2211775664131.jpeg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/2211775664131.jpeg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/2211775664131.jpeg","file":"2211775664131.jpeg","name":"2211775664131.jpeg","ext":""}]}	PRODUCTOS	2026-04-16	10:31:12	2026-04-16 10:31:12	2026-04-16 10:31:12
+55	1	CREACIÓN	EL USUARIO admin REGISTRO UN CLIENTE	{"nombre":"SANDOVAL","nit_ci":"543453453","cel":"78787878","correo":null,"fecha_registro":"2026-04-17","updated_at":"2026-04-17T20:20:23.000000Z","created_at":"2026-04-17T20:20:23.000000Z","id":3}	\N	CLIENTES	2026-04-17	16:20:23	2026-04-17 16:20:23	2026-04-17 16:20:23
+56	1	CREACIÓN	EL USUARIO admin REGISTRO UN CLIENTE	{"nombre":"CHIRI","nit_ci":"345345345","cel":null,"correo":null,"fecha_registro":"2026-04-17","updated_at":"2026-04-17T20:20:31.000000Z","created_at":"2026-04-17T20:20:31.000000Z","id":4}	\N	CLIENTES	2026-04-17	16:20:31	2026-04-17 16:20:31	2026-04-17 16:20:31
+57	1	CREACIÓN	EL USUARIO admin REGISTRO UN CLIENTE	{"nombre":"CONDORI","nit_ci":"","cel":null,"correo":null,"fecha_registro":"2026-04-17","updated_at":"2026-04-17T20:20:50.000000Z","created_at":"2026-04-17T20:20:50.000000Z","id":5}	\N	CLIENTES	2026-04-17	16:20:50	2026-04-17 16:20:50	2026-04-17 16:20:50
+58	1	CREACIÓN	EL USUARIO admin REGISTRO UNA SUBASTA	{"producto_id":"2","estado_producto":"NUEVO","monto_inicial":"700","garantia":"200","fecha_fin":"2026-04-19","hora_fin":"12:00","publico":"1","fecha_registro":"2026-04-17","updated_at":"2026-04-17T20:26:17.000000Z","created_at":"2026-04-17T20:26:17.000000Z","id":6}	\N	SUBASTAS	2026-04-17	16:26:17	2026-04-17 16:26:17	2026-04-17 16:26:17
+59	1	MODIFICACIÓN	EL USUARIO admin ACTUALIZÓ UNA SUBASTA	{"id":6,"producto_id":2,"estado_producto":"NUEVO","monto_inicial":"700.00","fecha_fin":"2026-04-19","hora_fin":"12:00:00","publico":1,"estado_subasta":1,"fecha_registro":"2026-04-17","created_at":"2026-04-17T20:26:17.000000Z","updated_at":"2026-04-17T20:26:17.000000Z","garantia":"200.00","descripcion":null}	{"id":6,"producto_id":"2","estado_producto":"NUEVO","monto_inicial":"700.00","fecha_fin":"2026-04-19","hora_fin":"12:00:00","publico":"1","estado_subasta":1,"fecha_registro":"2026-04-17","created_at":"2026-04-17T20:26:17.000000Z","updated_at":"2026-04-17T20:27:05.000000Z","garantia":"200.00","descripcion":"<h3><strong>Descripci\\u00f3n de subasta<\\/strong><\\/h3><p><strong style=\\"color: rgb(0, 0, 0);\\">Lorem Ipsum<\\/strong><span style=\\"color: rgb(0, 0, 0);\\">&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type<\\/span><\\/p>"}	SUBASTAS	2026-04-17	16:27:05	2026-04-17 16:27:05	2026-04-17 16:27:05
 \.
 
 
@@ -1281,6 +1290,7 @@ COPY public.kardex_productos (id, tipo_registro, registro_id, modulo, producto_i
 29	INGRESO DE PRODUCTO	4	IngresoProducto	3	INGRESO DE PRODUCTO	433.00	INGRESO	1	\N	21	433.00	433.00	\N	9093.00	2026-04-10	1	2026-04-10 21:05:51	2026-04-10 21:05:51
 30	SUBASTA	4	Subasta	1	EGRESO DE PRODUCTO PARA SUBASTA	120.00	EGRESO	\N	1	93	120.00	\N	120.00	11160.00	2026-04-10	1	2026-04-10 21:07:25	2026-04-10 21:07:25
 31	SUBASTA	5	Subasta	3	EGRESO DE PRODUCTO PARA SUBASTA	433.00	EGRESO	\N	1	20	433.00	\N	433.00	8660.00	2026-04-16	1	2026-04-16 10:33:50	2026-04-16 10:33:50
+32	SUBASTA	6	Subasta	2	EGRESO DE PRODUCTO PARA SUBASTA	67.00	EGRESO	\N	1	93	67.00	\N	67.00	6231.00	2026-04-17	1	2026-04-17 16:26:17	2026-04-17 16:26:17
 \.
 
 
@@ -1391,10 +1401,10 @@ COPY public.participante_pujas (id, participante_id, monto, fecha, hora, created
 --
 
 COPY public.participantes (id, subasta_id, user_id, fecha, hora, monto_puja, created_at, updated_at, estado, garantia, comprobante, estado_comprobante, fecha_comprobante, hora_comprobante, devolucion, descripcion_devolucion, fecha_devolucion, hora_devolucion) FROM stdin;
-13	5	8	2026-04-17	11:07:03	383.00	2026-04-17 11:07:03	2026-04-17 11:07:46	0	1	81776438423.pdf	1	2026-04-17	11:07:03	0	\N	\N	\N
 10	5	5	2026-04-16	18:40:49	0.00	2026-04-16 18:40:49	2026-04-16 18:40:49	0	1	51776379249.pdf	0	2026-04-16	18:40:49	0	\N	\N	\N
 12	5	7	2026-04-17	09:26:12	382.00	2026-04-17 09:26:12	2026-04-17 10:52:02	0	1	71776432372.pdf	1	2026-04-17	09:26:12	0	\N	\N	\N
-11	5	6	2026-04-17	09:14:26	386.00	2026-04-17 09:14:26	2026-04-17 11:11:39	1	1	61776431666.png	1	2026-04-17	09:14:26	0	\N	\N	\N
+11	5	6	2026-04-17	09:14:26	386.00	2026-04-17 09:14:26	2026-04-17 15:08:25	2	1	61776431666.png	1	2026-04-17	09:14:26	0	\N	\N	\N
+13	5	8	2026-04-17	11:07:03	383.00	2026-04-17 11:07:03	2026-04-17 16:12:10	0	1	81776438423.pdf	1	2026-04-17	11:07:03	1	\N	2026-04-17	16:11:00
 \.
 
 
@@ -1425,7 +1435,7 @@ COPY public.producto_imagens (id, producto_id, imagen, created_at, updated_at) F
 
 COPY public.productos (id, nombre, descripcion, precio, stock, categoria_id, fecha_registro, created_at, updated_at, codigo) FROM stdin;
 3	PRODUCTO 3	<h2>What is Lorem Ipsum?</h2><p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>	433.00	20	2	2026-04-10	2026-04-10 09:40:31	2026-04-16 10:33:50	P003
-2	PRODUCTO 2	<p>Descripcion del producto 2</p>	67.00	94	1	2026-04-08	2026-04-08 19:33:31	2026-04-10 10:15:32	P002
+2	PRODUCTO 2	<p>Descripcion del producto 2</p>	67.00	93	1	2026-04-08	2026-04-08 19:33:31	2026-04-17 16:26:17	P002
 1	PRODUCTO 1	<h3><strong><u>DESCRIPCIÓN DEL PRODUCTO</u></strong></h3><p><span style="color: rgb(0, 0, 0);">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</span></p>	120.00	93	1	2026-04-08	2026-04-08 11:39:00	2026-04-16 10:31:12	P001
 \.
 
@@ -1456,11 +1466,12 @@ COPY public.salida_productos (id, producto_id, cantidad, descripcion, fecha_regi
 -- Data for Name: subastas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.subastas (id, producto_id, estado_producto, monto_inicial, fecha_fin, hora_fin, publico, estado_subasta, fecha_registro, created_at, updated_at, garantia) FROM stdin;
-4	1	NUEVO	200.00	2026-04-15	12:00:00	1	0	2026-04-10	2026-04-10 21:07:25	2026-04-16 11:14:08	100.00
-2	1	USADO	1000.00	2026-04-16	12:00:00	1	0	2026-04-10	2026-04-10 10:15:12	2026-04-16 12:00:44	0.00
-3	2	NUEVO	2300.00	2026-04-16	12:00:00	0	0	2026-04-10	2026-04-10 10:15:32	2026-04-16 12:00:44	0.00
-5	3	SEMINUEVO	300.00	2026-04-17	15:00:00	1	1	2026-04-16	2026-04-16 10:33:50	2026-04-16 10:33:50	150.00
+COPY public.subastas (id, producto_id, estado_producto, monto_inicial, fecha_fin, hora_fin, publico, estado_subasta, fecha_registro, created_at, updated_at, garantia, descripcion) FROM stdin;
+4	1	NUEVO	200.00	2026-04-15	12:00:00	1	0	2026-04-10	2026-04-10 21:07:25	2026-04-16 11:14:08	100.00	\N
+2	1	USADO	1000.00	2026-04-16	12:00:00	1	0	2026-04-10	2026-04-10 10:15:12	2026-04-16 12:00:44	0.00	\N
+3	2	NUEVO	2300.00	2026-04-16	12:00:00	0	0	2026-04-10	2026-04-10 10:15:32	2026-04-16 12:00:44	0.00	\N
+5	3	SEMINUEVO	300.00	2026-04-17	15:00:00	1	2	2026-04-16	2026-04-16 10:33:50	2026-04-17 15:14:15	150.00	\N
+6	2	NUEVO	700.00	2026-04-19	12:00:00	1	1	2026-04-17	2026-04-17 16:26:17	2026-04-17 16:27:05	200.00	<h3><strong>Descripción de subasta</strong></h3><p><strong style="color: rgb(0, 0, 0);">Lorem Ipsum</strong><span style="color: rgb(0, 0, 0);">&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type</span></p>
 \.
 
 
@@ -1473,8 +1484,8 @@ COPY public.subastas (id, producto_id, estado_producto, monto_inicial, fecha_fin
 COPY public.user_datos (id, user_id, foto_ci_anverso, foto_ci_reverso, banco, nro_cuenta, created_at, updated_at, ci, ci_exp, complemento, dpto_residencia, email) FROM stdin;
 2	5	151776373428.jpeg	251776373428.jpeg	BANCO NACIONAL DE BOLIVIA S.A.	100000234234	2026-04-16 17:03:48	2026-04-16 17:03:48	1234567	LP		LA PAZ	juan@gmail.com
 3	6	161776431394.jpeg	261776431394.png	BANCO NACIONAL DE BOLIVIA S.A.	100005555555555	2026-04-17 09:09:54	2026-04-17 09:09:54	2342344	LP		LA PAZ	maria@gmail.com
-4	7	171776432351.jpeg	271776432351.png	BANCO BISA S.A.	112323232323	2026-04-17 09:25:51	2026-04-17 09:25:51	5454655	LP		LA PAZ	victorgonzalo.as@gmail.com
 5	8	181776437667.jpg	281776437667.jpeg	BANCO MERCANTIL SANTA CRUZ S.A.	10000000001	2026-04-17 10:54:27	2026-04-17 10:54:27	5675675	LP		LA PAZ	franz@gmail.com
+4	7	171776432351.jpeg	271776432351.png	BANCO BISA S.A.	112323232323	2026-04-17 09:25:51	2026-04-17 09:25:51	5454655	LP		LA PAZ	marcelo@gmail.com
 \.
 
 
@@ -1541,7 +1552,7 @@ SELECT pg_catalog.setval('public.categorias_id_seq', 3, true);
 -- Name: clientes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.clientes_id_seq', 2, true);
+SELECT pg_catalog.setval('public.clientes_id_seq', 5, true);
 
 
 --
@@ -1559,7 +1570,7 @@ SELECT pg_catalog.setval('public.configuracions_id_seq', 1, true);
 -- Name: historial_accions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.historial_accions_id_seq', 54, true);
+SELECT pg_catalog.setval('public.historial_accions_id_seq', 59, true);
 
 
 --
@@ -1577,7 +1588,7 @@ SELECT pg_catalog.setval('public.ingreso_productos_id_seq', 4, true);
 -- Name: kardex_productos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.kardex_productos_id_seq', 31, true);
+SELECT pg_catalog.setval('public.kardex_productos_id_seq', 32, true);
 
 
 --
@@ -1676,7 +1687,7 @@ SELECT pg_catalog.setval('public.salida_productos_id_seq', 1, false);
 -- Name: subastas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.subastas_id_seq', 5, true);
+SELECT pg_catalog.setval('public.subastas_id_seq', 6, true);
 
 
 --
@@ -2102,11 +2113,11 @@ ALTER TABLE ONLY public.ventas
     ADD CONSTRAINT ventas_user_id_foreign FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
 
 
--- Completed on 2026-04-17 11:13:57
+-- Completed on 2026-04-17 16:28:06
 
 --
 -- PostgreSQL database dump complete
 --
 
-\unrestrict IDKO3IrwNUwQdrXEVdcI494uZ6Ns84YZrjvncYotpBv1Gnn5adIdcNfvs3hgwgf
+\unrestrict mZCn3pRxcn4C8HFvBW364fpdoie1EEDBo8buxHu7zOE0fd1czaU4wjl0WaaRkaD
 

@@ -108,7 +108,7 @@ const verificarGanadorPublicacion = () => {
         .then((response) => {
             oGanadorParticipante.value = response.data.participante;
             // console.log(response);
-            oPublicacion.value = response.data.publicacion;
+            oPublicacion.value = response.data.subasta;
         });
 };
 
@@ -125,7 +125,7 @@ onBeforeUnmount(() => {
     <DetalleSubasta
         :open_dialog="modal_dialog"
         :publicacion="oPublicacion"
-        :hideBg="false"
+        :hideBg="true"
         @cerrar-dialog="modal_dialog = false"
     ></DetalleSubasta>
     <div class="product">
@@ -163,7 +163,7 @@ onBeforeUnmount(() => {
                             <h4
                                 class="w-100 text-center card-title font-weight-bold"
                             >
-                                {{ oPublicacion.producto.nombre }}
+                                {{ oPublicacion?.producto.nombre }}
                             </h4>
                             <div class="row">
                                 <div class="col-12">
@@ -195,19 +195,50 @@ onBeforeUnmount(() => {
                                             Bs.
                                             {{
                                                 getFormatoMoneda(
-                                                    oPublicacion.monto_inicial,
+                                                    oPublicacion?.monto_inicial,
                                                 )
                                             }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">
+                                            Oferta actual:
+                                        </td>
+                                        <td>
+                                            <template
+                                                v-if="
+                                                    oPublicacion &&
+                                                    oPublicacion
+                                                        ?.participantes_puja
+                                                        ?.length > 0
+                                                "
+                                            >
+                                                <div class="col-md-6 txt_info2">
+                                                    Bs.
+                                                    {{
+                                                        getFormatoMoneda(
+                                                            oPublicacion
+                                                                .participantes_puja[0]
+                                                                .monto_puja,
+                                                        )
+                                                    }}
+                                                </div>
+                                            </template>
+                                            <template v-else>
+                                                <div class="col-md-6 txt_info2">
+                                                    Sin registros aún
+                                                </div>
+                                            </template>
                                         </td>
                                     </tr>
                                     <tr
                                         v-if="oGanadorParticipante"
                                         class="bg-success"
                                     >
-                                        <td class="">GANADOR</td>
+                                        <td class="">Ganador(a)</td>
                                         <td class="">
                                             {{
-                                                oGanadorParticipante.cliente
+                                                oGanadorParticipante?.user
                                                     .full_name
                                             }}
                                         </td>
@@ -216,13 +247,13 @@ onBeforeUnmount(() => {
                             </table>
                             <div
                                 v-if="
-                                    oPublicacion.estado_subasta == 2 ||
-                                    oPublicacion.estado_subasta == 3 ||
-                                    oPublicacion.estado_subasta == 4
+                                    oPublicacion?.estado == 2 ||
+                                    oPublicacion?.estado == 3 ||
+                                    oPublicacion?.estado == 4
                                 "
                             >
                                 <span
-                                    class="text-danger font-weight-bold d-block mb-2 txt_subasta_concluida"
+                                    class="text-danger font-weight-bold d-block my-2 text-center txt_subasta_concluida"
                                     >SUBASTA CONCLUIDA</span
                                 >
                             </div>

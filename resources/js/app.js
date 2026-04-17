@@ -48,6 +48,7 @@ import {
     ElRadio,
     ElRadioButton,
     ElRadioGroup,
+    ElEmpty,
 } from "element-plus";
 
 // Import CSS de cada componente individual
@@ -61,6 +62,7 @@ import "element-plus/es/components/carousel/style/css";
 import "element-plus/es/components/carousel-item/style/css";
 import "element-plus/es/components/skeleton/style/css";
 import "element-plus/es/components/skeleton-item/style/css";
+import "element-plus/es/components/empty/style/css";
 
 // Default Layout
 import App from "@/Layouts/App.vue";
@@ -99,6 +101,7 @@ createInertiaApp({
         vueApp.component("ElRadio", ElRadio);
         vueApp.component("ElRadioButton", ElRadioButton);
         vueApp.component("ElRadioGroup", ElRadioGroup);
+        vueApp.component("ElEmpty", ElEmpty);
 
         vueApp.mount(el);
         return vueApp;

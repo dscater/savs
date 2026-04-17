@@ -92,13 +92,13 @@ onMounted(() => {});
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
+                    <div class="row" v-if="oPublicacion">
                         <h4 class="h3 w-100 text-center">
                             {{ oPublicacion.producto.nombre }}
                         </h4>
                         <div
                             class="ql-editor"
-                            v-html="oPublicacion.producto.descripcion"
+                            v-html="oPublicacion.descripcion"
                         ></div>
                     </div>
                 </div>

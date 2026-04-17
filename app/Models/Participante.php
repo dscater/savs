@@ -27,16 +27,42 @@ class Participante extends Model
         "monto_puja",
     ];
 
-    protected $appends = ["estado_puja_t", "url_comprobante", "fecha_comprobante_t", "fecha_t", "fecha_devolucion_t", "tipo_comprobante"];
+    protected $appends = ["estado_puja_t", "url_comprobante", "fecha_comprobante_t", "fecha_t", "fecha_devolucion_t", "fecha_hora_devolucion", "tipo_comprobante", "devolucion_span"];
+
+    public function getDevolucionSpanAttribute()
+    {
+        $span = '<span class="badge bg-gray">PENDIENTE</span>';
+
+        if ($this->devolucion == 1) {
+            $span = '<span class="badge bg-success">REALIZADO</span>';
+        }
+
+        return $span;
+    }
+
 
     public function getFechaComprobanteTAttribute()
     {
-        return date("d/m/Y", strtotime($this->fecha_comprobante));
+        if ($this->fecha_comprobante) {
+            return date("d/m/Y", strtotime($this->fecha_comprobante));
+        }
+        return "-";
+    }
+
+    public function getFechaHoraDevolucionAttribute()
+    {
+        if ($this->fecha_devolucion) {
+            return date("d/m/Y H:i:s", strtotime($this->fecha_devolucion . ' ' . $this->hora_devolucion));
+        }
+        return "-";
     }
 
     public function getFechaDevolucionTAttribute()
     {
-        return date("d/m/Y", strtotime($this->fecha_devolucion));
+        if ($this->fecha_devolucion) {
+            return date("d/m/Y", strtotime($this->fecha_devolucion));
+        }
+        return "-";
     }
 
     public function getFechaTAttribute()

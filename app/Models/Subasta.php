@@ -14,12 +14,12 @@ class Subasta extends Model
         "estado_producto", //NUEVO, SEMINUEVO, USADO
         "monto_inicial",
         "garantia",
-        "garantia",
         "fecha_fin",
         "hora_fin",
         "publico", // 0: SIN PUBLICAR, 1: PÚBLICO
         "estado_subasta", // 0:FINALIZADO SIN GANADOR , 1: VIGENTE, 2: FINALIZADO CON GANADOR
         "fecha_registro",
+        "descripcion",
     ];
     protected $appends = ["fecha_registro_t", "fecha_fin_t", "fecha_hora_limite", "c_participantes", "esta_vigente"];
 
@@ -78,6 +78,14 @@ class Subasta extends Model
             ->orderBy("monto_puja", "desc")
             ->take(10);
     }
+
+    public function participantes_devolucion()
+    {
+        return $this->hasMany(Participante::class, 'subasta_id')
+            ->where("estado", 0)
+            ->where("estado_comprobante", 1);
+    }
+
     public function participante_pujas()
     {
         return $this->hasMany(ParticipantePuja::class, 'subasta_id');

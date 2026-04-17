@@ -153,15 +153,15 @@ class ParticipanteController extends Controller
                 ]
             );
 
-            $subasta = $participante->subasta->publicacion;
-            $url =  route('publicacions.publicacionPortal', $subasta->id);
+            $subasta = $participante->subasta;
+            $url =  route('portal.subasta', $subasta->id);
 
-            $monto = number_format($participante->subasta->publicacion->monto_garantia, 2, ".", ",");
-            $moneda = $participante->subasta->publicacion->moneda_txt;
+            $monto = number_format($participante->subasta->garantia, 2, ".", ",");
+            $moneda = "Bs.";
 
             $txt_monto = $moneda . ' ' . $monto;
 
-            $txt_banco = $participante->cliente->nro_cuenta . ' (' . $participante->cliente->banco . ')';
+            $txt_banco = $participante->user->user_dato->nro_cuenta . ' (' . $participante->user->user_dato->banco . ')';
 
             $mensaje = 'Se acaba de realizar la devolución de <b>' . $txt_monto . '</b>; en tu cuenta ' . $txt_banco . '<br/>Puedes ver la publicación de la cual se realizó la devolución <a href="' . $url . '">aquí</a>';
 
@@ -169,13 +169,12 @@ class ParticipanteController extends Controller
                 "mensaje" =>  $mensaje,
             ];
 
-            Mail::to($participante->cliente->email)
+            Mail::to($participante->user->user_dato->email)
                 ->send(new MensajeComprobanteMail($datos));
         }
 
-        return response()->JSON($participante->load(["cliente", "subasta.publicacion", "participante_pujas"]));
+        return response()->JSON($participante->load(["user.user_dato", "subasta.producto.producto_imagens", "participante_pujas"]));
     }
-
 
     public function historialOfertas(Request $request)
     {

@@ -100,6 +100,7 @@ class PermisoService
             "subastas.infoSubastaPorPublicacion",
             "subastas.participantes",
             "subastas.getParticipantesApi",
+            "subastas.devolucions",
 
             "subastas.rechazar_comprobante",
             "subastas.aprobar_comprobante",

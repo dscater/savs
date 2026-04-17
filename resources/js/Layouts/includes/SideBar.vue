@@ -216,9 +216,23 @@ onUnmounted(() => {});
                             permisos == '*' ||
                             permisos.includes('subastas.index')
                         "
+                        :array-ruta-class-active="[
+                            'subastas.index',
+                            'participantes.show',
+                            'subastas.participantes',
+                        ]"
                         :label="'Subastas'"
                         :ruta="'subastas.index'"
                         :icon="'fa fa-gavel'"
+                    ></ItemMenu>
+                    <ItemMenu
+                        v-if="
+                            permisos == '*' ||
+                            permisos.includes('subastas.devolucions')
+                        "
+                        :label="'Devolución de garantías'"
+                        :ruta="'subastas.devolucions'"
+                        :icon="'fa fa-clipboard-check'"
                     ></ItemMenu>
                     <ItemMenu
                         v-if="
