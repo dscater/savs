@@ -22,15 +22,28 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): Response
     {
+        if ($request->user()->tipo == 'PARTICIPANTE') {
+            return Inertia::render('Portal/Perfil', [
+                'user' => $request->user()->load(["user_dato"]),
+            ]);
+        }
+
         return Inertia::render('Admin/Profile/Edit', [
             'user' => $request->user(),
         ]);
     }
 
+
+    public function getInfoCliente(Request $request)
+    {
+        return response()->JSON(Auth::user()->load("user_dato"));
+    }
+
+
     public function updateInfoCliente(Request $request): RedirectResponse
     {
         $user = Auth::user();
-        $cliente = $user->cliente;
+        $user_dato = $user->user_dato;
         $validacion = [
             "nombre" => "required|regex:/^[\pL\s\.\,áéíóúÁÉÍÓÚñÑ]+$/u",
             "paterno" => "required|regex:/^[\pL\s\.\,áéíóúÁÉÍÓÚñÑ]+$/u",
@@ -38,7 +51,7 @@ class ProfileController extends Controller
                 "required",
                 "numeric",
                 "digits_between:7,10",
-                Rule::unique('clientes', 'ci')
+                Rule::unique('user_datos', 'ci')
                     ->where(function ($query) {
                         $complemento = request()->input('complemento');
                         if (is_null($complemento)) {
@@ -47,12 +60,12 @@ class ProfileController extends Controller
                             $query->where('complemento', $complemento);
                         }
                     })
-                    ->ignore($cliente->id),
+                    ->ignore($user_dato->id),
             ],
             "ci_exp" => "required",
             "fono" => "required|numeric|digits_between:7,10",
             "dpto_residencia" => "required",
-            "email" => "required|email|unique:clientes,email," . $cliente->id,
+            "email" => "required|email|unique:user_datos,email," . $user_dato->id,
         ];
 
         if ($request->hasFile("foto_ci_anverso")) {
@@ -64,7 +77,6 @@ class ProfileController extends Controller
         }
         $validacion["banco"] = "required|regex:/^[\pL\s\.\'\"\,0-9áéíóúÁÉÍÓÚñÑ]+$/u";
         $validacion["nro_cuenta"] = "required|regex:/^[\pL\s\-\.\'\"\,0-9áéíóúÁÉÍÓÚñÑ]+$/u";
-        $validacion["moneda"] = "required|regex:/^[\pL\s\.\,0-9áéíóúÁÉÍÓÚñÑ]+$/u";
 
 
         $mensajes = [
@@ -89,7 +101,6 @@ class ProfileController extends Controller
             "foto_ci_reverso.required" => "Este campo es obligatorio",
             "banco.required" => "Este campo es obligatorio",
             "nro_cuenta.required" => "Este campo es obligatorio",
-            "moneda.required" => "Este campo es obligatorio",
             "terminos.required" => "Este campo es obligatorio",
             "terminos.accepted" => "Debes aceptar los terminos y condiciones",
         ];
@@ -113,12 +124,11 @@ class ProfileController extends Controller
             "email" => $request->email,
             "banco" => mb_strtoupper($request->banco),
             "nro_cuenta" => mb_strtoupper($request->nro_cuenta),
-            "moneda" => mb_strtoupper($request->moneda),
         ];
 
         $path = public_path("imgs/users/");
         if ($request->hasFile("foto_ci_anverso")) {
-            \File::delete($path . $cliente->foto_ci_anverso);
+            \File::delete($path . $user_dato->foto_ci_anverso);
             $foto_ci_anverso = $request->file("foto_ci_anverso");
             $extension = "." . $foto_ci_anverso->getClientOriginalExtension();
             $nom_file_ci_anverso = '1' . $user->id . time() . $extension;
@@ -126,7 +136,7 @@ class ProfileController extends Controller
             $foto_ci_anverso->move($path, $nom_file_ci_anverso);
         }
         if ($request->hasFile("foto_ci_reverso")) {
-            \File::delete($path . $cliente->foto_ci_anverso);
+            \File::delete($path . $user_dato->foto_ci_anverso);
             $foto_ci_reverso = $request->file("foto_ci_reverso");
             $extension = "." . $foto_ci_reverso->getClientOriginalExtension();
             $nom_file_ci_reverso = '1' . $user->id . time() . $extension;
@@ -134,10 +144,11 @@ class ProfileController extends Controller
             $foto_ci_reverso->move($path, $nom_file_ci_reverso);
         }
 
-        $cliente->update($datos_update);
+        $user_dato->update($datos_update);
 
-        return redirect(route('profile.profile_cliente', absolute: false));
+        return redirect(route('profile.edit', absolute: false));
     }
+
 
     /**
      * Update the user's profile information.

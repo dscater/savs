@@ -17,17 +17,31 @@ class Subasta extends Model
         "fecha_fin",
         "hora_fin",
         "publico", // 0: SIN PUBLICAR, 1: PÚBLICO
-        "estado_subasta", // 0:FINALIZADO SIN GANADOR , 1: VIGENTE, 2: FINALIZADO CON GANADOR
+        "estado_subasta", // 0:FINALIZADO SIN GANADOR , 1: VIGENTE, 2: FINALIZADO CON GANADOR, 3: NO MOSTRAR
         "fecha_registro",
         "descripcion",
     ];
-    protected $appends = ["fecha_registro_t", "fecha_fin_t", "fecha_hora_limite", "c_participantes", "esta_vigente"];
+    protected $appends = ["fecha_registro_t", "fecha_fin_t", "fecha_hora_limite", "c_participantes", "esta_vigente", "estado_txt"];
 
     public function getEstaVigenteAttribute()
     {
         return Subasta::verificaFechaLimitePublicacionBoolean($this);
     }
 
+
+    public function getEstadoTxtAttribute()
+    {
+        $estado = "SIN PUBLICAR";
+        if ($this->estado_subasta == 1) {
+            $estado = "VIGENTE";
+        }
+
+        if ($this->estado_subasta == 0 || $this->estado_subasta == 2 || $this->estado_subasta == 3) {
+            $estado = "FINALIZADO";
+        }
+
+        return $estado;
+    }
 
     public static function verificaFechaLimitePublicacionBoolean($publicacion)
     {

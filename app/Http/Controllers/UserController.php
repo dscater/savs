@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Producto;
+use App\Models\Subasta;
 use App\Models\User;
 use App\Models\Venta;
 use App\Services\PermisoService;
@@ -60,6 +61,15 @@ class UserController extends Controller
                     'color' => 'bg-principal',
                     'icon' => "text-white fa-cash-register",
                     "url" => "ventas.index"
+                ];
+            }
+            if ($permisos == '*' || (is_array($permisos) && in_array('ventas.index', $permisos))) {
+                $array_infos[] = [
+                    'label' => 'SUBASTAS',
+                    'cantidad' => Subasta::count(),
+                    'color' => 'bg-principal',
+                    'icon' => "text-white fa-gavel",
+                    "url" => "subastas.index"
                 ];
             }
         }

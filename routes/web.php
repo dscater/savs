@@ -7,11 +7,13 @@ use App\Http\Controllers\ConfiguracionController;
 use App\Http\Controllers\ImagenesPortalController;
 use App\Http\Controllers\IngresoProductoController;
 use App\Http\Controllers\InicioController;
+use App\Http\Controllers\NotificacionUserController;
 use App\Http\Controllers\ParametrizacionController;
 use App\Http\Controllers\ParticipanteController;
 use App\Http\Controllers\PortalController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RecuperarContrasenaController;
 use App\Http\Controllers\ReporteController;
 use App\Http\Controllers\SalidaProductoController;
 use App\Http\Controllers\SubastaController;
@@ -26,6 +28,7 @@ use Inertia\Inertia;
 
 // PORTAL
 Route::get('/', [PortalController::class, 'index'])->name("portal.index");
+Route::get('/contacto', [PortalController::class, 'contacto'])->name("portal.contacto");
 
 Route::get('/imagenes_portal', [ImagenesPortalController::class, 'index'])->name("portal.imagenes_portal");
 
@@ -35,6 +38,15 @@ Route::get('/subastas', [PortalController::class, 'subastas'])->name("portal.sub
 Route::get('/subastas/portal', [SubastaController::class, 'portal'])->name("subastas.portal");
 Route::get('/subastas/subasta/{subasta}', [PortalController::class, 'subasta'])->name("portal.subasta");
 Route::post("subastas/verifica_ganador/{subasta}", [SubastaController::class, 'verificaGanador'])->name("subastas.verificaGanador");
+Route::get("mis_subastas", [PortalController::class, 'mis_subastas'])->name("portal.mis_subastas");
+Route::get("subastas/porClientePaginado", [SubastaController::class, 'porClientePaginado'])->name("subastas.porClientePaginado");
+
+// Productos
+Route::get('/productos/portal', [ProductoController::class, 'portal'])->name("productos.portal");
+Route::get('/productos/producto/{producto}', [PortalController::class, 'producto'])->name("portal.producto");
+
+// categorias
+Route::get("categorias/listadoPortal", [CategoriaController::class, 'listadoPortal'])->name("categorias.listadoPortal");
 
 // LOGIN
 Route::get('/login', function () {
@@ -47,6 +59,17 @@ Route::get('/login', function () {
     return Inertia::render('Auth/Login');
 })->name("login");
 
+// RECUPERAR CONTRASEÑA
+Route::get('/olvido_contrasena', [RecuperarContrasenaController::class, 'olvido_contrasena'])->name("olvido_contrasena");
+Route::post('/solicitar_recuperacion', [RecuperarContrasenaController::class, 'solicitar_recuperacion'])->name("solicitar_recuperacion");
+Route::get('/recuperar_password/{recuperar_password}', [RecuperarContrasenaController::class, 'recuperar_password'])->name("recuperar_password");
+Route::post('/registrar_recuperacion/{recuperar_password}', [RecuperarContrasenaController::class, 'registrar_recuperacion'])->name("registrar_recuperacion");
+
+// PERFIL CLIENTE
+Route::get('getInfoCliente', [ProfileController::class, 'getInfoCliente'])->name('profile.getInfoCliente');
+Route::post('updateInfoCliente', [ProfileController::class, 'updateInfoCliente'])->name('profile.updateInfoCliente');
+
+// registro
 Route::post('/registro/validaForm1', [RegisteredUserController::class, 'validaForm1'])->name("registro.validaForm1");
 Route::get('/registro', function () {
     if (Auth::check()) {
@@ -73,6 +96,10 @@ Route::get('/clear-cache', function () {
 Route::middleware(['auth', 'permisoUsuario'])->prefix("admin")->group(function () {
     // INICIO
     Route::get('/inicio', [InicioController::class, 'inicio'])->name('inicio');
+    Route::get('/ventasLinea', [InicioController::class, 'ventasLinea'])->name('ventasLinea');
+    Route::get('/pujasLinea', [InicioController::class, 'pujasLinea'])->name('pujasLinea');
+    Route::get('/ingresosVentasSubastas', [InicioController::class, 'ingresosVentasSubastas'])->name('ingresosVentasSubastas');
+    Route::get('/ingresosCategorias', [InicioController::class, 'ingresosCategorias'])->name('ingresosCategorias');
 
     // CONFIGURACION
     Route::resource("configuracions", ConfiguracionController::class)->only(
@@ -126,6 +153,7 @@ Route::middleware(['auth', 'permisoUsuario'])->prefix("admin")->group(function (
     );
 
     // PRODUCTOS
+    Route::get("productos/verProducto/{producto}", [ProductoController::class, 'verProducto'])->name("productos.verProducto");
     Route::get("productos/paginado", [ProductoController::class, 'paginado'])->name("productos.paginado");
     Route::get("productos/listado", [ProductoController::class, 'listado'])->name("productos.listado");
     Route::get("productos/byCodigo", [ProductoController::class, 'byCodigo'])->name("productos.byCodigo");
@@ -179,9 +207,13 @@ Route::middleware(['auth', 'permisoUsuario'])->prefix("admin")->group(function (
     Route::put("subastas/participantes/update/{participante}", [ParticipanteController::class, 'update'])->name("participantes.update");
     Route::put("subastas/participantes/registrarDevolucion/{participante}", [ParticipanteController::class, 'registrarDevolucion'])->name("participantes.registrarDevolucion");
 
-
     // OTROS
     Route::get("parcial_datos_pago", [InicioController::class, 'getParcialDatosPago'])->name("inicio.getParcialDatosPago");
+
+    // NOTIFICACION USERS
+    Route::get("notificacion_users", [NotificacionUserController::class, 'index'])->name("notificacion_users.index");
+    Route::get("notificacion_users/paginado", [NotificacionUserController::class, 'paginado'])->name("notificacion_users.paginado");
+    Route::get("notificacion_users/getNotificacions", [NotificacionUserController::class, 'getNotificacions'])->name("notificacion_users.getNotificacions");
 
     // REPORTES
     Route::get('reportes/usuarios', [ReporteController::class, 'usuarios'])->name("reportes.usuarios");
@@ -195,5 +227,17 @@ Route::middleware(['auth', 'permisoUsuario'])->prefix("admin")->group(function (
 
     Route::get('reportes/kardex_productos', [ReporteController::class, 'kardex_productos'])->name("reportes.kardex_productos");
     Route::get('reportes/r_kardex_productos', [ReporteController::class, 'r_kardex_productos'])->name("reportes.r_kardex_productos");
+
+    Route::get('reportes/ingreso_productos', [ReporteController::class, 'ingreso_productos'])->name("reportes.ingreso_productos");
+    Route::get('reportes/r_ingreso_productos', [ReporteController::class, 'r_ingreso_productos'])->name("reportes.r_ingreso_productos");
+
+    Route::get('reportes/salida_productos', [ReporteController::class, 'salida_productos'])->name("reportes.salida_productos");
+    Route::get('reportes/r_salida_productos', [ReporteController::class, 'r_salida_productos'])->name("reportes.r_salida_productos");
+
+    Route::get('reportes/participantes', [ReporteController::class, 'participantes'])->name("reportes.participantes");
+    Route::get('reportes/r_participantes', [ReporteController::class, 'r_participantes'])->name("reportes.r_participantes");
+
+    Route::get('reportes/subastas', [ReporteController::class, 'subastas'])->name("reportes.subastas");
+    Route::get('reportes/r_subastas', [ReporteController::class, 'r_subastas'])->name("reportes.r_subastas");
 });
 require __DIR__ . '/auth.php';

@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Notificacion;
 use App\Services\HistorialAccionService;
 use App\Models\Producto;
 use App\Models\Subasta;
@@ -20,7 +21,7 @@ class ProductoService
 {
     private $modulo = "PRODUCTOS";
 
-    public function __construct(private ProductoImagenService $productoImagenService, private HistorialAccionService $historialAccionService) {}
+    public function __construct(private ProductoImagenService $productoImagenService, private HistorialAccionService $historialAccionService, private NotificacionUserService $notificacion_user_service) {}
 
     public function listado(): Collection
     {
@@ -40,7 +41,8 @@ class ProductoService
      */
     public function listadoPaginado(int $length, int $page, string $search, array $columnsSerachLike = [], array $columnsFilter = [], array $columnsBetweenFilter = [], array $orderBy = []): LengthAwarePaginator
     {
-        $productos = Producto::select("productos.*");
+        $productos = Producto::select("productos.*")
+            ->with(["categoria"]);
 
         // Filtros exactos
         foreach ($columnsFilter as $key => $value) {
@@ -177,6 +179,9 @@ class ProductoService
 
         $producto->stock = (float)$producto->stock - $cantidad;
         $producto->save();
+
+        $this->verificaNotificacion($producto);
+
         return $producto;
     }
 
@@ -191,6 +196,22 @@ class ProductoService
         return $disponible;
     }
 
+    public function verificaNotificacion($producto)
+    {
+        if ($producto->stock_actual < 1) {
+            $notificacion = Notificacion::create([
+                "descripcion" => $producto->nombre . " SE QUEDO SIN STOCK",
+                "fecha" => date("Y-m-d"),
+                "hora" => date("H:i"),
+                "modulo" => "Producto",
+                "registro_id" => $producto->id,
+                "tipo" => "STOCK",
+            ]);
+
+            $this->notificacion_user_service->crearNotificacionUsers($notificacion->id, ["ADMINISTRADOR", "AUXILIAR"]);
+        }
+    }
+
     public function verificaStockCantidad($producto_id, $cantidad): array
     {
         $producto = Producto::findOrFail($producto_id);
@@ -200,5 +221,19 @@ class ProductoService
         }
 
         return [$disponible, $producto->stock];
+    }
+
+    public function validaStockCantidad($producto_id, $cantidad)
+    {
+        $producto = Producto::findOrFail($producto_id);
+        $disponible = false;
+        if ($producto->stock >= $cantidad) {
+            $disponible = true;
+        }
+        if (!$disponible) {
+            throw new Exception("Stock insuficiente del producto $producto->nombre, stock actual " . $producto->stock, 422);
+            return false;
+        }
+        return true;
     }
 }

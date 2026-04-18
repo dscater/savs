@@ -247,11 +247,36 @@ onUnmounted(() => {});
                         class="nav-header font-weight-bold"
                         v-if="
                             permisos == '*' ||
-                            permisos.includes('reportes.usuarios')
+                            permisos.includes('reportes.usuarios') ||
+                            permisos.includes('reportes.ventas') ||
+                            permisos.includes('reportes.clientes') ||
+                            permisos.includes('reportes.kardex_productos') ||
+                            permisos.includes('reportes.subastas') ||
+                            permisos.includes('reportes.participantes') ||
+                            permisos.includes('reportes.ingreso_productos') ||
+                            permisos.includes('reportes.salida_productos')
                         "
                     >
                         REPORTES
                     </li>
+                    <ItemMenu
+                        v-if="
+                            permisos == '*' ||
+                            permisos.includes('reportes.subastas')
+                        "
+                        :label="'Lista de Subastas'"
+                        :ruta="'reportes.subastas'"
+                        :icon="'fa fa-file-pdf'"
+                    ></ItemMenu>
+                    <ItemMenu
+                        v-if="
+                            permisos == '*' ||
+                            permisos.includes('reportes.participantes')
+                        "
+                        :label="'Participantes por Subastas'"
+                        :ruta="'reportes.participantes'"
+                        :icon="'fa fa-file-pdf'"
+                    ></ItemMenu>
                     <ItemMenu
                         v-if="
                             permisos == '*' ||
@@ -273,6 +298,24 @@ onUnmounted(() => {});
                     <ItemMenu
                         v-if="
                             permisos == '*' ||
+                            permisos.includes('reportes.ingreso_productos')
+                        "
+                        :label="'Ingreso de Productos'"
+                        :ruta="'reportes.ingreso_productos'"
+                        :icon="'fa fa-file-pdf'"
+                    ></ItemMenu>
+                    <ItemMenu
+                        v-if="
+                            permisos == '*' ||
+                            permisos.includes('reportes.salida_productos')
+                        "
+                        :label="'Salida de Productos'"
+                        :ruta="'reportes.salida_productos'"
+                        :icon="'fa fa-file-pdf'"
+                    ></ItemMenu>
+                    <ItemMenu
+                        v-if="
+                            permisos == '*' ||
                             permisos.includes('reportes.clientes')
                         "
                         :label="'Lista de Clientes'"
@@ -289,6 +332,15 @@ onUnmounted(() => {});
                         :icon="'fa fa-file-pdf'"
                     ></ItemMenu>
                     <li class="nav-header font-weight-bold">OTROS</li>
+                    <ItemMenu
+                        v-if="
+                            permisos == '*' ||
+                            permisos.includes('notificacion_users.index')
+                        "
+                        :label="'Notificaciones'"
+                        :ruta="'notificacion_users.index'"
+                        :icon="'fa fa-bell'"
+                    ></ItemMenu>
                     <ItemMenu
                         v-if="
                             permisos == '*' ||

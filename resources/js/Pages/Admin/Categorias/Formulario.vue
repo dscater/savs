@@ -18,7 +18,7 @@ const { oCategoria, limpiarCategoria } = useCategorias();
 const accion_form = ref(props.accion_formulario);
 const muestra_form = ref(props.muestra_formulario);
 const enviando = ref(false);
-let form = useForm(oCategoria.value);
+const form = useForm(oCategoria.value);
 watch(
     () => props.muestra_formulario,
     (newValue) => {
@@ -27,7 +27,10 @@ watch(
             document
                 .getElementsByTagName("body")[0]
                 .classList.add("modal-open");
-            form = useForm(oCategoria.value);
+            form.id = oCategoria.value.id;
+            form.nombre = oCategoria.value.nombre;
+            form.descripcion = oCategoria.value.descripcion;
+            form._method = oCategoria.value._method;
         } else {
             document
                 .getElementsByTagName("body")[0]
@@ -66,7 +69,7 @@ const textBtn = computed(() => {
 const enviarFormulario = () => {
     enviando.value = true;
     let url =
-        accion_form.value == 0
+        form.id == 0
             ? route("categorias.store")
             : route("categorias.update", form.id);
 

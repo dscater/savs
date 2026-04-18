@@ -1,3 +1,10 @@
+@import "./variablesPortal.css";
+
+html,
+body {
+    max-width: 100vw;
+}
+
 body #app .mih-h-screen {
     height: 100vh;
     min-height: 100vh;
@@ -24,6 +31,13 @@ body #app {
 .img_inicio {
     width: 100%;
     object-fit: cover;
+    position: relative;
+}
+.img_inicio.left {
+    left: -1px;
+}
+.img_inicio.right {
+    right: -1px;
 }
 
 .seccion {
@@ -32,4 +46,50 @@ body #app {
 
 body.modal-open .modal.show {
     background-color: rgba(0, 0, 0, 0.459);
+}
+
+.producto-portal .imagen-producto {
+    text-align: center;
+}
+
+.producto-portal img {
+    max-width: 100%;
+    height: 200px;
+    object-fit: fill;
+    transition: all 0.4s;
+}
+
+.producto-portal:hover img {
+    transform: scale(1.03);
+}
+
+.producto-portal .nombre {
+    font-weight: bold;
+    text-align: center;
+    height: 43px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; /* Limit to 3 lines */
+    overflow: hidden;
+}
+
+.producto-portal .nombre a {
+    color: var(--bg3);
+}
+
+.title-seccion {
+    width: 100%;
+    text-align: center;
+    font-size: 1.7em;
+    font-weight: 600;
+}
+
+body #app .seccion_portal {
+    padding: 90px 0px;
+    margin-bottom: 0;
+}
+
+body #app .seccion_portal.dark {
+    background-color: var(--bg1);
 }

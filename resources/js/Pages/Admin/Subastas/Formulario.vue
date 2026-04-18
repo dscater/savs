@@ -32,12 +32,23 @@ const props = defineProps({
 const { oSubasta, setSubasta, limpiarSubasta } = useSubastas();
 const accion_form = ref(props.accion_formulario);
 const enviando = ref(false);
-let form = useForm(props.subasta);
+const form = useForm(props.subasta);
 watch(
     () => props.subasta,
     (newValue) => {
-        form = useForm(newValue);
         setSubasta(newValue);
+        form.id = newValue.id;
+        form.producto_id = newValue.producto_id;
+        form.estado_producto = newValue.estado_producto;
+        form.monto_inicial = newValue.monto_inicial;
+        form.garantia = newValue.garantia;
+        form.fecha_fin = newValue.fecha_fin;
+        form.hora_fin = newValue.hora_fin;
+        form.publico = newValue.publico;
+        form.estado_subasta = newValue.estado_subasta;
+        form.fecha_registro = newValue.fecha_registro;
+        form.descripcion = newValue.descripcion;
+        form._method = newValue._method;
     },
 );
 watch(
@@ -53,7 +64,7 @@ watch(
 const enviarFormulario = () => {
     enviando.value = true;
     let url =
-        accion_form.value == 0
+        form.id == 0
             ? route("subastas.store")
             : route("subastas.update", form.id);
 

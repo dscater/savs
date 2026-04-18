@@ -18,7 +18,7 @@ const { oSalidaProducto, limpiarSalidaProducto } = useSalidaProductos();
 const accion_form = ref(props.accion_formulario);
 const muestra_form = ref(props.muestra_formulario);
 const enviando = ref(false);
-let form = useForm(oSalidaProducto.value);
+const form = useForm(oSalidaProducto.value);
 watch(
     () => props.muestra_formulario,
     (newValue) => {
@@ -28,7 +28,12 @@ watch(
             document
                 .getElementsByTagName("body")[0]
                 .classList.add("modal-open");
-            form = useForm(oSalidaProducto.value);
+            form.id = oSalidaProducto.value.id;
+            form.producto_id = oSalidaProducto.value.producto_id;
+            form.cantidad = oSalidaProducto.value.cantidad;
+            form.descripcion = oSalidaProducto.value.descripcion;
+            form.fecha_registro = oSalidaProducto.value.fecha_registro;
+            form._method = oSalidaProducto.value._method;
         } else {
             document
                 .getElementsByTagName("body")[0]
@@ -67,7 +72,7 @@ const textBtn = computed(() => {
 const enviarFormulario = () => {
     enviando.value = true;
     let url =
-        accion_form.value == 0
+        form.id == 0
             ? route("salida_productos.store")
             : route("salida_productos.update", form.id);
 
@@ -95,12 +100,14 @@ const enviarFormulario = () => {
             console.log(code ?? "");
             console.log(form.errors);
             if (form.errors) {
-                const error =
-                    "Existen errores en el formulario, por favor verifique";
+                const lista = Object.values(form.errors)
+                    .map((error) => `<li>${error}</li>`)
+                    .join("");
+
                 Swal.fire({
                     icon: "info",
                     title: "Error",
-                    html: `<strong>${error}</strong>`,
+                    html: `<ul class="pl-5 text-left">${lista}</ul>`,
                     confirmButtonText: `Aceptar`,
                     customClass: {
                         confirmButton: "btn-error",

@@ -25,7 +25,7 @@ const page = ref(1);
 const last_page = ref(1);
 const total = ref(0);
 
-const obtenerVehiculos = () => {
+const obtenerSubastas = () => {
     axios
         .get(route("subastas.portal"), {
             params: {
@@ -45,11 +45,11 @@ const updatePage = (value) => {
     page.value = page.value + value;
     if (page.value < 0) page.value = 1;
     if (page.value > total.value) page.value = last_page;
-    obtenerVehiculos();
+    obtenerSubastas();
 };
 
 const cargarListas = () => {
-    obtenerVehiculos();
+    obtenerSubastas();
 };
 
 onMounted(() => {

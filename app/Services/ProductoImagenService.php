@@ -30,9 +30,8 @@ class ProductoImagenService
             if ($imagen instanceof UploadedFile) {
                 $producto_imagen = ProductoImagen::create([
                     "producto_id" => $producto->id,
-                    "imagen" => "default.jpg"
+                    // "imagen" => "default.jpg"
                 ]);
-                Log::debug($producto_imagen);
                 $this->subirImagen($producto_imagen, $imagen, $key);
             }
         }

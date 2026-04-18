@@ -56,24 +56,6 @@ class SalidaProductoService
             }
         }
 
-        // Búsqueda en múltiples columnas con LIKE
-        if (!empty($search) && !empty($columnsSerachLike)) {
-            $salida_productos->where(function ($query) use ($search, $columnsSerachLike) {
-                foreach ($columnsSerachLike as $col) {
-                    if ($col == 'fecha_registro') {
-                        $array_fecha = explode("/", $search);
-                        $array_fecha = array_reverse($array_fecha);
-                        if (count($array_fecha) > 0) {
-                            $search = "";
-                            foreach ($array_fecha as $key => $text) {
-                                $search .= $text . ($key < count($array_fecha) - 1 ? '-' : '');
-                            }
-                        }
-                    }
-                    $query->orWhere("productos.$col", "LIKE", "%$search%");
-                }
-            });
-        }
 
         // Ordenamiento
         foreach ($orderBy as $value) {

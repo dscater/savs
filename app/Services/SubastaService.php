@@ -192,7 +192,7 @@ class SubastaService
         $dias_maximo = 8;
         $fecha_mostrar = date("Y-m-d", strtotime("-" . $dias_maximo . " days"));
         $subastas = Subasta::where("fecha_fin", "<=", $fecha_mostrar)
-            ->where("estado_subasta", 2)
+            ->whereIn("estado_subasta", [0, 2])
             ->get();
         foreach ($subastas as $item) {
             $item->estado_sub = 3;

@@ -17,6 +17,10 @@ form .v-input.v-input--error {
     /* height: 60px; */
 }
 
+.cursor-pointer {
+    cursor: pointer;
+}
+
 /* Contenedor relativo para que el label se posicione dentro */
 .form-floating {
     position: relative;
@@ -40,6 +44,14 @@ form .v-input.v-input--error {
     font-weight: bold !important;
     background-color: var(--bgWhite);
     padding: 0 0.25rem;
+}
+
+#app tr.bg-danger:hover td {
+    background-color: var(--danger) !important;
+}
+
+#app tr.bg-warning:hover td {
+    background-color: var(--warning) !important;
 }
 
 .form-floating select,

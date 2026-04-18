@@ -42,6 +42,26 @@ class SubastaController extends Controller
     }
 
 
+
+    public function porClientePaginado(Request $request)
+    {
+        $this->subastaService->actualizaPublicacionesEstado();
+        $subastas = [];
+        $subastas = Subasta::with(["producto.producto_imagens", "participantes_puja"])
+            ->select("subastas.*")
+            ->whereHas("participantes", function ($q) {
+                $q->where("user_id", Auth::user()->id);
+            })
+            ->whereIn("estado_subasta", [1, 2, 3]);
+
+        $subastas = $subastas->orderBy("created_at", "desc")
+            ->paginate(10);
+
+        return response()->JSON([
+            "subastas" => $subastas,
+        ]);
+    }
+
     /**
      * Listado de subastas sin ids: 1 y 2
      *
@@ -62,6 +82,7 @@ class SubastaController extends Controller
         $subastas = Subasta::with(["producto.producto_imagens", "participantes_puja", "participante_pujas"])
             ->select("subastas.*")
             ->whereIn("estado_subasta", [0, 1, 2])
+            ->where("publico",  1)
             ->orderBy("created_at", "desc")
             ->paginate(8);
 
@@ -408,7 +429,6 @@ class SubastaController extends Controller
                     "registro_id" => $participante->id,
                     "tipo" => "COMPROBANTE",
                 ]);
-
 
                 // notificacion_user
                 $this->notificacion_user_service->crearNotificacionUsers($notificacion->id, ["ADMINISTRADOR", "AUXILIAR"]);

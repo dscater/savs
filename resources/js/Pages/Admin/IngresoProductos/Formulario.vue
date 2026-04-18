@@ -18,7 +18,7 @@ const { oIngresoProducto, limpiarIngresoProducto } = useIngresoProductos();
 const accion_form = ref(props.accion_formulario);
 const muestra_form = ref(props.muestra_formulario);
 const enviando = ref(false);
-let form = useForm(oIngresoProducto.value);
+const form = useForm(oIngresoProducto.value);
 watch(
     () => props.muestra_formulario,
     (newValue) => {
@@ -28,7 +28,12 @@ watch(
             document
                 .getElementsByTagName("body")[0]
                 .classList.add("modal-open");
-            form = useForm(oIngresoProducto.value);
+            form.id = oIngresoProducto.value.id;
+            form.producto_id = oIngresoProducto.value.producto_id;
+            form.cantidad = oIngresoProducto.value.cantidad;
+            form.descripcion = oIngresoProducto.value.descripcion;
+            form.fecha_registro = oIngresoProducto.value.fecha_registro;
+            form._method = oIngresoProducto.value._method;
         } else {
             document
                 .getElementsByTagName("body")[0]
@@ -67,7 +72,7 @@ const textBtn = computed(() => {
 const enviarFormulario = () => {
     enviando.value = true;
     let url =
-        accion_form.value == 0
+        form.id == 0
             ? route("ingreso_productos.store")
             : route("ingreso_productos.update", form.id);
 

@@ -14,9 +14,8 @@ class ImagenesPortalController extends Controller
                 "url_imagen" => asset("imgs/portal/1.jpg"),
                 'html' => '
                 <div class="w-100 text-center">
-                <h4>What is Lorem Ipsum?</h4>
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry
-                </div>'
+                <h1 class="h1">Autopartes Rudje Kaizen Group</h1>
+                <p class="text-lg">Todo lo que necesitas en un solo lugar</p></div>'
             ],
             [
                 "tipo" => "img",

@@ -29,15 +29,21 @@ watch(
             document
                 .getElementsByTagName("body")[0]
                 .classList.add("modal-open");
-            form = useForm(oUsuario.value);
-            options.value = [
-                {
-                    value: oUsuario.value.persona_id,
-                    label: oUsuario.value.persona
-                        ? `${oUsuario.value.persona.full_name} - ${oUsuario.value.persona.ci}`
-                        : "Cargando...",
-                },
-            ];
+            form.id = oUsuario.value.id;
+            form.usuario = oUsuario.value.usuario;
+            form.nombre = oUsuario.value.nombre;
+            form.paterno = oUsuario.value.paterno;
+            form.materno = oUsuario.value.materno;
+            form.ci = oUsuario.value.ci;
+            form.ci_exp = oUsuario.value.ci_exp;
+            form.dir = oUsuario.value.dir;
+            form.correo = oUsuario.value.correo;
+            form.fono = oUsuario.value.fono;
+            form.password = oUsuario.value.password;
+            form.acceso = oUsuario.value.acceso;
+            form.tipo = oUsuario.value.tipo;
+            form.foto = oUsuario.value.foto;
+            form._method = oUsuario.value._method;
         } else {
             document
                 .getElementsByTagName("body")[0]

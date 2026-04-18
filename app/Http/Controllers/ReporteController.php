@@ -6,9 +6,12 @@ use App\Models\Catalogo;
 use App\Models\Cliente;
 use App\Models\Configuracion;
 use App\Models\HistorialAccion;
+use App\Models\IngresoProducto;
 use App\Models\Inscripcion;
 use App\Models\KardexProducto;
 use App\Models\Producto;
+use App\Models\SalidaProducto;
+use App\Models\Subasta;
 use App\Models\User;
 use App\Models\Venta;
 use App\Models\Visitante;
@@ -735,5 +738,153 @@ class ReporteController extends Controller
             $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
             $writer->save('php://output');
         }
+    }
+
+    public function ingreso_productos()
+    {
+        return Inertia::render("Admin/Reportes/IngresoProductos");
+    }
+
+    public function r_ingreso_productos(Request $request)
+    {
+        ini_set('memory_limit', '1024M');
+        set_time_limit(-1);
+        $producto_id =  $request->producto_id;
+        $fecha_ini =  $request->fecha_ini;
+        $fecha_fin =  $request->fecha_fin;
+        $formato =  $request->formato;
+        $ingreso_productos = IngresoProducto::select("ingreso_productos.*");
+
+        if ($producto_id != 'todos') {
+            $ingreso_productos->where('producto_id', $producto_id);
+        }
+
+        if ($fecha_ini && $fecha_fin) {
+            $ingreso_productos->whereBetween('fecha_registro', [$fecha_ini, $fecha_fin]);
+        }
+        $ingreso_productos = $ingreso_productos->get();
+
+        $pdf = PDF::loadView('reportes.ingreso_productos', compact('ingreso_productos'))->setPaper('letter', 'portrait');
+
+        // ENUMERAR LAS PÁGINAS USANDO CANVAS
+        $pdf->output();
+        $dom_pdf = $pdf->getDomPDF();
+        $canvas = $dom_pdf->get_canvas();
+        $alto = $canvas->get_height();
+        $ancho = $canvas->get_width();
+        $canvas->page_text($ancho - 90, $alto - 25, "Página {PAGE_NUM} de {PAGE_COUNT}", null, 9, array(0, 0, 0));
+
+        return $pdf->stream('ingreso_productos.pdf');
+    }
+
+    public function salida_productos()
+    {
+        return Inertia::render("Admin/Reportes/SalidaProductos");
+    }
+
+    public function r_salida_productos(Request $request)
+    {
+        ini_set('memory_limit', '1024M');
+        set_time_limit(-1);
+        $producto_id =  $request->producto_id;
+        $fecha_ini =  $request->fecha_ini;
+        $fecha_fin =  $request->fecha_fin;
+        $formato =  $request->formato;
+        $salida_productos = SalidaProducto::select("salida_productos.*");
+
+        if ($producto_id != 'todos') {
+            $salida_productos->where('producto_id', $producto_id);
+        }
+
+        if ($fecha_ini && $fecha_fin) {
+            $salida_productos->whereBetween('fecha_registro', [$fecha_ini, $fecha_fin]);
+        }
+        $salida_productos = $salida_productos->get();
+
+        $pdf = PDF::loadView('reportes.salida_productos', compact('salida_productos'))->setPaper('letter', 'portrait');
+
+        // ENUMERAR LAS PÁGINAS USANDO CANVAS
+        $pdf->output();
+        $dom_pdf = $pdf->getDomPDF();
+        $canvas = $dom_pdf->get_canvas();
+        $alto = $canvas->get_height();
+        $ancho = $canvas->get_width();
+        $canvas->page_text($ancho - 90, $alto - 25, "Página {PAGE_NUM} de {PAGE_COUNT}", null, 9, array(0, 0, 0));
+
+        return $pdf->stream('salida_productos.pdf');
+    }
+
+    public function participantes()
+    {
+        return Inertia::render("Admin/Reportes/Participantes");
+    }
+
+    public function r_participantes(Request $request)
+    {
+        ini_set('memory_limit', '1024M');
+        set_time_limit(-1);
+        $subasta_id =  $request->subasta_id;
+        $fecha_ini =  $request->fecha_ini;
+        $fecha_fin =  $request->fecha_fin;
+        $formato =  $request->formato;
+        $subastas = Subasta::select("subastas.*");
+
+        if ($subasta_id != 'todos') {
+            $subastas->where('id', $subasta_id);
+        }
+
+        if ($fecha_ini && $fecha_fin) {
+            $subastas->whereBetween('fecha_registro', [$fecha_ini, $fecha_fin]);
+        }
+        $subastas = $subastas->get();
+
+        $pdf = PDF::loadView('reportes.participantes', compact('subastas', "fecha_ini", "fecha_fin"))->setPaper('legal', 'landscape');
+
+        // ENUMERAR LAS PÁGINAS USANDO CANVAS
+        $pdf->output();
+        $dom_pdf = $pdf->getDomPDF();
+        $canvas = $dom_pdf->get_canvas();
+        $alto = $canvas->get_height();
+        $ancho = $canvas->get_width();
+        $canvas->page_text($ancho - 90, $alto - 25, "Página {PAGE_NUM} de {PAGE_COUNT}", null, 9, array(0, 0, 0));
+
+        return $pdf->stream('participantes.pdf');
+    }
+
+    public function subastas()
+    {
+        return Inertia::render("Admin/Reportes/Subastas");
+    }
+
+    public function r_subastas(Request $request)
+    {
+        ini_set('memory_limit', '1024M');
+        set_time_limit(-1);
+        $subasta_id =  $request->subasta_id;
+        $fecha_ini =  $request->fecha_ini;
+        $fecha_fin =  $request->fecha_fin;
+        $formato =  $request->formato;
+        $subastas = Subasta::select("subastas.*");
+
+        if ($subasta_id != 'todos') {
+            $subastas->where('id', $subasta_id);
+        }
+
+        if ($fecha_ini && $fecha_fin) {
+            $subastas->whereBetween('fecha_registro', [$fecha_ini, $fecha_fin]);
+        }
+        $subastas = $subastas->get();
+
+        $pdf = PDF::loadView('reportes.subastas', compact('subastas'))->setPaper('letter', 'landscape');
+
+        // ENUMERAR LAS PÁGINAS USANDO CANVAS
+        $pdf->output();
+        $dom_pdf = $pdf->getDomPDF();
+        $canvas = $dom_pdf->get_canvas();
+        $alto = $canvas->get_height();
+        $ancho = $canvas->get_width();
+        $canvas->page_text($ancho - 90, $alto - 25, "Página {PAGE_NUM} de {PAGE_COUNT}", null, 9, array(0, 0, 0));
+
+        return $pdf->stream('subastas.pdf');
     }
 }

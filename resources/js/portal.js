@@ -8,12 +8,10 @@ import "./assets/js/bootstrap.bundle.js";
 // css
 import "./assets/css/all.min.css";
 import "./assets/css/adminlte.min.css";
-import "./assets/css/botones.css";
-import "./assets/css/backgroundYcolor.css";
+import "./assets/css/backgroundYcolorPortal.css";
 import "./assets/css/fonts.css";
 import "./assets/css/portal.css";
 import "./assets/css/form.css";
-import "./assets/css/icheck-bootstrap.min.css";
 import "./assets/css/miTable.css"; // mi-table
 
 // import "./assets/js/adminlte.min.js";

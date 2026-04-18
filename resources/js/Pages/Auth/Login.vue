@@ -236,8 +236,17 @@ onMounted(() => {
                                             Registrate</Link
                                         >
                                     </div>
+                                    <div class="col-12 my-2">
+                                        <Link
+                                            :href="route('olvido_contrasena')"
+                                            class="d-block w-100 text-center"
+                                            >¿Olvidaste tu contraseña?</Link
+                                        >
+                                    </div>
                                     <div class="col-12">
-                                        <a href="/" class="btn btn-link w-100"
+                                        <a
+                                            href="/"
+                                            class="btn btn-link w-100 text-dark"
                                             >Ir al portal</a
                                         >
                                     </div>

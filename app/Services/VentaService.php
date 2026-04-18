@@ -16,7 +16,7 @@ class VentaService
 {
     private $modulo = "VENTAS";
 
-    public function __construct(private HistorialAccionService $historialAccionService, private KardexProductoService $kardex_producto_service) {}
+    public function __construct(private HistorialAccionService $historialAccionService, private KardexProductoService $kardex_producto_service, private ProductoService $producto_service) {}
 
     public function listado(): Collection
     {
@@ -94,6 +94,10 @@ class VentaService
 
         // detalles
         foreach ($datos["venta_detalles"] as $item) {
+
+            // validar cantidad
+            $this->producto_service->validaStockCantidad($item["producto_id"], $item["cantidad"]);
+
             $venta_detalle = $venta->venta_detalles()->create([
                 "producto_id" => $item["producto_id"],
                 "precio" => $item["precio"],
@@ -134,6 +138,9 @@ class VentaService
         // detalles
         foreach ($datos["venta_detalles"] as $item) {
             if ($item["id"] == 0) {
+                // validar cantidad
+                $this->producto_service->validaStockCantidad($item["producto_id"], $item["cantidad"]);
+
                 $venta_detalle = $venta->venta_detalles()->create([
                     "producto_id" => $item["producto_id"],
                     "precio" => $item["precio"],
@@ -158,6 +165,10 @@ class VentaService
                     $venta_detalle->save();
 
                     // egreso nueva cantidad
+                    // validar cantidad
+                    $this->producto_service->validaStockCantidad($venta_detalle->producto->id, $cantidad_nuevo);
+
+
                     $this->kardex_producto_service->registroEgreso("VENTAS", $venta_detalle->producto, $cantidad_nuevo, $venta_detalle->precio, "EGRESO POR MODIFICACIÓN DE VENTA", "VentaDetalle", $venta_detalle->id);
                 }
             }

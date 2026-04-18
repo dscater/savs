@@ -24,6 +24,35 @@ const handleScroll = () => {
     // showButton.value = y > 300;
 };
 
+const redireccionUserLogeao = () => {
+    if (auth.user.tipo == "PARTICIPANTE") {
+        router.get(route("profile.edit"));
+    } else {
+        window.location.href = route("inicio");
+    }
+};
+
+const logout = () => {
+    axios
+        .post(route("logout"))
+        .then((response) => {
+            window.location.href = route("portal.index");
+        })
+        .catch((error) => {
+            console.log(error.response);
+        });
+
+    // router.post(route("logout"), {
+    //     onFinish: () => {
+    //         window.location.reload();
+    //     },
+    // });
+};
+router.on("navigate", (event) => {
+    if (document.getElementById("navbarNav"))
+        document.getElementById("navbarNav").classList.remove("show");
+});
+
 onMounted(() => {
     window.addEventListener("scroll", handleScroll);
     configuracionStore.initConfiguracion();
@@ -69,18 +98,26 @@ onBeforeMount(() => {});
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <Link class="nav-link" :href="route('portal.index')"
-                            ><i class="fa fa-home"></i> INICIO
+                            ><i class="fa fa-home"></i> Inicio
                         </Link>
                     </li>
                     <li class="nav-item">
                         <Link class="nav-link" :href="route('portal.subastas')"
-                            ><i class="fa fa-gavel"></i> SUBASTAS
+                            ><i class="fa fa-gavel"></i> Subastas
                         </Link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"
-                            ><i class="fa fa-phone"></i> CONTACTO</a
-                        >
+                        <Link class="nav-link" :href="route('portal.contacto')"
+                            ><i class="fa fa-phone"></i> Contacto
+                        </Link>
+                    </li>
+                    <li
+                        class="nav-item"
+                        v-if="auth && auth.user?.tipo == 'PARTICIPANTE'"
+                    >
+                        <Link class="nav-link" :href="route('portal.subastas')"
+                            ><i class="fa fa-clipboard-list"></i> Mis Subastas
+                        </Link>
                     </li>
                     <li class="nav-item">
                         <Link
@@ -88,11 +125,21 @@ onBeforeMount(() => {});
                             :href="route('login')"
                             v-if="!auth.user"
                         >
-                            <i class="fa fa-sign-in-alt"></i>
+                            <i class="fa fa-sign-in-alt"></i> Ingresar
                         </Link>
-                        <Link class="nav-link" :href="route('inicio')" v-else>
-                            <i class="fa fa-user"></i>
+                        <Link
+                            class="nav-link"
+                            href="#"
+                            v-else
+                            @click="redireccionUserLogeao"
+                        >
+                            <i class="fa fa-user"></i> {{ auth?.user?.usuario }}
                         </Link>
+                    </li>
+                    <li class="nav-item" v-if="auth.user">
+                        <a class="nav-link" href="#" @click.prevent="logout"
+                            ><i class="fa fa-power-off"></i> Salir</a
+                        >
                     </li>
                 </ul>
             </div>

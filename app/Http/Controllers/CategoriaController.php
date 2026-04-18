@@ -44,6 +44,13 @@ class CategoriaController extends Controller
         ]);
     }
 
+    public function listadoPortal()
+    {
+        return response()->JSON([
+            "categorias" => $this->categoriaService->listado()
+        ]);
+    }
+
     public function paginado(Request $request)
     {
         $perPage = $request->perPage;

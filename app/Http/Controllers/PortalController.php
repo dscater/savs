@@ -20,6 +20,11 @@ class PortalController extends Controller
         return inertia("Portal/Inicio");
     }
 
+    public function contacto()
+    {
+        return Inertia::render("Portal/Contacto");
+    }
+
     public function subastas()
     {
         return inertia("Portal/Subastas");
@@ -29,6 +34,17 @@ class PortalController extends Controller
     {
         $subasta = $subasta->load(["producto.producto_imagens", "participantes_puja"]);
         return Inertia::render("Portal/Subasta", compact("subasta"));
+    }
+
+    public function producto(Producto $producto)
+    {
+        $producto = $producto->load(["producto_imagens", "categoria"]);
+        return Inertia::render("Portal/Producto", compact("producto"));
+    }
+
+    public function mis_subastas()
+    {
+        return Inertia::render("Portal/MisSubastas");
     }
 
     public function getTerminosCondiciones()

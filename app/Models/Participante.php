@@ -27,7 +27,7 @@ class Participante extends Model
         "monto_puja",
     ];
 
-    protected $appends = ["estado_puja_t", "url_comprobante", "fecha_comprobante_t", "fecha_t", "fecha_devolucion_t", "fecha_hora_devolucion", "tipo_comprobante", "devolucion_span"];
+    protected $appends = ["estado_puja_t", "url_comprobante", "fecha_comprobante_t", "fecha_t", "fecha_devolucion_t", "fecha_hora_devolucion", "devolucion_txt", "tipo_comprobante", "devolucion_span", "estado_comprobante_t"];
 
     public function getDevolucionSpanAttribute()
     {
@@ -35,6 +35,33 @@ class Participante extends Model
 
         if ($this->devolucion == 1) {
             $span = '<span class="badge bg-success">REALIZADO</span>';
+        }
+
+        return $span;
+    }
+
+    public function getEstadoComprobanteTAttribute()
+    {
+        $estado = "SIN VERIFICAR";
+
+        if ($this->estado_comprobante === 1) {
+            $estado = 'VERIFICADO';
+        }
+
+        if ($this->estado_comprobante === 2) {
+            $estado = 'RECHAZADO';
+        }
+
+        return $estado;
+    }
+
+
+    public function getDevolucionTxtAttribute()
+    {
+        $span = 'PENDIENTE';
+
+        if ($this->devolucion == 1) {
+            $span = 'REALIZADO';
         }
 
         return $span;

@@ -18,7 +18,7 @@ const { oCliente, limpiarCliente } = useClientes();
 const accion_form = ref(props.accion_formulario);
 const muestra_form = ref(props.muestra_formulario);
 const enviando = ref(false);
-let form = useForm(oCliente.value);
+const form = useForm(oCliente.value);
 watch(
     () => props.muestra_formulario,
     (newValue) => {
@@ -27,7 +27,13 @@ watch(
             document
                 .getElementsByTagName("body")[0]
                 .classList.add("modal-open");
-            form = useForm(oCliente.value);
+            form.id = oCliente.value.id;
+            form.nombre = oCliente.value.nombre;
+            form.nit_ci = oCliente.value.nit_ci;
+            form.cel = oCliente.value.cel;
+            form.correo = oCliente.value.correo;
+            form.fecha_registro = oCliente.value.fecha_registro;
+            form._method = oCliente.value._method;
         } else {
             document
                 .getElementsByTagName("body")[0]
@@ -66,7 +72,7 @@ const textBtn = computed(() => {
 const enviarFormulario = () => {
     enviando.value = true;
     let url =
-        accion_form.value == 0
+        form.id == 0
             ? route("clientes.store")
             : route("clientes.update", form.id);
 

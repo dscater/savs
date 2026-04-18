@@ -45,6 +45,11 @@ const verificarPujaUser = async (user_id, publicacion_id) => {
 provide("verificaUser", verificaUser);
 provide("verificarPujaUser", verificarPujaUser);
 
+const cerrarLogin = () => {
+    dialog_atencion.value = false;
+    document.getElementsByTagName("body")[0].classList.remove("modal-open");
+};
+
 onMounted(() => {
     configuracionStore.initConfiguracion();
 });
@@ -65,7 +70,9 @@ onBeforeMount(() => {});
 <template>
     <div class="min-h-screen bg-gray-100">
         <NavBar></NavBar>
-        <slot></slot>
+        <div class="portal_content">
+            <slot></slot>
+        </div>
         <Footer></Footer>
         <div
             class="modal fade"
@@ -77,19 +84,19 @@ onBeforeMount(() => {});
                 display: dialog_atencion ? 'block' : 'none',
             }"
         >
-            <div class="modal-dialog">
+            <div class="modal-dialog my-5">
                 <div class="modal-content">
-                    <div class="modal-body bg-principal border">
+                    <div class="modal-body bg-principal border rounded">
                         <button
-                            class="btnCerrarLoginRegistro"
-                            @click="dialog_atencion = false"
+                            class="btnCerrarLoginRegistro close text-white"
+                            @click="cerrarLogin()"
                         >
                             X
                         </button>
-                        <div class="row">
+                        <div class="row mt-3">
                             <div class="col-12 text-center">
-                                <h4 class="w-100 text-center">
-                                    Debes iniar sesión o registrarte
+                                <h4 class="w-100 text-center font-weight-bold">
+                                    Debes iniciar sesión o registrarte
                                 </h4>
                                 <a
                                     :href="route('login')"

@@ -28,13 +28,22 @@ const props = defineProps({
 const { oVenta, setVenta, limpiarVenta } = useVentas();
 const accion_form = ref(props.accion_formulario);
 const enviando = ref(false);
-let form = useForm(props.venta);
+const form = useForm(props.venta);
 watch(
     () => props.venta,
     (newValue) => {
-        console.log("ASDSDSDSD");
-        form = useForm(newValue);
         setVenta(newValue);
+        form.id = newValue.id;
+        form.cliente_id = newValue.cliente_id;
+        form.nit_ci = newValue.nit_ci;
+        form.total = newValue.total;
+        form.fecha = newValue.fecha;
+        form.hora = newValue.hora;
+        form.user_id = newValue.user_id;
+        form.status = newValue.status;
+        form.venta_detalles = newValue.venta_detalles;
+        form.detalle_eliminados = newValue.detalle_eliminados;
+        form._method = newValue._method;
     },
 );
 watch(
@@ -50,9 +59,7 @@ watch(
 const enviarFormulario = () => {
     enviando.value = true;
     let url =
-        accion_form.value == 0
-            ? route("ventas.store")
-            : route("ventas.update", form.id);
+        form.id == 0 ? route("ventas.store") : route("ventas.update", form.id);
 
     form.post(url, {
         preserveScroll: true,
@@ -73,16 +80,18 @@ const enviarFormulario = () => {
             form.reset();
             limpiarVenta();
         },
-        onError: (err, code) => {
-            console.log(code ?? "");
+        onError: (err) => {
             console.log(form.errors);
+
             if (form.errors) {
-                const error =
-                    "Existen errores en el formulario, por favor verifique";
+                const lista = Object.values(form.errors)
+                    .map((error) => `<li>${error}</li>`)
+                    .join("");
+
                 Swal.fire({
                     icon: "info",
                     title: "Error",
-                    html: `<strong>${error}</strong>`,
+                    html: `<ul class="pl-5 text-left">${lista}</ul>`,
                     confirmButtonText: `Aceptar`,
                     customClass: {
                         confirmButton: "btn-error",
@@ -190,6 +199,11 @@ const agregarProducto = () => {
     }
 
     const valor = Number(cantidad.value);
+    if (oProducto.value.stock < valor) {
+        toast.error(`Stock insuficiente, actual: ${oProducto.value.stock}`);
+        return;
+    }
+
     if (
         cantidad.value === null ||
         cantidad.value === "" ||

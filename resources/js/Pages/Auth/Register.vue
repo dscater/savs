@@ -237,7 +237,7 @@ onMounted(() => {
             :open_dialog="modal_dialog_tc"
             @cerrar-dialog="modal_dialog_tc = false"
         ></TerminosCondiciones>
-        <div class="container-fluid contenedor_login">
+        <div class="container-fluid">
             <div class="row">
                 <div
                     class="col-md-6 offset-md-3 col-lg-4 offset-lg-4 col-xl-3 offset-xl-4"
@@ -255,12 +255,12 @@ onMounted(() => {
                                 <i class="fa fa-edit"></i> Registro
                             </h5>
                         </div>
-                        <div class="card-body bg-principal">
+                        <div class="card-body">
                             <form @submit.prevent="submit()">
                                 <div class="row" v-show="!validado">
                                     <div class="col-12">
                                         <div
-                                            class="form-floating mt-3 bg-white rounded"
+                                            class="form-floating mt- bg-white rounded"
                                         >
                                             <input
                                                 type="text"
@@ -289,7 +289,7 @@ onMounted(() => {
                                             </span>
                                         </div>
                                         <div
-                                            class="form-floating mt-3 bg-white rounded"
+                                            class="form-floating mt-4 bg-white rounded"
                                         >
                                             <input
                                                 type="text"
@@ -317,7 +317,7 @@ onMounted(() => {
                                             </span>
                                         </div>
                                         <div
-                                            class="form-floating mt-3 bg-white rounded"
+                                            class="form-floating mt-4 bg-white rounded"
                                         >
                                             <input
                                                 type="text"
@@ -345,7 +345,7 @@ onMounted(() => {
                                             </span>
                                         </div>
                                         <div
-                                            class="form-floating mt-3 bg-white rounded"
+                                            class="form-floating mt-4 bg-white rounded"
                                         >
                                             <input
                                                 type="text"
@@ -373,7 +373,7 @@ onMounted(() => {
                                             </span>
                                         </div>
                                         <div
-                                            class="form-floating mt-3 bg-white rounded"
+                                            class="form-floating mt-4 bg-white rounded"
                                         >
                                             <input
                                                 type="text"
@@ -401,7 +401,7 @@ onMounted(() => {
                                             </span>
                                         </div>
                                         <div
-                                            class="form-floating mt-3 bg-white rounded"
+                                            class="form-floating mt-4 bg-white rounded"
                                         >
                                             <select
                                                 name="ci_exp"
@@ -438,7 +438,7 @@ onMounted(() => {
                                             </span>
                                         </div>
                                         <div
-                                            class="form-floating mt-3 bg-white rounded"
+                                            class="form-floating mt-4 bg-white rounded"
                                         >
                                             <input
                                                 type="text"
@@ -466,7 +466,7 @@ onMounted(() => {
                                             </span>
                                         </div>
                                         <div
-                                            class="form-floating mt-3 bg-white rounded"
+                                            class="form-floating mt-4 bg-white rounded"
                                         >
                                             <select
                                                 name="dpto_residencia"
@@ -504,7 +504,7 @@ onMounted(() => {
                                             </span>
                                         </div>
                                         <div
-                                            class="form-floating mt-3 bg-white rounded"
+                                            class="form-floating mt-4 bg-white rounded"
                                         >
                                             <input
                                                 type="email"
@@ -617,7 +617,7 @@ onMounted(() => {
                                     </div>
                                     <div class="col-12 border-bottom pb-3">
                                         <div
-                                            class="form-floating mt-3 bg-white rounded"
+                                            class="form-floating mt-4 bg-white rounded"
                                         >
                                             <select
                                                 name="banco"
@@ -654,7 +654,7 @@ onMounted(() => {
                                             </span>
                                         </div>
                                         <div
-                                            class="form-floating mt-3 bg-white rounded"
+                                            class="form-floating mt-4 bg-white rounded"
                                         >
                                             <input
                                                 type="text"
@@ -705,7 +705,7 @@ onMounted(() => {
                                     </div>
                                     <div class="col-12">
                                         <div
-                                            class="form-floating mt-3 bg-white rounded"
+                                            class="form-floating mt-4 bg-white rounded"
                                         >
                                             <input
                                                 type="text"
@@ -912,14 +912,14 @@ onMounted(() => {
                                 <div class="mt-2">
                                     <Link
                                         :href="route('login')"
-                                        class="text-muted text-sm d-block w-100 text-center"
+                                        class="text-dark text-sm d-block w-100 text-center"
                                         ><u>Ya tengo una cuenta</u></Link
                                     >
                                 </div>
                                 <div class="mt-2">
                                     <a
                                         :href="route('portal.index')"
-                                        class="text-muted text-sm text-decoration-underline d-block w-100 text-center"
+                                        class="text-dark text-sm text-decoration-underline d-block w-100 text-center"
                                         ><i class="fa fa-arrow-left"></i> Volver
                                         al portal</a
                                     >
@@ -933,10 +933,4 @@ onMounted(() => {
     </div>
 </template>
 
-<style scoped>
-body #app .contenedor_login {
-    min-height: 100vh;
-    width: 100vw;
-    background-color: var(--bgGrayLight);
-}
-</style>
+<style scoped></style>

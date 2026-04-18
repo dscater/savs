@@ -4,6 +4,7 @@ import { usePage, Link } from "@inertiajs/vue3";
 import { onMounted, onUnmounted, ref } from "vue";
 import { useSideBar } from "@/composables/useSidebar.js";
 import { useConfiguracionStore } from "@/stores/configuracion/configuracionStore";
+import axios from "axios";
 const configuracionStore = useConfiguracionStore();
 
 const { props } = usePage();
@@ -34,7 +35,24 @@ const salir = () => {
     });
 };
 
-onMounted(() => {});
+const intervalNotifaciones = ref(null);
+const listNotificacionUsers = ref([]);
+const getNotificacionUsers = () => {
+    axios.get(route("notificacion_users.getNotificacions")).then((response) => {
+        if (
+            response.data.notificacion_users.length !=
+            listNotificacionUsers.value.length
+        )
+            listNotificacionUsers.value = response.data.notificacion_users;
+    });
+};
+
+onMounted(() => {
+    getNotificacionUsers();
+    intervalNotifaciones.value = setInterval(() => {
+        getNotificacionUsers();
+    }, 1500);
+});
 
 onUnmounted(() => {});
 </script>
@@ -62,6 +80,64 @@ onUnmounted(() => {});
 
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a
+                    class="nav-link"
+                    data-toggle="dropdown"
+                    href="#"
+                    aria-expanded="true"
+                >
+                    <i class="far fa-bell"></i>
+                    <span
+                        class="badge badge-warning navbar-badge"
+                        v-if="listNotificacionUsers.length > 0"
+                        >{{ listNotificacionUsers.length }}</span
+                    >
+                </a>
+                <div
+                    class="dropdown-menu dropdown-menu-lg dropdown-menu-right"
+                    style="left: inherit; right: 0px"
+                >
+                    <span class="dropdown-item dropdown-header border-bottom"
+                        >{{ listNotificacionUsers.length }} Notificationes</span
+                    >
+                    <div class="contenedor_notificaciones">
+                        <div
+                            class="item_notificacion"
+                            v-for="item in listNotificacionUsers"
+                        >
+                            <Link
+                                :href="
+                                    item.notificacion.url +
+                                    '?notificacion_user_id=' +
+                                    item.id
+                                "
+                                class="dropdown-item"
+                            >
+                                <div class="icon">
+                                    <i
+                                        class="mr-2"
+                                        :class="[item.notificacion.icon]"
+                                    ></i>
+                                </div>
+                                <div class="descripcion_notificacion">
+                                    {{ item.notificacion.descripcion }}
+                                </div>
+                                <div
+                                    class="tiempo float-right text-muted text-sm"
+                                >
+                                    {{ item.notificacion.hace }}
+                                </div>
+                            </Link>
+                        </div>
+                    </div>
+                    <Link
+                        :href="route('notificacion_users.index')"
+                        class="dropdown-item dropdown-footer border-top"
+                        >Ver todas</Link
+                    >
+                </div>
+            </li>
             <li class="nav-item">
                 <a
                     class="nav-link"

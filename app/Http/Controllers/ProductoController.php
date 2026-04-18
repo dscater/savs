@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductoStoreRequest;
 use App\Http\Requests\ProductoUpdateRequest;
+use App\Models\NotificacionUser;
 use App\Models\Producto;
 use App\Services\ProductoService;
 use Exception;
@@ -43,6 +44,26 @@ class ProductoController extends Controller
         }
         return response()->JSON([
             "productos" => $productos
+        ]);
+    }
+
+    public function portal(Request $request)
+    {
+        $categoria_id = $request->input("categoria_id", "todos");
+
+        $productos = Producto::with(["producto_imagens"])
+            ->select("productos.*");
+
+        if ($categoria_id != 'todos') {
+            $productos->where("categoria_id", $categoria_id);
+        }
+
+
+        $productos = $productos->orderBy("created_at", "desc")
+            ->paginate(9);
+
+        return response()->JSON([
+            "productos" => $productos,
         ]);
     }
 
@@ -125,6 +146,20 @@ class ProductoController extends Controller
         }
     }
 
+    public function verProducto(Producto $producto, Request $request)
+    {
+
+        $notificacionUserId = $request->input('notificacion_user_id');
+        if ($notificacionUserId) {
+            $notificacion_user = NotificacionUser::find($notificacionUserId);
+            $notificacion_user->visto = 1;
+            $notificacion_user->save();
+        }
+
+        $producto = $producto->load(["categoria", "producto_imagens"]);
+        return Inertia::render("Admin/Productos/Show", compact("producto"));
+    }
+
     /**
      * Mostrar un producto
      *
@@ -159,6 +194,7 @@ class ProductoController extends Controller
     {
         DB::beginTransaction();
         try {
+            Log::debug($request->validated());
             // actualizar producto
             $this->productoService->actualizar($request->validated(), $producto);
             DB::commit();

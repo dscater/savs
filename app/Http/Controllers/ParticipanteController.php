@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\MensajeComprobanteMail;
+use App\Models\NotificacionUser;
 use App\Models\Parametrizacion;
 use App\Models\Participante;
 use App\Models\Subasta;

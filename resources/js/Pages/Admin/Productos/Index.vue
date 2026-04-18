@@ -31,6 +31,16 @@ const headers = [
         key: "id",
         sortable: true,
         width: "4%",
+        classRow: (item) => {
+            if (item.stock < 1) {
+                return "bg-danger";
+            }
+            if (item.stock < 3) {
+                return "bg-warning";
+            }
+
+            return "";
+        },
     },
     {
         label: "CÓDIGO",
@@ -50,6 +60,11 @@ const headers = [
     {
         label: "STOCK ACTUAL",
         key: "stock",
+        sortable: true,
+    },
+    {
+        label: "CATEGORíA",
+        key: "categoria.nombre",
         sortable: true,
     },
     {
@@ -221,7 +236,33 @@ const eliminarProducto = (item) => {
                                     v-if="
                                         props_page.auth?.user.permisos == '*' ||
                                         props_page.auth?.user.permisos.includes(
-                                            'productos.edit',
+                                            'productos.verProducto',
+                                        )
+                                    "
+                                >
+                                    <el-tooltip
+                                        class="box-item"
+                                        effect="dark"
+                                        content="Ver"
+                                        placement="left-start"
+                                    >
+                                        <Link
+                                            class="btn btn-primary"
+                                            :href="
+                                                route(
+                                                    'productos.verProducto',
+                                                    item.id,
+                                                )
+                                            "
+                                        >
+                                            <i class="fa fa-eye"></i></Link
+                                    ></el-tooltip>
+                                </template>
+                                <template
+                                    v-if="
+                                        props_page.auth?.user.permisos == '*' ||
+                                        props_page.auth?.user.permisos.includes(
+                                            'productos.verProducto',
                                         )
                                     "
                                 >

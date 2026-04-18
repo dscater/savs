@@ -51,6 +51,7 @@ class PermisoService
             "productos.store",
             "productos.edit",
             "productos.show",
+            "productos.verProducto",
             "productos.update",
             "productos.destroy",
 
@@ -112,6 +113,9 @@ class PermisoService
             "participantes.update",
             "participantes.registrarDevolucion",
 
+            "notificacion_users.index",
+            "notificacion_users.paginado",
+            "notificacion_users.getNotificacions",
 
             "configuracions.index",
             "configuracions.create",
@@ -125,6 +129,11 @@ class PermisoService
             "parametrizacions.getParametrizacion",
             "parametrizacions.update",
 
+            "ventasLinea",
+            "pujasLinea",
+            "ingresosVentasSubastas",
+            "ingresosCategorias",
+
             "reportes.usuarios",
             "reportes.r_usuarios",
             "reportes.clientes",
@@ -133,6 +142,14 @@ class PermisoService
             "reportes.r_ventas",
             "reportes.kardex_productos",
             "reportes.r_kardex_productos",
+            "reportes.ingreso_productos",
+            "reportes.r_ingreso_productos",
+            "reportes.salida_productos",
+            "reportes.r_salida_productos",
+            "reportes.participantes",
+            "reportes.r_participantes",
+            "reportes.subastas",
+            "reportes.r_subastas",
 
         ],
         "AUXILIAR" => [],

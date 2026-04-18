@@ -93,13 +93,20 @@ onMounted(() => {});
                 </div>
                 <div class="modal-body">
                     <div class="row" v-if="oPublicacion">
-                        <h4 class="h3 w-100 text-center">
-                            {{ oPublicacion.producto.nombre }}
-                        </h4>
-                        <div
-                            class="ql-editor"
-                            v-html="oPublicacion.descripcion"
-                        ></div>
+                        <div class="col-12">
+                            <h4 class="h3 w-100 text-center">
+                                {{ oPublicacion.producto.nombre }}
+                            </h4>
+                            <p class="text-center mb-0">
+                                <strong>Estado: </strong>
+                                {{ oPublicacion.estado_producto }}
+                            </p>
+                            <div
+                                class="ql-editor border rounded"
+                                style="height: auto"
+                                v-html="oPublicacion.descripcion"
+                            ></div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">

@@ -21,17 +21,32 @@ const { oProducto, limpiarProducto } = useProductos();
 const accion_form = ref(props.accion_formulario);
 const muestra_form = ref(props.muestra_formulario);
 const enviando = ref(false);
-let form = useForm(oProducto.value);
+const editorKey = ref(0);
+const resetForm = () => {
+    form.reset();
+    editorKey.value++; // 🔥 fuerza reinicio del editor
+};
+const form = useForm(oProducto.value);
 watch(
     () => props.muestra_formulario,
     (newValue) => {
+        resetForm();
         muestra_form.value = newValue;
         if (muestra_form.value) {
             cargarCategorias();
             document
                 .getElementsByTagName("body")[0]
                 .classList.add("modal-open");
-            form = useForm(oProducto.value);
+            form.id = oProducto.value.id;
+            form.codigo = oProducto.value.codigo;
+            form.nombre = oProducto.value.nombre;
+            form.descripcion = oProducto.value.descripcion;
+            form.precio = oProducto.value.precio;
+            form.stock = oProducto.value.stock;
+            form.categoria_id = oProducto.value.categoria_id;
+            form.producto_imagens = oProducto.value.producto_imagens;
+            form.eliminados_imagens = oProducto.value.eliminados_imagens;
+            form._method = oProducto.value._method;
         } else {
             document
                 .getElementsByTagName("body")[0]
@@ -77,7 +92,7 @@ const textBtn = computed(() => {
 const enviarFormulario = () => {
     enviando.value = true;
     let url =
-        accion_form.value == 0
+        form.id == 0
             ? route("productos.store")
             : route("productos.update", form.id);
 
@@ -98,6 +113,7 @@ const enviarFormulario = () => {
                 },
             });
             form.reset();
+            resetForm();
             limpiarProducto();
             emits("envio-formulario");
         },
@@ -301,6 +317,7 @@ onMounted(() => {});
                     <div class="col-md-12 mt-3">
                         <label class="required">Descripción del producto</label>
                         <QuillEditor
+                            :key="editorKey"
                             v-model:content="form.descripcion"
                             contentType="html"
                             theme="snow"
