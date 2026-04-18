@@ -79,8 +79,8 @@ const formatUrl = (url) => {
 <style scoped>
 .footer {
     color: white;
-    border-top: solid 1px var(--bg1);
-    background-color: var(--bg1);
+    border-top: solid 1px var(--bg-principal-portal);
+    background-color: var(--bg-principal-portal);
     margin-top: 40px;
     display: block;
     min-height: 90px;

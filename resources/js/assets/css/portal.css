@@ -1,4 +1,4 @@
-@import "./variablesPortal.css";
+@import "./variables.css";
 
 html,
 body {
@@ -16,8 +16,12 @@ body #app {
     background-color: var(--bgGrayLight);
 }
 
+#app .navbar {
+    background-color: var(--bg-principal-portal);
+}
+
 .navbar.navbar-expand-lg.fixed {
-    background-color: var(--bg1t);
+    background-color: var(--bg-principal-portalt);
 }
 
 .border-l {
@@ -91,5 +95,5 @@ body #app .seccion_portal {
 }
 
 body #app .seccion_portal.dark {
-    background-color: var(--bg1);
+    background-color: var(--bg-principal-portal);
 }

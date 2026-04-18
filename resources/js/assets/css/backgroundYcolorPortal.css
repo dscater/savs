@@ -1,4 +1,4 @@
-@import "./variablesPortal.css";
+@import "./variables.css";
 
 .bg-secundario {
     background-color: var(--bg7);
@@ -13,7 +13,12 @@
 
 table .bg-principal,
 .bg-principal {
-    background-color: var(--bg1);
+    background-color: var(--bg-principal-portal);
+    color: white;
+}
+
+.bg-principal-portal {
+    background-color: var(--bg-principal-portal);
     color: white;
 }
 
@@ -23,7 +28,7 @@ button.bg-principal:hover {
 }
 
 .bg-item {
-    background-color: var(--bg1) !important;
+    background-color: var(--bg-principal-portal) !important;
 }
 
 .bgWhite {
@@ -64,7 +69,7 @@ table .bg-dark-principal,
 }
 
 .page-item.active .page-link {
-    background-color: var(--bg1);
+    background-color: var(--bg-principal-portal);
 }
 
 .modal .modal-header button.close {
@@ -76,5 +81,5 @@ table .bg-dark-principal,
     background-color: var(--bg3) !important;
 }
 #app .row .col-12 .btn .btn-primary {
-    background-color: var(--bg1) !important;
+    background-color: var(--bg-principal-portal) !important;
 }

@@ -65,7 +65,7 @@ onBeforeMount(() => {});
 </script>
 <template>
     <nav
-        class="navbar navbar-expand-lg navbar-dark bg-principal sticky-top"
+        class="navbar navbar-expand-lg navbar-dark bg-principal-portal sticky-top"
         :class="{
             fixed: isFixed,
         }"
