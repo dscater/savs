@@ -4,10 +4,12 @@ import { Link, usePage } from "@inertiajs/vue3";
 import { onBeforeMount, onMounted, ref } from "vue";
 import SliderImagenes from "@/Components/SliderImagenes.vue";
 import { useAppStore } from "@/stores/aplicacion/appStore";
+import Imagen360 from "@/Components/Imagen360.vue";
 
 // importar estilos de AOS
 import "aos/dist/aos.css";
 import AOS from "aos";
+import axios from "axios";
 const appStore = useAppStore();
 defineOptions({ layout: Portal });
 const propsPage = usePage().props;
@@ -87,7 +89,15 @@ onMounted(() => {
     appStore.stopLoading();
 });
 
+const listImagen360 = ref([]);
+const cargarImagenes360 = () => {
+    axios.get(route("prueba360")).then((response) => {
+        listImagen360.value = response.data;
+    });
+};
+
 onBeforeMount(() => {
+    cargarImagenes360();
     cargarImagenePortal();
     appStore.startLoading();
 });
@@ -102,6 +112,14 @@ onBeforeMount(() => {
                     :interval="4000"
                     :muestra_pc="false"
                 ></SliderImagenes>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <Imagen360
+                    :images="listImagen360"
+                    :auto-rotacion="true"
+                ></Imagen360>
             </div>
         </div>
         <div class="row seccion_portal">

@@ -26,6 +26,8 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 
+Route::get('prueba360', [ImagenesPortalController::class, 'prueba360'])->name('prueba360');
+
 // PORTAL
 Route::get('/', [PortalController::class, 'index'])->name("portal.index");
 Route::get('/contacto', [PortalController::class, 'contacto'])->name("portal.contacto");
