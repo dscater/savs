@@ -176,6 +176,7 @@ const registrarPuja = () => {
             emits("envio-formulario", response.data.subasta);
         })
         .catch((error) => {
+            obtenerSubastaMontoInicial();
             enviando.value = false;
             // dialog.value = false;
             error_monto.value = false;
@@ -195,6 +196,14 @@ const registrarPuja = () => {
                     confirmButtonText: `Aceptar`,
                 });
             } else if (error.status == 400) {
+                Swal.fire({
+                    icon: "info",
+                    title: "Error",
+                    text: `${error.response.data.message}`,
+                    confirmButtonColor: "#3085d6",
+                    confirmButtonText: `Aceptar`,
+                });
+            } else if (error.status == 429) {
                 Swal.fire({
                     icon: "info",
                     title: "Error",

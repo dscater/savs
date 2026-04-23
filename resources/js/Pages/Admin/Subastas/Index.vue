@@ -269,7 +269,9 @@ const revertirAnulado = (item) => {
                                     :class="{
                                         'badge-success':
                                             item.estado_subasta == 1,
-                                        'bg-warning': item.estado_subasta == 0,
+                                        'bg-warning':
+                                            item.estado_subasta == 0 ||
+                                            item.estado_subasta == 3,
                                         'bg-orange text-white':
                                             item.estado_subasta == 2,
                                     }"

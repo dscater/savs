@@ -50,7 +50,7 @@ onMounted(() => {
 <template>
     <!-- BEGIN container -->
     <div class="container">
-        <div class="row">
+        <div class="row mt-4">
             <div class="col-12">
                 <h4 class="h3 font-weight-bold w-100 text-center">
                     Mis Subastas

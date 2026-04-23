@@ -14,21 +14,11 @@ const formatUrl = (url) => {
             <div class="col-12 text-center">
                 <h4 class="font-weight-bold">Comunicate con nosotros</h4>
             </div>
-            <div class="col-12 text-center pb-0 mb-0">
-                <a
-                    :href="`https://wa.me/+59169796503?text=Hola%20deseo%20mas%20informacion`"
-                    target="_blank"
-                    class="mx-2 text-white text-lg"
-                >
-                    <i class="fab fa-whatsapp"></i> 69796503
-                </a>
-                <a
-                    :href="`https://wa.me/+59178815163?text=Hola%20deseo%20mas%20informacion`"
-                    target="_blank"
-                    class="mx-2 text-white text-lg"
-                >
-                    <i class="fab fa-whatsapp"></i> 78815163
-                </a>
+            <div class="col-12 text-center mb-2">
+                La Paz - Bolivia <br />
+                Av. Satelite Zona Villa Tejada rectangular c/11 #22
+            </div>
+            <div class="col-12 text-center pb-0 mb-2">
                 <a
                     :href="`https://wa.me/+59177710866?text=Hola%20deseo%20mas%20informacion`"
                     target="_blank"
@@ -36,12 +26,19 @@ const formatUrl = (url) => {
                 >
                     <i class="fab fa-whatsapp"></i> 77710866
                 </a>
+                <a
+                    :href="`https://wa.me/+59169796503?text=Hola%20deseo%20mas%20informacion`"
+                    target="_blank"
+                    class="mx-2 text-white text-lg"
+                >
+                    <i class="fab fa-whatsapp"></i> 69796503
+                </a>
             </div>
             <div class="col-12 text-center">
                 <a
                     :href="
                         formatUrl(
-                            'https://www.facebook.com/people/Autopartes-Rudje-Kaizen-Group/100092425002265/',
+                            'https://www.facebook.com/profile.php?id=100092425002265&mibextid=ZbWKwL',
                         )
                     "
                     target="_blank"
@@ -50,7 +47,19 @@ const formatUrl = (url) => {
                     <i class="fab fa-facebook-f"></i>
                 </a>
                 <a
-                    :href="`mailto:www.autopartesrudjekaizengroup@gmail.com`"
+                    :href="
+                        formatUrl(
+                            'https://www.tiktok.com/@rudje_kaizen_group?_t=8ou7Jj8TVHq&_r=1',
+                        )
+                    "
+                    target="_blank"
+                    class="mx-2 btn btn-outline-info border-white text-white text-lg"
+                >
+                    <i class="fab fa-tiktok"></i>
+                </a>
+
+                <a
+                    :href="`mailto:autopartesrudjekaizengroup@gmail.com`"
                     target="_blank"
                     class="mx-2 btn btn-outline-info border-white text-white text-lg"
                 >

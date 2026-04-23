@@ -138,7 +138,9 @@ onBeforeMount(() => {});
                         class="nav-item"
                         v-if="auth && auth.user?.tipo == 'PARTICIPANTE'"
                     >
-                        <Link class="nav-link" :href="route('portal.subastas')"
+                        <Link
+                            class="nav-link"
+                            :href="route('portal.mis_subastas')"
                             ><i class="fa fa-clipboard-list"></i> Mis Subastas
                         </Link>
                     </li>

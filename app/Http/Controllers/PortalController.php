@@ -51,7 +51,7 @@ class PortalController extends Controller
 
         $productos_txt .= "\n\nPedido Total: " . number_format($total, 2, ".", ",") . " Bs.";
 
-        $nro_whatsapp = "+59173594451";
+        $nro_whatsapp = "+59177710866";
         $mensaje = "Hola, me interesan los siguientes productos:" . $productos_txt;
         $whatsapp = "https://wa.me/" . $nro_whatsapp . "?text=" . urlencode($mensaje);
 

@@ -1,5 +1,6 @@
 <script>
 import SliderImagenes from "@/Components/SliderImagenes.vue";
+import Imagen360 from "@/Components/Imagen360.vue";
 import DetalleSubasta from "./DetalleSubasta.vue";
 </script>
 <script setup>
@@ -153,8 +154,14 @@ onBeforeUnmount(() => {
                     <!-- BEGIN product-main-image -->
                     <div class="product-main-image">
                         <SliderImagenes
+                            v-if="publicacion.producto.tsg == 0"
                             :imagenes="publicacion.producto.producto_imagens"
                         ></SliderImagenes>
+                        <Imagen360
+                            v-if="publicacion.producto.tsg == 1"
+                            :imagenes="publicacion.producto.producto_imagens"
+                            :auto-rotacion="true"
+                        ></Imagen360>
                     </div>
                     <!-- END product-main-image -->
                     <div class="row fila_detalle">

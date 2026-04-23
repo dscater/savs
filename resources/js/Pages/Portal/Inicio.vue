@@ -162,7 +162,7 @@ onBeforeMount(() => {
                                                     item.id,
                                                 )
                                             "
-                                            class="card-body pb-1"
+                                            class="card-body p-0"
                                         >
                                             <div class="row">
                                                 <div
@@ -182,11 +182,13 @@ onBeforeMount(() => {
                                                 </div>
                                             </div>
                                         </Link>
-                                        <div class="card-footer bg-white">
+                                        <div
+                                            class="card-footer bg-principal-portal"
+                                        >
                                             <div class="row">
                                                 <div class="col-7 categoria">
                                                     <span
-                                                        class="text-xs text-muted"
+                                                        class="text-xs text-white"
                                                     >
                                                         {{
                                                             item.categoria
@@ -195,7 +197,7 @@ onBeforeMount(() => {
                                                     </span>
                                                     <br />
                                                     <span
-                                                        class="precio text-sm text-dark font-weight-600"
+                                                        class="precio text-sm text-white font-weight-600"
                                                         >Bs.
                                                         {{ item.precio }}</span
                                                     >
@@ -274,29 +276,32 @@ onBeforeMount(() => {
                                                 class="img_inicio left"
                                                 :src="
                                                     url_assets +
-                                                    'imgs/portal/inicio.jpg'
+                                                    'imgs/portal/subastas.jpeg'
                                                 "
                                                 alt=""
                                             />
                                         </div>
-                                        <div class="col-md-6 p-5">
-                                            <h4 class="h5">
-                                                What is Lorem Ipsum?
+                                        <div class="col-md-6 p-5 bg-dark">
+                                            <h4 class="h3 w-100 text-center">
+                                                Subastas
                                             </h4>
                                             <p class="text-sm text-justify">
-                                                Lorem Ipsum is simply dummy text
-                                                of the printing and typesetting
-                                                industry. Lorem Ipsum has been
-                                                the industry's standard dummy
-                                                text ever since the 1500s, when
-                                                an unknown printer took a galley
-                                                of type and scrambled it to make
-                                                a type specimen book. It has
-                                                survived not only five
-                                                centuries, but also the leap
-                                                into electronic typesetting,
-                                                remaining essentially unchanged.
+                                                Participa de nuestras subastas y
+                                                adquiere productos a precios
+                                                increíbles. Cada semana,
+                                                ofrecemos una selección de
+                                                artículos exclusivos que puedes
+                                                pujar para ganar.
                                             </p>
+                                            <Link
+                                                :href="route('portal.subastas')"
+                                                class="btn btn-primary mx-auto d-block mt-3"
+                                            >
+                                                Ver Subastas
+                                                <i
+                                                    class="fa fa-arrow-right"
+                                                ></i>
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>
@@ -314,19 +319,17 @@ onBeforeMount(() => {
                             <div class="card-body p-0 px-2">
                                 <div class="row">
                                     <div class="col-md-6 p-5">
-                                        <h4 class="h5">What is Lorem Ipsum?</h4>
+                                        <h4 class="h3">AUTOPARTES</h4>
                                         <p class="text-sm text-justify">
-                                            Lorem Ipsum is simply dummy text of
-                                            the printing and typesetting
-                                            industry. Lorem Ipsum has been the
-                                            industry's standard dummy text ever
-                                            since the 1500s, when an unknown
-                                            printer took a galley of type and
-                                            scrambled it to make a type specimen
-                                            book. It has survived not only five
-                                            centuries, but also the leap into
-                                            electronic typesetting, remaining
-                                            essentially unchanged.
+                                            La empresa ofrece autopartes de
+                                            vehículos en general (como ser
+                                            faroles, parachoques, stop,
+                                            retrovisores, puertas, halógenos,
+                                            máscaras, guardafangos, capo,
+                                            ECU-Computadora de Motor, etc.)
+                                            Incluye asesoramiento al cliente
+                                            para que puedan encontrar el
+                                            repuesto deseado para sus vehículos.
                                         </p>
                                     </div>
                                     <div
@@ -336,10 +339,66 @@ onBeforeMount(() => {
                                             class="img_inicio right"
                                             :src="
                                                 url_assets +
-                                                'imgs/portal/inicio.jpg'
+                                                'imgs/portal/autopartes.jpeg'
                                             "
                                             alt=""
                                         />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row seccion_portal dark">
+            <div class="col-12">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12" data-aos="fade-up">
+                            <div class="card">
+                                <div class="card-body p-0 px-2">
+                                    <div class="row">
+                                        <div
+                                            class="col-md-6 p-0 contenedor_img_inicio"
+                                        >
+                                            <img
+                                                class="img_inicio left"
+                                                :src="
+                                                    url_assets +
+                                                    'imgs/portal/mision.jpeg'
+                                                "
+                                                alt=""
+                                            />
+                                        </div>
+                                        <div class="col-md-6 p-5">
+                                            <h4 class="h4 w-100 text-center">
+                                                Misión
+                                            </h4>
+                                            <p class="text-sm text-justify">
+                                                Priorizar la calidad del
+                                                producto, también buscar la
+                                                satisfacción del cliente
+                                                ofreciendo una rápida y
+                                                eficiente entrega de nuestras
+                                                autopartes, así como el soporte
+                                                técnico para cualquier consulta.
+                                            </p>
+                                            <h4 class="h4 w-100 text-center">
+                                                Visión
+                                            </h4>
+                                            <p class="text-sm text-justify">
+                                                Ser reconocida como una empresa
+                                                líder en distribución y
+                                                comercialización de autopartes
+                                                para vehículos, destacando por
+                                                la calidad de sus productos de
+                                                autopartes y servicios, también
+                                                innovando y desarrollando nuevas
+                                                tecnologías para mejorar la
+                                                eficiencia de la empresa.
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

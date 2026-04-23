@@ -75,6 +75,15 @@ onBeforeMount(() => {
         <div class="container mt-4">
             <div class="row">
                 <div class="col-12">
+                    <Link
+                        class="btn btn-link text-dark"
+                        :href="route('portal.index')"
+                        ><i class="fa fa-arrow-left"></i> Volver</Link
+                    >
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
                     <h4 class="text-center h3">Subastas Actuales</h4>
                 </div>
             </div>

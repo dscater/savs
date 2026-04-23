@@ -361,6 +361,7 @@ onUnmounted(() => {
     z-index: 1;
     margin: 0 auto;
     border-radius: 0;
+    object-fit: contain;
 }
 
 /* Estilo para el contenedor en pantalla completa */

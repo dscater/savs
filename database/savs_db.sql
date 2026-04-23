@@ -2,12 +2,12 @@
 -- PostgreSQL database dump
 --
 
-\restrict HV5ksPgYotQDBeFOqvMVHWPxhh6eaBTuQvcl0Rq8ixfNKXeQIyxpuu3EJrUA8iD
+\restrict lEpaeuuXma659dn2R2z7cDYQhdUBHKGH3YHTduHcxMgV9aKvRNV0fCCiluJhFos
 
 -- Dumped from database version 17.6
 -- Dumped by pg_dump version 17.6
 
--- Started on 2026-04-18 19:25:37
+-- Started on 2026-04-23 18:33:14
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -26,7 +26,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- TOC entry 228 (class 1259 OID 24629)
+-- TOC entry 226 (class 1259 OID 24629)
 -- Name: categorias; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -43,7 +43,7 @@ CREATE TABLE public.categorias (
 ALTER TABLE public.categorias OWNER TO postgres;
 
 --
--- TOC entry 227 (class 1259 OID 24628)
+-- TOC entry 225 (class 1259 OID 24628)
 -- Name: categorias_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -58,8 +58,8 @@ CREATE SEQUENCE public.categorias_id_seq
 ALTER SEQUENCE public.categorias_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5142 (class 0 OID 0)
--- Dependencies: 227
+-- TOC entry 5133 (class 0 OID 0)
+-- Dependencies: 225
 -- Name: categorias_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -67,7 +67,7 @@ ALTER SEQUENCE public.categorias_id_seq OWNED BY public.categorias.id;
 
 
 --
--- TOC entry 242 (class 1259 OID 24724)
+-- TOC entry 240 (class 1259 OID 24724)
 -- Name: clientes; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -86,7 +86,7 @@ CREATE TABLE public.clientes (
 ALTER TABLE public.clientes OWNER TO postgres;
 
 --
--- TOC entry 241 (class 1259 OID 24723)
+-- TOC entry 239 (class 1259 OID 24723)
 -- Name: clientes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -101,8 +101,8 @@ CREATE SEQUENCE public.clientes_id_seq
 ALTER SEQUENCE public.clientes_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5143 (class 0 OID 0)
--- Dependencies: 241
+-- TOC entry 5134 (class 0 OID 0)
+-- Dependencies: 239
 -- Name: clientes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -143,7 +143,7 @@ CREATE SEQUENCE public.configuracions_id_seq
 ALTER SEQUENCE public.configuracions_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5144 (class 0 OID 0)
+-- TOC entry 5135 (class 0 OID 0)
 -- Dependencies: 219
 -- Name: configuracions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -189,7 +189,7 @@ CREATE SEQUENCE public.historial_accions_id_seq
 ALTER SEQUENCE public.historial_accions_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5145 (class 0 OID 0)
+-- TOC entry 5136 (class 0 OID 0)
 -- Dependencies: 223
 -- Name: historial_accions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -198,7 +198,7 @@ ALTER SEQUENCE public.historial_accions_id_seq OWNED BY public.historial_accions
 
 
 --
--- TOC entry 234 (class 1259 OID 24669)
+-- TOC entry 232 (class 1259 OID 24669)
 -- Name: ingreso_productos; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -216,7 +216,7 @@ CREATE TABLE public.ingreso_productos (
 ALTER TABLE public.ingreso_productos OWNER TO postgres;
 
 --
--- TOC entry 233 (class 1259 OID 24668)
+-- TOC entry 231 (class 1259 OID 24668)
 -- Name: ingreso_productos_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -231,8 +231,8 @@ CREATE SEQUENCE public.ingreso_productos_id_seq
 ALTER SEQUENCE public.ingreso_productos_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5146 (class 0 OID 0)
--- Dependencies: 233
+-- TOC entry 5137 (class 0 OID 0)
+-- Dependencies: 231
 -- Name: ingreso_productos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -240,7 +240,7 @@ ALTER SEQUENCE public.ingreso_productos_id_seq OWNED BY public.ingreso_productos
 
 
 --
--- TOC entry 238 (class 1259 OID 24697)
+-- TOC entry 236 (class 1259 OID 24697)
 -- Name: kardex_productos; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -270,7 +270,7 @@ CREATE TABLE public.kardex_productos (
 ALTER TABLE public.kardex_productos OWNER TO postgres;
 
 --
--- TOC entry 237 (class 1259 OID 24696)
+-- TOC entry 235 (class 1259 OID 24696)
 -- Name: kardex_productos_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -285,8 +285,8 @@ CREATE SEQUENCE public.kardex_productos_id_seq
 ALTER SEQUENCE public.kardex_productos_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5147 (class 0 OID 0)
--- Dependencies: 237
+-- TOC entry 5138 (class 0 OID 0)
+-- Dependencies: 235
 -- Name: kardex_productos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -324,7 +324,7 @@ CREATE SEQUENCE public.migrations_id_seq
 ALTER SEQUENCE public.migrations_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5148 (class 0 OID 0)
+-- TOC entry 5139 (class 0 OID 0)
 -- Dependencies: 217
 -- Name: migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -333,7 +333,7 @@ ALTER SEQUENCE public.migrations_id_seq OWNED BY public.migrations.id;
 
 
 --
--- TOC entry 254 (class 1259 OID 24800)
+-- TOC entry 252 (class 1259 OID 24800)
 -- Name: notificacion_users; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -350,7 +350,7 @@ CREATE TABLE public.notificacion_users (
 ALTER TABLE public.notificacion_users OWNER TO postgres;
 
 --
--- TOC entry 253 (class 1259 OID 24799)
+-- TOC entry 251 (class 1259 OID 24799)
 -- Name: notificacion_users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -365,8 +365,8 @@ CREATE SEQUENCE public.notificacion_users_id_seq
 ALTER SEQUENCE public.notificacion_users_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5149 (class 0 OID 0)
--- Dependencies: 253
+-- TOC entry 5140 (class 0 OID 0)
+-- Dependencies: 251
 -- Name: notificacion_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -374,7 +374,7 @@ ALTER SEQUENCE public.notificacion_users_id_seq OWNED BY public.notificacion_use
 
 
 --
--- TOC entry 252 (class 1259 OID 24791)
+-- TOC entry 250 (class 1259 OID 24791)
 -- Name: notificacions; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -394,7 +394,7 @@ CREATE TABLE public.notificacions (
 ALTER TABLE public.notificacions OWNER TO postgres;
 
 --
--- TOC entry 251 (class 1259 OID 24790)
+-- TOC entry 249 (class 1259 OID 24790)
 -- Name: notificacions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -409,8 +409,8 @@ CREATE SEQUENCE public.notificacions_id_seq
 ALTER SEQUENCE public.notificacions_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5150 (class 0 OID 0)
--- Dependencies: 251
+-- TOC entry 5141 (class 0 OID 0)
+-- Dependencies: 249
 -- Name: notificacions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -418,7 +418,7 @@ ALTER SEQUENCE public.notificacions_id_seq OWNED BY public.notificacions.id;
 
 
 --
--- TOC entry 258 (class 1259 OID 24905)
+-- TOC entry 256 (class 1259 OID 24905)
 -- Name: parametrizacions; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -438,7 +438,7 @@ CREATE TABLE public.parametrizacions (
 ALTER TABLE public.parametrizacions OWNER TO postgres;
 
 --
--- TOC entry 257 (class 1259 OID 24904)
+-- TOC entry 255 (class 1259 OID 24904)
 -- Name: parametrizacions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -453,8 +453,8 @@ CREATE SEQUENCE public.parametrizacions_id_seq
 ALTER SEQUENCE public.parametrizacions_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5151 (class 0 OID 0)
--- Dependencies: 257
+-- TOC entry 5142 (class 0 OID 0)
+-- Dependencies: 255
 -- Name: parametrizacions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -462,7 +462,7 @@ ALTER SEQUENCE public.parametrizacions_id_seq OWNED BY public.parametrizacions.i
 
 
 --
--- TOC entry 250 (class 1259 OID 24779)
+-- TOC entry 248 (class 1259 OID 24779)
 -- Name: participante_pujas; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -482,7 +482,7 @@ CREATE TABLE public.participante_pujas (
 ALTER TABLE public.participante_pujas OWNER TO postgres;
 
 --
--- TOC entry 249 (class 1259 OID 24778)
+-- TOC entry 247 (class 1259 OID 24778)
 -- Name: participante_pujas_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -497,8 +497,8 @@ CREATE SEQUENCE public.participante_pujas_id_seq
 ALTER SEQUENCE public.participante_pujas_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5152 (class 0 OID 0)
--- Dependencies: 249
+-- TOC entry 5143 (class 0 OID 0)
+-- Dependencies: 247
 -- Name: participante_pujas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -506,7 +506,7 @@ ALTER SEQUENCE public.participante_pujas_id_seq OWNED BY public.participante_puj
 
 
 --
--- TOC entry 248 (class 1259 OID 24762)
+-- TOC entry 246 (class 1259 OID 24762)
 -- Name: participantes; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -535,7 +535,7 @@ CREATE TABLE public.participantes (
 ALTER TABLE public.participantes OWNER TO postgres;
 
 --
--- TOC entry 247 (class 1259 OID 24761)
+-- TOC entry 245 (class 1259 OID 24761)
 -- Name: participantes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -550,8 +550,8 @@ CREATE SEQUENCE public.participantes_id_seq
 ALTER SEQUENCE public.participantes_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5153 (class 0 OID 0)
--- Dependencies: 247
+-- TOC entry 5144 (class 0 OID 0)
+-- Dependencies: 245
 -- Name: participantes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -559,7 +559,7 @@ ALTER SEQUENCE public.participantes_id_seq OWNED BY public.participantes.id;
 
 
 --
--- TOC entry 232 (class 1259 OID 24657)
+-- TOC entry 230 (class 1259 OID 24657)
 -- Name: producto_imagens; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -575,7 +575,7 @@ CREATE TABLE public.producto_imagens (
 ALTER TABLE public.producto_imagens OWNER TO postgres;
 
 --
--- TOC entry 231 (class 1259 OID 24656)
+-- TOC entry 229 (class 1259 OID 24656)
 -- Name: producto_imagens_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -590,8 +590,8 @@ CREATE SEQUENCE public.producto_imagens_id_seq
 ALTER SEQUENCE public.producto_imagens_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5154 (class 0 OID 0)
--- Dependencies: 231
+-- TOC entry 5145 (class 0 OID 0)
+-- Dependencies: 229
 -- Name: producto_imagens_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -599,7 +599,7 @@ ALTER SEQUENCE public.producto_imagens_id_seq OWNED BY public.producto_imagens.i
 
 
 --
--- TOC entry 230 (class 1259 OID 24640)
+-- TOC entry 228 (class 1259 OID 24640)
 -- Name: productos; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -613,14 +613,15 @@ CREATE TABLE public.productos (
     fecha_registro date NOT NULL,
     created_at timestamp(0) without time zone,
     updated_at timestamp(0) without time zone,
-    codigo character varying(255) NOT NULL
+    codigo character varying(255) NOT NULL,
+    tsg integer DEFAULT 0
 );
 
 
 ALTER TABLE public.productos OWNER TO postgres;
 
 --
--- TOC entry 229 (class 1259 OID 24639)
+-- TOC entry 227 (class 1259 OID 24639)
 -- Name: productos_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -635,8 +636,8 @@ CREATE SEQUENCE public.productos_id_seq
 ALTER SEQUENCE public.productos_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5155 (class 0 OID 0)
--- Dependencies: 229
+-- TOC entry 5146 (class 0 OID 0)
+-- Dependencies: 227
 -- Name: productos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -644,48 +645,7 @@ ALTER SEQUENCE public.productos_id_seq OWNED BY public.productos.id;
 
 
 --
--- TOC entry 226 (class 1259 OID 24620)
--- Name: qrs; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.qrs (
-    id bigint NOT NULL,
-    imagen character varying(255) NOT NULL,
-    remitente character varying(255) NOT NULL,
-    fecha_vencimiento date NOT NULL,
-    created_at timestamp(0) without time zone,
-    updated_at timestamp(0) without time zone
-);
-
-
-ALTER TABLE public.qrs OWNER TO postgres;
-
---
--- TOC entry 225 (class 1259 OID 24619)
--- Name: qrs_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE public.qrs_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER SEQUENCE public.qrs_id_seq OWNER TO postgres;
-
---
--- TOC entry 5156 (class 0 OID 0)
--- Dependencies: 225
--- Name: qrs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.qrs_id_seq OWNED BY public.qrs.id;
-
-
---
--- TOC entry 260 (class 1259 OID 24929)
+-- TOC entry 258 (class 1259 OID 24929)
 -- Name: recuperar_passwords; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -702,7 +662,7 @@ CREATE TABLE public.recuperar_passwords (
 ALTER TABLE public.recuperar_passwords OWNER TO postgres;
 
 --
--- TOC entry 259 (class 1259 OID 24928)
+-- TOC entry 257 (class 1259 OID 24928)
 -- Name: recuperar_passwords_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -717,8 +677,8 @@ CREATE SEQUENCE public.recuperar_passwords_id_seq
 ALTER SEQUENCE public.recuperar_passwords_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5157 (class 0 OID 0)
--- Dependencies: 259
+-- TOC entry 5147 (class 0 OID 0)
+-- Dependencies: 257
 -- Name: recuperar_passwords_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -726,7 +686,7 @@ ALTER SEQUENCE public.recuperar_passwords_id_seq OWNED BY public.recuperar_passw
 
 
 --
--- TOC entry 236 (class 1259 OID 24683)
+-- TOC entry 234 (class 1259 OID 24683)
 -- Name: salida_productos; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -744,7 +704,7 @@ CREATE TABLE public.salida_productos (
 ALTER TABLE public.salida_productos OWNER TO postgres;
 
 --
--- TOC entry 235 (class 1259 OID 24682)
+-- TOC entry 233 (class 1259 OID 24682)
 -- Name: salida_productos_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -759,8 +719,8 @@ CREATE SEQUENCE public.salida_productos_id_seq
 ALTER SEQUENCE public.salida_productos_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5158 (class 0 OID 0)
--- Dependencies: 235
+-- TOC entry 5148 (class 0 OID 0)
+-- Dependencies: 233
 -- Name: salida_productos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -768,7 +728,7 @@ ALTER SEQUENCE public.salida_productos_id_seq OWNED BY public.salida_productos.i
 
 
 --
--- TOC entry 240 (class 1259 OID 24712)
+-- TOC entry 238 (class 1259 OID 24712)
 -- Name: subastas; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -792,7 +752,7 @@ CREATE TABLE public.subastas (
 ALTER TABLE public.subastas OWNER TO postgres;
 
 --
--- TOC entry 239 (class 1259 OID 24711)
+-- TOC entry 237 (class 1259 OID 24711)
 -- Name: subastas_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -807,8 +767,8 @@ CREATE SEQUENCE public.subastas_id_seq
 ALTER SEQUENCE public.subastas_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5159 (class 0 OID 0)
--- Dependencies: 239
+-- TOC entry 5149 (class 0 OID 0)
+-- Dependencies: 237
 -- Name: subastas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -816,7 +776,7 @@ ALTER SEQUENCE public.subastas_id_seq OWNED BY public.subastas.id;
 
 
 --
--- TOC entry 256 (class 1259 OID 24891)
+-- TOC entry 254 (class 1259 OID 24891)
 -- Name: user_datos; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -840,7 +800,7 @@ CREATE TABLE public.user_datos (
 ALTER TABLE public.user_datos OWNER TO postgres;
 
 --
--- TOC entry 255 (class 1259 OID 24890)
+-- TOC entry 253 (class 1259 OID 24890)
 -- Name: user_datos_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -855,8 +815,8 @@ CREATE SEQUENCE public.user_datos_id_seq
 ALTER SEQUENCE public.user_datos_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5160 (class 0 OID 0)
--- Dependencies: 255
+-- TOC entry 5150 (class 0 OID 0)
+-- Dependencies: 253
 -- Name: user_datos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -907,7 +867,7 @@ CREATE SEQUENCE public.users_id_seq
 ALTER SEQUENCE public.users_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5161 (class 0 OID 0)
+-- TOC entry 5151 (class 0 OID 0)
 -- Dependencies: 221
 -- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -916,7 +876,7 @@ ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
--- TOC entry 246 (class 1259 OID 24745)
+-- TOC entry 244 (class 1259 OID 24745)
 -- Name: venta_detalles; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -935,7 +895,7 @@ CREATE TABLE public.venta_detalles (
 ALTER TABLE public.venta_detalles OWNER TO postgres;
 
 --
--- TOC entry 245 (class 1259 OID 24744)
+-- TOC entry 243 (class 1259 OID 24744)
 -- Name: venta_detalles_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -950,8 +910,8 @@ CREATE SEQUENCE public.venta_detalles_id_seq
 ALTER SEQUENCE public.venta_detalles_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5162 (class 0 OID 0)
--- Dependencies: 245
+-- TOC entry 5152 (class 0 OID 0)
+-- Dependencies: 243
 -- Name: venta_detalles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -959,7 +919,7 @@ ALTER SEQUENCE public.venta_detalles_id_seq OWNED BY public.venta_detalles.id;
 
 
 --
--- TOC entry 244 (class 1259 OID 24733)
+-- TOC entry 242 (class 1259 OID 24733)
 -- Name: ventas; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -980,7 +940,7 @@ CREATE TABLE public.ventas (
 ALTER TABLE public.ventas OWNER TO postgres;
 
 --
--- TOC entry 243 (class 1259 OID 24732)
+-- TOC entry 241 (class 1259 OID 24732)
 -- Name: ventas_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -995,8 +955,8 @@ CREATE SEQUENCE public.ventas_id_seq
 ALTER SEQUENCE public.ventas_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5163 (class 0 OID 0)
--- Dependencies: 243
+-- TOC entry 5153 (class 0 OID 0)
+-- Dependencies: 241
 -- Name: ventas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1004,7 +964,7 @@ ALTER SEQUENCE public.ventas_id_seq OWNED BY public.ventas.id;
 
 
 --
--- TOC entry 4853 (class 2604 OID 24632)
+-- TOC entry 4847 (class 2604 OID 24632)
 -- Name: categorias id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1012,7 +972,7 @@ ALTER TABLE ONLY public.categorias ALTER COLUMN id SET DEFAULT nextval('public.c
 
 
 --
--- TOC entry 4864 (class 2604 OID 24727)
+-- TOC entry 4859 (class 2604 OID 24727)
 -- Name: clientes id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1020,7 +980,7 @@ ALTER TABLE ONLY public.clientes ALTER COLUMN id SET DEFAULT nextval('public.cli
 
 
 --
--- TOC entry 4848 (class 2604 OID 24590)
+-- TOC entry 4843 (class 2604 OID 24590)
 -- Name: configuracions id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1028,7 +988,7 @@ ALTER TABLE ONLY public.configuracions ALTER COLUMN id SET DEFAULT nextval('publ
 
 
 --
--- TOC entry 4851 (class 2604 OID 24609)
+-- TOC entry 4846 (class 2604 OID 24609)
 -- Name: historial_accions id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1036,7 +996,7 @@ ALTER TABLE ONLY public.historial_accions ALTER COLUMN id SET DEFAULT nextval('p
 
 
 --
--- TOC entry 4857 (class 2604 OID 24672)
+-- TOC entry 4852 (class 2604 OID 24672)
 -- Name: ingreso_productos id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1044,7 +1004,7 @@ ALTER TABLE ONLY public.ingreso_productos ALTER COLUMN id SET DEFAULT nextval('p
 
 
 --
--- TOC entry 4859 (class 2604 OID 24700)
+-- TOC entry 4854 (class 2604 OID 24700)
 -- Name: kardex_productos id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1052,7 +1012,7 @@ ALTER TABLE ONLY public.kardex_productos ALTER COLUMN id SET DEFAULT nextval('pu
 
 
 --
--- TOC entry 4847 (class 2604 OID 24583)
+-- TOC entry 4842 (class 2604 OID 24583)
 -- Name: migrations id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1060,7 +1020,7 @@ ALTER TABLE ONLY public.migrations ALTER COLUMN id SET DEFAULT nextval('public.m
 
 
 --
--- TOC entry 4873 (class 2604 OID 24803)
+-- TOC entry 4868 (class 2604 OID 24803)
 -- Name: notificacion_users id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1068,7 +1028,7 @@ ALTER TABLE ONLY public.notificacion_users ALTER COLUMN id SET DEFAULT nextval('
 
 
 --
--- TOC entry 4872 (class 2604 OID 24794)
+-- TOC entry 4867 (class 2604 OID 24794)
 -- Name: notificacions id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1076,7 +1036,7 @@ ALTER TABLE ONLY public.notificacions ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
--- TOC entry 4876 (class 2604 OID 24908)
+-- TOC entry 4871 (class 2604 OID 24908)
 -- Name: parametrizacions id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1084,7 +1044,7 @@ ALTER TABLE ONLY public.parametrizacions ALTER COLUMN id SET DEFAULT nextval('pu
 
 
 --
--- TOC entry 4871 (class 2604 OID 24782)
+-- TOC entry 4866 (class 2604 OID 24782)
 -- Name: participante_pujas id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1092,7 +1052,7 @@ ALTER TABLE ONLY public.participante_pujas ALTER COLUMN id SET DEFAULT nextval('
 
 
 --
--- TOC entry 4868 (class 2604 OID 24765)
+-- TOC entry 4863 (class 2604 OID 24765)
 -- Name: participantes id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1100,7 +1060,7 @@ ALTER TABLE ONLY public.participantes ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
--- TOC entry 4856 (class 2604 OID 24660)
+-- TOC entry 4851 (class 2604 OID 24660)
 -- Name: producto_imagens id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1108,7 +1068,7 @@ ALTER TABLE ONLY public.producto_imagens ALTER COLUMN id SET DEFAULT nextval('pu
 
 
 --
--- TOC entry 4854 (class 2604 OID 24643)
+-- TOC entry 4848 (class 2604 OID 24643)
 -- Name: productos id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1116,15 +1076,7 @@ ALTER TABLE ONLY public.productos ALTER COLUMN id SET DEFAULT nextval('public.pr
 
 
 --
--- TOC entry 4852 (class 2604 OID 24623)
--- Name: qrs id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.qrs ALTER COLUMN id SET DEFAULT nextval('public.qrs_id_seq'::regclass);
-
-
---
--- TOC entry 4877 (class 2604 OID 24932)
+-- TOC entry 4872 (class 2604 OID 24932)
 -- Name: recuperar_passwords id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1132,7 +1084,7 @@ ALTER TABLE ONLY public.recuperar_passwords ALTER COLUMN id SET DEFAULT nextval(
 
 
 --
--- TOC entry 4858 (class 2604 OID 24686)
+-- TOC entry 4853 (class 2604 OID 24686)
 -- Name: salida_productos id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1140,7 +1092,7 @@ ALTER TABLE ONLY public.salida_productos ALTER COLUMN id SET DEFAULT nextval('pu
 
 
 --
--- TOC entry 4861 (class 2604 OID 24715)
+-- TOC entry 4856 (class 2604 OID 24715)
 -- Name: subastas id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1148,7 +1100,7 @@ ALTER TABLE ONLY public.subastas ALTER COLUMN id SET DEFAULT nextval('public.sub
 
 
 --
--- TOC entry 4875 (class 2604 OID 24894)
+-- TOC entry 4870 (class 2604 OID 24894)
 -- Name: user_datos id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1156,7 +1108,7 @@ ALTER TABLE ONLY public.user_datos ALTER COLUMN id SET DEFAULT nextval('public.u
 
 
 --
--- TOC entry 4849 (class 2604 OID 24599)
+-- TOC entry 4844 (class 2604 OID 24599)
 -- Name: users id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1164,7 +1116,7 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 
 
 --
--- TOC entry 4867 (class 2604 OID 24748)
+-- TOC entry 4862 (class 2604 OID 24748)
 -- Name: venta_detalles id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1172,7 +1124,7 @@ ALTER TABLE ONLY public.venta_detalles ALTER COLUMN id SET DEFAULT nextval('publ
 
 
 --
--- TOC entry 4865 (class 2604 OID 24736)
+-- TOC entry 4860 (class 2604 OID 24736)
 -- Name: ventas id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1180,8 +1132,8 @@ ALTER TABLE ONLY public.ventas ALTER COLUMN id SET DEFAULT nextval('public.venta
 
 
 --
--- TOC entry 5104 (class 0 OID 24629)
--- Dependencies: 228
+-- TOC entry 5095 (class 0 OID 24629)
+-- Dependencies: 226
 -- Data for Name: categorias; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1194,8 +1146,8 @@ COPY public.categorias (id, nombre, descripcion, fecha_registro, created_at, upd
 
 
 --
--- TOC entry 5118 (class 0 OID 24724)
--- Dependencies: 242
+-- TOC entry 5109 (class 0 OID 24724)
+-- Dependencies: 240
 -- Data for Name: clientes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1210,7 +1162,7 @@ COPY public.clientes (id, nombre, nit_ci, cel, correo, created_at, updated_at, f
 
 
 --
--- TOC entry 5096 (class 0 OID 24587)
+-- TOC entry 5089 (class 0 OID 24587)
 -- Dependencies: 220
 -- Data for Name: configuracions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1221,7 +1173,7 @@ COPY public.configuracions (id, nombre_sistema, alias, razon_social, logo, creat
 
 
 --
--- TOC entry 5100 (class 0 OID 24606)
+-- TOC entry 5093 (class 0 OID 24606)
 -- Dependencies: 224
 -- Data for Name: historial_accions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1308,12 +1260,22 @@ COPY public.historial_accions (id, user_id, accion, descripcion, datos_original,
 79	1	CREACIÓN	EL USUARIO admin REGISTRO UN INGRESO DE PRODUCTOS	{"producto_id":"5","cantidad":"20","descripcion":"","fecha_registro":"2026-04-18","updated_at":"2026-04-18T23:22:36.000000Z","created_at":"2026-04-18T23:22:36.000000Z","id":7}	\N	INGRESO DE PRODUCTOS	2026-04-18	19:22:36	2026-04-18 19:22:36	2026-04-18 19:22:36
 80	1	CREACIÓN	EL USUARIO admin REGISTRO UNA CATEGORIA	{"nombre":"PARACHOQUES TRASEROS","descripcion":"","fecha_registro":"2026-04-18","updated_at":"2026-04-18T23:24:20.000000Z","created_at":"2026-04-18T23:24:20.000000Z","id":4}	\N	CATEGORIAS	2026-04-18	19:24:20	2026-04-18 19:24:20	2026-04-18 19:24:20
 81	1	MODIFICACIÓN	EL USUARIO admin ACTUALIZÓ UNA SUBASTA	{"id":6,"producto_id":2,"estado_producto":"NUEVO","monto_inicial":"700.00","fecha_fin":"2026-04-19","hora_fin":"12:00:00","publico":1,"estado_subasta":1,"fecha_registro":"2026-04-17","created_at":"2026-04-17T20:26:17.000000Z","updated_at":"2026-04-17T20:27:05.000000Z","garantia":"200.00","descripcion":"<h3><strong>Descripci\\u00f3n de subasta<\\/strong><\\/h3><p><strong style=\\"color: rgb(0, 0, 0);\\">Lorem Ipsum<\\/strong><span style=\\"color: rgb(0, 0, 0);\\">&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type<\\/span><\\/p>"}	{"id":6,"producto_id":"2","estado_producto":"NUEVO","monto_inicial":"700.00","fecha_fin":"2026-04-19","hora_fin":"12:00:00","publico":"1","estado_subasta":1,"fecha_registro":"2026-04-17","created_at":"2026-04-17T20:26:17.000000Z","updated_at":"2026-04-18T23:24:39.000000Z","garantia":"200.00","descripcion":"<h3><strong>Descripci\\u00f3n de subasta<\\/strong><\\/h3><p><strong style=\\"color: rgb(0, 0, 0);\\">Lorem Ipsum<\\/strong><span style=\\"color: rgb(0, 0, 0);\\">&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.<\\/span><\\/p><p><span style=\\"color: rgb(0, 0, 0);\\">Descripcion de la subasta<\\/span><\\/p>"}	SUBASTAS	2026-04-18	19:24:39	2026-04-18 19:24:39	2026-04-18 19:24:39
+82	1	CREACIÓN	EL USUARIO admin REGISTRO UNA SUBASTA	{"producto_id":"3","estado_producto":"NUEVO","monto_inicial":"200","garantia":"100","fecha_fin":"2026-04-20","hora_fin":"12:00","publico":"0","descripcion":"<p>Descripcion<\\/p>","fecha_registro":"2026-04-18","updated_at":"2026-04-19T01:12:19.000000Z","created_at":"2026-04-19T01:12:19.000000Z","id":7}	\N	SUBASTAS	2026-04-18	21:12:19	2026-04-18 21:12:19	2026-04-18 21:12:19
+83	1	MODIFICACIÓN	EL USUARIO admin ACTUALIZÓ UNA SUBASTA	{"id":7,"producto_id":3,"estado_producto":"NUEVO","monto_inicial":"200.00","fecha_fin":"2026-04-20","hora_fin":"12:00:00","publico":0,"estado_subasta":1,"fecha_registro":"2026-04-18","created_at":"2026-04-19T01:12:19.000000Z","updated_at":"2026-04-19T01:12:19.000000Z","garantia":"100.00","descripcion":"<p>Descripcion<\\/p>"}	{"id":7,"producto_id":"3","estado_producto":"NUEVO","monto_inicial":"200.00","fecha_fin":"2026-04-20","hora_fin":"12:00:00","publico":"1","estado_subasta":1,"fecha_registro":"2026-04-18","created_at":"2026-04-19T01:12:19.000000Z","updated_at":"2026-04-19T01:12:31.000000Z","garantia":"100.00","descripcion":"<p>Descripcion<\\/p>"}	SUBASTAS	2026-04-18	21:12:31	2026-04-18 21:12:31	2026-04-18 21:12:31
+84	1	MODIFICACIÓN	EL USUARIO admin ACTUALIZÓ UNA SUBASTA	{"id":7,"producto_id":3,"estado_producto":"NUEVO","monto_inicial":"200.00","fecha_fin":"2026-04-20","hora_fin":"12:00:00","publico":1,"estado_subasta":1,"fecha_registro":"2026-04-18","created_at":"2026-04-19T01:12:19.000000Z","updated_at":"2026-04-19T01:12:31.000000Z","garantia":"100.00","descripcion":"<p>Descripcion<\\/p>"}	{"id":7,"producto_id":"3","estado_producto":"NUEVO","monto_inicial":"300","fecha_fin":"2026-04-20","hora_fin":"12:00:00","publico":"1","estado_subasta":1,"fecha_registro":"2026-04-18","created_at":"2026-04-19T01:12:19.000000Z","updated_at":"2026-04-19T01:12:52.000000Z","garantia":"120","descripcion":"<p>Descripcion<\\/p>"}	SUBASTAS	2026-04-18	21:12:52	2026-04-18 21:12:52	2026-04-18 21:12:52
+85	1	MODIFICACIÓN	EL USUARIO admin ACTUALIZÓ UN PRODUCTO	{"id":1,"nombre":"AURIS IZQUIERDO","descripcion":"<h3><strong><u>DESCRIPCI\\u00d3N DEL PRODUCTO<\\/u><\\/strong><\\/h3><p><span style=\\"color: rgb(0, 0, 0);\\">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).<\\/span><\\/p>","precio":"120.00","stock":"92","categoria_id":1,"fecha_registro":"2026-04-08","created_at":"2026-04-08T15:39:00.000000Z","updated_at":"2026-04-18T23:21:55.000000Z","codigo":"P001","tsg":0,"producto_imagens":[{"id":40,"producto_id":1,"imagen":"401776546090.jpeg","created_at":"2026-04-18T21:01:30.000000Z","updated_at":"2026-04-18T21:01:30.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/401776546090.jpeg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/401776546090.jpeg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/401776546090.jpeg","file":"401776546090.jpeg","name":"401776546090.jpeg","ext":""}]}	{"id":1,"nombre":"AURIS IZQUIERDO","descripcion":"<h3><strong><u>DESCRIPCI\\u00d3N DEL PRODUCTO<\\/u><\\/strong><\\/h3><p><span style=\\"color: rgb(0, 0, 0);\\">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).<\\/span><\\/p>","precio":"120.00","stock":"92","categoria_id":"1","fecha_registro":"2026-04-08","created_at":"2026-04-08T15:39:00.000000Z","updated_at":"2026-04-22T20:32:12.000000Z","codigo":"P001","tsg":"1","producto_imagens":[{"id":40,"producto_id":1,"imagen":"401776546090.jpeg","created_at":"2026-04-18T21:01:30.000000Z","updated_at":"2026-04-18T21:01:30.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/401776546090.jpeg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/401776546090.jpeg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/401776546090.jpeg","file":"401776546090.jpeg","name":"401776546090.jpeg","ext":""}]}	PRODUCTOS	2026-04-22	16:32:12	2026-04-22 16:32:12	2026-04-22 16:32:12
+86	1	MODIFICACIÓN	EL USUARIO admin ACTUALIZÓ UN PRODUCTO	{"id":1,"nombre":"AURIS IZQUIERDO","descripcion":"<h3><strong><u>DESCRIPCI\\u00d3N DEL PRODUCTO<\\/u><\\/strong><\\/h3><p><span style=\\"color: rgb(0, 0, 0);\\">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).<\\/span><\\/p>","precio":"120.00","stock":"92","categoria_id":1,"fecha_registro":"2026-04-08","created_at":"2026-04-08T15:39:00.000000Z","updated_at":"2026-04-22T20:32:12.000000Z","codigo":"P001","tsg":1,"producto_imagens":[{"id":83,"producto_id":1,"imagen":"831776890534.jpg","created_at":"2026-04-22T20:42:14.000000Z","updated_at":"2026-04-22T20:42:14.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/831776890534.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/831776890534.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/831776890534.jpg","file":"831776890534.jpg","name":"831776890534.jpg","ext":""},{"id":84,"producto_id":1,"imagen":"1841776890534.jpg","created_at":"2026-04-22T20:42:14.000000Z","updated_at":"2026-04-22T20:42:14.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/1841776890534.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/1841776890534.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/1841776890534.jpg","file":"1841776890534.jpg","name":"1841776890534.jpg","ext":""}]}	{"id":1,"nombre":"AURIS IZQUIERDO","descripcion":"<h3><strong><u>DESCRIPCI\\u00d3N DEL PRODUCTO<\\/u><\\/strong><\\/h3><p><span style=\\"color: rgb(0, 0, 0);\\">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).<\\/span><\\/p>","precio":"120.00","stock":"92","categoria_id":"1","fecha_registro":"2026-04-08","created_at":"2026-04-08T15:39:00.000000Z","updated_at":"2026-04-22T20:42:14.000000Z","codigo":"P001","tsg":"0","producto_imagens":[{"id":83,"producto_id":1,"imagen":"831776890534.jpg","created_at":"2026-04-22T20:42:14.000000Z","updated_at":"2026-04-22T20:42:14.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/831776890534.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/831776890534.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/831776890534.jpg","file":"831776890534.jpg","name":"831776890534.jpg","ext":""},{"id":84,"producto_id":1,"imagen":"1841776890534.jpg","created_at":"2026-04-22T20:42:14.000000Z","updated_at":"2026-04-22T20:42:14.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/1841776890534.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/1841776890534.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/1841776890534.jpg","file":"1841776890534.jpg","name":"1841776890534.jpg","ext":""}]}	PRODUCTOS	2026-04-22	16:42:14	2026-04-22 16:42:14	2026-04-22 16:42:14
+87	1	MODIFICACIÓN	EL USUARIO admin ACTUALIZÓ UN PRODUCTO	{"id":1,"nombre":"AURIS IZQUIERDO","descripcion":"<h3><strong><u>DESCRIPCI\\u00d3N DEL PRODUCTO<\\/u><\\/strong><\\/h3><p><span style=\\"color: rgb(0, 0, 0);\\">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).<\\/span><\\/p>","precio":"120.00","stock":"92","categoria_id":1,"fecha_registro":"2026-04-08","created_at":"2026-04-08T15:39:00.000000Z","updated_at":"2026-04-22T20:42:14.000000Z","codigo":"P001","tsg":0,"producto_imagens":[{"id":101,"producto_id":1,"imagen":"181011776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/181011776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/181011776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/181011776890606.jpg","file":"181011776890606.jpg","name":"181011776890606.jpg","ext":""},{"id":102,"producto_id":1,"imagen":"191021776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/191021776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/191021776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/191021776890606.jpg","file":"191021776890606.jpg","name":"191021776890606.jpg","ext":""},{"id":103,"producto_id":1,"imagen":"201031776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/201031776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/201031776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/201031776890606.jpg","file":"201031776890606.jpg","name":"201031776890606.jpg","ext":""},{"id":104,"producto_id":1,"imagen":"211041776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/211041776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/211041776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/211041776890606.jpg","file":"211041776890606.jpg","name":"211041776890606.jpg","ext":""},{"id":105,"producto_id":1,"imagen":"221051776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/221051776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/221051776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/221051776890606.jpg","file":"221051776890606.jpg","name":"221051776890606.jpg","ext":""},{"id":106,"producto_id":1,"imagen":"231061776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/231061776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/231061776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/231061776890606.jpg","file":"231061776890606.jpg","name":"231061776890606.jpg","ext":""},{"id":107,"producto_id":1,"imagen":"241071776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/241071776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/241071776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/241071776890606.jpg","file":"241071776890606.jpg","name":"241071776890606.jpg","ext":""},{"id":108,"producto_id":1,"imagen":"251081776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/251081776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/251081776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/251081776890606.jpg","file":"251081776890606.jpg","name":"251081776890606.jpg","ext":""},{"id":109,"producto_id":1,"imagen":"261091776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/261091776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/261091776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/261091776890606.jpg","file":"261091776890606.jpg","name":"261091776890606.jpg","ext":""},{"id":110,"producto_id":1,"imagen":"271101776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/271101776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/271101776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/271101776890606.jpg","file":"271101776890606.jpg","name":"271101776890606.jpg","ext":""},{"id":111,"producto_id":1,"imagen":"281111776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/281111776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/281111776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/281111776890606.jpg","file":"281111776890606.jpg","name":"281111776890606.jpg","ext":""},{"id":112,"producto_id":1,"imagen":"291121776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/291121776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/291121776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/291121776890606.jpg","file":"291121776890606.jpg","name":"291121776890606.jpg","ext":""},{"id":113,"producto_id":1,"imagen":"301131776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/301131776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/301131776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/301131776890606.jpg","file":"301131776890606.jpg","name":"301131776890606.jpg","ext":""},{"id":114,"producto_id":1,"imagen":"311141776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/311141776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/311141776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/311141776890606.jpg","file":"311141776890606.jpg","name":"311141776890606.jpg","ext":""},{"id":83,"producto_id":1,"imagen":"831776890534.jpg","created_at":"2026-04-22T20:42:14.000000Z","updated_at":"2026-04-22T20:42:14.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/831776890534.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/831776890534.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/831776890534.jpg","file":"831776890534.jpg","name":"831776890534.jpg","ext":""},{"id":84,"producto_id":1,"imagen":"1841776890534.jpg","created_at":"2026-04-22T20:42:14.000000Z","updated_at":"2026-04-22T20:42:14.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/1841776890534.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/1841776890534.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/1841776890534.jpg","file":"1841776890534.jpg","name":"1841776890534.jpg","ext":""},{"id":85,"producto_id":1,"imagen":"2851776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/2851776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/2851776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/2851776890606.jpg","file":"2851776890606.jpg","name":"2851776890606.jpg","ext":""},{"id":86,"producto_id":1,"imagen":"3861776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/3861776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/3861776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/3861776890606.jpg","file":"3861776890606.jpg","name":"3861776890606.jpg","ext":""},{"id":87,"producto_id":1,"imagen":"4871776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/4871776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/4871776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/4871776890606.jpg","file":"4871776890606.jpg","name":"4871776890606.jpg","ext":""},{"id":88,"producto_id":1,"imagen":"5881776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/5881776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/5881776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/5881776890606.jpg","file":"5881776890606.jpg","name":"5881776890606.jpg","ext":""},{"id":89,"producto_id":1,"imagen":"6891776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/6891776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/6891776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/6891776890606.jpg","file":"6891776890606.jpg","name":"6891776890606.jpg","ext":""},{"id":90,"producto_id":1,"imagen":"7901776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/7901776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/7901776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/7901776890606.jpg","file":"7901776890606.jpg","name":"7901776890606.jpg","ext":""},{"id":91,"producto_id":1,"imagen":"8911776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/8911776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/8911776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/8911776890606.jpg","file":"8911776890606.jpg","name":"8911776890606.jpg","ext":""},{"id":92,"producto_id":1,"imagen":"9921776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/9921776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/9921776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/9921776890606.jpg","file":"9921776890606.jpg","name":"9921776890606.jpg","ext":""},{"id":93,"producto_id":1,"imagen":"10931776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/10931776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/10931776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/10931776890606.jpg","file":"10931776890606.jpg","name":"10931776890606.jpg","ext":""},{"id":94,"producto_id":1,"imagen":"11941776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/11941776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/11941776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/11941776890606.jpg","file":"11941776890606.jpg","name":"11941776890606.jpg","ext":""},{"id":95,"producto_id":1,"imagen":"12951776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/12951776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/12951776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/12951776890606.jpg","file":"12951776890606.jpg","name":"12951776890606.jpg","ext":""},{"id":96,"producto_id":1,"imagen":"13961776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/13961776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/13961776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/13961776890606.jpg","file":"13961776890606.jpg","name":"13961776890606.jpg","ext":""},{"id":97,"producto_id":1,"imagen":"14971776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/14971776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/14971776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/14971776890606.jpg","file":"14971776890606.jpg","name":"14971776890606.jpg","ext":""},{"id":98,"producto_id":1,"imagen":"15981776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/15981776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/15981776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/15981776890606.jpg","file":"15981776890606.jpg","name":"15981776890606.jpg","ext":""},{"id":99,"producto_id":1,"imagen":"16991776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/16991776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/16991776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/16991776890606.jpg","file":"16991776890606.jpg","name":"16991776890606.jpg","ext":""},{"id":100,"producto_id":1,"imagen":"171001776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/171001776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/171001776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/171001776890606.jpg","file":"171001776890606.jpg","name":"171001776890606.jpg","ext":""},{"id":115,"producto_id":1,"imagen":"321151776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/321151776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/321151776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/321151776890606.jpg","file":"321151776890606.jpg","name":"321151776890606.jpg","ext":""},{"id":116,"producto_id":1,"imagen":"331161776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/331161776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/331161776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/331161776890606.jpg","file":"331161776890606.jpg","name":"331161776890606.jpg","ext":""},{"id":117,"producto_id":1,"imagen":"341171776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/341171776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/341171776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/341171776890606.jpg","file":"341171776890606.jpg","name":"341171776890606.jpg","ext":""},{"id":118,"producto_id":1,"imagen":"351181776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/351181776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/351181776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/351181776890606.jpg","file":"351181776890606.jpg","name":"351181776890606.jpg","ext":""},{"id":119,"producto_id":1,"imagen":"361191776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/361191776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/361191776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/361191776890606.jpg","file":"361191776890606.jpg","name":"361191776890606.jpg","ext":""},{"id":120,"producto_id":1,"imagen":"371201776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/371201776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/371201776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/371201776890606.jpg","file":"371201776890606.jpg","name":"371201776890606.jpg","ext":""},{"id":121,"producto_id":1,"imagen":"381211776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/381211776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/381211776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/381211776890606.jpg","file":"381211776890606.jpg","name":"381211776890606.jpg","ext":""},{"id":122,"producto_id":1,"imagen":"391221776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/391221776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/391221776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/391221776890606.jpg","file":"391221776890606.jpg","name":"391221776890606.jpg","ext":""},{"id":123,"producto_id":1,"imagen":"401231776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/401231776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/401231776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/401231776890606.jpg","file":"401231776890606.jpg","name":"401231776890606.jpg","ext":""},{"id":124,"producto_id":1,"imagen":"411241776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/411241776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/411241776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/411241776890606.jpg","file":"411241776890606.jpg","name":"411241776890606.jpg","ext":""},{"id":125,"producto_id":1,"imagen":"421251776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/421251776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/421251776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/421251776890606.jpg","file":"421251776890606.jpg","name":"421251776890606.jpg","ext":""},{"id":126,"producto_id":1,"imagen":"431261776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/431261776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/431261776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/431261776890606.jpg","file":"431261776890606.jpg","name":"431261776890606.jpg","ext":""},{"id":127,"producto_id":1,"imagen":"441271776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/441271776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/441271776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/441271776890606.jpg","file":"441271776890606.jpg","name":"441271776890606.jpg","ext":""},{"id":128,"producto_id":1,"imagen":"451281776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/451281776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/451281776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/451281776890606.jpg","file":"451281776890606.jpg","name":"451281776890606.jpg","ext":""},{"id":129,"producto_id":1,"imagen":"461291776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/461291776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/461291776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/461291776890606.jpg","file":"461291776890606.jpg","name":"461291776890606.jpg","ext":""},{"id":130,"producto_id":1,"imagen":"471301776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/471301776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/471301776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/471301776890606.jpg","file":"471301776890606.jpg","name":"471301776890606.jpg","ext":""},{"id":131,"producto_id":1,"imagen":"481311776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/481311776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/481311776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/481311776890606.jpg","file":"481311776890606.jpg","name":"481311776890606.jpg","ext":""},{"id":132,"producto_id":1,"imagen":"491321776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/491321776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/491321776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/491321776890606.jpg","file":"491321776890606.jpg","name":"491321776890606.jpg","ext":""},{"id":133,"producto_id":1,"imagen":"501331776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/501331776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/501331776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/501331776890606.jpg","file":"501331776890606.jpg","name":"501331776890606.jpg","ext":""},{"id":134,"producto_id":1,"imagen":"511341776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/511341776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/511341776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/511341776890606.jpg","file":"511341776890606.jpg","name":"511341776890606.jpg","ext":""},{"id":135,"producto_id":1,"imagen":"521351776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/521351776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/521351776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/521351776890606.jpg","file":"521351776890606.jpg","name":"521351776890606.jpg","ext":""},{"id":136,"producto_id":1,"imagen":"531361776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/531361776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/531361776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/531361776890606.jpg","file":"531361776890606.jpg","name":"531361776890606.jpg","ext":""},{"id":137,"producto_id":1,"imagen":"541371776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/541371776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/541371776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/541371776890606.jpg","file":"541371776890606.jpg","name":"541371776890606.jpg","ext":""},{"id":138,"producto_id":1,"imagen":"551381776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/551381776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/551381776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/551381776890606.jpg","file":"551381776890606.jpg","name":"551381776890606.jpg","ext":""},{"id":139,"producto_id":1,"imagen":"561391776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/561391776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/561391776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/561391776890606.jpg","file":"561391776890606.jpg","name":"561391776890606.jpg","ext":""},{"id":140,"producto_id":1,"imagen":"571401776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/571401776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/571401776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/571401776890606.jpg","file":"571401776890606.jpg","name":"571401776890606.jpg","ext":""},{"id":141,"producto_id":1,"imagen":"581411776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/581411776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/581411776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/581411776890606.jpg","file":"581411776890606.jpg","name":"581411776890606.jpg","ext":""},{"id":142,"producto_id":1,"imagen":"591421776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/591421776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/591421776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/591421776890606.jpg","file":"591421776890606.jpg","name":"591421776890606.jpg","ext":""},{"id":143,"producto_id":1,"imagen":"601431776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/601431776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/601431776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/601431776890606.jpg","file":"601431776890606.jpg","name":"601431776890606.jpg","ext":""},{"id":144,"producto_id":1,"imagen":"611441776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/611441776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/611441776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/611441776890606.jpg","file":"611441776890606.jpg","name":"611441776890606.jpg","ext":""},{"id":145,"producto_id":1,"imagen":"621451776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/621451776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/621451776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/621451776890606.jpg","file":"621451776890606.jpg","name":"621451776890606.jpg","ext":""},{"id":146,"producto_id":1,"imagen":"631461776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/631461776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/631461776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/631461776890606.jpg","file":"631461776890606.jpg","name":"631461776890606.jpg","ext":""},{"id":147,"producto_id":1,"imagen":"641471776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/641471776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/641471776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/641471776890606.jpg","file":"641471776890606.jpg","name":"641471776890606.jpg","ext":""},{"id":148,"producto_id":1,"imagen":"651481776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/651481776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/651481776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/651481776890606.jpg","file":"651481776890606.jpg","name":"651481776890606.jpg","ext":""},{"id":149,"producto_id":1,"imagen":"661491776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/661491776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/661491776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/661491776890606.jpg","file":"661491776890606.jpg","name":"661491776890606.jpg","ext":""},{"id":150,"producto_id":1,"imagen":"671501776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/671501776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/671501776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/671501776890606.jpg","file":"671501776890606.jpg","name":"671501776890606.jpg","ext":""},{"id":151,"producto_id":1,"imagen":"681511776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/681511776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/681511776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/681511776890606.jpg","file":"681511776890606.jpg","name":"681511776890606.jpg","ext":""},{"id":152,"producto_id":1,"imagen":"691521776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/691521776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/691521776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/691521776890606.jpg","file":"691521776890606.jpg","name":"691521776890606.jpg","ext":""},{"id":153,"producto_id":1,"imagen":"701531776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/701531776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/701531776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/701531776890606.jpg","file":"701531776890606.jpg","name":"701531776890606.jpg","ext":""},{"id":154,"producto_id":1,"imagen":"711541776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/711541776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/711541776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/711541776890606.jpg","file":"711541776890606.jpg","name":"711541776890606.jpg","ext":""},{"id":155,"producto_id":1,"imagen":"721551776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/721551776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/721551776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/721551776890606.jpg","file":"721551776890606.jpg","name":"721551776890606.jpg","ext":""},{"id":156,"producto_id":1,"imagen":"731561776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/731561776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/731561776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/731561776890606.jpg","file":"731561776890606.jpg","name":"731561776890606.jpg","ext":""},{"id":157,"producto_id":1,"imagen":"741571776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/741571776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/741571776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/741571776890606.jpg","file":"741571776890606.jpg","name":"741571776890606.jpg","ext":""},{"id":158,"producto_id":1,"imagen":"751581776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/751581776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/751581776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/751581776890606.jpg","file":"751581776890606.jpg","name":"751581776890606.jpg","ext":""},{"id":159,"producto_id":1,"imagen":"761591776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/761591776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/761591776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/761591776890606.jpg","file":"761591776890606.jpg","name":"761591776890606.jpg","ext":""},{"id":160,"producto_id":1,"imagen":"771601776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/771601776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/771601776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/771601776890606.jpg","file":"771601776890606.jpg","name":"771601776890606.jpg","ext":""}]}	{"id":1,"nombre":"AURIS IZQUIERDO","descripcion":"<h3><strong><u>DESCRIPCI\\u00d3N DEL PRODUCTO<\\/u><\\/strong><\\/h3><p><span style=\\"color: rgb(0, 0, 0);\\">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).<\\/span><\\/p>","precio":"120.00","stock":"92","categoria_id":"1","fecha_registro":"2026-04-08","created_at":"2026-04-08T15:39:00.000000Z","updated_at":"2026-04-22T20:43:43.000000Z","codigo":"P001","tsg":"1","producto_imagens":[{"id":101,"producto_id":1,"imagen":"181011776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/181011776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/181011776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/181011776890606.jpg","file":"181011776890606.jpg","name":"181011776890606.jpg","ext":""},{"id":102,"producto_id":1,"imagen":"191021776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/191021776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/191021776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/191021776890606.jpg","file":"191021776890606.jpg","name":"191021776890606.jpg","ext":""},{"id":103,"producto_id":1,"imagen":"201031776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/201031776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/201031776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/201031776890606.jpg","file":"201031776890606.jpg","name":"201031776890606.jpg","ext":""},{"id":104,"producto_id":1,"imagen":"211041776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/211041776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/211041776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/211041776890606.jpg","file":"211041776890606.jpg","name":"211041776890606.jpg","ext":""},{"id":105,"producto_id":1,"imagen":"221051776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/221051776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/221051776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/221051776890606.jpg","file":"221051776890606.jpg","name":"221051776890606.jpg","ext":""},{"id":106,"producto_id":1,"imagen":"231061776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/231061776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/231061776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/231061776890606.jpg","file":"231061776890606.jpg","name":"231061776890606.jpg","ext":""},{"id":107,"producto_id":1,"imagen":"241071776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/241071776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/241071776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/241071776890606.jpg","file":"241071776890606.jpg","name":"241071776890606.jpg","ext":""},{"id":108,"producto_id":1,"imagen":"251081776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/251081776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/251081776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/251081776890606.jpg","file":"251081776890606.jpg","name":"251081776890606.jpg","ext":""},{"id":109,"producto_id":1,"imagen":"261091776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/261091776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/261091776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/261091776890606.jpg","file":"261091776890606.jpg","name":"261091776890606.jpg","ext":""},{"id":110,"producto_id":1,"imagen":"271101776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/271101776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/271101776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/271101776890606.jpg","file":"271101776890606.jpg","name":"271101776890606.jpg","ext":""},{"id":111,"producto_id":1,"imagen":"281111776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/281111776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/281111776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/281111776890606.jpg","file":"281111776890606.jpg","name":"281111776890606.jpg","ext":""},{"id":112,"producto_id":1,"imagen":"291121776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/291121776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/291121776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/291121776890606.jpg","file":"291121776890606.jpg","name":"291121776890606.jpg","ext":""},{"id":113,"producto_id":1,"imagen":"301131776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/301131776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/301131776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/301131776890606.jpg","file":"301131776890606.jpg","name":"301131776890606.jpg","ext":""},{"id":114,"producto_id":1,"imagen":"311141776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/311141776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/311141776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/311141776890606.jpg","file":"311141776890606.jpg","name":"311141776890606.jpg","ext":""},{"id":83,"producto_id":1,"imagen":"831776890534.jpg","created_at":"2026-04-22T20:42:14.000000Z","updated_at":"2026-04-22T20:42:14.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/831776890534.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/831776890534.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/831776890534.jpg","file":"831776890534.jpg","name":"831776890534.jpg","ext":""},{"id":84,"producto_id":1,"imagen":"1841776890534.jpg","created_at":"2026-04-22T20:42:14.000000Z","updated_at":"2026-04-22T20:42:14.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/1841776890534.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/1841776890534.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/1841776890534.jpg","file":"1841776890534.jpg","name":"1841776890534.jpg","ext":""},{"id":85,"producto_id":1,"imagen":"2851776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/2851776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/2851776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/2851776890606.jpg","file":"2851776890606.jpg","name":"2851776890606.jpg","ext":""},{"id":86,"producto_id":1,"imagen":"3861776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/3861776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/3861776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/3861776890606.jpg","file":"3861776890606.jpg","name":"3861776890606.jpg","ext":""},{"id":87,"producto_id":1,"imagen":"4871776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/4871776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/4871776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/4871776890606.jpg","file":"4871776890606.jpg","name":"4871776890606.jpg","ext":""},{"id":88,"producto_id":1,"imagen":"5881776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/5881776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/5881776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/5881776890606.jpg","file":"5881776890606.jpg","name":"5881776890606.jpg","ext":""},{"id":89,"producto_id":1,"imagen":"6891776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/6891776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/6891776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/6891776890606.jpg","file":"6891776890606.jpg","name":"6891776890606.jpg","ext":""},{"id":90,"producto_id":1,"imagen":"7901776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/7901776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/7901776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/7901776890606.jpg","file":"7901776890606.jpg","name":"7901776890606.jpg","ext":""},{"id":91,"producto_id":1,"imagen":"8911776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/8911776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/8911776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/8911776890606.jpg","file":"8911776890606.jpg","name":"8911776890606.jpg","ext":""},{"id":92,"producto_id":1,"imagen":"9921776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/9921776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/9921776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/9921776890606.jpg","file":"9921776890606.jpg","name":"9921776890606.jpg","ext":""},{"id":93,"producto_id":1,"imagen":"10931776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/10931776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/10931776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/10931776890606.jpg","file":"10931776890606.jpg","name":"10931776890606.jpg","ext":""},{"id":94,"producto_id":1,"imagen":"11941776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/11941776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/11941776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/11941776890606.jpg","file":"11941776890606.jpg","name":"11941776890606.jpg","ext":""},{"id":95,"producto_id":1,"imagen":"12951776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/12951776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/12951776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/12951776890606.jpg","file":"12951776890606.jpg","name":"12951776890606.jpg","ext":""},{"id":96,"producto_id":1,"imagen":"13961776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/13961776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/13961776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/13961776890606.jpg","file":"13961776890606.jpg","name":"13961776890606.jpg","ext":""},{"id":97,"producto_id":1,"imagen":"14971776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/14971776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/14971776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/14971776890606.jpg","file":"14971776890606.jpg","name":"14971776890606.jpg","ext":""},{"id":98,"producto_id":1,"imagen":"15981776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/15981776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/15981776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/15981776890606.jpg","file":"15981776890606.jpg","name":"15981776890606.jpg","ext":""},{"id":99,"producto_id":1,"imagen":"16991776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/16991776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/16991776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/16991776890606.jpg","file":"16991776890606.jpg","name":"16991776890606.jpg","ext":""},{"id":100,"producto_id":1,"imagen":"171001776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/171001776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/171001776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/171001776890606.jpg","file":"171001776890606.jpg","name":"171001776890606.jpg","ext":""},{"id":115,"producto_id":1,"imagen":"321151776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/321151776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/321151776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/321151776890606.jpg","file":"321151776890606.jpg","name":"321151776890606.jpg","ext":""},{"id":116,"producto_id":1,"imagen":"331161776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/331161776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/331161776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/331161776890606.jpg","file":"331161776890606.jpg","name":"331161776890606.jpg","ext":""},{"id":117,"producto_id":1,"imagen":"341171776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/341171776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/341171776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/341171776890606.jpg","file":"341171776890606.jpg","name":"341171776890606.jpg","ext":""},{"id":118,"producto_id":1,"imagen":"351181776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/351181776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/351181776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/351181776890606.jpg","file":"351181776890606.jpg","name":"351181776890606.jpg","ext":""},{"id":119,"producto_id":1,"imagen":"361191776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/361191776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/361191776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/361191776890606.jpg","file":"361191776890606.jpg","name":"361191776890606.jpg","ext":""},{"id":120,"producto_id":1,"imagen":"371201776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/371201776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/371201776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/371201776890606.jpg","file":"371201776890606.jpg","name":"371201776890606.jpg","ext":""},{"id":121,"producto_id":1,"imagen":"381211776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/381211776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/381211776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/381211776890606.jpg","file":"381211776890606.jpg","name":"381211776890606.jpg","ext":""},{"id":122,"producto_id":1,"imagen":"391221776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/391221776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/391221776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/391221776890606.jpg","file":"391221776890606.jpg","name":"391221776890606.jpg","ext":""},{"id":123,"producto_id":1,"imagen":"401231776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/401231776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/401231776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/401231776890606.jpg","file":"401231776890606.jpg","name":"401231776890606.jpg","ext":""},{"id":124,"producto_id":1,"imagen":"411241776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/411241776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/411241776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/411241776890606.jpg","file":"411241776890606.jpg","name":"411241776890606.jpg","ext":""},{"id":125,"producto_id":1,"imagen":"421251776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/421251776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/421251776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/421251776890606.jpg","file":"421251776890606.jpg","name":"421251776890606.jpg","ext":""},{"id":126,"producto_id":1,"imagen":"431261776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/431261776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/431261776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/431261776890606.jpg","file":"431261776890606.jpg","name":"431261776890606.jpg","ext":""},{"id":127,"producto_id":1,"imagen":"441271776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/441271776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/441271776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/441271776890606.jpg","file":"441271776890606.jpg","name":"441271776890606.jpg","ext":""},{"id":128,"producto_id":1,"imagen":"451281776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/451281776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/451281776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/451281776890606.jpg","file":"451281776890606.jpg","name":"451281776890606.jpg","ext":""},{"id":129,"producto_id":1,"imagen":"461291776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/461291776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/461291776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/461291776890606.jpg","file":"461291776890606.jpg","name":"461291776890606.jpg","ext":""},{"id":130,"producto_id":1,"imagen":"471301776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/471301776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/471301776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/471301776890606.jpg","file":"471301776890606.jpg","name":"471301776890606.jpg","ext":""},{"id":131,"producto_id":1,"imagen":"481311776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/481311776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/481311776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/481311776890606.jpg","file":"481311776890606.jpg","name":"481311776890606.jpg","ext":""},{"id":132,"producto_id":1,"imagen":"491321776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/491321776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/491321776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/491321776890606.jpg","file":"491321776890606.jpg","name":"491321776890606.jpg","ext":""},{"id":133,"producto_id":1,"imagen":"501331776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/501331776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/501331776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/501331776890606.jpg","file":"501331776890606.jpg","name":"501331776890606.jpg","ext":""},{"id":134,"producto_id":1,"imagen":"511341776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/511341776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/511341776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/511341776890606.jpg","file":"511341776890606.jpg","name":"511341776890606.jpg","ext":""},{"id":135,"producto_id":1,"imagen":"521351776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/521351776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/521351776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/521351776890606.jpg","file":"521351776890606.jpg","name":"521351776890606.jpg","ext":""},{"id":136,"producto_id":1,"imagen":"531361776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/531361776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/531361776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/531361776890606.jpg","file":"531361776890606.jpg","name":"531361776890606.jpg","ext":""},{"id":137,"producto_id":1,"imagen":"541371776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/541371776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/541371776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/541371776890606.jpg","file":"541371776890606.jpg","name":"541371776890606.jpg","ext":""},{"id":138,"producto_id":1,"imagen":"551381776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/551381776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/551381776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/551381776890606.jpg","file":"551381776890606.jpg","name":"551381776890606.jpg","ext":""},{"id":139,"producto_id":1,"imagen":"561391776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/561391776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/561391776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/561391776890606.jpg","file":"561391776890606.jpg","name":"561391776890606.jpg","ext":""},{"id":140,"producto_id":1,"imagen":"571401776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/571401776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/571401776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/571401776890606.jpg","file":"571401776890606.jpg","name":"571401776890606.jpg","ext":""},{"id":141,"producto_id":1,"imagen":"581411776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/581411776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/581411776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/581411776890606.jpg","file":"581411776890606.jpg","name":"581411776890606.jpg","ext":""},{"id":142,"producto_id":1,"imagen":"591421776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/591421776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/591421776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/591421776890606.jpg","file":"591421776890606.jpg","name":"591421776890606.jpg","ext":""},{"id":143,"producto_id":1,"imagen":"601431776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/601431776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/601431776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/601431776890606.jpg","file":"601431776890606.jpg","name":"601431776890606.jpg","ext":""},{"id":144,"producto_id":1,"imagen":"611441776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/611441776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/611441776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/611441776890606.jpg","file":"611441776890606.jpg","name":"611441776890606.jpg","ext":""},{"id":145,"producto_id":1,"imagen":"621451776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/621451776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/621451776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/621451776890606.jpg","file":"621451776890606.jpg","name":"621451776890606.jpg","ext":""},{"id":146,"producto_id":1,"imagen":"631461776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/631461776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/631461776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/631461776890606.jpg","file":"631461776890606.jpg","name":"631461776890606.jpg","ext":""},{"id":147,"producto_id":1,"imagen":"641471776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/641471776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/641471776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/641471776890606.jpg","file":"641471776890606.jpg","name":"641471776890606.jpg","ext":""},{"id":148,"producto_id":1,"imagen":"651481776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/651481776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/651481776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/651481776890606.jpg","file":"651481776890606.jpg","name":"651481776890606.jpg","ext":""},{"id":149,"producto_id":1,"imagen":"661491776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/661491776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/661491776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/661491776890606.jpg","file":"661491776890606.jpg","name":"661491776890606.jpg","ext":""},{"id":150,"producto_id":1,"imagen":"671501776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/671501776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/671501776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/671501776890606.jpg","file":"671501776890606.jpg","name":"671501776890606.jpg","ext":""},{"id":151,"producto_id":1,"imagen":"681511776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/681511776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/681511776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/681511776890606.jpg","file":"681511776890606.jpg","name":"681511776890606.jpg","ext":""},{"id":152,"producto_id":1,"imagen":"691521776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/691521776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/691521776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/691521776890606.jpg","file":"691521776890606.jpg","name":"691521776890606.jpg","ext":""},{"id":153,"producto_id":1,"imagen":"701531776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/701531776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/701531776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/701531776890606.jpg","file":"701531776890606.jpg","name":"701531776890606.jpg","ext":""},{"id":154,"producto_id":1,"imagen":"711541776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/711541776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/711541776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/711541776890606.jpg","file":"711541776890606.jpg","name":"711541776890606.jpg","ext":""},{"id":155,"producto_id":1,"imagen":"721551776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/721551776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/721551776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/721551776890606.jpg","file":"721551776890606.jpg","name":"721551776890606.jpg","ext":""},{"id":156,"producto_id":1,"imagen":"731561776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/731561776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/731561776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/731561776890606.jpg","file":"731561776890606.jpg","name":"731561776890606.jpg","ext":""},{"id":157,"producto_id":1,"imagen":"741571776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/741571776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/741571776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/741571776890606.jpg","file":"741571776890606.jpg","name":"741571776890606.jpg","ext":""},{"id":158,"producto_id":1,"imagen":"751581776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/751581776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/751581776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/751581776890606.jpg","file":"751581776890606.jpg","name":"751581776890606.jpg","ext":""},{"id":159,"producto_id":1,"imagen":"761591776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/761591776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/761591776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/761591776890606.jpg","file":"761591776890606.jpg","name":"761591776890606.jpg","ext":""},{"id":160,"producto_id":1,"imagen":"771601776890606.jpg","created_at":"2026-04-22T20:43:26.000000Z","updated_at":"2026-04-22T20:43:26.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/771601776890606.jpg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/771601776890606.jpg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/771601776890606.jpg","file":"771601776890606.jpg","name":"771601776890606.jpg","ext":""}]}	PRODUCTOS	2026-04-22	16:43:43	2026-04-22 16:43:43	2026-04-22 16:43:43
+88	1	MODIFICACIÓN	EL USUARIO admin ACTUALIZÓ UN PRODUCTO	{"id":2,"nombre":"PRODUCTO 2","descripcion":"<p>Descripcion del producto 2<\\/p>","precio":"67.00","stock":"90","categoria_id":1,"fecha_registro":"2026-04-08","created_at":"2026-04-08T23:33:31.000000Z","updated_at":"2026-04-18T23:22:04.000000Z","codigo":"P002","tsg":0,"producto_imagens":[{"id":53,"producto_id":2,"imagen":"531776546244.jpeg","created_at":"2026-04-18T21:04:04.000000Z","updated_at":"2026-04-18T21:04:04.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/531776546244.jpeg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/531776546244.jpeg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/531776546244.jpeg","file":"531776546244.jpeg","name":"531776546244.jpeg","ext":""},{"id":54,"producto_id":2,"imagen":"1541776546244.jpeg","created_at":"2026-04-18T21:04:04.000000Z","updated_at":"2026-04-18T21:04:04.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/1541776546244.jpeg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/1541776546244.jpeg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/1541776546244.jpeg","file":"1541776546244.jpeg","name":"1541776546244.jpeg","ext":""}]}	{"id":2,"nombre":"PRODUCTO 2","descripcion":"<p>Descripcion del producto 2<\\/p>","precio":"67.00","stock":"90","categoria_id":"1","fecha_registro":"2026-04-08","created_at":"2026-04-08T23:33:31.000000Z","updated_at":"2026-04-22T20:45:23.000000Z","codigo":"P002","tsg":"1","producto_imagens":[{"id":53,"producto_id":2,"imagen":"531776546244.jpeg","created_at":"2026-04-18T21:04:04.000000Z","updated_at":"2026-04-18T21:04:04.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/531776546244.jpeg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/531776546244.jpeg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/531776546244.jpeg","file":"531776546244.jpeg","name":"531776546244.jpeg","ext":""},{"id":54,"producto_id":2,"imagen":"1541776546244.jpeg","created_at":"2026-04-18T21:04:04.000000Z","updated_at":"2026-04-18T21:04:04.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/1541776546244.jpeg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/1541776546244.jpeg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/1541776546244.jpeg","file":"1541776546244.jpeg","name":"1541776546244.jpeg","ext":""}]}	PRODUCTOS	2026-04-22	16:45:23	2026-04-22 16:45:23	2026-04-22 16:45:23
+89	1	MODIFICACIÓN	EL USUARIO admin ACTUALIZÓ UN PRODUCTO	{"id":2,"nombre":"PRODUCTO 2","descripcion":"<p>Descripcion del producto 2<\\/p>","precio":"67.00","stock":"90","categoria_id":1,"fecha_registro":"2026-04-08","created_at":"2026-04-08T23:33:31.000000Z","updated_at":"2026-04-22T20:45:23.000000Z","codigo":"P002","tsg":1,"producto_imagens":[{"id":53,"producto_id":2,"imagen":"531776546244.jpeg","created_at":"2026-04-18T21:04:04.000000Z","updated_at":"2026-04-18T21:04:04.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/531776546244.jpeg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/531776546244.jpeg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/531776546244.jpeg","file":"531776546244.jpeg","name":"531776546244.jpeg","ext":""},{"id":54,"producto_id":2,"imagen":"1541776546244.jpeg","created_at":"2026-04-18T21:04:04.000000Z","updated_at":"2026-04-18T21:04:04.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/1541776546244.jpeg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/1541776546244.jpeg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/1541776546244.jpeg","file":"1541776546244.jpeg","name":"1541776546244.jpeg","ext":""}]}	{"id":2,"nombre":"PRODUCTO 2","descripcion":"<p>Descripcion del producto 2<\\/p>","precio":"67.00","stock":"90","categoria_id":"1","fecha_registro":"2026-04-08","created_at":"2026-04-08T23:33:31.000000Z","updated_at":"2026-04-22T20:45:52.000000Z","codigo":"P002","tsg":"0","producto_imagens":[{"id":53,"producto_id":2,"imagen":"531776546244.jpeg","created_at":"2026-04-18T21:04:04.000000Z","updated_at":"2026-04-18T21:04:04.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/531776546244.jpeg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/531776546244.jpeg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/531776546244.jpeg","file":"531776546244.jpeg","name":"531776546244.jpeg","ext":""},{"id":54,"producto_id":2,"imagen":"1541776546244.jpeg","created_at":"2026-04-18T21:04:04.000000Z","updated_at":"2026-04-18T21:04:04.000000Z","url_imagen":"http:\\/\\/savs.test\\/imgs\\/productos\\/1541776546244.jpeg","url_archivo":"http:\\/\\/savs.test\\/imgs\\/productos\\/1541776546244.jpeg","url_file":"http:\\/\\/savs.test\\/imgs\\/productos\\/1541776546244.jpeg","file":"1541776546244.jpeg","name":"1541776546244.jpeg","ext":""}]}	PRODUCTOS	2026-04-22	16:45:52	2026-04-22 16:45:52	2026-04-22 16:45:52
+90	1	CREACIÓN	EL USUARIO admin REGISTRO UNA SUBASTA	{"producto_id":"1","estado_producto":"NUEVO","monto_inicial":"500","garantia":"230","fecha_fin":"2026-04-23","hora_fin":"12:00","publico":"1","descripcion":"<p>Descripcion subasta producto 360\\u00b0<\\/p>","fecha_registro":"2026-04-22","updated_at":"2026-04-22T22:57:35.000000Z","created_at":"2026-04-22T22:57:35.000000Z","id":8}	\N	SUBASTAS	2026-04-22	18:57:36	2026-04-22 18:57:36	2026-04-22 18:57:36
+91	1	CREACIÓN	EL USUARIO admin REGISTRO UNA SUBASTA	{"producto_id":"1","estado_producto":"NUEVO","monto_inicial":"300","garantia":"200","fecha_fin":"2026-04-24","hora_fin":"12:00","publico":"1","descripcion":"<p>desc subasta producto 1<\\/p>","fecha_registro":"2026-04-23","updated_at":"2026-04-23T21:20:59.000000Z","created_at":"2026-04-23T21:20:59.000000Z","id":9}	\N	SUBASTAS	2026-04-23	17:20:59	2026-04-23 17:20:59	2026-04-23 17:20:59
 \.
 
 
 --
--- TOC entry 5110 (class 0 OID 24669)
--- Dependencies: 234
+-- TOC entry 5101 (class 0 OID 24669)
+-- Dependencies: 232
 -- Data for Name: ingreso_productos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1329,8 +1291,8 @@ COPY public.ingreso_productos (id, producto_id, cantidad, descripcion, fecha_reg
 
 
 --
--- TOC entry 5114 (class 0 OID 24697)
--- Dependencies: 238
+-- TOC entry 5105 (class 0 OID 24697)
+-- Dependencies: 236
 -- Data for Name: kardex_productos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1377,11 +1339,14 @@ COPY public.kardex_productos (id, tipo_registro, registro_id, modulo, producto_i
 40	VENTAS	12	VentaDetalle	1	VENTA DE PRODUCTO	120.00	EGRESO	\N	1	92	120.00	\N	120.00	11040.00	2026-04-18	1	2026-04-18 19:21:55	2026-04-18 19:21:55
 41	VENTAS	13	VentaDetalle	2	VENTA DE PRODUCTO	67.00	EGRESO	\N	2	90	67.00	\N	134.00	6030.00	2026-04-18	1	2026-04-18 19:22:04	2026-04-18 19:22:04
 42	INGRESO DE PRODUCTO	7	IngresoProducto	5	INGRESO DE PRODUCTO	190.00	INGRESO	20	\N	20	190.00	3800.00	\N	3800.00	2026-04-18	1	2026-04-18 19:22:36	2026-04-18 19:22:36
+43	SUBASTA	7	Subasta	3	EGRESO DE PRODUCTO PARA SUBASTA	433.00	EGRESO	\N	1	17	433.00	\N	433.00	7361.00	2026-04-18	1	2026-04-18 21:12:19	2026-04-18 21:12:19
+44	SUBASTA	8	Subasta	1	EGRESO DE PRODUCTO PARA SUBASTA	120.00	EGRESO	\N	1	91	120.00	\N	120.00	10920.00	2026-04-22	1	2026-04-22 18:57:35	2026-04-22 18:57:35
+45	SUBASTA	9	Subasta	1	EGRESO DE PRODUCTO PARA SUBASTA	120.00	EGRESO	\N	1	90	120.00	\N	120.00	10800.00	2026-04-23	1	2026-04-23 17:20:59	2026-04-23 17:20:59
 \.
 
 
 --
--- TOC entry 5094 (class 0 OID 24580)
+-- TOC entry 5087 (class 0 OID 24580)
 -- Dependencies: 218
 -- Data for Name: migrations; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1412,8 +1377,8 @@ COPY public.migrations (id, migration, batch) FROM stdin;
 
 
 --
--- TOC entry 5130 (class 0 OID 24800)
--- Dependencies: 254
+-- TOC entry 5121 (class 0 OID 24800)
+-- Dependencies: 252
 -- Data for Name: notificacion_users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1433,18 +1398,33 @@ COPY public.notificacion_users (id, created_at, updated_at, notificacion_id, use
 14	2026-04-18 17:32:41	2026-04-18 17:32:41	9	3	0
 15	2026-04-18 17:32:41	2026-04-18 17:32:41	9	2	0
 13	2026-04-18 17:32:41	2026-04-18 17:37:54	9	1	1
-16	2026-04-18 19:21:55	2026-04-18 19:21:55	10	1	0
 17	2026-04-18 19:21:55	2026-04-18 19:21:55	10	3	0
 18	2026-04-18 19:21:55	2026-04-18 19:21:55	10	2	0
-19	2026-04-18 19:22:04	2026-04-18 19:22:04	11	1	0
 20	2026-04-18 19:22:04	2026-04-18 19:22:04	11	3	0
 21	2026-04-18 19:22:04	2026-04-18 19:22:04	11	2	0
+16	2026-04-18 19:21:55	2026-04-18 20:52:37	10	1	1
+19	2026-04-18 19:22:04	2026-04-18 20:52:46	11	1	1
+23	2026-04-18 21:06:41	2026-04-18 21:06:41	12	3	0
+24	2026-04-18 21:06:41	2026-04-18 21:06:41	12	2	0
+22	2026-04-18 21:06:41	2026-04-18 21:06:50	12	1	1
+26	2026-04-18 21:12:19	2026-04-18 21:12:19	13	3	0
+27	2026-04-18 21:12:19	2026-04-18 21:12:19	13	2	0
+25	2026-04-18 21:12:19	2026-04-22 16:29:17	13	1	1
+29	2026-04-22 18:57:35	2026-04-22 18:57:35	14	3	0
+30	2026-04-22 18:57:35	2026-04-22 18:57:35	14	2	0
+28	2026-04-22 18:57:35	2026-04-22 18:57:43	14	1	1
+31	2026-04-23 17:24:38	2026-04-23 17:24:38	15	1	0
+32	2026-04-23 17:24:38	2026-04-23 17:24:38	15	3	0
+33	2026-04-23 17:24:38	2026-04-23 17:24:38	15	2	0
+34	2026-04-23 17:26:24	2026-04-23 17:26:24	16	1	0
+35	2026-04-23 17:26:24	2026-04-23 17:26:24	16	3	0
+36	2026-04-23 17:26:24	2026-04-23 17:26:24	16	2	0
 \.
 
 
 --
--- TOC entry 5128 (class 0 OID 24791)
--- Dependencies: 252
+-- TOC entry 5119 (class 0 OID 24791)
+-- Dependencies: 250
 -- Data for Name: notificacions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1456,12 +1436,17 @@ COPY public.notificacions (id, modulo, registro_id, descripcion, fecha, hora, ti
 9	Producto	4	PARACHOQUES BLANCO SE QUEDO SIN STOCK	2026-04-18	17:32:00	STOCK	2026-04-18 17:32:41	2026-04-18 17:32:41
 10	Producto	1	AURIS IZQUIERDO SE QUEDO SIN STOCK	2026-04-18	19:21:00	STOCK	2026-04-18 19:21:55	2026-04-18 19:21:55
 11	Producto	2	PRODUCTO 2 SE QUEDO SIN STOCK	2026-04-18	19:22:00	STOCK	2026-04-18 19:22:04	2026-04-18 19:22:04
+12	Participante	14	MARCOS AVILA REGISTRO SU COMPROBANTE	2026-04-18	21:06:00	COMPROBANTE	2026-04-18 21:06:41	2026-04-18 21:06:41
+13	Producto	3	RETROVISORES SE QUEDO SIN STOCK	2026-04-18	21:12:00	STOCK	2026-04-18 21:12:19	2026-04-18 21:12:19
+14	Producto	1	AURIS IZQUIERDO SE QUEDO SIN STOCK	2026-04-22	18:57:00	STOCK	2026-04-22 18:57:35	2026-04-22 18:57:35
+15	Participante	15	MARIA MAMANI MAMANI REGISTRO SU COMPROBANTE	2026-04-23	17:24:00	COMPROBANTE	2026-04-23 17:24:38	2026-04-23 17:24:38
+16	Participante	16	ALFONSO MARTINEZ REGISTRO SU COMPROBANTE	2026-04-23	17:26:00	COMPROBANTE	2026-04-23 17:26:24	2026-04-23 17:26:24
 \.
 
 
 --
--- TOC entry 5134 (class 0 OID 24905)
--- Dependencies: 258
+-- TOC entry 5125 (class 0 OID 24905)
+-- Dependencies: 256
 -- Data for Name: parametrizacions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1471,8 +1456,8 @@ COPY public.parametrizacions (id, servidor_correo, datos_banco, tiempo_pub, term
 
 
 --
--- TOC entry 5126 (class 0 OID 24779)
--- Dependencies: 250
+-- TOC entry 5117 (class 0 OID 24779)
+-- Dependencies: 248
 -- Data for Name: participante_pujas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1490,12 +1475,23 @@ COPY public.participante_pujas (id, participante_id, monto, fecha, hora, created
 14	11	384.00	2026-04-17	11:10:57	2026-04-17 11:10:57	2026-04-17 11:10:57	6	5
 15	11	385.00	2026-04-17	11:11:29	2026-04-17 11:11:29	2026-04-17 11:11:29	6	5
 16	11	386.00	2026-04-17	11:11:39	2026-04-17 11:11:39	2026-04-17 11:11:39	6	5
+17	14	700.00	2026-04-18	21:10:52	2026-04-18 21:10:52	2026-04-18 21:10:52	9	6
+18	14	701.00	2026-04-18	21:11:08	2026-04-18 21:11:08	2026-04-18 21:11:08	9	6
+19	16	300.00	2026-04-23	17:26:41	2026-04-23 17:26:41	2026-04-23 17:26:41	10	9
+20	15	301.00	2026-04-23	17:26:57	2026-04-23 17:26:57	2026-04-23 17:26:57	6	9
+21	15	302.00	2026-04-23	17:27:19	2026-04-23 17:27:19	2026-04-23 17:27:19	6	9
+22	16	303.00	2026-04-23	17:27:31	2026-04-23 17:27:31	2026-04-23 17:27:31	10	9
+23	15	304.00	2026-04-23	17:28:36	2026-04-23 17:28:36	2026-04-23 17:28:36	6	9
+24	16	305.00	2026-04-23	17:30:12	2026-04-23 17:30:12	2026-04-23 17:30:12	10	9
+25	15	306.00	2026-04-23	17:30:47	2026-04-23 17:30:47	2026-04-23 17:30:47	6	9
+26	15	307.00	2026-04-23	17:36:18	2026-04-23 17:36:18	2026-04-23 17:36:18	6	9
+27	16	308.00	2026-04-23	17:37:27	2026-04-23 17:37:27	2026-04-23 17:37:27	10	9
 \.
 
 
 --
--- TOC entry 5124 (class 0 OID 24762)
--- Dependencies: 248
+-- TOC entry 5115 (class 0 OID 24762)
+-- Dependencies: 246
 -- Data for Name: participantes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1504,12 +1500,15 @@ COPY public.participantes (id, subasta_id, user_id, fecha, hora, monto_puja, cre
 12	5	7	2026-04-17	09:26:12	382.00	2026-04-17 09:26:12	2026-04-17 10:52:02	0	1	71776432372.pdf	1	2026-04-17	09:26:12	0	\N	\N	\N
 11	5	6	2026-04-17	09:14:26	386.00	2026-04-17 09:14:26	2026-04-17 15:08:25	2	1	61776431666.png	1	2026-04-17	09:14:26	0	\N	\N	\N
 13	5	8	2026-04-17	11:07:03	383.00	2026-04-17 11:07:03	2026-04-17 16:12:10	0	1	81776438423.pdf	1	2026-04-17	11:07:03	1	\N	2026-04-17	16:11:00
+14	6	9	2026-04-18	21:06:41	701.00	2026-04-18 21:06:41	2026-04-22 16:13:53	2	1	91776560801.png	1	2026-04-18	21:06:41	0	\N	\N	\N
+15	9	6	2026-04-23	17:24:38	307.00	2026-04-23 17:24:38	2026-04-23 17:36:18	0	1	61776979478.pdf	1	2026-04-23	17:24:38	0	\N	\N	\N
+16	9	10	2026-04-23	17:26:24	308.00	2026-04-23 17:26:24	2026-04-23 17:37:27	1	1	101776979584.png	1	2026-04-23	17:26:24	0	\N	\N	\N
 \.
 
 
 --
--- TOC entry 5108 (class 0 OID 24657)
--- Dependencies: 232
+-- TOC entry 5099 (class 0 OID 24657)
+-- Dependencies: 230
 -- Data for Name: producto_imagens; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1522,38 +1521,105 @@ COPY public.producto_imagens (id, producto_id, imagen, created_at, updated_at) F
 29	3	291776545880.jpeg	2026-04-18 16:58:00	2026-04-18 16:58:00
 60	5	601776546780.jpeg	2026-04-18 17:13:00	2026-04-18 17:13:00
 61	5	1611776546780.jpeg	2026-04-18 17:13:00	2026-04-18 17:13:00
-40	1	401776546090.jpeg	2026-04-18 17:01:30	2026-04-18 17:01:30
+161	1	1611776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+162	1	11621776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+163	1	21631776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+164	1	31641776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+165	1	41651776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+166	1	51661776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+167	1	61671776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+168	1	71681776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+169	1	81691776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+170	1	91701776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+171	1	101711776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+172	1	111721776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+173	1	121731776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+174	1	131741776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+175	1	141751776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+176	1	151761776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+177	1	161771776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+178	1	171781776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+179	1	181791776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+180	1	191801776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+181	1	201811776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+182	1	211821776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+183	1	221831776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+184	1	231841776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+185	1	241851776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+186	1	251861776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+187	1	261871776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+188	1	271881776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+189	1	281891776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+190	1	291901776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+191	1	301911776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+192	1	311921776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+193	1	321931776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+194	1	331941776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+195	1	341951776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+196	1	351961776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+197	1	361971776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+198	1	371981776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+199	1	381991776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+200	1	392001776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+201	1	402011776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+202	1	412021776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+203	1	422031776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+204	1	432041776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+205	1	442051776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+206	1	452061776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+207	1	462071776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+208	1	472081776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:14
+209	1	482091776890774.jpg	2026-04-22 16:46:14	2026-04-22 16:46:15
+210	1	492101776890775.jpg	2026-04-22 16:46:15	2026-04-22 16:46:15
+211	1	502111776890775.jpg	2026-04-22 16:46:15	2026-04-22 16:46:15
+212	1	512121776890775.jpg	2026-04-22 16:46:15	2026-04-22 16:46:15
+213	1	522131776890775.jpg	2026-04-22 16:46:15	2026-04-22 16:46:15
+214	1	532141776890775.jpg	2026-04-22 16:46:15	2026-04-22 16:46:15
+215	1	542151776890775.jpg	2026-04-22 16:46:15	2026-04-22 16:46:15
+216	1	552161776890775.jpg	2026-04-22 16:46:15	2026-04-22 16:46:15
+217	1	562171776890775.jpg	2026-04-22 16:46:15	2026-04-22 16:46:15
+218	1	572181776890775.jpg	2026-04-22 16:46:15	2026-04-22 16:46:15
+219	1	582191776890775.jpg	2026-04-22 16:46:15	2026-04-22 16:46:15
+220	1	592201776890775.jpg	2026-04-22 16:46:15	2026-04-22 16:46:15
+221	1	602211776890775.jpg	2026-04-22 16:46:15	2026-04-22 16:46:15
+222	1	612221776890775.jpg	2026-04-22 16:46:15	2026-04-22 16:46:15
+223	1	622231776890775.jpg	2026-04-22 16:46:15	2026-04-22 16:46:15
+224	1	632241776890775.jpg	2026-04-22 16:46:15	2026-04-22 16:46:15
+225	1	642251776890775.jpg	2026-04-22 16:46:15	2026-04-22 16:46:15
+226	1	652261776890775.jpg	2026-04-22 16:46:15	2026-04-22 16:46:15
+227	1	662271776890775.jpg	2026-04-22 16:46:15	2026-04-22 16:46:15
+228	1	672281776890775.jpg	2026-04-22 16:46:15	2026-04-22 16:46:15
+229	1	682291776890775.jpg	2026-04-22 16:46:15	2026-04-22 16:46:15
+230	1	692301776890775.jpg	2026-04-22 16:46:15	2026-04-22 16:46:15
+231	1	702311776890775.jpg	2026-04-22 16:46:15	2026-04-22 16:46:15
+232	1	712321776890775.jpg	2026-04-22 16:46:15	2026-04-22 16:46:15
+233	1	722331776890775.jpg	2026-04-22 16:46:15	2026-04-22 16:46:15
+234	1	732341776890775.jpg	2026-04-22 16:46:15	2026-04-22 16:46:15
+235	1	742351776890775.jpg	2026-04-22 16:46:15	2026-04-22 16:46:15
+236	1	752361776890775.jpg	2026-04-22 16:46:15	2026-04-22 16:46:15
+237	1	762371776890775.jpg	2026-04-22 16:46:15	2026-04-22 16:46:15
+238	1	772381776890775.jpg	2026-04-22 16:46:15	2026-04-22 16:46:15
 \.
 
 
 --
--- TOC entry 5106 (class 0 OID 24640)
--- Dependencies: 230
+-- TOC entry 5097 (class 0 OID 24640)
+-- Dependencies: 228
 -- Data for Name: productos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.productos (id, nombre, descripcion, precio, stock, categoria_id, fecha_registro, created_at, updated_at, codigo) FROM stdin;
-4	PARACHOQUES BLANCO	<p>DEscripcion deparachoques blanco</p>	250.00	0	3	2026-04-18	2026-04-18 17:10:40	2026-04-18 17:32:41	P004
-1	AURIS IZQUIERDO	<h3><strong><u>DESCRIPCIÓN DEL PRODUCTO</u></strong></h3><p><span style="color: rgb(0, 0, 0);">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</span></p>	120.00	92	1	2026-04-08	2026-04-08 11:39:00	2026-04-18 19:21:55	P001
-2	PRODUCTO 2	<p>Descripcion del producto 2</p>	67.00	90	1	2026-04-08	2026-04-08 19:33:31	2026-04-18 19:22:04	P002
-5	FAROS DERECHO	<p>descripcion faros derecho</p>	190.00	20	1	2026-04-18	2026-04-18 17:12:49	2026-04-18 19:22:36	P005
-3	RETROVISORES	<h2>What is Lorem Ipsum?</h2><p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>	433.00	18	2	2026-04-10	2026-04-10 09:40:31	2026-04-18 17:23:52	P003
+COPY public.productos (id, nombre, descripcion, precio, stock, categoria_id, fecha_registro, created_at, updated_at, codigo, tsg) FROM stdin;
+4	PARACHOQUES BLANCO	<p>DEscripcion deparachoques blanco</p>	250.00	0	3	2026-04-18	2026-04-18 17:10:40	2026-04-18 17:32:41	P004	0
+2	PRODUCTO 2	<p>Descripcion del producto 2</p>	67.00	90	1	2026-04-08	2026-04-08 19:33:31	2026-04-22 16:45:52	P002	0
+5	FAROS DERECHO	<p>descripcion faros derecho</p>	190.00	20	1	2026-04-18	2026-04-18 17:12:49	2026-04-18 19:22:36	P005	0
+3	RETROVISORES	<h2>What is Lorem Ipsum?</h2><p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>	433.00	17	2	2026-04-10	2026-04-10 09:40:31	2026-04-18 21:12:19	P003	0
+1	AURIS IZQUIERDO	<h3><strong><u>DESCRIPCIÓN DEL PRODUCTO</u></strong></h3><p><span style="color: rgb(0, 0, 0);">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</span></p>	120.00	90	1	2026-04-08	2026-04-08 11:39:00	2026-04-23 17:20:59	P001	1
 \.
 
 
 --
--- TOC entry 5102 (class 0 OID 24620)
--- Dependencies: 226
--- Data for Name: qrs; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.qrs (id, imagen, remitente, fecha_vencimiento, created_at, updated_at) FROM stdin;
-\.
-
-
---
--- TOC entry 5136 (class 0 OID 24929)
--- Dependencies: 260
+-- TOC entry 5127 (class 0 OID 24929)
+-- Dependencies: 258
 -- Data for Name: recuperar_passwords; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1563,8 +1629,8 @@ COPY public.recuperar_passwords (id, cod, user_id, status, created_at, updated_a
 
 
 --
--- TOC entry 5112 (class 0 OID 24683)
--- Dependencies: 236
+-- TOC entry 5103 (class 0 OID 24683)
+-- Dependencies: 234
 -- Data for Name: salida_productos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1575,23 +1641,26 @@ COPY public.salida_productos (id, producto_id, cantidad, descripcion, fecha_regi
 
 
 --
--- TOC entry 5116 (class 0 OID 24712)
--- Dependencies: 240
+-- TOC entry 5107 (class 0 OID 24712)
+-- Dependencies: 238
 -- Data for Name: subastas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.subastas (id, producto_id, estado_producto, monto_inicial, fecha_fin, hora_fin, publico, estado_subasta, fecha_registro, created_at, updated_at, garantia, descripcion) FROM stdin;
-4	1	NUEVO	200.00	2026-04-15	12:00:00	1	0	2026-04-10	2026-04-10 21:07:25	2026-04-16 11:14:08	100.00	\N
-2	1	USADO	1000.00	2026-04-16	12:00:00	1	0	2026-04-10	2026-04-10 10:15:12	2026-04-16 12:00:44	0.00	\N
-3	2	NUEVO	2300.00	2026-04-16	12:00:00	0	0	2026-04-10	2026-04-10 10:15:32	2026-04-16 12:00:44	0.00	\N
-5	3	SEMINUEVO	300.00	2026-04-17	15:00:00	1	2	2026-04-16	2026-04-16 10:33:50	2026-04-17 15:14:15	150.00	\N
-6	2	NUEVO	700.00	2026-04-19	12:00:00	1	1	2026-04-17	2026-04-17 16:26:17	2026-04-18 19:24:39	200.00	<h3><strong>Descripción de subasta</strong></h3><p><strong style="color: rgb(0, 0, 0);">Lorem Ipsum</strong><span style="color: rgb(0, 0, 0);">&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.</span></p><p><span style="color: rgb(0, 0, 0);">Descripcion de la subasta</span></p>
+4	1	NUEVO	200.00	2026-04-15	12:00:00	0	3	2026-04-10	2026-04-10 21:07:25	2026-04-22 16:28:52	100.00	\N
+2	1	USADO	1000.00	2026-04-16	12:00:00	0	3	2026-04-10	2026-04-10 10:15:12	2026-04-22 16:28:52	0.00	\N
+3	2	NUEVO	2300.00	2026-04-16	12:00:00	0	3	2026-04-10	2026-04-10 10:15:32	2026-04-22 16:28:52	0.00	\N
+5	3	SEMINUEVO	300.00	2026-04-17	15:00:00	0	3	2026-04-16	2026-04-16 10:33:50	2026-04-22 16:28:52	150.00	\N
+7	3	NUEVO	300.00	2026-04-20	12:00:00	0	3	2026-04-18	2026-04-18 21:12:19	2026-04-22 16:28:52	120.00	<p>Descripcion</p>
+6	2	NUEVO	700.00	2026-04-19	12:00:00	0	3	2026-04-17	2026-04-17 16:26:17	2026-04-22 16:28:52	200.00	<h3><strong>Descripción de subasta</strong></h3><p><strong style="color: rgb(0, 0, 0);">Lorem Ipsum</strong><span style="color: rgb(0, 0, 0);">&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.</span></p><p><span style="color: rgb(0, 0, 0);">Descripcion de la subasta</span></p>
+8	1	NUEVO	500.00	2026-04-23	12:00:00	1	0	2026-04-22	2026-04-22 18:57:35	2026-04-23 17:14:23	230.00	<p>Descripcion subasta producto 360°</p>
+9	1	NUEVO	300.00	2026-04-24	12:00:00	1	1	2026-04-23	2026-04-23 17:20:59	2026-04-23 17:20:59	200.00	<p>desc subasta producto 1</p>
 \.
 
 
 --
--- TOC entry 5132 (class 0 OID 24891)
--- Dependencies: 256
+-- TOC entry 5123 (class 0 OID 24891)
+-- Dependencies: 254
 -- Data for Name: user_datos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1600,11 +1669,13 @@ COPY public.user_datos (id, user_id, foto_ci_anverso, foto_ci_reverso, banco, nr
 3	6	161776431394.jpeg	261776431394.png	BANCO NACIONAL DE BOLIVIA S.A.	100005555555555	2026-04-17 09:09:54	2026-04-17 09:09:54	2342344	LP		LA PAZ	maria@gmail.com
 5	8	181776437667.jpg	281776437667.jpeg	BANCO MERCANTIL SANTA CRUZ S.A.	10000000001	2026-04-17 10:54:27	2026-04-17 10:54:27	5675675	LP		LA PAZ	franz@gmail.com
 4	7	171776432351.jpeg	271776432351.png	BANCO ECONÓMICO S.A.	112323232323	2026-04-17 09:25:51	2026-04-18 12:45:59	5454655	LP		LA PAZ	marcelo@gmail.com
+6	9	191776560753.jpeg	291776560753.jpeg	BANCO DE CRÉDITO DE BOLIVIA S.A.	112323232323	2026-04-18 21:05:53	2026-04-18 21:05:53	34534534	LP		LA PAZ	marcos@gmail.com
+7	10	1101776979565.jpeg	2101776979565.png	BANCO DE CRÉDITO DE BOLIVIA S.A.	112323232323	2026-04-23 17:26:05	2026-04-23 17:26:05	435345345	LP		COCHABAMBA	alfonso@gmail.com
 \.
 
 
 --
--- TOC entry 5098 (class 0 OID 24596)
+-- TOC entry 5091 (class 0 OID 24596)
 -- Dependencies: 222
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1617,12 +1688,14 @@ COPY public.users (id, usuario, nombre, paterno, materno, correo, fono, password
 6	maria@gmail.com	MARIA	MAMANI	MAMANI	maria@gmail.com	78787878	$2y$12$go2e/Mn5yMZaUCG.3nHGDe8PbK/.rFvNZFmEiXbOWDO1ThP/yxJdK	1	PARTICIPANTE	\N	2026-04-17	1	2026-04-17 09:09:54	2026-04-17 09:09:54	2342344	LP
 8	franz@gmail.com	FRANZ	MARTINEZ		franz@gmail.com	78787878	$2y$12$BQWM6Dbic8ZkuFuhghgAve0aU2KoceUX2xfNnPJ8eZXN5QKU5NioS	1	PARTICIPANTE	\N	2026-04-17	1	2026-04-17 10:54:27	2026-04-17 10:54:27	5675675	LP
 7	marcelo@gmail.com	MARCELO	GONZALES	BERSAVE	marcelo@gmail.com	67676767	$2y$12$91NbCaoZrffBqRrkceM2Ee891n6y19BGVKCtrYMHoCD4i4rRSA2ce	1	PARTICIPANTE	1776530942_7.jpg	2026-04-17	1	2026-04-17 09:25:51	2026-04-18 14:29:52	5454655	LP
+9	marcos@gmail.com	MARCOS	AVILA		marcos@gmail.com	676767676	$2y$12$4FAAkeBHNwDXlkG/Lt5rwODO1B7ZgOEkJByo9iHHNxCe/6L5jhpGa	1	PARTICIPANTE	\N	2026-04-18	1	2026-04-18 21:05:53	2026-04-18 21:05:53	34534534	LP
+10	alfonso@gmail.com	ALFONSO	MARTINEZ		alfonso@gmail.com	78787878	$2y$12$YuCIgAgJSR7qhkrmek6/Ru8Luokdf/VXcw1GWDuRzogez9SHaAgDG	1	PARTICIPANTE	\N	2026-04-23	1	2026-04-23 17:26:05	2026-04-23 17:26:05	435345345	LP
 \.
 
 
 --
--- TOC entry 5122 (class 0 OID 24745)
--- Dependencies: 246
+-- TOC entry 5113 (class 0 OID 24745)
+-- Dependencies: 244
 -- Data for Name: venta_detalles; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1643,8 +1716,8 @@ COPY public.venta_detalles (id, venta_id, producto_id, precio, cantidad, subtota
 
 
 --
--- TOC entry 5120 (class 0 OID 24733)
--- Dependencies: 244
+-- TOC entry 5111 (class 0 OID 24733)
+-- Dependencies: 242
 -- Data for Name: ventas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1662,8 +1735,8 @@ COPY public.ventas (id, cliente_id, total, fecha, hora, created_at, updated_at, 
 
 
 --
--- TOC entry 5164 (class 0 OID 0)
--- Dependencies: 227
+-- TOC entry 5154 (class 0 OID 0)
+-- Dependencies: 225
 -- Name: categorias_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1671,8 +1744,8 @@ SELECT pg_catalog.setval('public.categorias_id_seq', 4, true);
 
 
 --
--- TOC entry 5165 (class 0 OID 0)
--- Dependencies: 241
+-- TOC entry 5155 (class 0 OID 0)
+-- Dependencies: 239
 -- Name: clientes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1680,7 +1753,7 @@ SELECT pg_catalog.setval('public.clientes_id_seq', 6, true);
 
 
 --
--- TOC entry 5166 (class 0 OID 0)
+-- TOC entry 5156 (class 0 OID 0)
 -- Dependencies: 219
 -- Name: configuracions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1689,17 +1762,17 @@ SELECT pg_catalog.setval('public.configuracions_id_seq', 1, true);
 
 
 --
--- TOC entry 5167 (class 0 OID 0)
+-- TOC entry 5157 (class 0 OID 0)
 -- Dependencies: 223
 -- Name: historial_accions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.historial_accions_id_seq', 81, true);
+SELECT pg_catalog.setval('public.historial_accions_id_seq', 91, true);
 
 
 --
--- TOC entry 5168 (class 0 OID 0)
--- Dependencies: 233
+-- TOC entry 5158 (class 0 OID 0)
+-- Dependencies: 231
 -- Name: ingreso_productos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1707,16 +1780,16 @@ SELECT pg_catalog.setval('public.ingreso_productos_id_seq', 7, true);
 
 
 --
--- TOC entry 5169 (class 0 OID 0)
--- Dependencies: 237
+-- TOC entry 5159 (class 0 OID 0)
+-- Dependencies: 235
 -- Name: kardex_productos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.kardex_productos_id_seq', 42, true);
+SELECT pg_catalog.setval('public.kardex_productos_id_seq', 45, true);
 
 
 --
--- TOC entry 5170 (class 0 OID 0)
+-- TOC entry 5160 (class 0 OID 0)
 -- Dependencies: 217
 -- Name: migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1725,26 +1798,26 @@ SELECT pg_catalog.setval('public.migrations_id_seq', 21, true);
 
 
 --
--- TOC entry 5171 (class 0 OID 0)
--- Dependencies: 253
+-- TOC entry 5161 (class 0 OID 0)
+-- Dependencies: 251
 -- Name: notificacion_users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.notificacion_users_id_seq', 21, true);
+SELECT pg_catalog.setval('public.notificacion_users_id_seq', 36, true);
 
 
 --
--- TOC entry 5172 (class 0 OID 0)
--- Dependencies: 251
+-- TOC entry 5162 (class 0 OID 0)
+-- Dependencies: 249
 -- Name: notificacions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.notificacions_id_seq', 11, true);
+SELECT pg_catalog.setval('public.notificacions_id_seq', 16, true);
 
 
 --
--- TOC entry 5173 (class 0 OID 0)
--- Dependencies: 257
+-- TOC entry 5163 (class 0 OID 0)
+-- Dependencies: 255
 -- Name: parametrizacions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1752,35 +1825,35 @@ SELECT pg_catalog.setval('public.parametrizacions_id_seq', 1, true);
 
 
 --
--- TOC entry 5174 (class 0 OID 0)
--- Dependencies: 249
+-- TOC entry 5164 (class 0 OID 0)
+-- Dependencies: 247
 -- Name: participante_pujas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.participante_pujas_id_seq', 16, true);
+SELECT pg_catalog.setval('public.participante_pujas_id_seq', 27, true);
 
 
 --
--- TOC entry 5175 (class 0 OID 0)
--- Dependencies: 247
+-- TOC entry 5165 (class 0 OID 0)
+-- Dependencies: 245
 -- Name: participantes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.participantes_id_seq', 13, true);
+SELECT pg_catalog.setval('public.participantes_id_seq', 16, true);
 
 
 --
--- TOC entry 5176 (class 0 OID 0)
--- Dependencies: 231
+-- TOC entry 5166 (class 0 OID 0)
+-- Dependencies: 229
 -- Name: producto_imagens_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.producto_imagens_id_seq', 61, true);
+SELECT pg_catalog.setval('public.producto_imagens_id_seq', 238, true);
 
 
 --
--- TOC entry 5177 (class 0 OID 0)
--- Dependencies: 229
+-- TOC entry 5167 (class 0 OID 0)
+-- Dependencies: 227
 -- Name: productos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1788,17 +1861,8 @@ SELECT pg_catalog.setval('public.productos_id_seq', 5, true);
 
 
 --
--- TOC entry 5178 (class 0 OID 0)
--- Dependencies: 225
--- Name: qrs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.qrs_id_seq', 1, false);
-
-
---
--- TOC entry 5179 (class 0 OID 0)
--- Dependencies: 259
+-- TOC entry 5168 (class 0 OID 0)
+-- Dependencies: 257
 -- Name: recuperar_passwords_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1806,8 +1870,8 @@ SELECT pg_catalog.setval('public.recuperar_passwords_id_seq', 1, true);
 
 
 --
--- TOC entry 5180 (class 0 OID 0)
--- Dependencies: 235
+-- TOC entry 5169 (class 0 OID 0)
+-- Dependencies: 233
 -- Name: salida_productos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1815,35 +1879,35 @@ SELECT pg_catalog.setval('public.salida_productos_id_seq', 2, true);
 
 
 --
--- TOC entry 5181 (class 0 OID 0)
--- Dependencies: 239
+-- TOC entry 5170 (class 0 OID 0)
+-- Dependencies: 237
 -- Name: subastas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.subastas_id_seq', 6, true);
+SELECT pg_catalog.setval('public.subastas_id_seq', 9, true);
 
 
 --
--- TOC entry 5182 (class 0 OID 0)
--- Dependencies: 255
+-- TOC entry 5171 (class 0 OID 0)
+-- Dependencies: 253
 -- Name: user_datos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.user_datos_id_seq', 5, true);
+SELECT pg_catalog.setval('public.user_datos_id_seq', 7, true);
 
 
 --
--- TOC entry 5183 (class 0 OID 0)
+-- TOC entry 5172 (class 0 OID 0)
 -- Dependencies: 221
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 8, true);
+SELECT pg_catalog.setval('public.users_id_seq', 10, true);
 
 
 --
--- TOC entry 5184 (class 0 OID 0)
--- Dependencies: 245
+-- TOC entry 5173 (class 0 OID 0)
+-- Dependencies: 243
 -- Name: venta_detalles_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1851,8 +1915,8 @@ SELECT pg_catalog.setval('public.venta_detalles_id_seq', 13, true);
 
 
 --
--- TOC entry 5185 (class 0 OID 0)
--- Dependencies: 243
+-- TOC entry 5174 (class 0 OID 0)
+-- Dependencies: 241
 -- Name: ventas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1860,7 +1924,7 @@ SELECT pg_catalog.setval('public.ventas_id_seq', 17, true);
 
 
 --
--- TOC entry 4889 (class 2606 OID 24638)
+-- TOC entry 4882 (class 2606 OID 24638)
 -- Name: categorias categorias_nombre_unique; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1869,7 +1933,7 @@ ALTER TABLE ONLY public.categorias
 
 
 --
--- TOC entry 4891 (class 2606 OID 24636)
+-- TOC entry 4884 (class 2606 OID 24636)
 -- Name: categorias categorias_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1878,7 +1942,7 @@ ALTER TABLE ONLY public.categorias
 
 
 --
--- TOC entry 4909 (class 2606 OID 24731)
+-- TOC entry 4902 (class 2606 OID 24731)
 -- Name: clientes clientes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1887,7 +1951,7 @@ ALTER TABLE ONLY public.clientes
 
 
 --
--- TOC entry 4881 (class 2606 OID 24594)
+-- TOC entry 4876 (class 2606 OID 24594)
 -- Name: configuracions configuracions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1896,7 +1960,7 @@ ALTER TABLE ONLY public.configuracions
 
 
 --
--- TOC entry 4885 (class 2606 OID 24613)
+-- TOC entry 4880 (class 2606 OID 24613)
 -- Name: historial_accions historial_accions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1905,7 +1969,7 @@ ALTER TABLE ONLY public.historial_accions
 
 
 --
--- TOC entry 4901 (class 2606 OID 24676)
+-- TOC entry 4894 (class 2606 OID 24676)
 -- Name: ingreso_productos ingreso_productos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1914,7 +1978,7 @@ ALTER TABLE ONLY public.ingreso_productos
 
 
 --
--- TOC entry 4905 (class 2606 OID 24705)
+-- TOC entry 4898 (class 2606 OID 24705)
 -- Name: kardex_productos kardex_productos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1923,7 +1987,7 @@ ALTER TABLE ONLY public.kardex_productos
 
 
 --
--- TOC entry 4879 (class 2606 OID 24585)
+-- TOC entry 4874 (class 2606 OID 24585)
 -- Name: migrations migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1932,7 +1996,7 @@ ALTER TABLE ONLY public.migrations
 
 
 --
--- TOC entry 4921 (class 2606 OID 24805)
+-- TOC entry 4914 (class 2606 OID 24805)
 -- Name: notificacion_users notificacion_users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1941,7 +2005,7 @@ ALTER TABLE ONLY public.notificacion_users
 
 
 --
--- TOC entry 4919 (class 2606 OID 24798)
+-- TOC entry 4912 (class 2606 OID 24798)
 -- Name: notificacions notificacions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1950,7 +2014,7 @@ ALTER TABLE ONLY public.notificacions
 
 
 --
--- TOC entry 4925 (class 2606 OID 24912)
+-- TOC entry 4918 (class 2606 OID 24912)
 -- Name: parametrizacions parametrizacions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1959,7 +2023,7 @@ ALTER TABLE ONLY public.parametrizacions
 
 
 --
--- TOC entry 4917 (class 2606 OID 24784)
+-- TOC entry 4910 (class 2606 OID 24784)
 -- Name: participante_pujas participante_pujas_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1968,7 +2032,7 @@ ALTER TABLE ONLY public.participante_pujas
 
 
 --
--- TOC entry 4915 (class 2606 OID 24767)
+-- TOC entry 4908 (class 2606 OID 24767)
 -- Name: participantes participantes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1977,7 +2041,7 @@ ALTER TABLE ONLY public.participantes
 
 
 --
--- TOC entry 4899 (class 2606 OID 24662)
+-- TOC entry 4892 (class 2606 OID 24662)
 -- Name: producto_imagens producto_imagens_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1986,7 +2050,7 @@ ALTER TABLE ONLY public.producto_imagens
 
 
 --
--- TOC entry 4893 (class 2606 OID 24840)
+-- TOC entry 4886 (class 2606 OID 24840)
 -- Name: productos productos_codigo_unique; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1995,7 +2059,7 @@ ALTER TABLE ONLY public.productos
 
 
 --
--- TOC entry 4895 (class 2606 OID 24655)
+-- TOC entry 4888 (class 2606 OID 24655)
 -- Name: productos productos_nombre_unique; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2004,7 +2068,7 @@ ALTER TABLE ONLY public.productos
 
 
 --
--- TOC entry 4897 (class 2606 OID 24648)
+-- TOC entry 4890 (class 2606 OID 24648)
 -- Name: productos productos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2013,16 +2077,7 @@ ALTER TABLE ONLY public.productos
 
 
 --
--- TOC entry 4887 (class 2606 OID 24627)
--- Name: qrs qrs_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.qrs
-    ADD CONSTRAINT qrs_pkey PRIMARY KEY (id);
-
-
---
--- TOC entry 4927 (class 2606 OID 24934)
+-- TOC entry 4920 (class 2606 OID 24934)
 -- Name: recuperar_passwords recuperar_passwords_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2031,7 +2086,7 @@ ALTER TABLE ONLY public.recuperar_passwords
 
 
 --
--- TOC entry 4903 (class 2606 OID 24690)
+-- TOC entry 4896 (class 2606 OID 24690)
 -- Name: salida_productos salida_productos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2040,7 +2095,7 @@ ALTER TABLE ONLY public.salida_productos
 
 
 --
--- TOC entry 4907 (class 2606 OID 24717)
+-- TOC entry 4900 (class 2606 OID 24717)
 -- Name: subastas subastas_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2049,7 +2104,7 @@ ALTER TABLE ONLY public.subastas
 
 
 --
--- TOC entry 4923 (class 2606 OID 24898)
+-- TOC entry 4916 (class 2606 OID 24898)
 -- Name: user_datos user_datos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2058,7 +2113,7 @@ ALTER TABLE ONLY public.user_datos
 
 
 --
--- TOC entry 4883 (class 2606 OID 24604)
+-- TOC entry 4878 (class 2606 OID 24604)
 -- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2067,7 +2122,7 @@ ALTER TABLE ONLY public.users
 
 
 --
--- TOC entry 4913 (class 2606 OID 24750)
+-- TOC entry 4906 (class 2606 OID 24750)
 -- Name: venta_detalles venta_detalles_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2076,7 +2131,7 @@ ALTER TABLE ONLY public.venta_detalles
 
 
 --
--- TOC entry 4911 (class 2606 OID 24738)
+-- TOC entry 4904 (class 2606 OID 24738)
 -- Name: ventas ventas_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2085,7 +2140,7 @@ ALTER TABLE ONLY public.ventas
 
 
 --
--- TOC entry 4928 (class 2606 OID 24614)
+-- TOC entry 4921 (class 2606 OID 24614)
 -- Name: historial_accions historial_accions_user_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2094,7 +2149,7 @@ ALTER TABLE ONLY public.historial_accions
 
 
 --
--- TOC entry 4931 (class 2606 OID 24677)
+-- TOC entry 4924 (class 2606 OID 24677)
 -- Name: ingreso_productos ingreso_productos_producto_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2103,7 +2158,7 @@ ALTER TABLE ONLY public.ingreso_productos
 
 
 --
--- TOC entry 4933 (class 2606 OID 24706)
+-- TOC entry 4926 (class 2606 OID 24706)
 -- Name: kardex_productos kardex_productos_producto_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2112,7 +2167,7 @@ ALTER TABLE ONLY public.kardex_productos
 
 
 --
--- TOC entry 4944 (class 2606 OID 24915)
+-- TOC entry 4937 (class 2606 OID 24915)
 -- Name: notificacion_users notificacion_user_notificacion_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2121,7 +2176,7 @@ ALTER TABLE ONLY public.notificacion_users
 
 
 --
--- TOC entry 4945 (class 2606 OID 24920)
+-- TOC entry 4938 (class 2606 OID 24920)
 -- Name: notificacion_users notificacion_user_user_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2130,7 +2185,7 @@ ALTER TABLE ONLY public.notificacion_users
 
 
 --
--- TOC entry 4941 (class 2606 OID 24785)
+-- TOC entry 4934 (class 2606 OID 24785)
 -- Name: participante_pujas participante_pujas_participante_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2139,7 +2194,7 @@ ALTER TABLE ONLY public.participante_pujas
 
 
 --
--- TOC entry 4942 (class 2606 OID 24871)
+-- TOC entry 4935 (class 2606 OID 24871)
 -- Name: participante_pujas participante_pujas_subasta_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2148,7 +2203,7 @@ ALTER TABLE ONLY public.participante_pujas
 
 
 --
--- TOC entry 4943 (class 2606 OID 24866)
+-- TOC entry 4936 (class 2606 OID 24866)
 -- Name: participante_pujas participante_pujas_user_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2157,7 +2212,7 @@ ALTER TABLE ONLY public.participante_pujas
 
 
 --
--- TOC entry 4939 (class 2606 OID 24768)
+-- TOC entry 4932 (class 2606 OID 24768)
 -- Name: participantes participantes_subasta_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2166,7 +2221,7 @@ ALTER TABLE ONLY public.participantes
 
 
 --
--- TOC entry 4940 (class 2606 OID 24773)
+-- TOC entry 4933 (class 2606 OID 24773)
 -- Name: participantes participantes_user_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2175,7 +2230,7 @@ ALTER TABLE ONLY public.participantes
 
 
 --
--- TOC entry 4930 (class 2606 OID 24663)
+-- TOC entry 4923 (class 2606 OID 24663)
 -- Name: producto_imagens producto_imagens_producto_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2184,7 +2239,7 @@ ALTER TABLE ONLY public.producto_imagens
 
 
 --
--- TOC entry 4929 (class 2606 OID 24649)
+-- TOC entry 4922 (class 2606 OID 24649)
 -- Name: productos productos_categoria_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2193,7 +2248,7 @@ ALTER TABLE ONLY public.productos
 
 
 --
--- TOC entry 4947 (class 2606 OID 24935)
+-- TOC entry 4940 (class 2606 OID 24935)
 -- Name: recuperar_passwords recuperar_passwords_user_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2202,7 +2257,7 @@ ALTER TABLE ONLY public.recuperar_passwords
 
 
 --
--- TOC entry 4932 (class 2606 OID 24691)
+-- TOC entry 4925 (class 2606 OID 24691)
 -- Name: salida_productos salida_productos_producto_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2211,7 +2266,7 @@ ALTER TABLE ONLY public.salida_productos
 
 
 --
--- TOC entry 4934 (class 2606 OID 24718)
+-- TOC entry 4927 (class 2606 OID 24718)
 -- Name: subastas subastas_producto_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2220,7 +2275,7 @@ ALTER TABLE ONLY public.subastas
 
 
 --
--- TOC entry 4946 (class 2606 OID 24899)
+-- TOC entry 4939 (class 2606 OID 24899)
 -- Name: user_datos user_datos_user_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2229,7 +2284,7 @@ ALTER TABLE ONLY public.user_datos
 
 
 --
--- TOC entry 4937 (class 2606 OID 24756)
+-- TOC entry 4930 (class 2606 OID 24756)
 -- Name: venta_detalles venta_detalles_producto_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2238,7 +2293,7 @@ ALTER TABLE ONLY public.venta_detalles
 
 
 --
--- TOC entry 4938 (class 2606 OID 24751)
+-- TOC entry 4931 (class 2606 OID 24751)
 -- Name: venta_detalles venta_detalles_venta_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2247,7 +2302,7 @@ ALTER TABLE ONLY public.venta_detalles
 
 
 --
--- TOC entry 4935 (class 2606 OID 24739)
+-- TOC entry 4928 (class 2606 OID 24739)
 -- Name: ventas ventas_cliente_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2256,7 +2311,7 @@ ALTER TABLE ONLY public.ventas
 
 
 --
--- TOC entry 4936 (class 2606 OID 24859)
+-- TOC entry 4929 (class 2606 OID 24859)
 -- Name: ventas ventas_user_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2264,11 +2319,11 @@ ALTER TABLE ONLY public.ventas
     ADD CONSTRAINT ventas_user_id_foreign FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
 
 
--- Completed on 2026-04-18 19:25:37
+-- Completed on 2026-04-23 18:33:15
 
 --
 -- PostgreSQL database dump complete
 --
 
-\unrestrict HV5ksPgYotQDBeFOqvMVHWPxhh6eaBTuQvcl0Rq8ixfNKXeQIyxpuu3EJrUA8iD
+\unrestrict lEpaeuuXma659dn2R2z7cDYQhdUBHKGH3YHTduHcxMgV9aKvRNV0fCCiluJhFos
 

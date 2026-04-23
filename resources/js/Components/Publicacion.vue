@@ -1,5 +1,6 @@
 <script>
 import SliderImagenes from "@/Components/SliderImagenes.vue";
+import Imagen360 from "@/Components/Imagen360.vue";
 import DetalleSubasta from "@/Components/DetalleSubasta.vue";
 import ModalComprobante from "@/Components/ModalComprobante.vue";
 import ModalPuja from "@/Components/ModalPuja.vue";
@@ -312,8 +313,16 @@ onBeforeUnmount(() => {
                     <!-- BEGIN product-main-image -->
                     <div class="product-main-image">
                         <SliderImagenes
+                            v-if="publicacion.producto.tsg == 0"
+                            :height="'300px'"
                             :imagenes="publicacion.producto.producto_imagens"
                         ></SliderImagenes>
+                        <Imagen360
+                            v-if="publicacion.producto.tsg == 1"
+                            :imagenes="publicacion.producto.producto_imagens"
+                            :height="'300px'"
+                            :auto-rotacion="true"
+                        ></Imagen360>
                     </div>
                     <!-- END product-main-image -->
                     <div class="row fila_detalle pt-3" style="">
@@ -465,12 +474,6 @@ onBeforeUnmount(() => {
                     </h4>
                 </div>
                 <table class="table tabla_ofertas">
-                    <thead>
-                        <tr class="bg-primary">
-                            <th class="text-white" width="2%">#</th>
-                            <th class="text-white">Oferta</th>
-                        </tr>
-                    </thead>
                     <tbody>
                         <template
                             v-if="
@@ -484,8 +487,8 @@ onBeforeUnmount(() => {
                                     item, index
                                 ) in oPublicacion.participantes_puja"
                                 :class="[
-                                    index == 0 ? 'h2' : '',
-                                    index == 1 ? 'h4' : '',
+                                    index == 0 ? 'h3' : '',
+                                    index == 1 ? 'h5' : '',
                                     oParticipante &&
                                     oParticipante.id == item.participante_id
                                         ? 'bg-teal text-white'

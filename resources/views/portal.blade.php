@@ -28,6 +28,14 @@
             font-named-instance: "Italic";
             src: url("/webfonts/Inter-italic.var.woff2") format("woff2");
         }
+
+        @font-face {
+            font-family: "Outfit";
+            font-weight: 100 900;
+            font-display: swap;
+            font-style: normal;
+            src: url("/webfonts/Outfit/Outfit-VariableFont_wght.ttf") format("truetype");
+        }
     </style>
 
     <script>
@@ -39,7 +47,7 @@
     @inertiaHead
 </head>
 
-<body class="app-blank layout-fixed layout-navbar-fixed">
+<body class="app-blank layout-fixed layout-navbar-fixed portal">
     @inertia
 </body>
 

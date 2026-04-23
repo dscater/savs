@@ -21,7 +21,7 @@ const props = defineProps({
                         backgroundImage: `url(${url_assets + 'imgs/portal/pagetitle.jpg'})`,
                     }"
                 ></div>
-                <div class="capa">
+                <div class="capa font-weight-600">
                     {{ titulo }}
                 </div>
             </div>

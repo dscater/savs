@@ -283,7 +283,7 @@ class SubastaController extends Controller
         $subasta = $participante->subasta;
         try {
             return Cache::lock("subasta" . $subasta->id)->block(4, function () use ($request, $subasta) {
-                // sleep(5);
+                sleep(5);
                 $request->validate([
                     "monto_puja" => "required|int"
                 ], [
@@ -355,6 +355,10 @@ class SubastaController extends Controller
                     ], $e->getCode());
                 }
             });
+        } catch (\Illuminate\Contracts\Cache\LockTimeoutException $e) {
+            return response()->json([
+                "message" => "La subasta está recibiendo otra oferta en este momento. Intenta nuevamente en unos segundos"
+            ], 429);
         } catch (ValidationException $ve) {
             // Si falla la validación fuera del lock
             return back()->withErrors($ve->errors());
