@@ -3,6 +3,8 @@
 import { ref, onMounted, onBeforeMount, watch, onUnmounted } from "vue";
 import { Link, router, usePage } from "@inertiajs/vue3";
 import { useConfiguracionStore } from "@/stores/configuracion/configuracionStore";
+import { usePedidoStore } from "@/stores/pedido/pedidoStore";
+const pedidoStore = usePedidoStore();
 const configuracionStore = useConfiguracionStore();
 const { auth } = usePage().props;
 const propsPage = usePage().props;
@@ -104,6 +106,27 @@ onBeforeMount(() => {});
                     <li class="nav-item">
                         <Link class="nav-link" :href="route('portal.subastas')"
                             ><i class="fa fa-gavel"></i> Subastas
+                        </Link>
+                    </li>
+                    <li class="nav-item">
+                        <Link
+                            class="nav-link d-flex justify-content-start align-items-center"
+                            :href="route('portal.pedido')"
+                            ><i class="fa fa-list mr-1"></i> Pedido
+                            <span
+                                class="badge mx-1"
+                                :class="{
+                                    'bg-orange text-white':
+                                        pedidoStore.getListaProductos.length >
+                                        0,
+                                    'badge-secondary':
+                                        pedidoStore.getListaProductos.length ===
+                                        0,
+                                }"
+                                >{{
+                                    pedidoStore.getListaProductos.length
+                                }}</span
+                            >
                         </Link>
                     </li>
                     <li class="nav-item">

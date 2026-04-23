@@ -57,22 +57,12 @@ class IngresoProductoService
             }
         }
 
-        // Búsqueda en múltiples columnas con LIKE
-        if (!empty($search) && !empty($columnsSerachLike)) {
-            $ingreso_productos->where(function ($query) use ($search, $columnsSerachLike) {
-                foreach ($columnsSerachLike as $col) {
-                    if ($col == 'fecha_registro') {
-                        $array_fecha = explode("/", $search);
-                        $array_fecha = array_reverse($array_fecha);
-                        if (count($array_fecha) > 0) {
-                            $search = "";
-                            foreach ($array_fecha as $key => $text) {
-                                $search .= $text . ($key < count($array_fecha) - 1 ? '-' : '');
-                            }
-                        }
-                    }
-                    $query->orWhere("productos.$col", "LIKE", "%$search%");
-                }
+        if (!empty($search)) {
+            $ingreso_productos->where(function ($q) use ($search) {
+
+                $q->whereHas("producto", function ($query) use ($search) {
+                    $query->where("nombre", "ILIKE", "%$search%");
+                });
             });
         }
 

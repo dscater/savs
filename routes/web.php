@@ -36,6 +36,9 @@ Route::get('/imagenes_portal', [ImagenesPortalController::class, 'index'])->name
 
 Route::get('/subastas', [PortalController::class, 'subastas'])->name("portal.subastas");
 
+Route::get('/pedido', [PortalController::class, 'pedido'])->name('portal.pedido');
+Route::post('/crearPedido', [PortalController::class, 'crearPedido'])->name('portal.crearPedido');
+
 // Subastas
 Route::get('/subastas/portal', [SubastaController::class, 'portal'])->name("subastas.portal");
 Route::get('/subastas/subasta/{subasta}', [PortalController::class, 'subasta'])->name("portal.subasta");
@@ -229,6 +232,9 @@ Route::middleware(['auth', 'permisoUsuario'])->prefix("admin")->group(function (
 
     Route::get('reportes/kardex_productos', [ReporteController::class, 'kardex_productos'])->name("reportes.kardex_productos");
     Route::get('reportes/r_kardex_productos', [ReporteController::class, 'r_kardex_productos'])->name("reportes.r_kardex_productos");
+
+    Route::get('reportes/stock_productos', [ReporteController::class, 'stock_productos'])->name("reportes.stock_productos");
+    Route::get('reportes/r_stock_productos', [ReporteController::class, 'r_stock_productos'])->name("reportes.r_stock_productos");
 
     Route::get('reportes/ingreso_productos', [ReporteController::class, 'ingreso_productos'])->name("reportes.ingreso_productos");
     Route::get('reportes/r_ingreso_productos', [ReporteController::class, 'r_ingreso_productos'])->name("reportes.r_ingreso_productos");

@@ -25,6 +25,7 @@ class ProductoImagenService
      */
     public function cargarImagenes(Producto $producto, array $files, array $eliminados = []): void
     {
+        Log::debug($files);
         foreach ($files as $key => $file) {
             $imagen = $file["file"];
             if ($imagen instanceof UploadedFile) {
@@ -39,7 +40,9 @@ class ProductoImagenService
         if (isset($eliminados) && is_array($eliminados) && count($eliminados) > 0) {
             foreach ($eliminados as $e) {
                 $producto_imagen = ProductoImagen::find($e);
-                $this->eliminar($producto_imagen->imagen);
+                if ($producto_imagen && $producto_imagen->imagen) {
+                    $this->eliminar($producto_imagen->imagen);
+                }
                 $producto_imagen->delete();
             }
         }

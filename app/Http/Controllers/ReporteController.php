@@ -592,6 +592,38 @@ class ReporteController extends Controller
         }
     }
 
+    public function stock_productos()
+    {
+        return Inertia::render("Admin/Reportes/StockProductos");
+    }
+
+    public function r_stock_productos(Request $request)
+    {
+        ini_set('memory_limit', '1024M');
+        set_time_limit(-1);
+        $producto_id =  $request->producto_id;
+        $formato =  $request->formato;
+        $productos = Producto::select("productos.*");
+
+        if ($producto_id != 'todos') {
+            $productos->where('id', $producto_id);
+        }
+        $productos = $productos->get();
+
+
+        $pdf = PDF::loadView('reportes.stock_productos', compact('productos'))->setPaper('letter', 'portrait');
+
+        // ENUMERAR LAS PÁGINAS USANDO CANVAS
+        $pdf->output();
+        $dom_pdf = $pdf->getDomPDF();
+        $canvas = $dom_pdf->get_canvas();
+        $alto = $canvas->get_height();
+        $ancho = $canvas->get_width();
+        $canvas->page_text($ancho - 90, $alto - 25, "Página {PAGE_NUM} de {PAGE_COUNT}", null, 9, array(0, 0, 0));
+
+        return $pdf->stream('stock_productos.pdf');
+    }
+
     public function kardex_productos()
     {
         return Inertia::render("Admin/Reportes/KardexProductos");

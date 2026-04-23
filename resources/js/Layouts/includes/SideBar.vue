@@ -180,6 +180,13 @@ onUnmounted(() => {});
                             permisos == '*' ||
                             permisos.includes('productos.index')
                         "
+                        :arrayRutaClassActive="[
+                            'productos.index',
+                            'productos.create',
+                            'productos.edit',
+                            'productos.show',
+                            'productos.verProducto',
+                        ]"
                         :label="'Productos'"
                         :ruta="'productos.index'"
                         :icon="'fa fa-box'"
@@ -250,6 +257,7 @@ onUnmounted(() => {});
                             permisos.includes('reportes.usuarios') ||
                             permisos.includes('reportes.ventas') ||
                             permisos.includes('reportes.clientes') ||
+                            permisos.includes('reportes.stock_productos') ||
                             permisos.includes('reportes.kardex_productos') ||
                             permisos.includes('reportes.subastas') ||
                             permisos.includes('reportes.participantes') ||
@@ -275,6 +283,15 @@ onUnmounted(() => {});
                         "
                         :label="'Participantes por Subastas'"
                         :ruta="'reportes.participantes'"
+                        :icon="'fa fa-file-pdf'"
+                    ></ItemMenu>
+                    <ItemMenu
+                        v-if="
+                            permisos == '*' ||
+                            permisos.includes('reportes.stock_productos')
+                        "
+                        :label="'Stock de Productos'"
+                        :ruta="'reportes.stock_productos'"
                         :icon="'fa fa-file-pdf'"
                     ></ItemMenu>
                     <ItemMenu

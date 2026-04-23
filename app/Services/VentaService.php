@@ -40,12 +40,6 @@ class VentaService
         $ventas = Venta::select("ventas.*")
             ->with(["cliente:id,nombre", "user:id,usuario,nombre,paterno,materno"]);
 
-        // Filtros exactos
-        foreach ($columnsFilter as $key => $value) {
-            if (!is_null($value)) {
-                $ventas->where("ventas.$key", $value);
-            }
-        }
 
         // Filtros por rango
         foreach ($columnsBetweenFilter as $key => $value) {
@@ -54,12 +48,21 @@ class VentaService
             }
         }
 
-        // Búsqueda en múltiples columnas con LIKE
-        if (!empty($search) && !empty($columnsSerachLike)) {
-            $ventas->where(function ($query) use ($search, $columnsSerachLike) {
-                foreach ($columnsSerachLike as $col) {
-                    $query->orWhere("$col", "LIKE", "%$search%");
-                }
+        if (!empty($search)) {
+            $ventas->where(function ($q) use ($search) {
+
+                $q->whereHas("cliente", function ($query) use ($search) {
+                    $query->where("nombre", "ILIKE", "%$search%");
+                })
+
+                    ->orWhereHas("user", function ($query) use ($search) {
+                        $query->whereRaw(
+                            "(nombre || ' ' || paterno || ' ' || materno) ILIKE ?",
+                            ["%$search%"]
+                        );
+                    })
+
+                    ->orWhere("nit_ci", "ILIKE", "%$search%");
             });
         }
 
@@ -69,7 +72,6 @@ class VentaService
                 $ventas->orderBy($value[0], $value[1]);
             }
         }
-
 
         $ventas = $ventas->paginate($length, ['*'], 'page', $page);
         return $ventas;

@@ -68,7 +68,14 @@ class UsuarioController extends Controller
         $orderByCol = $request->orderByCol;
         $desc = $request->desc;
 
-        $columnsSerachLike = ["users.usuario"];
+        $columnsSerachLike = [
+            "nombre",
+            "paterno",
+            "materno",
+            "usuario",
+            "ci",
+            "tipo",
+        ];
         $columnsFilter = [];
         $columnsBetweenFilter = [];
         $arrayOrderBy = [];

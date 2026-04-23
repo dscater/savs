@@ -19,6 +19,7 @@ return new class extends Migration
             $table->decimal("precio", 24, 2);
             $table->double("stock", 8, 2)->default(0);
             $table->unsignedBigInteger("categoria_id");
+            $table->integer("tsg")->default(0);
             $table->date("fecha_registro");
             $table->timestamps();
 

@@ -23,4 +23,9 @@ class Cliente extends Model
     {
         return date("d/m/Y", strtotime($this->fecha_registro));
     }
+
+    public function ventas()
+    {
+        return $this->hasMany(Venta::class, 'cliente_id');
+    }
 }

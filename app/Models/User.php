@@ -111,12 +111,12 @@ class User extends Authenticatable
 
         foreach ($palabras as $palabra) {
             $query->where(function ($q) use ($palabra) {
-                $q->where('nombre', 'like', "%$palabra%")
-                    ->orWhere('paterno', 'like', "%$palabra%")
-                    ->orWhere('materno', 'like', "%$palabra%")
-                    ->orWhere('usuario', 'like', "%$palabra%")
-                    ->orWhere('tipo', 'like', "%$palabra%")
-                    ->orWhere('ci', 'like', "%$palabra%");
+                $q->where('nombre', 'ilike', "%$palabra%")
+                    ->orWhere('paterno', 'ilike', "%$palabra%")
+                    ->orWhere('materno', 'ilike', "%$palabra%")
+                    ->orWhere('usuario', 'ilike', "%$palabra%")
+                    ->orWhere('tipo', 'ilike', "%$palabra%")
+                    ->orWhere('ci', 'ilike', "%$palabra%");
             });
         }
 

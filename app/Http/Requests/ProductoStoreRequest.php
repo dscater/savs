@@ -30,6 +30,7 @@ class ProductoStoreRequest extends FormRequest
             "descripcion" => ["required", new HtmlNotEmpty],
             "precio" => "required|numeric|decimal:0,2|min:0",
             "categoria_id" => "required",
+            "tsg" => "required",
             "producto_imagens" => ["required", "array", "min:1", new ProductoImagenRule],
             "eliminados_imagens" => "nullable|array"
         ];

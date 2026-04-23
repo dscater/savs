@@ -15,6 +15,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Response;
@@ -99,13 +100,7 @@ class SubastaController extends Controller
         $orderBy = $request->orderBy;
         $orderAsc = $request->orderAsc;
 
-        $columnsSerachLike = [
-            "codigo",
-            "modelo",
-            "marca",
-            "talla",
-            "nombre"
-        ];
+        $columnsSerachLike = [];
         $columnsFilter = [];
         $columnsBetweenFilter = [];
         $arrayOrderBy = [];
@@ -283,21 +278,89 @@ class SubastaController extends Controller
 
     public function registrarPuja(Request $request)
     {
-        $request->validate([
-            "monto_puja" => "required|int"
-        ], [
-            "monto_puja.required" => "Debes ingresar un monto de puja",
-            "monto_puja.int" => "Debes ingresar un valor entero",
-        ]);
-
         $participante_id = $request->participante_id;
-        $monto_puja = $request->monto_puja;
         $participante = Participante::find($participante_id);
         $subasta = $participante->subasta;
+        try {
+            return Cache::lock("subasta" . $subasta->id)->block(4, function () use ($request, $subasta) {
+                // sleep(5);
+                $request->validate([
+                    "monto_puja" => "required|int"
+                ], [
+                    "monto_puja.required" => "Debes ingresar un monto de puja",
+                    "monto_puja.int" => "Debes ingresar un valor entero",
+                ]);
 
-        // validar limite fecha subasta
-        $fecha_hora_fin = date("Y-m-d H:i", strtotime($subasta->fecha_fin . ' ' . $subasta->hora_fin));
-        $fecha_hora_actual = date("Y-m-d H:i");
+                $participante_id = $request->participante_id;
+                $participante = Participante::find($participante_id);
+                $monto_puja = $request->monto_puja;
+                // $request = app(RequisitoStoreRequest::class);
+                DB::beginTransaction();
+                try {
+                    if ($this->subastaService->verificaFechaLimitePublicacion($subasta)) {
+                        // actualizar ganador
+                        DB::update("UPDATE participantes SET estado = 0 WHERE subasta_id = $subasta->id");
+                        // $subasta->participantes()->update(["estado_puja" => 0]);
+
+                        // verificar monto
+                        $monto_puja_actual = SubastaController::getMontoPujaActual($subasta);
+                        $monto_validacion = $monto_puja_actual;
+                        if ($monto_puja_actual > -1) {
+                            if (count($subasta->participantes_puja) > 0) {
+                                $monto_validacion++;
+                            }
+                            $mensaje = "El monto debe ser mayor o igual a " . number_format($monto_validacion, 2, ".", ",") . " " . $subasta->moneda;
+                            if (!$monto_puja || $monto_puja < $monto_validacion) {
+                                return response()->JSON([
+                                    "message" => "Debes ingresar un monto valido. " . $mensaje
+                                ], 422);
+                            }
+                        } else {
+                            return response()->JSON([
+                                "message" => "Ocurrió un error al registrar la puja, intente de nuevo por favor"
+                            ], 422);
+                        }
+
+                        $participante->update([
+                            "monto_puja" => $monto_puja,
+                            // "fecha_oferta" => date("Y-m-d"),
+                            // "hora_oferta" => date("H:i"),
+                        ]);
+
+
+                        $maxima_puja = Participante::where("subasta_id", $subasta->id)->orderBy("monto_puja", "desc")->get()->first();
+                        $maxima_puja->estado = 1;
+                        $maxima_puja->save();
+
+                        // AGREAR AL HISTORIAL
+                        $participante->participante_pujas()->create([
+                            "subasta_id" => $participante->subasta_id,
+                            "user_id" => $participante->user_id,
+                            "monto" => $monto_puja,
+                            "fecha" => date("Y-m-d"),
+                            "hora" => date("H:i:s"),
+                        ]);
+                        DB::commit();
+                        return response()->JSON([
+                            "subasta" => $subasta->load(["producto.producto_imagens", "participantes_puja"]),
+                            "participante" => $participante->load(["participante_pujas"])
+                        ]);
+                    }
+                } catch (\Exception $e) {
+                    Log::debug("ERROR:\n");
+                    Log::debug($e->getMessage());
+                    DB::rollBack();
+                    return response()->JSON([
+                        "message" => $e->getMessage()
+                    ], $e->getCode());
+                }
+            });
+        } catch (ValidationException $ve) {
+            // Si falla la validación fuera del lock
+            return back()->withErrors($ve->errors());
+        } catch (\Exception $e) {
+            return back()->withErrors(['error' => $e->getMessage()]);
+        }
 
         DB::beginTransaction();
         try {

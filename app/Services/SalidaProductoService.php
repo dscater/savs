@@ -55,6 +55,14 @@ class SalidaProductoService
                 $salida_productos->whereBetween("salida_productos.$key", $value);
             }
         }
+        if (!empty($search)) {
+            $salida_productos->where(function ($q) use ($search) {
+
+                $q->whereHas("producto", function ($query) use ($search) {
+                    $query->where("nombre", "ILIKE", "%$search%");
+                });
+            });
+        }
 
 
         // Ordenamiento

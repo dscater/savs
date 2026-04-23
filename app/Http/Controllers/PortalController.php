@@ -30,6 +30,37 @@ class PortalController extends Controller
         return inertia("Portal/Subastas");
     }
 
+    public function pedido()
+    {
+        return inertia("Portal/Pedido");
+    }
+
+    public function crearPedido(Request $request)
+    {
+        $productos_txt  = "";
+        $total = 0;
+        foreach ($request->productos as $item) {
+            $productos_txt .= "\nCódigo de Producto: " . $item["producto"]["codigo"] .
+                ", Producto: " . $item["producto"]["nombre"] .
+                ", Precio: " . number_format($item["producto"]["precio"], 2, ".", ",") . " Bs." .
+                ", Cantidad: " . $item["cantidad"] .
+                ", Total: " . number_format($item["subtotal"], 2, ".", ",");
+
+            $total += (float)$item["subtotal"];
+        }
+
+        $productos_txt .= "\n\nPedido Total: " . number_format($total, 2, ".", ",") . " Bs.";
+
+        $nro_whatsapp = "+59173594451";
+        $mensaje = "Hola, me interesan los siguientes productos:" . $productos_txt;
+        $whatsapp = "https://wa.me/" . $nro_whatsapp . "?text=" . urlencode($mensaje);
+
+        return response()->JSON([
+            "message" => "Pedido realizado exitosamente",
+            "whatsapp" => $whatsapp
+        ]);
+    }
+
     public function subasta(Subasta $subasta)
     {
         $subasta = $subasta->load(["producto.producto_imagens", "participantes_puja"]);

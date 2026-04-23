@@ -21,4 +21,9 @@ class Categoria extends Model
     {
         return date("d/m/Y", strtotime($this->fecha_registro));
     }
+
+    public function productos()
+    {
+        return $this->hasMany(Producto::class, 'categoria_id');
+    }
 }

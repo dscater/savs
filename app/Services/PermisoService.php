@@ -140,6 +140,8 @@ class PermisoService
             "reportes.r_clientes",
             "reportes.ventas",
             "reportes.r_ventas",
+            "reportes.stock_productos",
+            "reportes.r_stock_productos",
             "reportes.kardex_productos",
             "reportes.r_kardex_productos",
             "reportes.ingreso_productos",

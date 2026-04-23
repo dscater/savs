@@ -55,13 +55,7 @@ class SalidaProductoController extends Controller
         $orderBy = $request->orderBy;
         $orderAsc = $request->orderAsc;
 
-        $columnsSerachLike = [
-            "codigo",
-            "modelo",
-            "marca",
-            "talla",
-            "nombre"
-        ];
+        $columnsSerachLike = [];
         $columnsFilter = [];
         $columnsBetweenFilter = [];
         $arrayOrderBy = [];

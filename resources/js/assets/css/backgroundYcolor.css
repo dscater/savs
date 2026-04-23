@@ -65,3 +65,13 @@ table .bg-dark-principal,
 .modal .modal-header button.close {
     color: white;
 }
+
+/* PORTAL */
+.bg-principal-portal {
+    background-color: var(--bg-principal-portal);
+    color: white;
+}
+
+button.bg-principal-portal:hover {
+    color: white;
+}

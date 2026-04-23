@@ -44,6 +44,7 @@ watch(
             form.precio = oProducto.value.precio;
             form.stock = oProducto.value.stock;
             form.categoria_id = oProducto.value.categoria_id;
+            form.tsg = oProducto.value.tsg;
             form.producto_imagens = oProducto.value.producto_imagens;
             form.eliminados_imagens = oProducto.value.eliminados_imagens;
             form._method = oProducto.value._method;
@@ -297,11 +298,27 @@ onMounted(() => {});
                             </li>
                         </ul>
                     </div>
+                    <div class="col-md-4 mt-2">
+                        <label class="required">Vista 360°</label>
+                        <br />
+                        <el-switch
+                            size="large"
+                            active-text="HABILITADO"
+                            inactive-text="DESHABILITADO"
+                            v-model="form.tsg"
+                            :active-value="1"
+                            :inactive-value="0"
+                            style="
+                                --el-switch-on-color: #13ce66;
+                                --el-switch-off-color: #ff4949;
+                            "
+                        />
+                    </div>
                     <div class="col-md-12 mt-2">
                         <label class="required">Cargar Imágenes</label>
                         <MiDropZone
                             :files="form.producto_imagens"
-                            :maximo="50"
+                            :maximo="100"
                             @UpdateFiles="detectaArchivos"
                             @addEliminados="detectaEliminados"
                         ></MiDropZone>

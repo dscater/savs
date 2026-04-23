@@ -60,10 +60,6 @@ class CategoriaController extends Controller
         $orderAsc = $request->orderAsc;
 
         $columnsSerachLike = [
-            "codigo",
-            "modelo",
-            "marca",
-            "talla",
             "nombre"
         ];
         $columnsFilter = [];

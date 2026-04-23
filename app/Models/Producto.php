@@ -16,6 +16,7 @@ class Producto extends Model
         "precio",
         "stock",
         "categoria_id",
+        "tsg",
         "fecha_registro",
     ];
 

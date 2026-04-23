@@ -283,7 +283,7 @@ const renderChart3 = (containerId, categories, total_final, data) => {
         },
         subtitle: {
             align: "center",
-            text: `Total emitidos: ${total_final}`,
+            text: `Total: ${total_final.toFixed(2)}`,
         },
         accessibility: {
             announceNewData: {
@@ -309,10 +309,10 @@ const renderChart3 = (containerId, categories, total_final, data) => {
                     },
                     {
                         enabled: true,
-                        distance: -40,
-                        format: "{point.percentage:.1f}%",
+                        distance: -20,
+                        format: "{point.percentage:.2f}%",
                         style: {
-                            fontSize: "1.2em",
+                            fontSize: "0.7em",
                             textOutline: "none",
                             opacity: 0.7,
                         },
@@ -331,7 +331,7 @@ const renderChart3 = (containerId, categories, total_final, data) => {
                 return `
                     <div style="text-align:center;">
                         <div style="display:inline-block; width:12px; height:12px; background:${this.point.color}; border-radius:50%; margin-right:5px;"></div>
-                        <strong style="color:${this.point.color};">${this.point.series.name}</strong>
+                        <strong style="color:${this.point.color};">${this.point.series.name}</strong><br/>${this.point.percentage.toFixed(2)}%
                         <br>
                         <span class="text-md"><strong>Total:</strong> ${this.point.y}</span>
                     </div>
@@ -380,7 +380,7 @@ const renderChart4 = (containerId, categories, total_final, data) => {
         },
         subtitle: {
             align: "center",
-            text: `Total emitidos: ${total_final}`,
+            text: `Total: ${total_final.toFixed(2)}`,
         },
         accessibility: {
             announceNewData: {
@@ -406,10 +406,10 @@ const renderChart4 = (containerId, categories, total_final, data) => {
                     },
                     {
                         enabled: true,
-                        distance: -40,
-                        format: "{point.percentage:.1f}%",
+                        distance: -20,
+                        format: "{point.percentage:.2f}%",
                         style: {
-                            fontSize: "1.2em",
+                            fontSize: "0.7em",
                             textOutline: "none",
                             opacity: 0.7,
                         },
@@ -428,7 +428,7 @@ const renderChart4 = (containerId, categories, total_final, data) => {
                 return `
                     <div style="text-align:center;">
                         <div style="display:inline-block; width:12px; height:12px; background:${this.point.color}; border-radius:50%; margin-right:5px;"></div>
-                        <strong style="color:${this.point.color};">${this.point.series.name}</strong>
+                        <strong style="color:${this.point.color};">${this.point.series.name}</strong><br/>${this.point.percentage.toFixed(2)}%
                         <br>
                         <span class="text-md"><strong>Total:</strong> ${this.point.y}</span>
                     </div>
@@ -528,7 +528,7 @@ onMounted(() => {
                         <div class="row">
                             <div class="col-md-4">
                                 <select
-                                    v-model="form1.tipo"
+                                    v-model="form2.tipo"
                                     class="form-control text-sm"
                                     @change="generarReporte2"
                                 >

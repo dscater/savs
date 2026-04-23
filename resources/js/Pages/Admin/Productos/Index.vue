@@ -38,7 +38,6 @@ const headers = [
             if (item.stock < 3) {
                 return "bg-warning";
             }
-
             return "";
         },
     },
@@ -65,6 +64,11 @@ const headers = [
     {
         label: "CATEGORíA",
         key: "categoria.nombre",
+        sortable: true,
+    },
+    {
+        label: "VISTA",
+        key: "tsg",
         sortable: true,
     },
     {
@@ -212,6 +216,18 @@ const eliminarProducto = (item) => {
                             :header-class="'bg__primary'"
                             fixed-header
                         >
+                            <template #tsg="{ item }">
+                                <span
+                                    class="text-md"
+                                    :class="
+                                        item.tsg
+                                            ? 'badge bg-info'
+                                            : 'badge bg-primary'
+                                    "
+                                >
+                                    {{ item.tsg ? "360°" : "NORMAL" }}
+                                </span>
+                            </template>
                             <template #estado="{ item }">
                                 <span
                                     class="text-md"

@@ -62,8 +62,16 @@ class ProductoService
         if (!empty($search) && !empty($columnsSerachLike)) {
             $productos->where(function ($query) use ($search, $columnsSerachLike) {
                 foreach ($columnsSerachLike as $col) {
-                    $query->orWhere("$col", "LIKE", "%$search%");
+                    $query->orWhere("$col", "ILIKE", "%$search%");
                 }
+            });
+        }
+
+        if (!empty($search)) {
+            $productos->where(function ($q) use ($search) {
+                $q->whereHas("categoria", function ($query) use ($search) {
+                    $query->where("nombre", "ILIKE", "%$search%");
+                });
             });
         }
 
@@ -93,6 +101,7 @@ class ProductoService
             "descripcion" => $datos["descripcion"],
             "precio" => $datos["precio"],
             "categoria_id" => $datos["categoria_id"],
+            "tsg" => $datos["tsg"],
             "fecha_registro" => Carbon::now("America/La_Paz")->format("Y-m-d")
         ]);
 
@@ -122,6 +131,7 @@ class ProductoService
             "descripcion" => $datos["descripcion"],
             "precio" => $datos["precio"],
             "categoria_id" => $datos["categoria_id"],
+            "tsg" => $datos["tsg"],
         ]);
 
         // cargar imagenes
@@ -198,9 +208,20 @@ class ProductoService
 
     public function verificaNotificacion($producto)
     {
-        if ($producto->stock_actual < 1) {
+        if ($producto->stock < 1) {
             $notificacion = Notificacion::create([
                 "descripcion" => $producto->nombre . " SE QUEDO SIN STOCK",
+                "fecha" => date("Y-m-d"),
+                "hora" => date("H:i"),
+                "modulo" => "Producto",
+                "registro_id" => $producto->id,
+                "tipo" => "STOCK",
+            ]);
+
+            $this->notificacion_user_service->crearNotificacionUsers($notificacion->id, ["ADMINISTRADOR", "AUXILIAR"]);
+        } elseif ($producto->stock < 3) {
+            $notificacion = Notificacion::create([
+                "descripcion" => $producto->nombre . " ESTA CERCA DE QUEDARSE SIN STOCK, STOCK ACTUAL " . $producto->stock,
                 "fecha" => date("Y-m-d"),
                 "hora" => date("H:i"),
                 "modulo" => "Producto",

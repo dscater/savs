@@ -51,7 +51,7 @@ class ProductoController extends Controller
     {
         $categoria_id = $request->input("categoria_id", "todos");
 
-        $productos = Producto::with(["producto_imagens"])
+        $productos = Producto::with(["producto_imagens", "categoria"])
             ->select("productos.*");
 
         if ($categoria_id != 'todos') {
@@ -89,10 +89,9 @@ class ProductoController extends Controller
 
         $columnsSerachLike = [
             "codigo",
-            "modelo",
-            "marca",
-            "talla",
-            "nombre"
+            "nombre",
+            "precio",
+            "stock",
         ];
         $columnsFilter = [];
         $columnsBetweenFilter = [];

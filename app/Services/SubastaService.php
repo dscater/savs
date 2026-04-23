@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Parametrizacion;
 use App\Models\Participante;
 use App\Services\HistorialAccionService;
 use App\Models\Subasta;
@@ -10,6 +11,7 @@ use Exception;
 use Illuminate\Container\Attributes\Auth;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 
 class SubastaService
@@ -60,13 +62,16 @@ class SubastaService
                 $subastas->whereBetween("subastas.$key", $value);
             }
         }
+        if (!empty($search)) {
+            $subastas->where(function ($q) use ($search) {
 
-        // Búsqueda en múltiples columnas con LIKE
-        if (!empty($search) && !empty($columnsSerachLike)) {
-            $subastas->where(function ($query) use ($search, $columnsSerachLike) {
-                foreach ($columnsSerachLike as $col) {
-                    $query->orWhere("$col", "LIKE", "%$search%");
-                }
+                $q->whereHas("producto", function ($query) use ($search) {
+                    $query->where("nombre", "ILIKE", "%$search%");
+                    $query->orWhere("codigo", "ILIKE", "%$search%");
+                })
+                    ->orWhere("estado_producto", "ILIKE", "%$search%")
+                    ->orWhere("monto_inicial", "ILIKE", "%$search%")
+                    ->orWhere("garantia", "ILIKE", "%$search%");
             });
         }
 
@@ -189,13 +194,18 @@ class SubastaService
     // FUNCIONES
     public function actualizaPublicacionesEstado()
     {
+        $parametrizacion = Parametrizacion::first();
         $dias_maximo = 8;
+        if ($parametrizacion) {
+            $dias_maximo = (int)$parametrizacion->tiempo_pub;
+        }
         $fecha_mostrar = date("Y-m-d", strtotime("-" . $dias_maximo . " days"));
         $subastas = Subasta::where("fecha_fin", "<=", $fecha_mostrar)
             ->whereIn("estado_subasta", [0, 2])
             ->get();
         foreach ($subastas as $item) {
-            $item->estado_sub = 3;
+            $item->publico = 0;
+            $item->estado_subasta = 3;
             $item->save();
         }
         return true;

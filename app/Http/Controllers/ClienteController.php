@@ -53,11 +53,8 @@ class ClienteController extends Controller
         $orderAsc = $request->orderAsc;
 
         $columnsSerachLike = [
-            "codigo",
-            "modelo",
-            "marca",
-            "talla",
-            "nombre"
+            "nombre",
+            "nit_ci"
         ];
         $columnsFilter = [];
         $columnsBetweenFilter = [];

@@ -109,6 +109,10 @@ export default {
     mounted() {},
     methods: {
         quitarArchivo(index) {
+            const item = this.archivos_existentes[index];
+            if (item.url_file.startsWith("blob:")) {
+                URL.revokeObjectURL(item.url_file);
+            }
             if (this.archivos_existentes[index].id != 0) {
                 // existente en BD
                 this.eliminados.push(this.archivos_existentes[index].id);
@@ -134,39 +138,39 @@ export default {
         handleDrop(event) {
             event.preventDefault();
             this.dragging = false;
+
             const files = event.dataTransfer.files;
-            let self = this;
-            setTimeout(() => {
-                self.handleFiles(files);
-            }, 500);
+            this.handleFiles(files);
         },
         handleFiles(eventOrFiles) {
-            let files = [];
-            if (eventOrFiles instanceof Event) {
-                // Si se inició la carga mediante clic
-                files = eventOrFiles.target.files;
-            } else {
-                // Si se inició la carga mediante arrastrar y soltar
-                files = eventOrFiles;
-            }
-            let total_cargados =
-                parseInt(files.length) +
-                parseInt(this.archivos_existentes.length);
-            if (total_cargados <= this.maximo) {
-                for (let i = 0; i < files.length; i++) {
-                    const file = files[i];
-                    this.generateThumbnail(file);
-                }
-                this.$refs.fileInput.value = null;
-            } else {
+            let files =
+                eventOrFiles instanceof Event
+                    ? eventOrFiles.target.files
+                    : eventOrFiles;
+
+            let total = files.length + this.archivos_existentes.length;
+
+            if (total > this.maximo) {
                 Swal.fire({
                     icon: "info",
                     title: "Error",
                     text: `No es posible cargar mas de ${this.maximo} archivos`,
-                    confirmButtonColor: "#3085d6",
-                    confirmButtonText: `Aceptar`,
                 });
+                return;
             }
+
+            for (let i = 0; i < files.length; i++) {
+                this.generateThumbnail(files[i]);
+            }
+
+            this.$emit(
+                "UpdateFiles",
+                [...this.archivos_existentes],
+                this.nro_etapa,
+                this.nro_nombre,
+            );
+
+            this.$refs.fileInput.value = null;
         },
         openFilePicker() {
             // Simula el clic en el input de tipo file
@@ -181,38 +185,20 @@ export default {
             this.dragging = false;
         },
         generateThumbnail(file) {
-            const reader = new FileReader();
-            console.log(url_assets);
+            let url = "";
+
             if (file.type.startsWith("image/")) {
-                reader.onload = (e) => {
-                    this.archivos_existentes.push({
-                        id: 0,
-                        name: file.name,
-                        url_file: e.target.result,
-                        file: file,
-                    });
-                    this.$emit(
-                        "UpdateFiles",
-                        [...this.archivos_existentes],
-                        this.nro_etapa,
-                        this.nro_nombre,
-                    );
-                };
+                url = URL.createObjectURL(file);
             } else {
-                this.archivos_existentes.push({
-                    id: 0,
-                    name: file.name,
-                    url_file: url_assets + "imgs/attach.png",
-                    file: file,
-                });
-                this.$emit(
-                    "UpdateFiles",
-                    [...this.archivos_existentes],
-                    this.nro_etapa,
-                    this.nro_nombre,
-                );
+                url = url_assets + "imgs/attach.png";
             }
-            reader.readAsDataURL(file);
+
+            this.archivos_existentes.push({
+                id: 0,
+                name: file.name,
+                url_file: url,
+                file: file,
+            });
         },
     },
 };

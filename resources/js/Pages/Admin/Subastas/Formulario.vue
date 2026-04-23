@@ -15,6 +15,7 @@ import axios from "axios";
 import { toast } from "vue3-toastify";
 import "vue3-toastify/dist/index.css";
 import SliderImagenes from "@/Components/SliderImagenes.vue";
+import Imagen360 from "@/Components/Imagen360.vue";
 
 import { QuillEditor } from "@vueup/vue-quill";
 import "@vueup/vue-quill/dist/vue-quill.snow.css";
@@ -290,13 +291,23 @@ onBeforeMount(() => {
                                     </div>
                                 </div>
                                 <div class="row" v-if="oProducto">
-                                    <div class="col-12">
-                                        <slider-imagenes
+                                    <div class="col-md-8 offset-md-2">
+                                        <SliderImagenes
                                             :imagenes="
                                                 oProducto.producto_imagens
                                             "
-                                            :height="'230px'"
-                                        ></slider-imagenes>
+                                            :height="'280px'"
+                                            v-if="oProducto.tsg == 0"
+                                        ></SliderImagenes>
+
+                                        <Imagen360
+                                            v-if="oProducto.tsg == 1"
+                                            :height="'280px'"
+                                            :imagenes="
+                                                oProducto.producto_imagens
+                                            "
+                                            :autoRotacion="true"
+                                        ></Imagen360>
                                     </div>
                                 </div>
                             </div>

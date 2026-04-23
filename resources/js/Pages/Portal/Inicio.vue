@@ -4,7 +4,7 @@ import { Link, usePage } from "@inertiajs/vue3";
 import { onBeforeMount, onMounted, ref } from "vue";
 import SliderImagenes from "@/Components/SliderImagenes.vue";
 import { useAppStore } from "@/stores/aplicacion/appStore";
-import Imagen360 from "@/Components/Imagen360.vue";
+import Agregar from "./Agregar.vue";
 
 // importar estilos de AOS
 import "aos/dist/aos.css";
@@ -70,6 +70,13 @@ const obtenerCategorias = () => {
     });
 };
 
+const muestra_agregar = ref(false);
+const oProducto = ref(null);
+const agregarAlPedido = (producto) => {
+    oProducto.value = producto;
+    muestra_agregar.value = true;
+};
+
 const cargarListas = () => {
     obternerProductos();
     obtenerCategorias();
@@ -114,17 +121,15 @@ onBeforeMount(() => {
                 ></SliderImagenes>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <Imagen360
-                    :images="listImagen360"
-                    :auto-rotacion="true"
-                ></Imagen360>
-            </div>
-        </div>
         <div class="row seccion_portal">
             <div class="col-12">
                 <div class="container">
+                    <Agregar
+                        :muestra_formulario="muestra_agregar"
+                        :producto="oProducto"
+                        @envio-formulario="muestra_agregar = false"
+                        @cerrar-formulario="muestra_agregar = false"
+                    ></Agregar>
                     <div class="row mt-3">
                         <div class="col-12">
                             <h4 class="title-seccion">Nuestros Productos</h4>
@@ -135,7 +140,7 @@ onBeforeMount(() => {
                                 class="btn btn-sm"
                                 :class="[
                                     item.id == filtroProductos.categoria_id
-                                        ? 'bg-principal'
+                                        ? 'bg-principal-portal'
                                         : 'btn-default',
                                 ]"
                                 @click="filtrarPorCategoria(item.id)"
@@ -150,7 +155,15 @@ onBeforeMount(() => {
                                     v-for="item in listProductos"
                                 >
                                     <div class="card producto-portal">
-                                        <div class="card-body">
+                                        <Link
+                                            :href="
+                                                route(
+                                                    'portal.producto',
+                                                    item.id,
+                                                )
+                                            "
+                                            class="card-body pb-1"
+                                        >
                                             <div class="row">
                                                 <div
                                                     class="col-12 imagen-producto"
@@ -165,15 +178,43 @@ onBeforeMount(() => {
                                                     />
                                                 </div>
                                                 <div class="col-12 nombre">
-                                                    <Link
-                                                        :href="
-                                                            route(
-                                                                'portal.producto',
-                                                                item.id,
+                                                    {{ item.nombre }}
+                                                </div>
+                                            </div>
+                                        </Link>
+                                        <div class="card-footer bg-white">
+                                            <div class="row">
+                                                <div class="col-7 categoria">
+                                                    <span
+                                                        class="text-xs text-muted"
+                                                    >
+                                                        {{
+                                                            item.categoria
+                                                                .nombre
+                                                        }}
+                                                    </span>
+                                                    <br />
+                                                    <span
+                                                        class="precio text-sm text-dark font-weight-600"
+                                                        >Bs.
+                                                        {{ item.precio }}</span
+                                                    >
+                                                </div>
+                                                <div
+                                                    class="col-5 d-flex justify-content-end align-items-center"
+                                                >
+                                                    <button
+                                                        class="btn btn-primary btn-sm"
+                                                        @click="
+                                                            agregarAlPedido(
+                                                                item,
                                                             )
                                                         "
-                                                        >{{ item.nombre }}</Link
                                                     >
+                                                        <i
+                                                            class="fa fa-plus"
+                                                        ></i>
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>

@@ -55,7 +55,7 @@ class ClienteService
         if (!empty($search) && !empty($columnsSerachLike)) {
             $clientes->where(function ($query) use ($search, $columnsSerachLike) {
                 foreach ($columnsSerachLike as $col) {
-                    $query->orWhere("$col", "LIKE", "%$search%");
+                    $query->orWhere("$col", "ILIKE", "%$search%");
                 }
             });
         }

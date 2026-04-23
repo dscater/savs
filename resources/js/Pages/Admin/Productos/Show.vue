@@ -5,6 +5,7 @@ import { useAxios } from "@/composables/axios/useAxios";
 import { ref, onMounted, onBeforeMount } from "vue";
 import { useAppStore } from "@/stores/aplicacion/appStore";
 import SliderImagenes from "@/Components/SliderImagenes.vue";
+import Imagen360 from "@/Components/Imagen360.vue";
 import Formulario from "../Ventas/Formulario.vue";
 const props = defineProps({
     producto: {
@@ -80,7 +81,14 @@ onBeforeMount(() => {});
                                 <SliderImagenes
                                     :imagenes="producto.producto_imagens"
                                     :height="'230px'"
+                                    v-if="producto.tsg == 0"
                                 ></SliderImagenes>
+                                <Imagen360
+                                    v-if="producto.tsg == 1"
+                                    :height="'230px'"
+                                    :imagenes="producto.producto_imagens"
+                                    :autoRotacion="true"
+                                ></Imagen360>
                             </div>
                         </div>
                     </div>
