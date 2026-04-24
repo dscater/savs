@@ -281,11 +281,13 @@ onBeforeMount(() => {
                                                 alt=""
                                             />
                                         </div>
-                                        <div class="col-md-6 p-5 bg-dark">
-                                            <h4 class="h3 w-100 text-center">
+                                        <div
+                                            class="col-md-6 p-5 bg-dark d-flex flex-column justify-content-center align-items-center"
+                                        >
+                                            <h4 class="title-seccion">
                                                 Subastas
                                             </h4>
-                                            <p class="text-sm text-justify">
+                                            <p class="descripcion-seccion">
                                                 Participa de nuestras subastas y
                                                 adquiere productos a precios
                                                 increíbles. Cada semana,
@@ -318,9 +320,13 @@ onBeforeMount(() => {
                         <div class="card">
                             <div class="card-body p-0 px-2">
                                 <div class="row">
-                                    <div class="col-md-6 p-5">
-                                        <h4 class="h3">AUTOPARTES</h4>
-                                        <p class="text-sm text-justify">
+                                    <div
+                                        class="col-md-6 p-5 d-flex flex-column justify-content-center align-items-center"
+                                    >
+                                        <h4 class="title-seccion">
+                                            AUTOPARTES
+                                        </h4>
+                                        <p class="descripcion-seccion">
                                             La empresa ofrece autopartes de
                                             vehículos en general (como ser
                                             faroles, parachoques, stop,
@@ -371,11 +377,15 @@ onBeforeMount(() => {
                                                 alt=""
                                             />
                                         </div>
-                                        <div class="col-md-6 p-5">
-                                            <h4 class="h4 w-100 text-center">
+                                        <div
+                                            class="col-md-6 p-5 d-flex flex-column justify-content-center align-items-center"
+                                        >
+                                            <h4
+                                                class="title-seccion w-100 text-center"
+                                            >
                                                 Misión
                                             </h4>
-                                            <p class="text-sm text-justify">
+                                            <p class="descripcion-seccion">
                                                 Priorizar la calidad del
                                                 producto, también buscar la
                                                 satisfacción del cliente
@@ -384,10 +394,12 @@ onBeforeMount(() => {
                                                 autopartes, así como el soporte
                                                 técnico para cualquier consulta.
                                             </p>
-                                            <h4 class="h4 w-100 text-center">
+                                            <h4
+                                                class="title-seccion w-100 text-center"
+                                            >
                                                 Visión
                                             </h4>
-                                            <p class="text-sm text-justify">
+                                            <p class="descripcion-seccion">
                                                 Ser reconocida como una empresa
                                                 líder en distribución y
                                                 comercialización de autopartes

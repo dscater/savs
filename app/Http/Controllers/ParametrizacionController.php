@@ -44,17 +44,26 @@ class ParametrizacionController extends Controller
             ];
             // $servidor_correo = json_encode($servidor_correo);
 
-            $datos_banco = [
-                "titular" => $request->titular,
-                "banco" => $request->banco,
-                "nro_cuenta" => $request->nro_cuenta,
-                "qr" => "qr.png",
-            ];
-            if ($request->hasFile("qr")) {
+            if (!$parametrizacion) {
+                $datos_banco = [
+                    "titular" => $request->titular,
+                    "banco" => $request->banco,
+                    "nro_cuenta" => $request->nro_cuenta,
+                    "qr" => "qr.png",
+                ];
+            } else {
+                $datos_banco = [
+                    "titular" => $request->titular,
+                    "banco" => $request->banco,
+                    "nro_cuenta" => $request->nro_cuenta,
+                    "qr" => $parametrizacion->datos_banco["qr"] ?? "qr.jpeg",
+                ];
+            }
+            if (!is_string($request->qr) && $request->hasFile("qr")) {
                 $file = $request->qr;
                 $nom_qr = time() . '.' . $file->getClientOriginalExtension();
                 $datos_banco["qr"] = $nom_qr;
-                if ($parametrizacion && $parametrizacion->qr != 'qr.png') {
+                if ($parametrizacion && $parametrizacion->qr != 'qr.jpeg') {
                     \File::delete(public_path("imgs/" . $parametrizacion->qr));
                 }
                 $file->move(public_path("imgs/"), $nom_qr);
