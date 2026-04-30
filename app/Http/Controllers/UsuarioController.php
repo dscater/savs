@@ -46,8 +46,12 @@ class UsuarioController extends Controller
     public function byTipo(Request $request)
     {
         $usuarios = User::where("id", "!=", 1);
-        if (isset($request->tipo) && trim($request->tipo) != "") {
-            $usuarios = $usuarios->where("tipo", $request->tipo);
+        if (isset($request->tipo)) {
+            if (is_array($request->tipo)) {
+                $usuarios = $usuarios->whereIn("tipo", $request->tipo);
+            } else {
+                $usuarios = $usuarios->where("tipo", $request->tipo);
+            }
         }
 
         if ($request->order && $request->order == "desc") {

@@ -6,7 +6,8 @@ import { useAppStore } from "@/stores/aplicacion/appStore";
 const appStore = useAppStore();
 
 const cargarListas = () => {
-    cargarSubastas();
+    cargarUsuarios();
+    cargarClientes();
 };
 
 onBeforeMount(() => {
@@ -27,7 +28,7 @@ const obtenerFechaActual = () => {
 };
 
 const form = ref({
-    subasta_id: "todos",
+    user_id: "todos",
     fecha_ini: obtenerFechaActual(),
     fecha_fin: obtenerFechaActual(),
     formato: "pdf",
@@ -41,17 +42,34 @@ const txtBtn = computed(() => {
     return "Generar Reporte";
 });
 
-const listSubastas = ref([]);
-
-const cargarSubastas = () => {
-    axios.get(route("subastas.listado")).then((response) => {
-        listSubastas.value = response.data.subastas;
-        listSubastas.value.unshift({
+const listClientes = ref([]);
+const cargarClientes = () => {
+    axios.get(route("clientes.listado")).then((response) => {
+        listClientes.value = response.data.clientes;
+        listClientes.value.unshift({
             id: "todos",
             nombre: "TODOS",
-            producto: null,
         });
     });
+};
+
+const listUsuarios = ref([]);
+
+const cargarUsuarios = () => {
+    axios
+        .get(route("usuarios.byTipo"), {
+            params: {
+                tipo: "PARTICIPANTE",
+            },
+        })
+        .then((response) => {
+            listUsuarios.value = response.data.usuarios;
+            listUsuarios.value.unshift({
+                id: "todos",
+                full_name: "TODOS",
+                full_ci: "",
+            });
+        });
 };
 
 const listTipoReporte = ref([
@@ -67,7 +85,7 @@ const listTipoReporte = ref([
 
 const generarReporte = () => {
     generando.value = true;
-    const url = route("reportes.r_participantes", form.value);
+    const url = route("reportes.r_participante_subastas", form.value);
     window.open(url, "_blank");
     setTimeout(() => {
         generando.value = false;
@@ -75,13 +93,13 @@ const generarReporte = () => {
 };
 </script>
 <template>
-    <Head title="Reporte Lista de Participantes por Subasta"></Head>
+    <Head title="Reporte Historial de Subastas por Participante"></Head>
     <Content>
         <template #header>
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1 class="m-0">
-                        Reporte Lista de Participantes por Subasta
+                        Reporte Historial de Subastas por Participante
                     </h1>
                 </div>
                 <!-- /.col -->
@@ -91,7 +109,7 @@ const generarReporte = () => {
                             <Link :href="route('inicio')">Inicio</Link>
                         </li>
                         <li class="breadcrumb-item active">
-                            Reporte Lista de Participantes por Subasta
+                            Reporte Historial de Subastas por Participante
                         </li>
                     </ol>
                 </div>
@@ -107,18 +125,18 @@ const generarReporte = () => {
                             <div class="row">
                                 <div class="col-md-12">
                                     <label class="mb-0"
-                                        >Seleccionar Subasta*</label
+                                        >Seleccionar Participante*</label
                                     >
                                     <el-select
-                                        v-model="form.subasta_id"
+                                        v-model="form.user_id"
                                         placeholder="- Seleccione -"
                                         filterable
                                     >
                                         <el-option
-                                            v-for="item in listSubastas"
+                                            v-for="item in listUsuarios"
                                             :key="item.id"
                                             :value="item.id"
-                                            :label="`${item.producto ? item.id + ' - ' + item.producto.nombre : item.nombre}`"
+                                            :label="`${item.full_name} ${item.full_ci ? ' - ' + item.full_ci : ''}`"
                                         >
                                         </el-option>
                                     </el-select>

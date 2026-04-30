@@ -262,7 +262,11 @@ onUnmounted(() => {});
                             permisos.includes('reportes.subastas') ||
                             permisos.includes('reportes.participantes') ||
                             permisos.includes('reportes.ingreso_productos') ||
-                            permisos.includes('reportes.salida_productos')
+                            permisos.includes(
+                                'reportes.participante_subastas',
+                            ) ||
+                            permisos.includes('reportes.cliente_compras') ||
+                            permisos.includes('reportes.log_users')
                         "
                     >
                         REPORTES
@@ -281,8 +285,17 @@ onUnmounted(() => {});
                             permisos == '*' ||
                             permisos.includes('reportes.participantes')
                         "
-                        :label="'Participantes por Subastas'"
+                        :label="'Lista de Participantes por Subasta'"
                         :ruta="'reportes.participantes'"
+                        :icon="'fa fa-file-pdf'"
+                    ></ItemMenu>
+                    <ItemMenu
+                        v-if="
+                            permisos == '*' ||
+                            permisos.includes('reportes.participante_subastas')
+                        "
+                        :label="'Historial de Subastas por Participante'"
+                        :ruta="'reportes.participante_subastas'"
                         :icon="'fa fa-file-pdf'"
                     ></ItemMenu>
                     <ItemMenu
@@ -315,6 +328,15 @@ onUnmounted(() => {});
                     <ItemMenu
                         v-if="
                             permisos == '*' ||
+                            permisos.includes('reportes.cliente_compras')
+                        "
+                        :label="'Historial de Compras Clientes'"
+                        :ruta="'reportes.cliente_compras'"
+                        :icon="'fa fa-file-pdf'"
+                    ></ItemMenu>
+                    <ItemMenu
+                        v-if="
+                            permisos == '*' ||
                             permisos.includes('reportes.ingreso_productos')
                         "
                         :label="'Ingreso de Productos'"
@@ -337,6 +359,15 @@ onUnmounted(() => {});
                         "
                         :label="'Lista de Clientes'"
                         :ruta="'reportes.clientes'"
+                        :icon="'fa fa-file-pdf'"
+                    ></ItemMenu>
+                    <ItemMenu
+                        v-if="
+                            permisos == '*' ||
+                            permisos.includes('reportes.log_users')
+                        "
+                        :label="'Log de Usuarios'"
+                        :ruta="'reportes.log_users'"
                         :icon="'fa fa-file-pdf'"
                     ></ItemMenu>
                     <ItemMenu

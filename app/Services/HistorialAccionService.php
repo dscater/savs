@@ -6,6 +6,7 @@ use App\Models\HistorialAccion;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Request;
 
 class HistorialAccionService
 {
@@ -85,7 +86,8 @@ class HistorialAccionService
             'datos_nuevo' => $datos["datos_nuevo"],
             'modulo' => $datos["modulo"],
             'fecha' => date('Y-m-d'),
-            'hora' => date('H:i:s')
+            'hora' => date('H:i:s'),
+            'ip' => request()->ip(),
         ]);
     }
 }

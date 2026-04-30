@@ -33,6 +33,7 @@ class User extends Authenticatable
         "tipo",
         "foto",
         "fecha_registro",
+        "status",
     ];
 
     protected $appends = ["permisos", "url_foto", "full_ci", "full_name", "foto_b64", "fecha_registro_t"];

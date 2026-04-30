@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string("modulo", 155);
             $table->date("fecha");
             $table->time("hora");
+            $table->string("ip", 255)->nullable();
             $table->timestamps();
 
             $table->foreign("user_id")->on("users")->references("id");

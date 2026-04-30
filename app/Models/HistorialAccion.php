@@ -20,6 +20,7 @@ class HistorialAccion extends Model
         "modulo",
         "fecha",
         "hora",
+        "ip"
     ];
 
     /**
@@ -39,6 +40,4 @@ class HistorialAccion extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-
-    
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Models\Publicacion;
 use App\Models\User;
+use App\Services\HistorialAccionService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -18,6 +19,10 @@ use Inertia\Response;
 
 class AuthenticatedSessionController extends Controller
 {
+    private $modulo = "LOGIN";
+
+    public function __construct(private HistorialAccionService $historial_accion_service) {}
+
     /**
      * Display the login view.
      */
@@ -41,6 +46,9 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
         $request->session()->regenerate();
 
+        // registrar accion
+        $this->historial_accion_service->registrarAccion($this->modulo, "INICIO DE SESIÓN", Auth::user()->usuario . " INICIO SESIÓN", User::find(Auth::user()->id), null);
+
         if ($request->ajax()) {
             $user = User::findOrFail(Auth::user()->id);
             return response()->JSON(["user" => Auth::user()]);
@@ -58,6 +66,9 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse|JsonResponse
     {
+        // registrar accion
+        $this->historial_accion_service->registrarAccion($this->modulo, "FIN DE SESIÓN", Auth::user()->usuario . " CERRÓ SESIÓN", User::find(Auth::user()->id), null,);
+
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();

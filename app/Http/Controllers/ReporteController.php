@@ -919,4 +919,112 @@ class ReporteController extends Controller
 
         return $pdf->stream('subastas.pdf');
     }
+
+    public function cliente_compras()
+    {
+        return Inertia::render("Admin/Reportes/ClienteCompras");
+    }
+
+    public function r_cliente_compras(Request $request)
+    {
+        ini_set('memory_limit', '1024M');
+        set_time_limit(-1);
+        $cliente_id =  $request->cliente_id;
+        $fecha_ini =  $request->fecha_ini;
+        $fecha_fin =  $request->fecha_fin;
+        $formato =  $request->formato;
+        $ventas = Venta::select("ventas.*");
+        if ($cliente_id != 'todos') {
+            $ventas->where("cliente_id", $cliente_id);
+        }
+        if ($fecha_ini && $fecha_fin) {
+            $ventas->whereBetween('fecha', [$fecha_ini, $fecha_fin]);
+        }
+        $ventas = $ventas->get();
+
+        $pdf = PDF::loadView('reportes.cliente_compras', compact('ventas'))->setPaper('letter', 'portrait');
+
+        // ENUMERAR LAS PÁGINAS USANDO CANVAS
+        $pdf->output();
+        $dom_pdf = $pdf->getDomPDF();
+        $canvas = $dom_pdf->get_canvas();
+        $alto = $canvas->get_height();
+        $ancho = $canvas->get_width();
+        $canvas->page_text($ancho - 90, $alto - 25, "Página {PAGE_NUM} de {PAGE_COUNT}", null, 9, array(0, 0, 0));
+
+        return $pdf->stream('cliente_compras.pdf');
+    }
+
+    public function participante_subastas()
+    {
+        return Inertia::render("Admin/Reportes/ParticipanteSubastas");
+    }
+
+    public function r_participante_subastas(Request $request)
+    {
+        ini_set('memory_limit', '1024M');
+        set_time_limit(-1);
+        $user_id =  $request->user_id;
+        $fecha_ini =  $request->fecha_ini;
+        $fecha_fin =  $request->fecha_fin;
+        $formato =  $request->formato;
+
+        $users = User::where("tipo", "PARTICIPANTE");
+        $users->where("status", 1);
+
+        if ($user_id != 'todos') {
+            $users->where("id", $user_id);
+        }
+
+        $users = $users->get();
+
+        $pdf = PDF::loadView('reportes.participante_subastas', compact('users', 'fecha_ini', 'fecha_fin'))->setPaper('letter', 'portrait');
+
+        // ENUMERAR LAS PÁGINAS USANDO CANVAS
+        $pdf->output();
+        $dom_pdf = $pdf->getDomPDF();
+        $canvas = $dom_pdf->get_canvas();
+        $alto = $canvas->get_height();
+        $ancho = $canvas->get_width();
+        $canvas->page_text($ancho - 90, $alto - 25, "Página {PAGE_NUM} de {PAGE_COUNT}", null, 9, array(0, 0, 0));
+
+        return $pdf->stream('participante_subastas.pdf');
+    }
+
+    public function log_users()
+    {
+        return Inertia::render("Admin/Reportes/LogUsers");
+    }
+
+    public function r_log_users(Request $request)
+    {
+        ini_set('memory_limit', '1024M');
+        set_time_limit(-1);
+        $user_id =  $request->user_id;
+        $fecha_ini =  $request->fecha_ini;
+        $fecha_fin =  $request->fecha_fin;
+        $formato =  $request->formato;
+        $historial_accions = HistorialAccion::select("historial_accions.*");
+
+        if ($user_id != 'todos') {
+            $historial_accions->where('user_id', $user_id);
+        }
+
+        if ($fecha_ini && $fecha_fin) {
+            $historial_accions->whereBetween('fecha', [$fecha_ini, $fecha_fin]);
+        }
+        $historial_accions = $historial_accions->get();
+
+        $pdf = PDF::loadView('reportes.log_users', compact('historial_accions'))->setPaper('letter', 'portrait');
+
+        // ENUMERAR LAS PÁGINAS USANDO CANVAS
+        $pdf->output();
+        $dom_pdf = $pdf->getDomPDF();
+        $canvas = $dom_pdf->get_canvas();
+        $alto = $canvas->get_height();
+        $ancho = $canvas->get_width();
+        $canvas->page_text($ancho - 90, $alto - 25, "Página {PAGE_NUM} de {PAGE_COUNT}", null, 9, array(0, 0, 0));
+
+        return $pdf->stream('log_users.pdf');
+    }
 }

@@ -247,5 +247,14 @@ Route::middleware(['auth', 'permisoUsuario'])->prefix("admin")->group(function (
 
     Route::get('reportes/subastas', [ReporteController::class, 'subastas'])->name("reportes.subastas");
     Route::get('reportes/r_subastas', [ReporteController::class, 'r_subastas'])->name("reportes.r_subastas");
+
+    Route::get('reportes/participante_subastas', [ReporteController::class, 'participante_subastas'])->name("reportes.participante_subastas");
+    Route::get('reportes/r_participante_subastas', [ReporteController::class, 'r_participante_subastas'])->name("reportes.r_participante_subastas");
+
+    Route::get('reportes/cliente_compras', [ReporteController::class, 'cliente_compras'])->name("reportes.cliente_compras");
+    Route::get('reportes/r_cliente_compras', [ReporteController::class, 'r_cliente_compras'])->name("reportes.r_cliente_compras");
+
+    Route::get('reportes/log_users', [ReporteController::class, 'log_users'])->name("reportes.log_users");
+    Route::get('reportes/r_log_users', [ReporteController::class, 'r_log_users'])->name("reportes.r_log_users");
 });
 require __DIR__ . '/auth.php';
